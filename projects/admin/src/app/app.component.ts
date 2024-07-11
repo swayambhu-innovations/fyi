@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { addDoc, collection, Firestore, setDoc } from '@angular/fire/firestore';
 import { RouterOutlet } from '@angular/router';
-
+import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
+import { AddTaxTypeComponent } from './service/tax/add-tax-type/add-tax-type.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,NavbarComponent,AddTaxTypeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -14,10 +15,10 @@ export class AppComponent {
 
   constructor(private firestore:Firestore){}
   ngOnInit() {
-    console.log('work')
-    addDoc(collection(this.firestore, 'test'),{
-      name:'rahul'
-    }
-  )
+//     console.log('work')
+//     addDoc(collection(this.firestore, 'test-types'),{
+//       name:'rahul'
+//     }
+//  )
   }
 }

@@ -1,0 +1,44 @@
+.navbar {
+  border-radius: 30px;
+  background: var(
+    --primary-botton-gradient,
+    linear-gradient(
+      90deg,
+      #2f15aa 0.28%,
+      rgba(47, 21, 170, 0.8) 47.84%,
+      rgba(47, 21, 170, 0.4) 99.72%
+    )
+  );
+width: 100vw;
+  display: flex;
+  position: fixed;
+  padding: 5px 20px 5px 15px;
+  justify-content: center;
+  align-items: center;
+//   gap: 25px;
+
+
+  bottom: 0px;
+
+  div {
+    padding: 10px;
+    cursor: pointer;
+
+    &.active {
+      display: flex;
+      flex-grow: 2;
+      border-radius: 30px;
+      background: var(--white, #f0f0f0);
+      padding: 10px 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    &.inactive {
+      flex-grow: 1;
+      padding: 10px 20px;
+
+    }
+  }
+}
