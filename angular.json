@@ -28,7 +28,9 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/donor/public"
+                "input": "projects/donor/public",
+                "output": "assets"
+
               }
             ],
             "styles": [
@@ -88,7 +90,9 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/donor/public"
+                "input": "projects/donor/public",
+                "output": "assets"
+
               }
             ],
             "styles": [
@@ -125,7 +129,9 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/admin/public"
+                "input": "projects/admin/public",
+                "output": "assets"
+
               }
             ],
             "styles": [
@@ -185,7 +191,9 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/admin/public"
+                "input": "projects/admin/public",
+                "output": "assets"
+
               }
             ],
             "styles": [
