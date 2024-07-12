@@ -6,7 +6,6 @@ import { UsersComponent } from './users/users.component';
 import { HomeComponent } from './home/home.component';
 import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './auth/login/login.component';
-
 export const routes: Routes = [
     {path: '', component: LoginComponent},
     {path:'report',component: ReportsComponent},
@@ -14,5 +13,6 @@ export const routes: Routes = [
     {path:'home',component: HomeComponent},
     {path:'users',component: UsersComponent},
     {path:'service',component: ServiceComponent},
+    
     
 ];

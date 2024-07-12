@@ -89,15 +89,7 @@ body {
   );
 }
 .bg_color_gradient {
-  background: var(
-    --bg-color-gradient,
-    linear-gradient(
-      188deg,
-      #f8f4f1 62.54%,
-      rgba(248, 244, 241, 0.79) 75.71%,
-      rgba(248, 244, 241, 0) 90.08%
-    )
-  );
+  background:  linear-gradient(99deg, rgba(202, 202, 202, 0.30) 12.07%, rgba(202, 202, 202, 0.20) 48.35%, rgba(202, 202, 202, 0.20) 87.93%);
 }
 .primary_botton_gradient {
   background: linear-gradient(
