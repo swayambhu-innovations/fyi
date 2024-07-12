@@ -4,10 +4,11 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./auth/login/login.component";
 import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { AddTaxTypeComponent } from './service/tax/add-tax-type/add-tax-type.component';
+import { NotAdminComponent } from "./auth/not-admin/not-admin.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LoginComponent, NotAdminComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
