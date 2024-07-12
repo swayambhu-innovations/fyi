@@ -12,14 +12,18 @@ import { TaxService } from '../service/tax.service';
 export class AddTaxTypeComponent {
   constructor(private taxService:TaxService) {}
   ngOnInit() {
-    // console.log('add tax type component')
-    // this.taxService.addTax(
-    //   {
-    //     taxName: "GST",
-    //     taxType: "percentage",
-    //     taxRate: 18
-    //   }
-    // )
+    console.log('add tax type component')
+    this.taxService.addTax(
+      {
+        taxName: "CGST",
+        taxType: "percentage",
+        taxRate: 18,
+        active : true
+      }
+    )
+    this.taxService.getTax().subscribe((data:any)=>{
+      console.log(data);
+    })
   }
   
 }
