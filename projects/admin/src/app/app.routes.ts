@@ -13,6 +13,6 @@ export const routes: Routes = [
     {path:'feed',component: FeedComponent},
     {path:'home',component: HomeComponent},
     {path:'users',component: UsersComponent},
-    {path:'services',component: ServiceComponent},
+    {path:'service',component: ServiceComponent},
     
 ];
