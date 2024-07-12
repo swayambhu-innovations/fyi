@@ -9,6 +9,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { LoginComponent } from './auth/login/login.component';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [

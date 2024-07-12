@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { addDoc, collection, Firestore, setDoc } from '@angular/fire/firestore';
 import { RouterOutlet } from '@angular/router';
+import { LoginComponent } from "./auth/login/login.component";
 import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { AddTaxTypeComponent } from './service/tax/add-tax-type/add-tax-type.component';
-import { HeaderWithMenuComponent } from './sharedComponent/header-with-menu/header-with-menu.component';
-import { HeaderWithBackComponent } from './sharedComponent/header-with-back/header-with-back.component';
+import { NotAdminComponent } from "./auth/not-admin/not-admin.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NavbarComponent,AddTaxTypeComponent,HeaderWithMenuComponent,HeaderWithBackComponent],
+  imports: [RouterOutlet, LoginComponent, NotAdminComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
