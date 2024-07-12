@@ -1,1 +1,12 @@
-<p>tax works!</p>
+<!-- <app-header-with-back [pageTitle]="'Tax'"></app-header-with-back> -->
+<section>
+  <div *ngFor="let tax of taxes" class="card bg_color_gradient ">
+    <div class="header_text_color">{{ tax.taxName }}
+    </div>
+    <div class="items">
+        <span><mat-slide-toggle></mat-slide-toggle> </span>
+        <span><img src="assets/tax/edit.svg" alt=""></span>
+        <span><img src="assets/tax/delete.svg" alt=""></span>
+    </div>
+  </div>
+</section>

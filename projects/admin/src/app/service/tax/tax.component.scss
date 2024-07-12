@@ -1,0 +1,18 @@
+section{
+    width: 100%;
+    .card{
+        width: 90%;
+        margin: 3px auto;
+        border: 1px ;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .items{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+    }
+}
