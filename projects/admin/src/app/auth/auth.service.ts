@@ -27,7 +27,7 @@ export class AuthService {
         const user = result.user;
         console.log(user)
         console.log("login successfully");
-        this.router.navigateByUrl("service");
+        this.router.navigateByUrl("home");
       })
       .catch((error) => {
         const errorCode = error.code;

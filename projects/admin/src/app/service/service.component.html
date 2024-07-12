@@ -2,9 +2,15 @@
 
 <div class="scroll">
     <div class="tabs">
-        <div class="tab">Area</div>
-        <div class="tab">Catalogue</div>
-        <div class="tab">Donation</div>
-        <div class="tab">Event</div>
-        <div class="tab">Tax</div>
+        <div class="tab" (click)="submit('area')">Area</div>
+        <div class="tab" (click)="submit('catalogue')">Catalogue</div>
+        <div class="tab" (click)="submit('donation')">Donation</div>
+        <div class="tab" (click)="submit('event')">Event</div>
+        <div class="tab" (click)="submit('tax')">Tax</div>
     </div>
+</div>
+<app-event *ngIf="'event'==selected?true:false"></app-event>
+<app-tax *ngIf="'tax'==selected?true:false"></app-tax>
+<app-area *ngIf="'area'==selected?true:false"></app-area>
+<app-catalogue *ngIf="'catalogue'==selected?true:false"></app-catalogue>
+<app-donation *ngIf="'donation'==selected?true:false" ></app-donation>
