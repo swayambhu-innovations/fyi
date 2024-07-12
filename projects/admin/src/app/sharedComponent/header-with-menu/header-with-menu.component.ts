@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './header-with-menu.component.scss'
 })
 export class HeaderWithMenuComponent {
-
+  user={
+    name:'rahul'
+  }
 }

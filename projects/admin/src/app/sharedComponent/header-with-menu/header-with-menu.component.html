@@ -1,1 +1,28 @@
-<p>header-with-menu works!</p>
+<div class="header">
+
+  <p class="krona-one-regular header_text_color">Hi, {{ user.name }}</p>
+  <nav>
+    <span>
+      <img src="assets/header/bell_icon.svg" alt="" />
+    </span>
+
+    <a href="#offcanvas-usage" uk-toggle
+      ><img src="assets/header/menu.svg" alt="" />
+    </a>
+  </nav>
+</div>
+
+<div id="offcanvas-usage" uk-offcanvas>
+  <div class="uk-offcanvas-bar  white-bg">
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+    <h3>Title</h3>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+  </div>
+</div>
