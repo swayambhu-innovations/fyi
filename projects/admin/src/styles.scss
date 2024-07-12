@@ -119,3 +119,19 @@ body {
 .active_tab_gradient{
     background: linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%);
 }
+
+.input_box_bg_gradient{
+  background: linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%);
+}
+.warning_button_gardient{
+  background:  linear-gradient(91deg, #E90D35 1.27%, rgba(233, 13, 53, 0.80) 47.72%, rgba(233, 13, 53, 0.40) 98.38%);
+}
+
+
+//other style
+.twin-btn{
+display: flex;
+width: 100%;
+justify-content: center;
+gap: 20px;
+}
