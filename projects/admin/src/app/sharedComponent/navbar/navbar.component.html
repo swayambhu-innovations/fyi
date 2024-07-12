@@ -1,0 +1,8 @@
+<div class="navbar">
+  <div *ngFor="let item of items; let i = index" 
+       [class.active]="activeIndex === i" 
+       [class.inactive]="activeIndex !== i"
+       (click)="setActive(i)">
+    {{ item }}
+  </div>
+</div>
