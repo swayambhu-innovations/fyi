@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './header-with-menu.component.scss'
 })
 export class HeaderWithMenuComponent {
-  @Input() user:string= "Admin";
+  user:string= 'Aman'
 
   
 }
