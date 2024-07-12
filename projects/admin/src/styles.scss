@@ -123,3 +123,7 @@ body {
     rgba(224, 224, 224, 0.1) 99.47%
   );
 }
+
+.active_tab_gradient{
+    background: linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%);
+}
