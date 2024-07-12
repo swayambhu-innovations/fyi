@@ -1,6 +1,6 @@
 section{
     height: 100%;
-    // width: 100%;
+    // width: 100vw;
     background-image: url("/assets/login/logout_bg.svg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -43,34 +43,38 @@ section{
 }
 .button{
     display: flex;
+    align-items: center;
+  
+    
    
 .logout-button{
-    margin-right: 20vh;
-    margin-top: 28%;
     background: linear-gradient(90.61deg, rgba(224, 224, 224, 0.3) 0.53%, rgba(224, 224, 224, 0.2) 47.85%, rgba(224, 224, 224, 0.1) 99.47%);
     display: flex;
-    // justify-content: center;
-    width: 100%;
-     align-items: center;
+  
+    align-items: center;    
+    width: 200px;
     height: 50px;
     border-radius: 20px;
     position: relative;
     border: none;
     margin-bottom: 20px;
-    img{
-    left: 10px;
-   }
+    margin-right:60px;
     span{
         color: #F0F0F0;
+        margin-left: 2.5rem;
+       
     }
-   
+   .logo{
+    margin-left: 1rem;
+   }
 }
 .refresh-button{
-    margin-top: 28%;
+   
     background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 50px;
     height: 50px;
     border-radius: 50px;
     border: none;
