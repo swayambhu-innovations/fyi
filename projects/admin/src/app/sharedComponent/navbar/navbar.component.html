@@ -2,7 +2,9 @@
   <div *ngFor="let item of items; let i = index" 
        [class.active]="activeIndex === i" 
        [class.inactive]="activeIndex !== i"
-       (click)="setActive(i)">
-    {{ item }}
+       (click)="setActive(i,item.path)">
+       <img [src]="item.image" *ngIf="activeIndex === i" class="setimage">
+       <img [src]="item.image2" alt=""*ngIf="activeIndex !== i"> 
+       <span *ngIf="activeIndex === i">{{item.type}} </span>
   </div>
 </div>
