@@ -7,11 +7,12 @@ interface Event {
   booked: number;
   capacity: number;
   status: string;
-}
+}import { AddeventComponent } from "./addevent/addevent.component";
+
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [MatExpansionModule,NgFor],
+  imports: [MatExpansionModule,NgFor,AddeventComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
 })

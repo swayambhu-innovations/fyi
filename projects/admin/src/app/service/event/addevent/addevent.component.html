@@ -1,0 +1,37 @@
+<div>
+    <h1>add event</h1>
+<div class="scroll">
+    <div class="tabs">
+        <div class="tab" (click)="submit('area')">Details</div>
+        <div class="tab" (click)="submit('catalogue')">Itinerary</div>
+        <div class="tab" (click)="submit('donation')">Slab</div>
+        <div class="tab" (click)="submit('event')">city</div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="eventName">Event Name</label>
+            <input type="text" id="eventName" name="eventName" value="Searic Kashi Summit 2024">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description">
+                
+            </textarea>
+        </div>
+        <div class="dateset">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate" value="2024-07-13">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" name="endDate" value="2024-07-15">
+            </div>
+        </div>
+        
+        
+    </form>
+</div>
