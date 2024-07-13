@@ -27,19 +27,27 @@ export class AuthService {
         const user = result.user;
         console.log(user)
         console.log("login successfully");
-        this.router.navigateByUrl("service");
+        this.router.navigateByUrl("home");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
+    }
+      logout(){
+        signOut(this.auth).then(() => {
+          this.router.navigate(['/'])
+          console.log('signed out');
+        }).catch((error) => {
+          console.log('sign out error: ' + error);
+        })
+      }
   }
   
  
 
   
   
-}
 
 
 

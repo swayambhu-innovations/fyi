@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-not-admin',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './not-admin.component.scss'
 })
 export class NotAdminComponent {
-
+  
+  authService = inject(AuthService);
 }
