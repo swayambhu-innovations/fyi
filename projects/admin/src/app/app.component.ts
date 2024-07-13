@@ -5,10 +5,11 @@ import { LoginComponent } from "./auth/login/login.component";
 import { AddTaxTypeComponent } from './service/tax/add-tax-type/add-tax-type.component';
 import { NotAdminComponent } from "./auth/not-admin/not-admin.component";
 import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
+import { EventComponent } from "./service/event/event.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, NotAdminComponent,NavbarComponent ],
+  imports: [RouterOutlet, LoginComponent, NotAdminComponent, NavbarComponent, EventComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
