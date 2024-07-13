@@ -1,13 +1,14 @@
 import { Component, ElementRef, Input, Renderer2, signal } from '@angular/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgFor } from '@angular/common';
+import { AddeventComponent } from "./addevent/addevent.component";
 interface Event {
   name: string;
   imageUrl: string;
   booked: number;
   capacity: number;
   status: string;
-}import { AddeventComponent } from "./addevent/addevent.component";
+}
 
 @Component({
   selector: 'app-event',
@@ -63,15 +64,6 @@ export class EventComponent {
   deleteEvent(event: Event): void {
     console.log('Deleting event', event);
   }
-  // image: string ='/assets/login/even_bg.svg';
-  // @Input() imageUrl!: string;
-  //   constructor(private elementRef:ElementRef, private renderer: Renderer2) {}
-  //   ngOnInit() {
-  //       this.renderer.setStyle(
-  //           this.elementRef.nativeElement,
-  //           'backgroundImage',
-  //           `url(${this.imageUrl})`
-  //       );
-  //   }
+
 
 }
