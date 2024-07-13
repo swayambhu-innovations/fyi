@@ -178,3 +178,7 @@ background: var(--primary-botton-gradient, linear-gradient(90deg, #2F15AA 0.28%,
 margin-left: 10px;
 color: white;
 }
+
+::ng-deep mat-bottom-sheet-container {
+    border-radius: 20px 20px 0px 0px ;
+  }
