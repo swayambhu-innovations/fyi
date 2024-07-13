@@ -31,21 +31,7 @@
                 <input type="date" id="endDate" name="endDate" value="2024-07-15">
             </div>
         </div>
-        <div class="header">
-            <label>Add Images (2:1 ratio)</label>
-            <button (click)="triggerFileInput()">&#9998;</button>
-            <input id="fileInput" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
-          </div>
-          <div class="images-grid">
-            <div *ngFor="let image of images; let i = index" class="image-item">
-              <img [src]="image" alt="Uploaded Image">
-              <button class="remove-btn" (click)="removeImage(i)">&#10006;</button>
-            </div>
-          </div>
-          <div class="actions">
-            <button class="cancel-btn">Cancel</button>
-            <button class="next-btn">Next</button>
-          </div>
+        
         
     </form>
 </div>
