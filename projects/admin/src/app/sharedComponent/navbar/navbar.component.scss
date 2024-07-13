@@ -1,7 +1,7 @@
 .navbar {
   border-radius: 30px;
 
-  width: 100%;
+  width: 99%;
   height: 60px;
   display: flex;
   position: fixed;
@@ -10,6 +10,8 @@
   align-items: center;
   //   gap: 25px;
   bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
 
   div {
     padding: 0px;
