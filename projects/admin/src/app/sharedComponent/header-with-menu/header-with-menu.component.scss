@@ -1,16 +1,20 @@
 .header {
   display: flex;
   justify-content: space-between;
-
-
   font-size: 18px;
   line-height: normal;
   padding: 20px;
+  padding-bottom: 0px;
   nav{
     display: flex;
     gap: 20px;
   }
 
+}
+hr{
+  margin-left: 10%;
+  height: 10px;
+  width: 80vw;
 }
 .white-bg{
     background-color: white;

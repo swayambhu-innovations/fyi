@@ -1,6 +1,7 @@
 
 
 <div class="card" *ngFor="let event of events">
+    <div class="bgcolor" >
     <div class="row1">
         <span class="header_text_color section_title">{{ event.name }}</span>
         <img src="/assets/eventList_image/icon2.svg">
@@ -15,10 +16,15 @@
                 <p class="white paragraph_text">{{ event.status }}</p>
             </div>
             <div class="button">
-                <img (click)="viewEvent(event)" src="/assets/eventList_image/toggle_button.svg">
+                <!-- <img (click)="viewEvent(event)" src="/assets/eventList_image/toggle_button.svg"> -->
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
                 <img (click)="editEvent(event)" src="/assets/eventList_image/editbutton.svg">
                 <img (click)="deleteEvent(event)" src="/assets/eventList_image/delete_button.svg">
             </div>
         </div>
+    </div>
     </div>
 </div>

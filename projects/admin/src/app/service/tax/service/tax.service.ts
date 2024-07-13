@@ -29,7 +29,6 @@ export class TaxService {
       const collectionRef = collection(this.firestore, 'tax-types');
       onSnapshot(collectionRef, (snapshot) => {
         const taxTypes = snapshot.docs.map(doc => ({
-          id: doc.id,
           ...doc.data()
         }));
         observer.next(taxTypes);
@@ -54,7 +53,7 @@ export class TaxService {
     );
   }
   
-  deleteRole(taxDetail: any) {
-    return deleteDoc(doc(this.firestore, "tax-types", taxDetail.taxId));
+  deleteTax(taxId: any) {
+    return deleteDoc(doc(this.firestore, "tax-types", taxId));
   }
 }

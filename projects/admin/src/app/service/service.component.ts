@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-
+import { NavbarComponent } from '../sharedComponent/navbar/navbar.component';
+import { TaxComponent } from './tax/tax.component';
+import {HeaderWithMenuComponent } from '../sharedComponent/header-with-menu/header-with-menu.component';
 @Component({
   selector: 'app-service',
   standalone: true,
-  imports: [],
+  imports: [ NavbarComponent, TaxComponent, HeaderWithMenuComponent],
   templateUrl: './service.component.html',
   styleUrl: './service.component.scss'
 })

@@ -1,0 +1,11 @@
+section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px 10px 0px 0px;
+
+}
+
+lib-cancel-btn,lib-delete-btn{
+    width: 35%;
+}

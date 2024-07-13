@@ -1,0 +1,30 @@
+section{
+    width: 100%;
+    padding-bottom: 70px;
+    .card{
+        width: 90%;
+        margin: 3px auto;
+        border: 1px ;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .span{
+            width: 50px;
+            height: 50px;
+        }
+        .items{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+    }
+}
+
+app-add-button{
+    position: fixed;
+    bottom: 130px;
+    right: 60px;
+}
