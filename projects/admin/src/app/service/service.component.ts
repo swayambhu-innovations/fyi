@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HeaderWithBackComponent } from '../sharedComponent/header-with-back/header-with-back.component';
 import { NavbarComponent } from '../sharedComponent/navbar/navbar.component';
 import { TaxComponent } from './tax/tax.component';
 import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/header-with-menu.component"; 
@@ -9,7 +8,7 @@ import { NgIf } from '@angular/common';
 import { AreaComponent } from "./area/area.component";
 import { CatalogueComponent } from "./catalogue/catalogue.component";
 import { DonationComponent } from "./donation/donation.component";
-
+import { HeaderWithBackComponent } from '../sharedComponent/header-with-back/header-with-back.component';
 
 @Component({
   selector: 'app-service',

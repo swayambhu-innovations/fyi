@@ -1,1 +1,38 @@
-    <p>add tax type</p>
+<section>
+  <p class="header_text_color" >{{ data ? 'Edit Tax' : 'Add Tax' }}</p>
+  <img src="assets/tax/addTax.svg" alt="" />
+  <form [formGroup]="taxForm">
+    <div>
+      <label class="description_text">Tax Name</label>
+      <br />
+      <input
+        type="text"
+        formControlName="taxName"
+        class="input_box_bg_gradient"
+      />
+    </div>
+
+    <div>
+      <label class="description_text">Choose a car</label>
+      <br />
+      <select formControlName="taxType" class="input_box_bg_gradient">
+        <option value="Percentage">Percentage</option>
+        <option value="Flat">Flat</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="description_text">Tax Name</label>
+      <br />
+      <input
+        type="text"
+        formControlName="taxRate"
+        class="input_box_bg_gradient"
+      />
+    </div>
+  </form>
+  <div class="twin-btn">
+    <lib-cancel-btn (click)="cancel()"></lib-cancel-btn>
+    <lib-save-btn (click)="saveTax()"></lib-save-btn>
+  </div>
+</section>

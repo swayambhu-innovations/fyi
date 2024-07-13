@@ -1,0 +1,17 @@
+
+
+.round{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+   
+    position: absolute;
+    border:none;
+
+        img{
+        width: 80%;
+    }
+}

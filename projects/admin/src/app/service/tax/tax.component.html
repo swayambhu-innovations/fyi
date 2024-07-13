@@ -4,9 +4,10 @@
     <div class="header_text_color">{{ tax.taxName }}
     </div>
     <div class="items">
-        <span><mat-slide-toggle></mat-slide-toggle> </span>
-        <span><img src="assets/tax/edit.svg" alt=""></span>
-        <span><img src="assets/tax/delete.svg" alt=""></span>
+        <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="tax.active==true?true:false" (change)="updatedStatus(tax)"></mat-slide-toggle> </span>
+        <span><img src="assets/tax/edit.svg" (click)="editTax(tax)" alt=""></span>
+        <span><img src="assets/tax/delete.svg" (click)="openDelete(tax.taxId)" alt=""></span>
     </div>
   </div>
+  <app-add-button  (click)="openBottomSheet()" ></app-add-button>
 </section>
