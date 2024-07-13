@@ -10,6 +10,7 @@ import { AreaComponent } from "./area/area.component";
 import { CatalogueComponent } from "./catalogue/catalogue.component";
 import { DonationComponent } from "./donation/donation.component";
 
+
 @Component({
   selector: 'app-service',
   standalone: true,
