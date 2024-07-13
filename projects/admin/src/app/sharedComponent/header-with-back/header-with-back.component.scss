@@ -1,26 +1,22 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    line-height: normal;
-    padding: 0px 20px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  line-height: normal;
+  padding: 0px 20px;
+  position: fixed;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid #8d8c8c;
 
-    .back-with-title{
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
-    nav{
-      display: flex;
-      gap: 20px;
-    }
-  
+  .back-with-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
   }
-  hr{
-    margin-left: 10%;
-    height: 10px;
-    width: 80vw;
+  nav {
+    display: flex;
+    gap: 20px;
   }
-  
-  
+}

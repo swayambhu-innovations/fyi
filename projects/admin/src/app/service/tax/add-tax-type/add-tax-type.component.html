@@ -1,33 +1,38 @@
 <section>
-  <p class="header_text_color" >{{ data ? 'Edit Tax' : 'Add Tax' }}</p>
-  <img src="assets/tax/addTax.svg" alt="" />
+  <p class="header_text_color">{{ data ? "Edit Tax" : "Add Tax" }}</p>
+  <div class="logo"><img src="assets/tax/addTax.svg" alt="" /></div>
   <form [formGroup]="taxForm">
-    <div>
+    <div class="field">
       <label class="description_text">Tax Name</label>
       <br />
       <input
         type="text"
         formControlName="taxName"
-        class="input_box_bg_gradient"
+        class="input_box_bg_gradient header_text_color"
+        placeholder="Enter Tax Name"
       />
     </div>
 
-    <div>
-      <label class="description_text">Choose a car</label>
+    <div class="field">
+      <label class="description_text">Tax Type</label>
       <br />
-      <select formControlName="taxType" class="input_box_bg_gradient">
-        <option value="Percentage">Percentage</option>
-        <option value="Flat">Flat</option>
+      <select
+        formControlName="taxType"
+        class="input_box_bg_gradient header_text_color"
+      >
+        <option value="percentage">Percentage</option>
+        <option value="flat">Flat</option>
       </select>
     </div>
 
-    <div>
-      <label class="description_text">Tax Name</label>
+    <div class="field">
+      <label class="description_text">Tax Rate</label>
       <br />
       <input
         type="text"
         formControlName="taxRate"
-        class="input_box_bg_gradient"
+        class="input_box_bg_gradient header_text_color"
+        placeholder="Enter Tax Rate"
       />
     </div>
   </form>
