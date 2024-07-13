@@ -5,17 +5,19 @@
   line-height: normal;
   padding: 20px;
   padding-bottom: 0px;
+  width: 100VW;
+  position: fixed;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid  #8d8c8c;
+
   nav{
     display: flex;
     gap: 20px;
   }
 
 }
-hr{
-  margin-left: 10%;
-  height: 10px;
-  width: 80vw;
-}
+
 .white-bg{
     background-color: white;
 }

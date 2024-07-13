@@ -1,22 +1,19 @@
 .navbar {
   border-radius: 30px;
-  
-width: 100%;
-height: 60px;
+
+  width: 100%;
+  height: 60px;
   display: flex;
   position: fixed;
   padding: 5px 5px 5px 5px;
   justify-content: center;
   align-items: center;
-//   gap: 25px;
-
-
-  bottom: 0px;
+  //   gap: 25px;
+  bottom: 2px;
 
   div {
     padding: 0px;
     cursor: pointer;
-
 
     &.active {
       display: flex;
@@ -27,22 +24,17 @@ height: 60px;
       padding: 10px 15px;
       align-items: center;
       -webkit-transition: all 500ms ease-in;
-
     }
 
     &.inactive {
-    width: 17%;
+      width: 17%;
       padding: 10px 20px;
-     justify-content:center ;
-     justify-items: center;
-     -webkit-transition: all 500ms ease-in;
+      justify-content: center;
+      justify-items: center;
+      -webkit-transition: all 500ms ease-in;
     }
-    
-   
   }
- span{
-  margin-left: 5%;
- }
+  span {
+    margin-left: 5%;
+  }
 }
-
-
