@@ -1,3 +1,14 @@
+.heading{
+    text-align: center;
+    color: var(--header-text-color, #464E5F);
+
+/* page title */
+font-family: "Krona One";
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 .scroll{
     overflow-x: auto;
     -ms-overflow-style: none;  /* IE and Edge */
@@ -32,7 +43,7 @@ align-items: center;
 
 
 
-form {
+.form1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,6 +54,7 @@ form {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
+    
 }
 
 label {
@@ -76,6 +88,7 @@ input[type="date"]{
 border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
 background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
 
+
 }
 
 textarea {
@@ -88,4 +101,80 @@ background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 2
 }
 .dateset{
     display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.header {
+    align-items: center;
+    border-radius: 12px;
+border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
+background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 320px;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .header label {
+    font-weight: bold;
+  }
+  
+  .images-grid {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-item {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 80px;
+  }
+  
+  .image-item img {
+    border-radius: 10px;
+    width: 150px;
+    height: 80px;
+  }
+  
+  .remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .cancel-button{
+width: 137.5px;
+height: 60px;
+padding: 20px;
+border: none;
+border-radius: 30px;
+background: var(--secondary-botton-gradient, linear-gradient(91deg, rgba(224, 224, 224, 0.30) 0.53%, rgba(224, 224, 224, 0.20) 47.85%, rgba(224, 224, 224, 0.10) 99.47%));
+color: rgba(47, 21, 170, 1);
+margin-right: 10px;
+  }
+.next-button{
+    width: 137.5px;
+    border: none;
+height: 60px;
+padding: 20px;
+justify-content: center;
+align-items: center;
+border-radius: 30px;
+background: var(--primary-botton-gradient, linear-gradient(90deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.80) 47.84%, rgba(47, 21, 170, 0.40) 99.72%));
+margin-left: 10px;
+color: white;
 }

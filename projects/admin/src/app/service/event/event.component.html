@@ -1,5 +1,5 @@
 
-
+<section>
 <div class="card" *ngFor="let event of events">
     <div class="bgcolor" >
     <div class="row1">
@@ -28,3 +28,6 @@
     </div>
     </div>
 </div>
+
+<app-add-button (click)="openBottomSheet()"  ></app-add-button>
+</section>
