@@ -73,4 +73,15 @@ export class EventService {
   deleteEvent(eventId: any) {
     return deleteDoc(doc(this.firestore, 'events', eventId));
   }
+
+  addSlab(eventDetail: any) {
+    if (eventDetail.eventId) {
+      const taxDocRef = doc(this.firestore, 'events', eventDetail.eventId);
+      return updateDoc(taxDocRef, eventDetail);
+    } else {
+      const newEventDocRef = doc(collection(this.firestore, 'events'));
+      eventDetail.eventId = newEventDocRef.id;
+      return setDoc(newEventDocRef, eventDetail);
+    }
+  }
 }
