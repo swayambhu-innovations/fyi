@@ -6,7 +6,7 @@
     <div class="items">
         <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="tax.active==true?true:false" (change)="updatedStatus(tax)"></mat-slide-toggle> </span>
         <span><img src="assets/tax/edit.svg" (click)="editTax(tax)" alt=""></span>
-        <span><img src="assets/tax/delete.svg" (click)="openDelete(tax.taxId)" alt=""></span>
+        <span><img src="assets/tax/delete.svg" (click)="openDelete(tax)" alt=""></span>
     </div>
   </div>
   <app-add-button  (click)="openBottomSheet()" ></app-add-button>

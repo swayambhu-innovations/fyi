@@ -34,9 +34,9 @@ export class TaxComponent {
   openBottomSheet(): void {
     this._bottomSheet.open(AddTaxTypeComponent);
   }
-  openDelete(taxId:any): void {
+  openDelete(taxDetail:any): void {
     this._bottomSheet.open(DeleteTaxComponent, {
-      data: taxId,
+      data: taxDetail,
       
     });
   }
