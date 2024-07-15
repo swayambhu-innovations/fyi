@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -10,6 +10,17 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  showNavbar = true;
+  hiddenRoutes = ['/login', '/notAdmin'];
+  ngOnInit() {
+    
+    this.checkRoute(this.router.url);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkRoute(event.urlAfterRedirects);
+      }
+    });
+  }
   constructor(private router: Router) { }
 
   items = [ { image: 'assets/navbar/home.svg', type: "Home" ,  image2: 'assets/navbar/home1.svg',path:"home"},
@@ -24,4 +35,12 @@ export class NavbarComponent {
     this.activeIndex = index;
     this.router.navigate(['/', path]);
   }
+
+ 
+
+  private checkRoute(url: string) {
+    this.showNavbar = !this.hiddenRoutes.some(route => url.includes(route));
+  }
+
+  
 }

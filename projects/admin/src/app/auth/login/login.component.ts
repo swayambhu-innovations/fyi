@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,9 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   authService = inject(AuthService);
+  constructor(public auth: AuthService) { }
   ngOnInit():void{
-    console.log("work")
+    // console.log("work")
   }
+ 
 }

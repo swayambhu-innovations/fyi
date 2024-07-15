@@ -1,25 +1,18 @@
 <div class="header">
-
   <p class="krona-one-regular header_text_color">Hi, {{ name }}</p>
   <nav>
     <span>
       <img src="assets/header/bell_icon.svg" alt="" />
     </span>
 
-   
-
-    <a href="#offcanvas-usage"   uk-toggle="target: #offcanvas-flip"
-
+    <a href="#offcanvas-usage" uk-toggle="target: #offcanvas-flip"
       ><img src="assets/header/menu.svg" alt="" />
     </a>
   </nav>
 </div>
 
-
-
-<div id="offcanvas-flip"  white-bg uk-offcanvas="flip: true; overlay: true">
+<div id="offcanvas-flip" white-bg uk-offcanvas="flip: true; overlay: true">
   <div class="uk-offcanvas-bar white-bg">
-
     <h3>Title</h3>
 
     <p>
@@ -28,5 +21,6 @@
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
     </p>
+    <button (click)="logout()">Logout</button>
   </div>
 </div>
