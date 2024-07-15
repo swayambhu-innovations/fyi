@@ -26,7 +26,7 @@ export class AddTaxTypeComponent {
   taxForm: FormGroup = new FormGroup({
     taxName: new FormControl('', Validators.required),
     taxRate: new FormControl('', Validators.required),
-    taxType: new FormControl('', Validators.required),
+    taxType: new FormControl('percentage', Validators.required),
     active: new FormControl(true),
     taxId: new FormControl(''),
     eventLinked: new FormControl(0),

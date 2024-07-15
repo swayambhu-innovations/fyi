@@ -35,22 +35,7 @@ export class TaxService {
       }, (error) => {
         observer.error(error);
       });
-    }).pipe(
-      distinctUntilChanged((prev: any[], curr: any[]) => {
-        if (!prev || prev.length !== curr.length) {
-          return false;
-        }
-        for (let i = 0; i < prev.length; i++) {
-          if (prev[i].id !== curr[i].id || 
-              prev[i].taxName !== curr[i].taxName || 
-              prev[i].taxType !== curr[i].taxType || 
-              prev[i].taxRate !== curr[i].taxRate) {
-            return false;
-          }
-        }
-        return true;
-      })
-    );
+    })
   }
   
   deleteTax(taxId: any) {

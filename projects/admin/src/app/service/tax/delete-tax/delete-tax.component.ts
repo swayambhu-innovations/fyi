@@ -17,13 +17,14 @@ export class DeleteTaxComponent {
     private taxService:TaxService
   ) {
     console.log(data)
+    this.count=data.eventLinked
   }
-  count:number=15;
+  count:number=0;
   closeSheet(): void {
     this._bottomSheetRef.dismiss();
   }
   deleteTax(): void {
-    this.taxService.deleteTax(this.data).then(()=>{
+    this.taxService.deleteTax(this.data.taxId).then(()=>{
       this._bottomSheetRef.dismiss();
     })
   }

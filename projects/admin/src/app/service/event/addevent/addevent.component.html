@@ -1,5 +1,6 @@
-<div>
-    <h1>add event</h1>
+<div class="heading">
+    Add event
+</div>
 <div class="scroll">
     <div class="tabs">
         <div class="tab" (click)="submit('area')">Details</div>
@@ -8,8 +9,8 @@
         <div class="tab" (click)="submit('event')">city</div>
     </div>
 </div>
-</div>
-<div class="container">
+
+<div class="container form1">
     <form>
         <div class="form-group">
             <label for="eventName">Event Name</label>
@@ -34,4 +35,22 @@
         
         
     </form>
+
+    <div class="header">
+        <label >Add Images (2:1 ratio)</label>
+        <button (click)="triggerFileInput()"><img src="/assets/addevent/upload.svg" alt="">
+        </button>
+        <input id="fileInput" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
+    </div>
+      <div class="images-grid">
+        <div *ngFor="let image of images; let i = index" class="image-item">
+          <img [src]="image" alt="Uploaded Image">
+          <button class="remove-btn" (click)="removeImage(i)">&#10006;</button>
+        </div>
+      </div>
+      <div class="buttonset">
+        <button class="cancel-button">cancel</button>
+        <button class="next-button">Next</button>
+      </div>
+    
 </div>

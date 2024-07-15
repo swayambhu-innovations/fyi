@@ -1,3 +1,6 @@
+section{
+  padding-bottom: 70px;
+}
 .card {
   justify-content: center;
     background: linear-gradient(99.41deg, rgba(202, 202, 202, 0.3) 12.07%, rgba(202, 202, 202, 0.2) 48.35%, rgba(202, 202, 202, 0.2) 87.93%);
@@ -112,4 +115,10 @@
 
 .bgcolor{
  padding-bottom: 10px;
+}
+
+app-add-button{
+  position: fixed;
+  bottom: 130px;
+  right: 60px;
 }
