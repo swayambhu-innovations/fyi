@@ -1,4 +1,4 @@
-<div class="navbar primary_botton_gradient">
+<div *ngIf="showNavbar" class="navbar primary_botton_gradient">
   <div *ngFor="let item of items; let i = index" 
        [class.active]="activeIndex === i" 
        [class.inactive]="activeIndex !== i"

@@ -7,10 +7,11 @@ import { NotAdminComponent } from './auth/not-admin/not-admin.component';
 import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { EventComponent } from "./service/event/event.component";
 import { filter } from 'rxjs';
+import { SplashScreenComponent } from "./auth/splash-screen/splash-screen.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, NotAdminComponent, NavbarComponent, EventComponent],
+  imports: [RouterOutlet, LoginComponent, NotAdminComponent, NavbarComponent, EventComponent, SplashScreenComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

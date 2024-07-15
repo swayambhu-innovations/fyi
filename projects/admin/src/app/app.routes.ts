@@ -11,17 +11,25 @@ import { EventComponent } from './service/event/event.component';
 import { AreaComponent } from './service/area/area.component';
 import { CatalogueComponent } from './service/catalogue/catalogue.component';
 import { DonationComponent } from './service/donation/donation.component';
+import { SplashScreenComponent } from './auth/splash-screen/splash-screen.component';
+import { AuthGuard } from './auth/auth.guard';
+import { NotAdminComponent } from './auth/not-admin/not-admin.component';
+import { LoggedInAuthGuard } from './auth/loggedin.guard';
 export const routes: Routes = [
-    {path: '', component: LoginComponent},
-    {path:'report',component: ReportsComponent},
-    {path:'feed',component: FeedComponent},
-    {path:'home',component: HomeComponent},
-    {path:'users',component: UsersComponent},
-    {path:'service',component: ServiceComponent},
-    {path:'area',component: AreaComponent},
-    {path:'catalogue',component: CatalogueComponent},
-    {path:'donation',component: DonationComponent},
-    {path:'tax',component: TaxComponent},
-    {path:'event',component: EventComponent},
+    // {path : '', component:SplashScreenComponent},
+    //{path: '', component: LoginComponent},
+    {path: "",redirectTo: "/login",pathMatch: "full"},
+    {path: "login", component: LoginComponent,canActivate: [LoggedInAuthGuard]},
+    {path: 'notAdmin', component:NotAdminComponent },
+    {path:'report',component: ReportsComponent,canActivate: [AuthGuard]},
+    {path:'feed',component: FeedComponent,canActivate: [AuthGuard]},
+    {path:'home',component: HomeComponent , canActivate: [AuthGuard]},
+    {path:'users',component: UsersComponent,canActivate: [AuthGuard]},
+    {path:'service',component: ServiceComponent, canActivate: [AuthGuard]},
+    {path:'area',component: AreaComponent,canActivate: [AuthGuard]},
+    {path:'catalogue',component: CatalogueComponent,canActivate: [AuthGuard]},
+    {path:'donation',component: DonationComponent,canActivate: [AuthGuard]},
+    {path:'tax',component: TaxComponent ,canActivate: [AuthGuard]},
+    {path:'event',component: EventComponent,canActivate: [AuthGuard]},
     
 ];
