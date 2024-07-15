@@ -17,9 +17,8 @@ import { NotAdminComponent } from './auth/not-admin/not-admin.component';
 import { LoggedInAuthGuard } from './auth/loggedin.guard';
 export const routes: Routes = [
     // {path : '', component:SplashScreenComponent},
-    //{path: '', component: LoginComponent},
     {path: "",redirectTo: "/login",pathMatch: "full"},
-    {path: "login", component: LoginComponent,canActivate: [LoggedInAuthGuard]},
+    {path: "login", component: LoginComponent},
     {path: 'notAdmin', component:NotAdminComponent },
     {path:'report',component: ReportsComponent,canActivate: [AuthGuard]},
     {path:'feed',component: FeedComponent,canActivate: [AuthGuard]},
