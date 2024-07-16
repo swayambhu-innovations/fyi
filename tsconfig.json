@@ -19,6 +19,9 @@
       ],
       "shared-ui": [
         "./dist/shared-ui"
+      ],
+      "style-lib": [
+        "./dist/style-lib"
       ]
     },
     "esModuleInterop": true,

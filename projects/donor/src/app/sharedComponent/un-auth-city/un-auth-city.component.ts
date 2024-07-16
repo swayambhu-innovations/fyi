@@ -42,13 +42,12 @@ export class UnAuthCityComponent {
       console.log(err)
     }
 
-    console.log(this.state);
     this.geolocationService.getCity(this.state).then((cities) => {
       cities?.docs.map((city) => {
         this.cities.push(city.data());
       });
+      this.selectedCityId = this.cities[0].cityId;
     });
-    this.selectedCityId = this.cities[0].id;
 
   }
 

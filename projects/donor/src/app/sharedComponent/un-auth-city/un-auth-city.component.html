@@ -3,7 +3,7 @@
     <div class="form">
       <label for="citySelect">Select a city:</label>
       <br>
-      <select id="citySelect" [(ngModel)]="selectedCityId" name="selectedCity">
+      <select id="citySelect" [(ngModel)]="selectedCityId" name="selectedCity" [(value)]="selectedCityId">
         <option *ngFor="let city of cities" [value]="city.cityId
         ">
           {{ city.city }}

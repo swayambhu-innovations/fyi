@@ -34,7 +34,6 @@ export class GeolocationService {
   }
 
   async getStateFromCoordinates(lat: number, lng: number): Promise<string> {
-    console.log(lat, lng);
     const geocoder = new google.maps.Geocoder();
     const latlng = { lat, lng };
     return new Promise((resolve, reject) => {
@@ -69,7 +68,6 @@ export class GeolocationService {
     for (const result of results) {
       for (const component of result.address_components) {
         if (component.types.includes('administrative_area_level_1')) {
-          console.log(component.long_name);
           return component.long_name;
         }
       }
