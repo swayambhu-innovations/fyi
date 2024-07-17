@@ -70,7 +70,7 @@ export class OtpComponent {
         .confirm(this.otp)
         .then((result) => {
           this.authService.setUserData(result.user);
-          this.router.navigate(['home']);
+          this.router.navigate(['profile']);
         })
         .catch((error) => {
           console.log(error);
