@@ -1,31 +1,47 @@
 <app-header-with-back [pageTitle]="'Profile'"></app-header-with-back>
 <section>
-    <form [formGroup]="addressForm">
-    <select  [(ngModel)]="selectedStateId" name="selectedState" [(value)]="selectedStateId" formControlName="selectedStateId" (change)="getCities()">
-        <option *ngFor="let state of stateList" [value]="state.stateId">
-          {{ state.state }}
-        </option>
-      </select>
-      <br>
-      <select  [(ngModel)]="selectedCityId" name="selectedCity" [(value)]="selectedCityId" formControlName="selectedCityId">
-        <option *ngFor="let city of cityList" [value]="city.cityId">
-            {{ city.city }}
-        </option>
-      </select>
-      <br>
-        <input type="text" formControlName="area" name="area" placeholder="Address">
-        <br>
-        <input type="text" formControlName="landmark" name="landmark" placeholder="Landmark">
-        <br>
-        <input type="text" formControlName="pincode" name="pincode" placeholder="Pincode">
-        <br>
-        <input type="text" formControlName="phoneNumber" name="contactNumber" placeholder="Contact Number">
-        <br>
-        
+  <form [formGroup]="addressForm">
+    <select
+      [(ngModel)]="selectedStateId"
+      name="selectedState"
+      [(value)]="selectedStateId"
+      formControlName="selectedStateId"
+      (change)="getCities()"
+    >
+      <option *ngFor="let state of stateList" [value]="state.stateId">
+        {{ state.state }}
+      </option>
+    </select>
+    <br />
+    <select
+      [(ngModel)]="selectedCityId"
+      name="selectedCity"
+      [(value)]="selectedCityId"
+      formControlName="selectedCityId"
+    >
+      <option *ngFor="let city of cityList" [value]="city.cityId">
+        {{ city.city }}
+      </option>
+    </select>
+    <br />
+    <input type="text" formControlName="area" placeholder="Address" />
+    <br />
+    <input type="text" formControlName="landmark" placeholder="Landmark" />
+    <br />
+    <input type="number" formControlName="pincode" placeholder="Pincode"   minlength="6"
+    maxlength="6"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"/>
+    <br />
+    <input
+      type="number"
+      formControlName="phoneNumber"
+      minlength="10"
+      maxlength="10"
+      oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
+      placeholder="Contact Number"
+    />
+    <br />
 
-
-      <button (click)="submitAddress()">Submit</button>
-    </form>
-
-    
+    <button (click)="submitAddress()">Submit</button>
+  </form>
 </section>

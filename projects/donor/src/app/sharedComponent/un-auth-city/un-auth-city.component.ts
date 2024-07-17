@@ -44,7 +44,9 @@ export class UnAuthCityComponent {
 
     this.geolocationService.getCity(this.state).then((cities) => {
       cities?.docs.map((city) => {
+        if(city.data()['active']){
         this.cities.push(city.data());
+        }
       });
       this.selectedCityId = this.cities[0].cityId;
     });

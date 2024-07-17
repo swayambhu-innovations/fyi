@@ -16,7 +16,8 @@ import {
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { DataProviderService } from '../auth/service/data-provider.service';
-import {ProfileInfoService} from './service/profile-info.service';
+import { ProfileInfoService } from './service/profile-info.service';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-profile-info',
@@ -26,7 +27,14 @@ import {ProfileInfoService} from './service/profile-info.service';
   styleUrl: './profile-info.component.scss',
 })
 export class ProfileInfoComponent {
-  constructor(private storage: Storage, private firestore: Firestore,private Router:Router,private dataProvider:DataProviderService, private ProfileInfoService:ProfileInfoService) {}
+  constructor(
+    private storage: Storage,
+    private firestore: Firestore,
+    private Router: Router,
+    private dataProvider: DataProviderService,
+    private ProfileInfoService: ProfileInfoService,
+    private Auth: Auth
+  ) {}
 
   userForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -41,7 +49,7 @@ export class ProfileInfoComponent {
   isImgSizeValid: boolean = false;
 
   ngOnInit() {
-    console.log(this.dataProvider.currentUser?.userData);
+    console.log(this.dataProvider.currentUser);
   }
 
   async changePhoto(e: any) {
@@ -70,28 +78,23 @@ export class ProfileInfoComponent {
   removePhoto() {
     this.userForm.value.img = 'assets/add-user/dummyProfile.jpg';
   }
-  cancel(){
+  cancel() {
     this.Router.navigate(['login']);
   }
-  submit(){
-    if(this.userForm.valid){
-    console.log(this.userForm.value)
-    this.userForm.value.uid = this.dataProvider.currentUser?.userData.uid;
-    this.userForm.value.phoneNumber = this.dataProvider.currentUser?.userData.phoneNumber;
-    this.userForm.value.age = new Date().getFullYear() - new Date(this.userForm.value.dob).getFullYear();
-    this.userForm.value.dob = new Date(this.userForm.value.dob).toISOString();
-    
-    //   console.log(this.dataProvider.currentUser);
-    // this.dataProvider.currentUser = this.userForm.value;
-    // console.log(this.dataProvider.currentUser);
-
-    
-   // console.log(this.dataProvider.currentUser);
-    this.ProfileInfoService.updateProfileInfo(this.userForm.value).then(()=>{
-      this.Router.navigate(['add-address']);
-
-    });
-
+  submit() {
+    if (this.userForm.valid) {
+      this.userForm.value.uid = this.dataProvider.currentUser?.userData.uid;
+      this.userForm.value.phoneNumber =
+        this.dataProvider.currentUser?.userData.phoneNumber;
+      this.userForm.value.age =
+        new Date().getFullYear() -
+        new Date(this.userForm.value.dob).getFullYear();
+      this.userForm.value.dob = new Date(this.userForm.value.dob).toISOString();
+      this.ProfileInfoService.updateProfileInfo(this.userForm.value).then(
+        () => {
+          this.Router.navigate(['add-address']);
+        }
+      );
     }
   }
 }

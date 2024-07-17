@@ -36,7 +36,6 @@ export class AuthService {
             user: user,
             userData: userData,
           };
-         
 
           if (!userData || !userData.name) {
             this.router.navigate(['profile']);
