@@ -9,7 +9,7 @@ section {
   .login-secton {
     position: absolute;
     bottom: 5px;
-    width: 94%;
+    width: 96%;
     p {
       margin-bottom: 15px;
       font-size: 18px;
@@ -43,15 +43,7 @@ section {
       font-weight: 400;
       line-height: normal;
     }
-    .custom-date-input {
-      position: relative;
-      background: url('/assets/profile/datepicker.svg') no-repeat right 10px center;
-      background-size: 20px 20px; 
     
-      &::-webkit-calendar-picker-indicator {
-        opacity: 0;
-      }
-    }
     option {
       width: 70%;
     }
