@@ -2,15 +2,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
-  line-height: normal;
-  padding: 0px 20px;
+  
+  padding: 0px 8px;
   position: fixed;
-  width: 100vw;
+  width: 92vw;
   z-index: 100;
   background: white;
   border-bottom: 1px solid #8d8c8c;
   height: 50px;
+  margin-left: 4vw;
+
+
 
   .back-with-title {
     display: flex;
@@ -19,9 +21,10 @@
   }
 
   p {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    font-family: "Krona One",sans-serif;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
   }
 }

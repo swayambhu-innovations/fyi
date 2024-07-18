@@ -20,7 +20,7 @@ export class OtpComponent {
   otp: any;
   showOtpComponent = true;
   verifier: RecaptchaVerifier | undefined;
-  resendOtpTime: number = 60;
+  resendOtpTime: number = 120;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInput: any;
   constructor(
     private router: Router,

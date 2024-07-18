@@ -4,7 +4,7 @@
   <p class="red">Warning</p>
   <p class="red">{{ count }} linked events will be disabled</p>
   <div class="twin-btn">
-    <lib-cancel-btn (click)="closeSheet()"></lib-cancel-btn>
-    <lib-delete-btn (click)="deleteTax()"></lib-delete-btn>
+    <lib-cancel-btn (click)="closeSheet()" [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-delete-btn (click)="deleteTax()" [btnName]="'Delete'"></lib-delete-btn>
   </div>
 </section>

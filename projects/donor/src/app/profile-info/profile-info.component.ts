@@ -18,11 +18,12 @@ import { Router } from '@angular/router';
 import { DataProviderService } from '../auth/service/data-provider.service';
 import { ProfileInfoService } from './service/profile-info.service';
 import { Auth } from '@angular/fire/auth';
-
+import { SaveBtnComponent } from '../../../../shared-ui/src/save-btn/save-btn.component';
+import { AuthService } from '../auth/service/auth.service';
 @Component({
   selector: 'app-profile-info',
   standalone: true,
-  imports: [HeaderWithBackComponent, ReactiveFormsModule],
+  imports: [HeaderWithBackComponent, ReactiveFormsModule,SaveBtnComponent],
   templateUrl: './profile-info.component.html',
   styleUrl: './profile-info.component.scss',
 })
@@ -33,7 +34,8 @@ export class ProfileInfoComponent {
     private Router: Router,
     private dataProvider: DataProviderService,
     private ProfileInfoService: ProfileInfoService,
-    private Auth: Auth
+    private Auth: Auth,
+    private AuthService:AuthService
   ) {}
 
   userForm: FormGroup = new FormGroup({
@@ -47,6 +49,12 @@ export class ProfileInfoComponent {
     phoneNumber: new FormControl(''),
   });
   isImgSizeValid: boolean = false;
+
+  openDatePicker() {
+    const dateInput = document.getElementById('startDate') as HTMLInputElement;
+    dateInput.focus();
+    dateInput.click();
+  }
 
   ngOnInit() {
     console.log(this.dataProvider.currentUser);
@@ -83,7 +91,8 @@ export class ProfileInfoComponent {
   }
   submit() {
     if (this.userForm.valid) {
-      this.userForm.value.uid = this.dataProvider.currentUser?.userData.uid;
+      console.log(this.dataProvider.currentUser);
+      this.userForm.value.uid = this.dataProvider.currentUser?.user.uid;
       this.userForm.value.phoneNumber =
         this.dataProvider.currentUser?.userData.phoneNumber;
       this.userForm.value.age =

@@ -23,7 +23,7 @@ export class LoginComponent {
     private _bottomSheet: MatBottomSheet,
     private geolocationService: GeolocationService,
     private Router: Router,
-    private DataProviderService:DataProviderService
+    private DataProviderService: DataProviderService
   ) {}
 
   state: string | null = null;
@@ -32,7 +32,6 @@ export class LoginComponent {
   phoneNumber: string = '';
   terms: boolean = false;
   verifier: RecaptchaVerifier | undefined;
-
 
   ngOnInit(): void {
     this.geolocationService
@@ -57,29 +56,29 @@ export class LoginComponent {
 
   async login() {
     console.log(this.phoneNumber);
-    if (!this.verifier)
-      this.verifier = new RecaptchaVerifier(
-        this.AuthService.auth,
-        'recaptcha-container',
-        {
-          size: 'invisible',
-        }
-      );
-    this.AuthService.loginWithPhoneNumber(this.phoneNumber, this.verifier)
-      .then((login) => {
-        this.DataProviderService.loginConfirmationResult = login;
-        this.DataProviderService.userMobile = this.phoneNumber;
-        this.phoneNumber = '';
-        this.terms = false;
-        this.Router.navigate(['otp']);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log('finally');
-      });
+    if (this.phoneNumber.length == 10) {
+      if (!this.verifier)
+        this.verifier = new RecaptchaVerifier(
+          this.AuthService.auth,
+          'recaptcha-container',
+          {
+            size: 'invisible',
+          }
+        );
+      this.AuthService.loginWithPhoneNumber(this.phoneNumber, this.verifier)
+        .then((login) => {
+          this.DataProviderService.loginConfirmationResult = login;
+          this.DataProviderService.userMobile = this.phoneNumber;
+          this.phoneNumber = '';
+          this.terms = false;
+          this.Router.navigate(['otp']);
+        })
+        .catch((error: any) => {
+          console.log(error);
+        })
+        .finally(() => {
+          console.log('finally');
+        });
+    }
   }
-
- 
 }

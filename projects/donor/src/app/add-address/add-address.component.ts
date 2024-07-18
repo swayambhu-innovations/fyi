@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { AddressService } from './service/address.service';
 import { DataProviderService } from '../auth/service/data-provider.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { updatePhoneNumber } from '@angular/fire/auth';
 @Component({
   selector: 'app-add-address',
   standalone: true,
@@ -49,23 +50,31 @@ export class AddAddressComponent {
     pincode: new FormControl('', Validators.required),
     landmark: new FormControl('', Validators.required),
     area: new FormControl('', Validators.required),
-    phoneNumber: new FormControl(
-      this.dataProvider.currentUser?.userData.phoneNumber,
-      Validators.required
-    ),
+    phoneNumber: new FormControl('', Validators.required),
+    active: new FormControl(true),
     addressId: new FormControl(''),
   });
 
   async ngOnInit() {
     await this.AddressService.getStateList().then((stateList) => {
       stateList?.docs.map((state: any) => {
-        if(state.data()['active']){
-        this.stateList.push(state.data());
+        if (state.data()['active']) {
+          this.stateList.push(state.data());
         }
       });
       this.selectedStateId = this.stateList[0].stateId;
       this.getCities();
     });
+    if (this.dataProvider.currentUser?.userData?.phoneNumber) {
+      const modifiedPhoneNumber =
+        this.dataProvider.currentUser.userData.phoneNumber.slice(3);
+
+      this.addressForm.patchValue({
+        phoneNumber: modifiedPhoneNumber,
+      });
+    } else {
+      console.log('Phone number is not defined');
+    }
   }
   async getCities() {
     await this.AddressService.getCityList(this.selectedStateId).then(
@@ -80,9 +89,12 @@ export class AddAddressComponent {
     );
   }
   submitAddress() {
-    console.log(this.dataProvider)
-    
-    this.AddressService.addAddress(this.addressForm.value,this.dataProvider.currentUser?.userData.uid);
+    console.log(this.dataProvider);
+
+    this.AddressService.addAddress(
+      this.addressForm.value,
+      this.dataProvider.currentUser?.userData.uid
+    );
     console.log(this.addressForm.value);
   }
 }

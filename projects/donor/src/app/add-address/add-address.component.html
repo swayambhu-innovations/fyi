@@ -1,47 +1,94 @@
-<app-header-with-back [pageTitle]="'Profile'"></app-header-with-back>
+<app-header-with-back [pageTitle]="'Add Address'"></app-header-with-back>
 <section>
-  <form [formGroup]="addressForm">
-    <select
-      [(ngModel)]="selectedStateId"
-      name="selectedState"
-      [(value)]="selectedStateId"
-      formControlName="selectedStateId"
-      (change)="getCities()"
-    >
-      <option *ngFor="let state of stateList" [value]="state.stateId">
-        {{ state.state }}
-      </option>
-    </select>
-    <br />
-    <select
-      [(ngModel)]="selectedCityId"
-      name="selectedCity"
-      [(value)]="selectedCityId"
-      formControlName="selectedCityId"
-    >
-      <option *ngFor="let city of cityList" [value]="city.cityId">
-        {{ city.city }}
-      </option>
-    </select>
-    <br />
-    <input type="text" formControlName="area" placeholder="Address" />
-    <br />
-    <input type="text" formControlName="landmark" placeholder="Landmark" />
-    <br />
-    <input type="number" formControlName="pincode" placeholder="Pincode"   minlength="6"
-    maxlength="6"
-    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"/>
-    <br />
-    <input
-      type="number"
-      formControlName="phoneNumber"
-      minlength="10"
-      maxlength="10"
-      oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
-      placeholder="Contact Number"
-    />
-    <br />
+  <img src="assets/address/addressBanner.svg" alt="address" />
+  <div class="login-secton">
+    <form [formGroup]="addressForm">
+      <div class="field">
+        <label class="description_text">Select State</label>
+        <br />
+        <select
+          [(ngModel)]="selectedStateId"
+          name="selectedState"
+          [(value)]="selectedStateId"
+          formControlName="selectedStateId"
+          (change)="getCities()"
+          class="input_box_bg_gradient header_text_color"
+        >
+          <option *ngFor="let state of stateList" [value]="state.stateId">
+            {{ state.state }}
+          </option>
+        </select>
+      </div>
 
-    <button (click)="submitAddress()">Submit</button>
-  </form>
+      <div class="field">
+        <label class="description_text">Select City</label>
+        <br />
+        <select
+          [(ngModel)]="selectedCityId"
+          name="selectedCity"
+          [(value)]="selectedCityId"
+          formControlName="selectedCityId"
+          class="input_box_bg_gradient header_text_color"
+        >
+          <option *ngFor="let city of cityList" [value]="city.cityId">
+            {{ city.city }}
+          </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="description_text">Pin-Code</label>
+        <br />
+        <input
+          class="input_box_bg_gradient header_text_color"
+          type="number"
+          formControlName="pincode"
+          placeholder="Pincode"
+          minlength="6"
+          maxlength="6"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 6)"
+        />
+      </div>
+      <div class="field">
+        <label class="description_text">House No./Area</label>
+        <br />
+        <input
+          type="text"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="area"
+          placeholder="Enter House No./Area"
+        />
+      </div>
+
+      <div class="field">
+        <label class="description_text">Landmark</label>
+        <br />
+        <input
+          type="text"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="landmark"
+          placeholder="landmark"
+        />
+      </div>
+
+      <div class="field">
+        <label class="description_text">Contact </label>
+        <br />
+        <input
+          class="input_box_bg_gradient header_text_color"
+          type="number"
+          formControlName="phoneNumber"
+          placeholder="Enter Contact Number"
+          minlength="10"
+          maxlength="10"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
+        />
+      </div>
+
+      <lib-save-btn
+        (click)="submitAddress()"
+        [btnName]="'Submit'"
+      ></lib-save-btn>
+    </form>
+  </div>
 </section>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-save-btn',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './save-btn.component.css'
 })
 export class SaveBtnComponent {
+  @Input() btnName: string='';
 
 }
