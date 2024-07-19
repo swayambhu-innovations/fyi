@@ -1,0 +1,31 @@
+.scroll{
+    overflow-x: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    margin-bottom: 5px;
+    padding-top:70px ;
+}
+.scroll::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+.tabs {
+    
+     display: flex;
+     justify-content: center;
+     justify-content: space-between;
+    
+}
+.tab {
+ padding: 10px 30px 10px 30px ;
+ border-radius: 10px;
+ cursor: pointer;
+ justify-content: center;
+align-items: center;
+
+ 
+}
+.tab.active, .tab:hover {
+    
+    background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
+ color: white;
+}

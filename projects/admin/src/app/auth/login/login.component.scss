@@ -1,0 +1,52 @@
+section{
+    height: 100%;
+    // width: 100%;
+    background-image: url("/assets/login/login_bg.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.text{
+    padding: 0 4%;
+   
+    p{
+       
+        text-align: center;
+        text-justify: inter-word;
+        margin-top: 10vh;
+        color: white;
+        font-family: "Jura", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 24px;
+    }
+    
+}
+.login-button{
+
+    margin-top: 28%;
+    background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50px;
+    border-radius: 20px;
+    position: relative;
+    border: none;
+    margin-bottom: 20px;
+    img{
+    position:absolute;
+    left: 10px;
+   }
+    span{
+        color: #F0F0F0;
+    }
+   
+}
+

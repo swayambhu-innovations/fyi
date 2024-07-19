@@ -1,0 +1,10 @@
+<section >
+  <h3 class="red">Delete Tax</h3>
+  <img src="assets/tax/deleteTax.svg" alt="" />
+  <p class="red">Warning</p>
+  <p class="red">{{ count }} linked events will be disabled</p>
+  <div class="twin-btn">
+    <lib-cancel-btn (click)="closeSheet()" [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-delete-btn (click)="deleteTax()" [btnName]="'Delete'"></lib-delete-btn>
+  </div>
+</section>

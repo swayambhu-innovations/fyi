@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,5 +12,9 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
+  constructor(public auth: AuthService) { }
+  ngOnInit():void{
+    // console.log("work")
+  }
+ 
 }

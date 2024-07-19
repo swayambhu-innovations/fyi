@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header-with-back',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './header-with-back.component.scss'
 })
 export class HeaderWithBackComponent {
-  pageTitle='Manage Service';
+  constructor(private location: Location) {}
+  
+  @Input() pageTitle: string='';
+
+  back(): void {
+    this.location.back();
+  }
 }

@@ -1,44 +1,42 @@
 .navbar {
   border-radius: 30px;
-  background: var(
-    --primary-botton-gradient,
-    linear-gradient(
-      90deg,
-      #2f15aa 0.28%,
-      rgba(47, 21, 170, 0.8) 47.84%,
-      rgba(47, 21, 170, 0.4) 99.72%
-    )
-  );
-width: 100%;
+
+  width: 99%;
+  height: 60px;
   display: flex;
   position: fixed;
-  padding: 5px 20px 5px 15px;
+  padding: 5px 5px 5px 5px;
   justify-content: center;
   align-items: center;
-//   gap: 25px;
-
-
-  bottom: 0px;
+  //   gap: 25px;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
 
   div {
-    padding: 10px;
+    padding: 0px;
     cursor: pointer;
 
     &.active {
       display: flex;
-      flex-grow: 2;
+
+      flex-grow: 1;
       border-radius: 30px;
       background: var(--white, #f0f0f0);
-      padding: 10px 20px;
-      justify-content: center;
+      padding: 10px 15px;
       align-items: center;
-      gap: 5px;
+      -webkit-transition: all 500ms ease-in;
     }
 
     &.inactive {
-      flex-grow: 1;
+      width: 17%;
       padding: 10px 20px;
-
+      justify-content: center;
+      justify-items: center;
+      -webkit-transition: all 500ms ease-in;
     }
+  }
+  span {
+    margin-left: 5%;
   }
 }

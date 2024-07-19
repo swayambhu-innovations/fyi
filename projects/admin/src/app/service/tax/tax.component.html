@@ -1,1 +1,13 @@
-<p>tax works!</p>
+<!-- <app-header-with-back [pageTitle]="'Tax'"></app-header-with-back> -->
+<section>
+  <div *ngFor="let tax of taxes" class="card bg_color_gradient ">
+    <div class="header_text_color">{{ tax.taxName }}
+    </div>
+    <div class="items">
+        <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="tax.active==true?true:false" (change)="updatedStatus(tax)"></mat-slide-toggle> </span>
+        <span><img src="assets/tax/edit.svg" (click)="editTax(tax)" alt=""></span>
+        <span><img src="assets/tax/delete.svg" (click)="openDelete(tax)" alt=""></span>
+    </div>
+  </div>
+  <app-add-button  (click)="saveTax()" ></app-add-button>
+</section>

@@ -1,0 +1,36 @@
+<app-header-with-back [pageTitle]="'Enter OTP'"></app-header-with-back>
+
+<section class="otp-container">
+  <div id="recaptcha-container2"></div>
+
+  <img src="assets/otp/otp_page.svg" alt="" />
+  <div class="login-section">
+    <div class="otp-inputs">
+      <p class="header_text_color">Auto filling OTP from sms</p>
+
+      <ng-otp-input
+        #ngOtpInput
+        (onInputChange)="onOtpChange($event)"
+        *ngIf="showOtpComponent"
+        [config]="config"
+      ></ng-otp-input>
+    </div>
+    <button
+      class="description_text secondary_botton_gradient login"
+      *ngIf="resendOtpTime > 0"
+    >
+      Wait for {{ resendOtpTime }} second
+    </button>
+    <button
+      class="header_text_color secondary_botton_gradient login"
+      *ngIf="resendOtpTime === 0"
+      (click)="sendOTP()"
+    >
+      Get OTP
+    </button>
+
+    <button class="white primary_botton_gradient login" (click)="login()">
+      Verify
+    </button>
+  </div>
+</section>
