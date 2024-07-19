@@ -37,7 +37,7 @@
     </div>
   </form>
   <div class="twin-btn">
-    <lib-cancel-btn (click)="cancel()"></lib-cancel-btn>
-    <lib-save-btn (click)="saveTax()"></lib-save-btn>
+    <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-save-btn (click)="saveTax()" [btnName]="'Save'"></lib-save-btn>
   </div>
 </section>

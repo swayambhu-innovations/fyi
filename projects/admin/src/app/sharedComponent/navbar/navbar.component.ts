@@ -12,8 +12,8 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavbarComponent {
   showNavbar = true;
   hiddenRoutes = ['/login', '/notAdmin'];
+
   ngOnInit() {
-    
     this.checkRoute(this.router.url);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -36,11 +36,8 @@ export class NavbarComponent {
     this.router.navigate(['/', path]);
   }
 
- 
-
   private checkRoute(url: string) {
     this.showNavbar = !this.hiddenRoutes.some(route => url.includes(route));
   }
 
-  
 }

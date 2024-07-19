@@ -1,0 +1,27 @@
+
+<section>
+
+  <img src="assets/login/loginPageLogo.svg" alt="" />
+
+  <div class="login-secton">
+    <p class="header_text_color center-text">Book events and donations</p>
+
+    <div class="field">
+      <label class="description_text ">Phone Number</label>
+      <br />
+      <input
+      type="text"
+        class="input_box_bg_gradient header_text_color"
+        placeholder="Enter Phone Number"
+        [(ngModel)]="phoneNumber"
+        maxlength="10"
+
+      />
+    </div>
+    <button class="header_text_color secondary_botton_gradient login" (click)="login()">Get OTP</button>
+    <button class="white primary_botton_gradient login" (click)="skip()">
+      Skip Login
+    </button>
+  </div>
+  <div id="recaptcha-container"></div>
+</section>

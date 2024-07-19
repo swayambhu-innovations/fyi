@@ -1,0 +1,19 @@
+<section>
+    <p class="header_text_color">Select City</p>
+    <div class="form">
+      <label for="citySelect">Select a city:</label>
+      <br>
+      <select id="citySelect" [(ngModel)]="selectedCityId" name="selectedCity" [(value)]="selectedCityId">
+        <option *ngFor="let city of cities" [value]="city.cityId
+        ">
+          {{ city.city }}
+        </option>
+      </select>
+    </div>
+  
+    <div class="twin-btn pos-bottom">
+      <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+      <lib-save-btn (click)="saveCity()" [btnName]="'Save'"></lib-save-btn>
+    </div>
+  </section>
+  

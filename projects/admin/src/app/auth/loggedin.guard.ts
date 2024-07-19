@@ -14,13 +14,13 @@ import { AuthService } from './auth.service';
 })
 
 export class LoggedInAuthGuard {
-    constructor(private auth:AuthService, private router:Router) {}
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        let token = localStorage.getItem('token');
-        if(token) {
-            this.router.navigate(['home']);
-            return false;
-        }
-        return true;
-    }
+    // constructor(private auth:AuthService, private router:Router) {}
+    // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    //     let token = localStorage.getItem('token');
+    //     if(token) {
+    //         this.router.navigate(['home']);
+    //         return false;
+    //     }
+    //     return true;
+    // }
 }
