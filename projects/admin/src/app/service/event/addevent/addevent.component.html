@@ -10,47 +10,48 @@
     </div>
 </div>
 
-<div class="container form1">
-    <form>
-        <div class="form-group">
-            <label for="eventName">Event Name</label>
-            <input type="text" id="eventName" name="eventName" value="Searic Kashi Summit 2024">
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" name="description">
-                
-            </textarea>
-        </div>
-        <div class="dateset">
-            <div class="form-group">
-                <label for="startDate">Start Date</label>
-                <input type="date" id="startDate" name="startDate" value="2024-07-13">
-            </div>
-            <div class="form-group">
-                <label for="endDate">End Date</label>
-                <input type="date" id="endDate" name="endDate" value="2024-07-15">
-            </div>
-        </div>
-        
-        
-    </form>
 
-    <div class="header">
-        <label >Add Images (2:1 ratio)</label>
-        <button (click)="triggerFileInput()"><img src="/assets/addevent/upload.svg" alt="">
+
+
+
+
+<div class="container form1">
+    <form [formGroup]="eventForm">
+      <div class="form-group">
+        <label for="eventName">Event Name</label>
+        <input type="text" id="eventName" formControlName="eventName">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+      </div>
+      <div class="dateset">
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate" formControlName="startDate">
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date</label>
+          <input type="date" id="endDate" formControlName="endDate">
+        </div>
+      </div>
+      <div class="header">
+        <label>Add Images (2:1 ratio)</label>
+        <button type="button" (click)="triggerFileInput()">
+          <img src="/assets/addevent/upload.svg" alt="">
         </button>
         <input id="fileInput" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
-    </div>
+      </div>
       <div class="images-grid">
         <div *ngFor="let image of images; let i = index" class="image-item">
           <img [src]="image" alt="Uploaded Image">
-          <button class="remove-btn" (click)="removeImage(i)">&#10006;</button>
+          <button type="button" class="remove-btn" (click)="removeImage(i)">&#10006;</button>
         </div>
       </div>
       <div class="buttonset">
-        <button class="cancel-button">cancel</button>
-        <button class="next-button">Next</button>
+        <button  class="cancel-button" (click)="cancel()">Cancel</button>
+        <button class="next-button" (click)="saveEvent()">Next</button>
       </div>
-    
-</div>
+    </form>
+  </div>
+  

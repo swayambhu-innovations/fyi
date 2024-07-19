@@ -6,15 +6,9 @@ import {MatBottomSheet,MatBottomSheetModule,} from '@angular/material/bottom-she
 import {MatButtonModule} from '@angular/material/button';
 import { AddeventComponent } from "./addevent/addevent.component";
 import { EventService } from './service/event.service';
-interface Event {
-  name: string;
-  imageUrl: string;
-  booked: number;
-  capacity: number;
-  status: string;
-}
-
-
+import { DeleteEventComponent } from './delete-event/delete-event.component';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { Firestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -25,67 +19,36 @@ interface Event {
   providers: [EventService]
 })
 export class EventComponent {
+
   constructor(private eventService: EventService,private _bottomSheet: MatBottomSheet) { }
   imageUrl: string | undefined
-
-
+  events: any[] = [];
   ngOnInit() {
-    // this.eventService.testFun()
-    // this.eventService.getEvents().subscribe((data:any)=>{
-    //   console.log(data)
-    // })
+    this.eventService.getEvents().subscribe((data:any)=>{                   //read detail
+      this.events=data;
+      console.log(data)
+    })
   }
-
-
-  events: Event[] = [
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    // Add more event objects as needed
-  ];
-
   viewEvent(event: Event): void {
     console.log('Viewing event', event);
   }
-
-  editEvent(event: Event): void {
-    console.log('Editing event', event);
-  }
-
-  deleteEvent(event: Event): void {
-    console.log('Deleting event', event);
-  }
   openBottomSheet(): void {
-    this._bottomSheet.open(AddeventComponent);
+    this._bottomSheet.open(AddeventComponent);                       //save detail
   }
-  updatedStatus(eventDetail:any){
-    eventDetail.active=!eventDetail.active
-    this.eventService.addEvent(eventDetail)
+  editEvent(eventDetail:any) {
+    this._bottomSheet.open(AddeventComponent, {                       //editdetail
+      data: eventDetail,
+    });
+  } 
+  deleteEvent(eventDetail: any): void {
+    this._bottomSheet.open(DeleteEventComponent, {                   //delete
+      data: eventDetail,
+    });
   }
 
+  // updatedStatus(eventDetail:any){
+  //   this.eventDetail.active=!this.eventDetail.active                 //updatestatus
+  //   this.eventService.addEvent(this.eventDetail)
+  // }
+ 
 }

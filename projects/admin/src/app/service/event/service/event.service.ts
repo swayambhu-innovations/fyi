@@ -43,8 +43,8 @@ export class EventService {
 
   addEvent(eventDetail: any) {
     if (eventDetail.eventId) {
-      const taxDocRef = doc(this.firestore, 'events', eventDetail.eventId);
-      return updateDoc(taxDocRef, eventDetail);
+      const eventDocRef = doc(this.firestore, 'events', eventDetail.eventId);
+      return updateDoc(eventDocRef, eventDetail);
     } else {
       const newEventDocRef = doc(collection(this.firestore, 'events'));
       eventDetail.eventId = newEventDocRef.id;
