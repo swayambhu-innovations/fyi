@@ -1,0 +1,51 @@
+<section>
+    <form [formGroup]="donationItemForm">
+      <div>
+        <label for="itemName">Item Name:</label>
+        <input id="itemName" formControlName="itemName" type="text" />
+      </div>
+  
+     
+  
+      <div>
+        <div class="field">
+          <label class="description_text">Item Type:</label>
+          <br />
+          <select
+            class="input_box_bg_gradient header_text_color"
+            formControlName="itemType"
+          >
+            <option value="weight">Weight</option>
+            <option value="quantity">Quantity</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="upload_picture_btn">
+          <img
+        class="profile_section"
+        [src]="this.donationItemForm.value.photoURL"
+        alt="Profile Photo"
+      />
+        <div>
+          <input
+            type="file"
+            #fileInput
+            style="display: none"
+            (change)="changePhoto($event)"
+            accept="image/*"
+          />
+          <img
+            src="assets/profile/camera.svg"
+            alt="upload photo"
+            (click)="fileInput.click()"
+          />
+        </div>
+      </div>
+  
+     
+  
+      <button type="submit" [disabled]="donationItemForm.invalid" (click)="saveDonationItem()">Submit</button>
+    </form>
+  </section>
+  
