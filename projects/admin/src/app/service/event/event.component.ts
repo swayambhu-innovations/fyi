@@ -7,18 +7,19 @@ import {MatButtonModule} from '@angular/material/button';
 import { AddeventComponent } from "./addevent/addevent.component";
 import { EventService } from './service/event.service';
 import { DeleteEventComponent } from './delete-event/delete-event.component';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { Firestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-event',
   standalone: true,
   imports: [MatExpansionModule,NgFor,AddButtonComponent,MatButtonModule,
-    MatBottomSheetModule,NgFor],
+    MatBottomSheetModule,NgFor,MatSlideToggleModule],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss',
   providers: [EventService]
 })
 export class EventComponent {
+
 
   constructor(private eventService: EventService,private _bottomSheet: MatBottomSheet) { }
   imageUrl: string | undefined
@@ -46,9 +47,9 @@ export class EventComponent {
     });
   }
 
-  // updatedStatus(eventDetail:any){
-  //   this.eventDetail.active=!this.eventDetail.active                 //updatestatus
-  //   this.eventService.addEvent(this.eventDetail)
-  // }
+  updatedStatus(eventDetail:any){
+    eventDetail.active=!eventDetail.active                 //updatestatus
+    this.eventService.addEvent(eventDetail)
+  }
  
 }

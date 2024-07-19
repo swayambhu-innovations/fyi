@@ -33,7 +33,10 @@ export class AddeventComponent {
     description: new FormControl('', Validators.required),
     startDate: new FormControl('', Validators.required),
     endDate: new FormControl('', Validators.required),
-    // images: new FormControl([]) // Add images field
+    eventId: new FormControl(''),
+    cityLinked: new FormControl (0), 
+    active: new FormControl(true),
+    
   });
   ngOnInit() {
     console.log('add event type component');
