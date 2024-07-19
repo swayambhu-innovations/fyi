@@ -12,7 +12,6 @@ import { NgForm } from '@angular/forms';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  authService = inject(AuthService);
   constructor(public auth: AuthService) { }
   ngOnInit():void{
     // console.log("work")

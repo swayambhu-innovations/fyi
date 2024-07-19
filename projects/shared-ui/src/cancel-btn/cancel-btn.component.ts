@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-cancel-btn',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './cancel-btn.component.css'
 })
 export class CancelBtnComponent {
+  @Input() btnName: string='';
 
 }

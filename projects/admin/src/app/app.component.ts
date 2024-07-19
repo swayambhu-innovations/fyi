@@ -19,24 +19,5 @@ export class AppComponent {
   title = 'admin';
 
   constructor(private firestore: Firestore, private router: Router) {}
-  // ngOnInit() {
-  //     console.log('work')
-  //     addDoc(collection(this.firestore, 'test-types'),{
-  //       name:'rahul'
-  //     }
-  //  )
-
-
-  // ngOnInit() {
-  //   this.router.events
-  //     .pipe(filter(event => event instanceof NavigationEnd))
-  //     .subscribe((event: NavigationEnd) => {
-  //       this.checkIfHomePage();
-  //     });
-  // }
-
-  // checkIfHomePage() {
-  //   const currentUrl = this.router.url;
-  //   console.log(currentUrl);
-  // }
+ 
 }
