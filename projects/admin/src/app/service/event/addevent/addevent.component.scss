@@ -187,21 +187,23 @@ color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
-  max-width: 400px;
-  margin: 0 auto;
   background-color: #f9f9f9;
+  margin-bottom: 10px;
+  justify-content: center;
+align-items: center;
 }
 .form-group1{
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
 }
 .activity-name{
   border-radius: 12px;
   border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
   background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
-  width: 300px;
+  width: 100%;
 height: 40px;
 padding: 10px;
 justify-content: space-between;
@@ -211,9 +213,10 @@ align-items: center;
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  width: 100%;
 }
 .dataset3{
-  width: 140px;
+  width: 100%;
   height: 40px;
   padding: 10px;
   border-radius: 12px;
@@ -225,11 +228,60 @@ background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 2
 .delete{
   margin-top: 10px;
   margin-bottom: 20px;
+  
   .button{
    border: none;
    float: right;
+   color:rgba(252, 55, 12, 1) ;
+   border-radius: 30px;
    img{
     margin-left: 10px;
    }
   }
+}
+lib-cancel-btn,
+lib-save-btn {
+  width: 40%;
+}
+.Add-btn{
+  width: 100%;
+  border: none;
+  border-radius: 30px;
+  color: rgba(47, 21, 170, 1);
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+//slab pannel csss
+
+.accordian-set{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.variant-set{
+  display: flex;
+  width: 320px;
+height: 71px;
+gap: 100px;
+border-radius: 10px;
+padding-left: 20px;
+background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
+  .variant-details{
+    display: flex;
+    flex-direction: column;
+    .variant-name{
+      margin-top: 10px;
+    }
+    .variant-price{
+      color: rgba(72, 188, 31, 1);
+    }
+  }
+  .variant-actions{
+    margin-top: 20px;
+    align-items: end;
+    
+  }
+  
 }
