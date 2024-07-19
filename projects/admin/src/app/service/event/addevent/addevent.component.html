@@ -10,26 +10,26 @@
     </div>
 </div>
 
-<div class="container form1">
+<div class="container form1" *ngIf="'details'== pannel?true: false" >
     <form>
         <div class="form-group">
             <label for="eventName">Event Name</label>
-            <input type="text" id="eventName" name="eventName" value="Searic Kashi Summit 2024">
+            <input type="text" id="eventName" name="eventName" value="Searic Kashi Summit 2024" class="event-name">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description">
+            <textarea id="description" name="description" >
                 
             </textarea>
         </div>
         <div class="dateset">
             <div class="form-group">
                 <label for="startDate">Start Date</label>
-                <input type="date" id="startDate" name="startDate" value="2024-07-13">
+                <input type="date" id="startDate" name="startDate" value="2024-07-13" class="dataset1">
             </div>
             <div class="form-group">
                 <label for="endDate">End Date</label>
-                <input type="date" id="endDate" name="endDate" value="2024-07-15">
+                <input type="date" id="endDate" name="endDate" value="2024-07-15" class="dataset1">
             </div>
         </div>
         
@@ -49,8 +49,38 @@
         </div>
       </div>
       <div class="buttonset">
-        <button class="cancel-button">cancel</button>
-        <button class="next-button">Next</button>
+        <button class="cancel-button" >cancel</button>
+        <button class="next-button" >Next</button>
       </div>
     
+</div>
+<div *ngIf="'details'== pannel?true: false" class="activity-form">
+    <div class="form-group1">
+        <label for="activityName">Activity Name</label>
+        <input id="activityName" type="text" value="Onboarding & check in" class="activity-name"/>
+      </div>
+      <div class="form-group1">
+        <label for="date">Date</label>
+        <input id="date" type="date" value="2024-07-14" class="activity-name" />
+      </div>
+      <div class="dateset2">
+        <div>
+          <label for="startTime">Start Time</label>
+          <input id="startTime" type="time" value="00:30" class="dataset3" />
+        </div>
+        <div>
+          <label for="endTime">End Time</label>
+          <input id="endTime" type="time" value="00:30" class="dataset3"  />
+        </div>
+      </div>
+      <div class="delete">
+        <button class="delete-button" class="button">Delete <img src="/assets/addevent/delete.svg" alt=""></button>
+      </div>
+</div>
+
+<div *ngIf="'details'== pannel?true: false">
+    slab and variant work
+</div>
+<div *ngIf="'details'== pannel?true: false">
+    city
 </div>

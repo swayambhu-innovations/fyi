@@ -68,7 +68,7 @@ label {
     line-height: normal;
 }
 
-input[type="text"]
+.event-name
  {
     border-radius: 12px;
     border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
@@ -80,7 +80,7 @@ justify-content: space-between;
 align-items: center;
   
 }
-input[type="date"]{
+.dataset1{
     width: 150px;
     height: 40px;
     padding: 10px;
@@ -182,3 +182,54 @@ color: white;
 ::ng-deep mat-bottom-sheet-container {
     border-radius: 20px 20px 0px 0px ;
   }
+//intinery pannel css start 
+.activity-form {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+.form-group1{
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+
+}
+.activity-name{
+  border-radius: 12px;
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
+  background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
+  width: 300px;
+height: 40px;
+padding: 10px;
+justify-content: space-between;
+align-items: center;
+}
+.dateset2{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.dataset3{
+  width: 140px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 12px;
+border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
+background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
+
+
+}
+.delete{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  .button{
+   border: none;
+   float: right;
+   img{
+    margin-left: 10px;
+   }
+  }
+}

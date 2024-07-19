@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
@@ -6,12 +6,13 @@ import { Storage } from '@angular/fire/storage';
 @Component({
   selector: 'app-addevent',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor,NgIf],
   templateUrl: './addevent.component.html',
   styleUrl: './addevent.component.scss'
 })
 export class AddeventComponent {
-  selected=""
+  selected="";
+  pannel='details';
   constructor(private router: Router,private storage: Storage) {}
   submit(select:string){
     this.selected=select;
