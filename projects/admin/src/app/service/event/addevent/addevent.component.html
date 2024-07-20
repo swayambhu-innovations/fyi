@@ -1,3 +1,4 @@
+<section>
 <div class="heading">
     Add event
 </div>
@@ -9,39 +10,40 @@
         <div class="tab" (click)="submit('event')">city</div>
     </div>
 </div>
-
-
-
-
-
-
-<div class="container form1">
+<!-- detail form pannel -->
+<div class="container form1" *ngIf="'details'== pannel?true: false" >
     <form [formGroup]="eventForm">
-      <div class="form-group">
-        <label for="eventName">Event Name</label>
-        <input type="text"  formControlName="eventName">
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea  formControlName="description"></textarea>
-      </div>
-      <div class="dateset">
         <div class="form-group">
-          <label for="startDate">Start Date</label>
-          <input type="date"  formControlName="startDate">
+            <label for="eventName">Event Name</label>
+            <input type="text" 
+             class="event-name" formControlName="eventName">
         </div>
         <div class="form-group">
-          <label for="endDate">End Date</label>
-          <input type="date"  formControlName="endDate">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" formControlName="description" >
+                
+            </textarea>
         </div>
-      </div>
+        <div class="dateset">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" formControlName="startDate" class="dataset1">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" formControlName="endDate" class="dataset1">
+            </div>
+        </div>
+        
+        
+    </form>
       <div class="header">
         <label>Add Images (2:1 ratio)</label>
         <button type="button" (click)="triggerFileInput()">
           <img src="/assets/addevent/upload.svg" alt="">
         </button>
-        <input formControlName="images" id="fileInput" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
-      </div>
+        <input id="fileInput" formControlName="images" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
+    </div>
       <div class="images-grid">
         <div *ngFor="let image of images; let i = index" class="image-item">
           <img [src]="image" alt="Uploaded Image">
@@ -49,9 +51,124 @@
         </div>
       </div>
       <div class="buttonset">
-        <button  class="cancel-button" (click)="cancel()">Cancel</button>
-        <button class="next-button" (click)="saveEvent()">Next</button>
+        <button class="cancel-button" >cancel</button>
+        <button class="next-button "  (click)="nextpannel('Itinerary')" >Next</button>
       </div>
-    </form>
+    
+</div>
+<!-- itinerary form pannel -->
+<div *ngIf="'Itinerary'== pannel?true: false" >
+  <form [formGroup]="itineraryForm">
+  <div class="activity-form form1" *ngFor="let activity of activities.controls; let i = index"  [formGroupName]="i" formArrayName="activities">
+    <div class="form-group1">
+      <label for="activityName">Activity Name</label>
+      <input id="activityName" type="text" formControlName="activityName" class="activity-name"/>
+    </div>
+    <div class="form-group1">
+      <label for="date">Date</label>
+      <input id="date" type="date" formControlName="date" class="activity-name" />
+    </div>
+    <div class="dateset2">
+      <div>
+        <label for="startTime">Start Time</label>
+        <input id="startTime" type="time"  formControlName="startTime"  class="dataset3" />
+      </div>
+      <div>
+        <label for="endTime">End Time</label>
+        <input id="endTime" type="time"  formControlName="endTime" class="dataset3"  />
+      </div>
+    </div>
+    <div class="delete">
+      <button class="delete-button" class="button" (click)="deleteActivity(i)">Delete <img src="/assets/addevent/delete.svg" alt=""></button>
+    </div>
   </div>
-  
+  <button class="Add-btn" (click)="addActivity()">add Activity</button>
+  <div class="twin-btn">
+    <lib-cancel-btn [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-save-btn  [btnName]="'Next'"  (click)="nextpannel('slab')"></lib-save-btn>
+  </div>
+</form>  
+</div>
+<!-- slab form pannel -->
+<div *ngIf="'slab'== pannel?true: false">
+  <mat-accordion  >
+    <mat-expansion-panel *ngFor="let event of events; let eventIndex = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ event.name }}
+        </mat-panel-title>
+        <mat-slide-toggle  ></mat-slide-toggle> 
+        <img src="/assets/addevent/delete.svg" alt="">
+      </mat-expansion-panel-header>
+      <div class="activity-form form-group1" >
+        <form>
+            <div class="form-group">
+                <label for="eventName{{eventIndex}}">Event Name</label>
+                <input type="text" id="eventName{{eventIndex}}"  name="eventName" value="Searic Kashi Summit 2024" class="event-name">
+            </div>
+            <div class="form-group">
+                <label for="description{{eventIndex}}">Description</label>
+                <textarea id="description" name="description" >
+                    
+                </textarea>
+            </div>
+            <div class="dateset">
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" name="startDate" value="2024-07-13" class="dataset1">
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate" name="endDate" value="2024-07-15" class="dataset1">
+                </div>
+            </div>
+            
+            
+        </form>
+    
+        <div class="header">
+            <label >Add Images (2:1 ratio)</label>
+            <button (click)="triggerFileInput()"><img src="/assets/addevent/upload.svg" alt="">
+            </button>
+            <input id="fileInput1" type="file" (change)="addImageinslab($event, eventIndex)" multiple accept="image/*" style="display: none;">
+        </div>
+          <div class="images-grid">
+            <div *ngFor="let image of event.images1; let imageIndex = index"class="image-item">
+              <img [src]="image" alt="Uploaded Image">
+              <button class="remove-btn" (click)="removeImageslab(eventIndex, imageIndex)">&#10006;</button>
+            </div>
+          </div>
+          <div class="variant-set" *ngFor="let variant of event.variants; let variantIndex = index">
+            <div class="variant-details">
+              <span class="variant-name">{{ variant.name }}</span>
+              <span class="variant-price">₹ {{ variant.price }}</span>
+            </div>
+            <div class="variant-actions">
+              <button mat-icon-button >
+                <mat-icon>{{ variant.isActive ? 'toggle_on' : 'toggle_off' }}</mat-icon>
+              </button>
+              <button mat-icon-button >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" >
+                <mat-icon ><img src="/assets/addevent/delete.svg" alt=""></mat-icon>
+              </button>
+            </div>
+          </div>
+          <button class="Add-btn" (click)="openBottomSheet()" >add varient</button>
+    </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="twin-btn">
+    <lib-cancel-btn [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-save-btn  [btnName]="'Next'"  (click)="nextpannel('city')"></lib-save-btn>
+  </div>
+  <!--city form pannel  -->
+</div>
+<div *ngIf="'city'== pannel?true: false">
+  <div class="twin-btn">
+    <lib-cancel-btn [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-save-btn  [btnName]="'Next'"  ></lib-save-btn>
+  </div>
+</div>
+</section>
