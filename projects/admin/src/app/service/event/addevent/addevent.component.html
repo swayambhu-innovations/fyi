@@ -12,25 +12,26 @@
 </div>
 <!-- detail form pannel -->
 <div class="container form1" *ngIf="'details'== pannel?true: false" >
-    <form>
+    <form [formGroup]="eventForm">
         <div class="form-group">
             <label for="eventName">Event Name</label>
-            <input type="text" id="eventName" name="eventName" value="Searic Kashi Summit 2024" class="event-name">
+            <input type="text" 
+             class="event-name" formControlName="eventName">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description" >
+            <textarea id="description" name="description" formControlName="description" >
                 
             </textarea>
         </div>
         <div class="dateset">
             <div class="form-group">
                 <label for="startDate">Start Date</label>
-                <input type="date" id="startDate" name="startDate" value="2024-07-13" class="dataset1">
+                <input type="date" id="startDate" formControlName="startDate" class="dataset1">
             </div>
             <div class="form-group">
                 <label for="endDate">End Date</label>
-                <input type="date" id="endDate" name="endDate" value="2024-07-15" class="dataset1">
+                <input type="date" id="endDate" formControlName="endDate" class="dataset1">
             </div>
         </div>
         
@@ -41,7 +42,7 @@
         <label >Add Images (2:1 ratio)</label>
         <button (click)="triggerFileInput()"><img src="/assets/addevent/upload.svg" alt="">
         </button>
-        <input id="fileInput" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
+        <input id="fileInput" formControlName="images" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
     </div>
       <div class="images-grid">
         <div *ngFor="let image of images; let i = index" class="image-item">

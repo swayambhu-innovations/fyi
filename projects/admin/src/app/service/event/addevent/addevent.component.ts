@@ -15,7 +15,15 @@ import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionP
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddvarientComponent } from '../addvarient/addvarient.component';
-import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import {  Inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EventService } from '../service/event.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MAT_BOTTOM_SHEET_DATA,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
 
 interface Event {
   name: string;
@@ -47,12 +55,28 @@ export class AddeventComponent {
   }
  
   itineraryForm!: FormGroup;
-  constructor(private router: Router,private storage: Storage,private _bottomSheet: MatBottomSheet,private fb: FormBuilder) {}
-
+  constructor(private router: Router,private storage: Storage,private _bottomSheet: MatBottomSheet,private fb: FormBuilder,private eventservice:EventService,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
+    private _bottomSheetRef: MatBottomSheetRef<AddeventComponent>
+  ) {}
+  eventForm : FormGroup = new FormGroup({
+    eventName: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    startDate: new FormControl('', Validators.required),
+    endDate: new FormControl('', Validators.required),
+    eventId: new FormControl(''),
+    cityLinked: new FormControl (0), 
+    active: new FormControl(true),
+    
+  });
   ngOnInit() {
-    this.itineraryForm = this.fb.group({
-      activities: this.fb.array([this.createActivity()])
-    });
+    if (this.data && this.data.eventId) {
+      console.log(this.data);
+      this.eventForm.setValue(this.data);
+    }
+    // this.itineraryForm = this.fb.group({
+    //   activities: this.fb.array([this.createActivity()])
+    // });
   }  
   get activities(): FormArray {
     return this.itineraryForm.get('activities') as FormArray;
@@ -147,11 +171,18 @@ export class AddeventComponent {
     }
     }
     nextpannel(view:string){
-      if (this.itineraryForm.valid) {
-        console.log(this.itineraryForm.value); 
-        
+      if (this.eventForm.valid) {
+        this.eventservice.addEvent(this.eventForm.value).then(() => {
+          this.pannel=view;
+
+        });
       }
-      this.pannel=view;
+
+      // if (this.itineraryForm.valid) {
+      //   console.log(this.itineraryForm.value); 
+        
+      // }
+      
       
 
     }
