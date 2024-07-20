@@ -22,11 +22,13 @@ import {
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { DonationItemService } from '../service/donation-item.service';
+import {CancelBtnComponent} from '../../../../../../shared-ui/src/cancel-btn/cancel-btn.component';
+import {SaveBtnComponent} from '../../../../../../shared-ui/src/save-btn/save-btn.component';
 
 @Component({
   selector: 'app-add-donation-item',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CancelBtnComponent,SaveBtnComponent],
   templateUrl: './add-donation-item.component.html',
   styleUrl: './add-donation-item.component.scss',
 })

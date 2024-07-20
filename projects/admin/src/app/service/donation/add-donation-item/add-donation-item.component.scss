@@ -1,4 +1,11 @@
+
 section{
-    width: 100vw;
-    padding-bottom: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px 10px 0px 0px;
+}
+lib-cancel-btn,
+lib-save-btn {
+  width: 35%;
 }

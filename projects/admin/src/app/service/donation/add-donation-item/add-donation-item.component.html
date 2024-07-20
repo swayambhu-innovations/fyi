@@ -43,9 +43,11 @@
         </div>
       </div>
   
-     
+      <div class="twin-btn ">
+        <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+        <lib-save-btn  (click)="saveDonationItem()"[btnName]="'Save'"></lib-save-btn>
+      </div>
   
-      <button type="submit" [disabled]="donationItemForm.invalid" (click)="saveDonationItem()">Submit</button>
     </form>
   </section>
   

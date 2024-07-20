@@ -1,7 +1,9 @@
-.scroll{
-    overflow-x: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    margin-bottom: 5px;
-    padding-top:70px ;
+section{
+    width: 100vw;
+    padding-top: 70px;
+}
+app-add-button{
+    position: fixed;
+    bottom: 130px;
+    right: 60px;
 }
