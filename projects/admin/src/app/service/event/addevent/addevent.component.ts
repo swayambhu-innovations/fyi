@@ -44,7 +44,8 @@ interface Event {
     MatDatepickerModule,
     MatNativeDateModule,MatExpansionPanel,MatExpansionPanelHeader,MatExpansionPanelTitle,MatSlideToggle,ReactiveFormsModule],
   templateUrl: './addevent.component.html',
-  styleUrl: './addevent.component.scss'
+  styleUrl: './addevent.component.scss',
+  providers: [EventService]
 })
 export class AddeventComponent {
   selected="";
@@ -105,6 +106,7 @@ export class AddeventComponent {
 
   removeImage(index: number): void {
     this.images.splice(index, 1);
+    this.eventForm.get('images')?.setValue(this.images);// Update images field
   }
 
   async addImage(e: any) {
@@ -116,6 +118,7 @@ export class AddeventComponent {
         await uploadBytesResumable(ref(this.storage, filePath), file);
         const fileUrl = await getDownloadURL(ref(this.storage, filePath));
         this.images.push(fileUrl);
+        this.eventForm.get('images')?.setValue(this.images); // Update images field
       });
     }
     }
@@ -188,3 +191,4 @@ export class AddeventComponent {
     }
   
 }
+

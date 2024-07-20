@@ -37,17 +37,17 @@
         
         
     </form>
-
-    <div class="header">
-        <label >Add Images (2:1 ratio)</label>
-        <button (click)="triggerFileInput()"><img src="/assets/addevent/upload.svg" alt="">
+      <div class="header">
+        <label>Add Images (2:1 ratio)</label>
+        <button type="button" (click)="triggerFileInput()">
+          <img src="/assets/addevent/upload.svg" alt="">
         </button>
         <input id="fileInput" formControlName="images" type="file" (change)="addImage($event)" multiple accept="image/*" style="display: none;">
     </div>
       <div class="images-grid">
         <div *ngFor="let image of images; let i = index" class="image-item">
           <img [src]="image" alt="Uploaded Image">
-          <button class="remove-btn" (click)="removeImage(i)">&#10006;</button>
+          <button type="button" class="remove-btn" (click)="removeImage(i)">&#10006;</button>
         </div>
       </div>
       <div class="buttonset">

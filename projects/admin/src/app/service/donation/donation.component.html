@@ -1,1 +1,13 @@
-<p>donation works!</p>
+<!-- <app-header-with-back [pageTitle]="'Tax'"></app-header-with-back> -->
+<section>
+  <div *ngFor="let item of donationItems" class="card bg_color_gradient ">
+    <div class="header_text_color">{{ item.itemName }}
+    </div>
+    <div class="items">
+        <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="item.active==true?true:false" (change)="updatedStatus(item)"></mat-slide-toggle> </span>
+        <span><img src="assets/tax/edit.svg" (click)="editDonationItem(item)" alt=""></span>
+        <span><img src="assets/tax/delete.svg" (click)="deleteDonationItem(item)" alt=""></span>
+    </div>
+  </div>
+  <app-add-button  (click)="addDonationItem()" ></app-add-button>
+</section>

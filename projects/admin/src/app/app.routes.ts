@@ -15,6 +15,9 @@ import { SplashScreenComponent } from './auth/splash-screen/splash-screen.compon
 import { AuthGuard } from './auth/auth.guard';
 import { NotAdminComponent } from './auth/not-admin/not-admin.component';
 import { LoggedInAuthGuard } from './auth/loggedin.guard';
+import { UserAndPermissionComponent } from './user-and-permission/user-and-permission.component';
+import { SurveyFormComponent } from './survey-form/survey-form.component';
+import { CouponComponent } from './coupon/coupon.component';
 export const routes: Routes = [
     // {path : '', component:SplashScreenComponent},
     {path: "",redirectTo: "/login",pathMatch: "full"},
@@ -30,5 +33,7 @@ export const routes: Routes = [
     {path:'donation',component: DonationComponent,canActivate: [AuthGuard]},
     {path:'tax',component: TaxComponent ,canActivate: [AuthGuard]},
     {path:'event',component: EventComponent,canActivate: [AuthGuard]},
-    
+    {path:'user-Permission',component: UserAndPermissionComponent,canActivate: [AuthGuard]},
+    {path:'surveyform',component: SurveyFormComponent,canActivate: [AuthGuard]},
+    {path:'coupon',component: CouponComponent,canActivate: [AuthGuard]},
 ];
