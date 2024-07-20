@@ -59,10 +59,11 @@
 <!-- itinerary form pannel -->
 <div *ngIf="'Itinerary'== pannel?true: false" >
   <form [formGroup]="itineraryForm">
-  <div class="activity-form form1" *ngFor="let activity of activities.controls; let i = index"  [formGroupName]="i" formArrayName="activities">
+    <ng-container formArrayName="activities" >
+  <div class="activity-form form1" *ngFor="let activity of activities.controls; let i = index" [formGroupName]="i">
     <div class="form-group1">
       <label for="activityName">Activity Name</label>
-      <input id="activityName" type="text" formControlName="activityName" class="activity-name"/>
+      <input id="activityName" type="text" formControlName="name" class="activity-name"/>
     </div>
     <div class="form-group1">
       <label for="date">Date</label>
@@ -87,7 +88,9 @@
     <lib-cancel-btn [btnName]="'Cancel'"></lib-cancel-btn>
     <lib-save-btn  [btnName]="'Next'"  (click)="nextpannel('slab')"></lib-save-btn>
   </div>
-</form>  
+</ng-container>
+</form>
+
 </div>
 <!-- slab form pannel -->
 <div *ngIf="'slab'== pannel?true: false">

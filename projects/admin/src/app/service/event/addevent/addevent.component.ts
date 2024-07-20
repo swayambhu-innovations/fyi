@@ -38,11 +38,7 @@ interface Event {
   selector: 'app-addevent',
   standalone: true,
   imports: [NgIf, CancelBtnComponent, SaveBtnComponent,CommonModule,NgFor,MatAccordion,MatNativeDateModule,MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,MatExpansionPanel,MatExpansionPanelHeader,MatExpansionPanelTitle,MatSlideToggle,ReactiveFormsModule],
+    MatInputModule, MatButtonModule,MatIconModule, MatDatepickerModule,MatNativeDateModule,MatExpansionPanel,MatExpansionPanelHeader,MatExpansionPanelTitle,MatSlideToggle,ReactiveFormsModule],
   templateUrl: './addevent.component.html',
   styleUrl: './addevent.component.scss',
   providers: [EventService]
@@ -50,16 +46,35 @@ interface Event {
 export class AddeventComponent {
   selected="";
   pannel='details';
-  activitycount=1;
   getRepetitions(count: number): any[] {
     return new Array(count);
   }
  
-  itineraryForm!: FormGroup;
+  itineraryForm: FormGroup;
   constructor(private router: Router,private storage: Storage,private _bottomSheet: MatBottomSheet,private fb: FormBuilder,private eventservice:EventService,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<AddeventComponent>
-  ) {}
+  ) {
+    this.itineraryForm = this.fb.group({
+      activities: this.fb.array([])
+    });
+  }
+  get activities(): FormArray {
+    return this.itineraryForm.get('activities') as FormArray;
+  }
+  addActivity(): void {
+    const activityGroup = this.fb.group({
+      name: ['', Validators.required],
+      date: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required]
+    });
+    this.activities.push(activityGroup);
+  }
+  deleteActivity(index: number): void {
+    this.activities.removeAt(index);
+  } 
+
   eventForm : FormGroup = new FormGroup({
     eventName: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
@@ -75,27 +90,10 @@ export class AddeventComponent {
       console.log(this.data);
       this.eventForm.setValue(this.data);
     }
-    // this.itineraryForm = this.fb.group({
-    //   activities: this.fb.array([this.createActivity()])
-    // });
   }  
-  get activities(): FormArray {
-    return this.itineraryForm.get('activities') as FormArray;
-  }
-  createActivity(): FormGroup {
-    return this.fb.group({
-      activityName: ['', Validators.required],
-      date: ['', Validators.required],
-      startTime: ['', Validators.required],
-      endTime: ['', Validators.required]
-    });
-  }
-  addActivity() {
-    this.activities.push(this.createActivity());
-  }
-  deleteActivity(index: number) {
-    this.activities.removeAt(index);
-  }
+
+ 
+
 
   submit(select:string){
     this.selected=select;
