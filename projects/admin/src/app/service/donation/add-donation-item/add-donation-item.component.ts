@@ -28,7 +28,7 @@ import {SaveBtnComponent} from '../../../../../../shared-ui/src/save-btn/save-bt
 @Component({
   selector: 'app-add-donation-item',
   standalone: true,
-  imports: [ReactiveFormsModule,CancelBtnComponent,SaveBtnComponent],
+  imports: [ReactiveFormsModule,CancelBtnComponent,SaveBtnComponent,CommonModule],
   templateUrl: './add-donation-item.component.html',
   styleUrl: './add-donation-item.component.scss',
 })
@@ -39,7 +39,7 @@ export class AddDonationItemComponent {
     itemName: new FormControl('', Validators.required),
     itemId: new FormControl(''),
     itemType: new FormControl('weight'),
-    photoURL: new FormControl('assets/login/logo (1).svg', Validators.required),
+    photoURL: new FormControl('',Validators.required),
     active: new FormControl(true),
   });
 
@@ -82,6 +82,10 @@ export class AddDonationItemComponent {
 
   cancel() {
     this._bottomSheetRef.dismiss();
+  }
+
+  removeImg(){
+    this.donationItemForm.patchValue({photoURL:null})
   }
 
   saveDonationItem() {
