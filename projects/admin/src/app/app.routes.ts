@@ -18,6 +18,7 @@ import { LoggedInAuthGuard } from './auth/loggedin.guard';
 import { UserAndPermissionComponent } from './user-and-permission/user-and-permission.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { CouponComponent } from './coupon/coupon.component';
+import { CreateCatalogueComponent } from './service/catalogue/create-catalogue/create-catalogue.component';
 export const routes: Routes = [
     // {path : '', component:SplashScreenComponent},
     {path: "",redirectTo: "/login",pathMatch: "full"},
@@ -36,4 +37,5 @@ export const routes: Routes = [
     {path:'user-Permission',component: UserAndPermissionComponent,canActivate: [AuthGuard]},
     {path:'surveyform',component: SurveyFormComponent,canActivate: [AuthGuard]},
     {path:'coupon',component: CouponComponent,canActivate: [AuthGuard]},
+    {path:'create-catalogue',component: CreateCatalogueComponent,canActivate: [AuthGuard]},
 ];

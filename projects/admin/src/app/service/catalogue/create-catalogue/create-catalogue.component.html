@@ -1,0 +1,19 @@
+<app-header-with-back [pageTitle]="'Add Catalogue'"></app-header-with-back>
+
+<section>
+  <div class="field">
+    <label class="description_text">Catalogue Name</label>
+    <br />
+    <input
+      type="text"
+      class="input_box_bg_gradient header_text_color"
+      placeholder="Enter Catalogue Name"
+      [(ngModel)]="catalogueName"
+      maxlength="10"
+    />
+  </div>
+  <div class="twin-btn fix-below">
+    <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+    <lib-save-btn (click)="addCatalogue()" [btnName]="'Save'"></lib-save-btn>
+  </div>
+</section>

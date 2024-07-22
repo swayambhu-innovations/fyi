@@ -1,7 +1,7 @@
 
 <section>
   <div *ngFor="let tax of taxes" class="card bg_color_gradient ">
-    <div class="header_text_color">{{ tax.taxName }}
+    <div class="header_text_color word-wrap">{{ tax.taxName }}
     </div>
     <div class="items">
         <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="tax.active==true?true:false" (change)="updatedStatus(tax)"></mat-slide-toggle> </span>

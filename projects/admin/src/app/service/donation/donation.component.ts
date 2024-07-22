@@ -30,6 +30,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+
 @Component({
   selector: 'app-donation',
   standalone: true,
@@ -42,6 +43,7 @@ export class DonationComponent {
     private _bottomSheet: MatBottomSheet,
     private DonationItemService: DonationItemService
   ) {}
+  readonly panelOpenState = signal(false);
 
   donationItems: any[] = [];
   ngOnInit() {

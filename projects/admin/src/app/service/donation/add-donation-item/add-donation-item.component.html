@@ -1,33 +1,38 @@
 <section>
-    <form [formGroup]="donationItemForm">
-      <div>
-        <label for="itemName">Item Name:</label>
-        <input id="itemName" formControlName="itemName" type="text" />
-      </div>
-  
-     
-  
-      <div>
-        <div class="field">
-          <label class="description_text">Item Type:</label>
-          <br />
-          <select
-            class="input_box_bg_gradient header_text_color"
-            formControlName="itemType"
-          >
-            <option value="weight">Weight</option>
-            <option value="quantity">Quantity</option>
-          </select>
-        </div>
-      </div>
-  
-      <div class="upload_picture_btn">
-          <img
-        class="profile_section"
-        [src]="this.donationItemForm.value.photoURL"
-        alt="Profile Photo"
+  <p class="header_text_color">
+    {{ data ? "Edit Donation Item" : "Add Donation Item" }}
+  </p>
+
+  <form [formGroup]="donationItemForm">
+    <div class="field">
+      <label for="itemName" class="description_text">Item Name:</label>
+      <input
+        id="itemName"
+        class="input_box_bg_gradient header_text_color"
+        formControlName="itemName"
+        type="text"
       />
-        <div>
+    </div>
+
+    <div>
+      <div class="field">
+        <label class="description_text">Item Type:</label>
+        <br />
+        <select
+          class="input_box_bg_gradient header_text_color"
+          formControlName="itemType"
+        >
+          <option value="weight">Weight</option>
+          <option value="quantity">Quantity</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <div class="field mt">
+        <div class="title-with-icon input_box_bg_gradient header_text_color">
+          <p>Add Image</p>
+
           <input
             type="file"
             #fileInput
@@ -36,16 +41,28 @@
             accept="image/*"
           />
           <img
-            src="assets/profile/camera.svg"
+            src="assets/tax/pin.svg"
             alt="upload photo"
             (click)="fileInput.click()"
           />
         </div>
+        
       </div>
-  
-     
-  
-      <button type="submit" [disabled]="donationItemForm.invalid" (click)="saveDonationItem()">Submit</button>
-    </form>
-  </section>
-  
+    </div>
+    <div class="full-w mt-m" *ngIf="this.donationItemForm.value.photoURL">
+      <img
+          [src]="this.donationItemForm.value.photoURL"
+          alt="Profile Photo"
+        />
+        <img class="top-r-corner"  (click)="removeImg()" src="assets/tax/cross.svg"/>
+    </div>
+
+    <div class="twin-btn mt">
+      <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+      <lib-save-btn
+        (click)="saveDonationItem()"
+        [btnName]="'Save'"
+      ></lib-save-btn>
+    </div>
+  </form>
+</section>

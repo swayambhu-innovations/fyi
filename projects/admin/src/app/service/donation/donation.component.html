@@ -1,13 +1,53 @@
 <!-- <app-header-with-back [pageTitle]="'Tax'"></app-header-with-back> -->
 <section>
-  <div *ngFor="let item of donationItems" class="card bg_color_gradient ">
-    <div class="header_text_color">{{ item.itemName }}
+  <div *ngFor="let item of donationItems" class="card bg_color_gradient">
+    <div class="flex">
+      <div class="pic_bx">
+        <img [src]="item.photoURL" alt="" />
+      </div>
+      <div class="header_text_color title_bx">{{ item.itemName }}</div>
     </div>
     <div class="items">
-        <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="item.active==true?true:false" (change)="updatedStatus(item)"></mat-slide-toggle> </span>
-        <span><img src="assets/tax/edit.svg" (click)="editDonationItem(item)" alt=""></span>
-        <span><img src="assets/tax/delete.svg" (click)="deleteDonationItem(item)" alt=""></span>
+      <span class="size custom-slide-toggle"
+        ><mat-slide-toggle
+          [checked]="item.active == true ? true : false"
+          (change)="updatedStatus(item)"
+        ></mat-slide-toggle>
+      </span>
+      <span
+        ><img src="assets/tax/edit.svg" (click)="editDonationItem(item)" alt=""
+      /></span>
+      <span
+        ><img
+          src="assets/tax/delete.svg"
+          (click)="deleteDonationItem(item)"
+          alt=""
+      /></span>
     </div>
   </div>
-  <app-add-button  (click)="addDonationItem()" ></app-add-button>
+  <app-add-button (click)="addDonationItem()"></app-add-button>
 </section>
+
+<!-- 
+<div class="card-size  bg_color_gradient"  >  <mat-accordion>
+  <mat-expansion-panel
+    (opened)="panelOpenState.set(true)"
+    (closed)="panelOpenState.set(false)"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="header_text_color"></mat-panel-title>
+      <mat-panel-description>
+        <div class="items">
+          <span class="size custom-slide-toggle"
+            ><mat-slide-toggle ></mat-slide-toggle>
+          </span>
+          <span><img src="assets/tax/edit.svg"  alt=""/></span>
+          <span><img src="assets/tax/delete.svg"  alt="" /></span></div
+      ></mat-panel-description>
+      
+    </mat-expansion-panel-header>
+    
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
+<app-add-button (click)="addDonationItem()"></app-add-button> -->
