@@ -7,10 +7,11 @@ import {
   MatBottomSheetModule,
 } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-header-with-menu',
   standalone: true,
-  imports: [MatBottomSheetModule,MatButtonModule],
+  imports: [MatBottomSheetModule,MatButtonModule,MatIconModule],
   templateUrl: './header-with-menu.component.html',
   styleUrl: './header-with-menu.component.scss'
 })

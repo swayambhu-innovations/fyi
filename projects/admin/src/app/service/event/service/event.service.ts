@@ -84,4 +84,5 @@ export class EventService {
       return setDoc(newEventDocRef, eventDetail);
     }
   }
+ 
 }
