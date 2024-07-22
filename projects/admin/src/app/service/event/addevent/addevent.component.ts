@@ -1,5 +1,5 @@
 import { NgIf,CommonModule, NgFor } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { Storage } from '@angular/fire/storage';
@@ -46,6 +46,7 @@ interface Event {
 export class AddeventComponent {
   selected="";
   pannel='details';
+  
   getRepetitions(count: number): any[] {
     return new Array(count);
   }
@@ -74,6 +75,7 @@ export class AddeventComponent {
   deleteActivity(index: number): void {
     this.activities.removeAt(index);
   } 
+
 
   eventForm : FormGroup = new FormGroup({
     eventName: new FormControl('', Validators.required),

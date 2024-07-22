@@ -13,8 +13,6 @@ section {
   margin-left: 1rem;
   margin-top: 10px;
   border-radius: 10px;
-  // justify-content: center;
-  // align-items: center;
   .row1 {
     display: flex;
     span {
@@ -23,7 +21,6 @@ section {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      
     }
     img{
       justify-content: end;
