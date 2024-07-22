@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderWithBackComponent } from '../../sharedComponent/header-with-back/header-with-back.component';
+import { CreateCatalogueComponent } from './create-catalogue/create-catalogue.component';
 @Component({
   selector: 'app-catalogue',
   standalone: true,
@@ -35,6 +36,10 @@ export class CatalogueComponent {
   addCatalogue(): void {
     this.router.navigate(['/create-catalogue']);
   }
+  editCatalogue(catalogue: any) {
+    this.CatalogueService.currentCatalogue=catalogue
+    this.router.navigate(['/create-catalogue',catalogue.id]);
+  }
   // openDelete(taxDetail: any): void {
   //   this._bottomSheet.open(DeleteTaxComponent, {
   //     data: taxDetail,
@@ -49,4 +54,9 @@ export class CatalogueComponent {
     catalogueDetail.active = !catalogueDetail.active;
     this.CatalogueService.addCatalogue(catalogueDetail);
   }
+
+ 
+  
+
+  
 }

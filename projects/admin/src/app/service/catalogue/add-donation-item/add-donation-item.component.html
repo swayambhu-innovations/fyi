@@ -1,0 +1,42 @@
+<section>
+    <p class="header_text_color">
+      {{ data ? "Edit Donation Item" : "Add Donation Item" }}
+    </p>
+  
+    <form [formGroup]="donationItemForm">
+      <div class="field">
+        <label class="description_text">Select Donation Item</label>
+        <br />
+        <select
+          formControlName="itemId"
+          [(ngModel)]="selectedDonationItem"
+          [(value)]="selectedDonationItem"
+          
+          class="input_box_bg_gradient header_text_color"
+        >
+        <option *ngFor="let donationItem of donationItems" [value]="donationItem.itemId">
+          {{ donationItem.itemName }}
+        </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="itemName" class="description_text">Coins awarded per unit:</label>
+        <input
+          id="itemName"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="reward"
+          type="number"
+        />
+      </div>
+     
+      <div class="twin-btn mt">
+        <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+        <lib-save-btn
+          (click)="saveSubCategory()"
+          [btnName]="'Save'"
+        ></lib-save-btn>
+      </div>
+    </form>
+  </section>
+  

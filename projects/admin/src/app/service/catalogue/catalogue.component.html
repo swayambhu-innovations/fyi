@@ -4,7 +4,7 @@
       </div>
       <div class="items">
           <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="catalogue.active==true?true:false" (change)="updatedStatus(catalogue)"></mat-slide-toggle> </span>
-          <span><img src="assets/tax/edit.svg"  alt=""></span>
+          <span><img src="assets/tax/edit.svg" (click)="editCatalogue(catalogue)" alt=""></span>
           <span><img src="assets/tax/delete.svg"  alt=""></span>
       </div>
     </div>

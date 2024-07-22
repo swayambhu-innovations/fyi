@@ -1,36 +1,36 @@
-section{
-    width: 96vw;
-    padding-top: 70px;
-    margin: 0 auto;
-    .field {
-        width: 100%;
-        margin-bottom: 10px;
-        input
-         {
-          border: 0.5px solid rgb(166, 166, 166);
-          border-radius: 12px;
-          width: 100%;
-          height: 40px;
-          padding: 1px 6px;
-        }
-        option {
-          width: 70%;
-        }
-        input:focus
-         {
-          outline: none;
-        }
-        .login {
-          border: 1px solid rgb(215, 215, 215);
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-          font-family: "Jura", sans-serif;
-    
-        }
-      }
-     
+p {
+  margin: 0px;
+  padding: 0px;
+}
+section {
+  width: 96vw;
+  padding-top: 70px;
+  margin: 0 auto;
+  .field {
+    width: 100%;
+    margin-bottom: 10px;
+    input {
+      border: 0.5px solid rgb(166, 166, 166);
+      border-radius: 12px;
+      width: 100%;
+      height: 40px;
+      padding: 1px 6px;
+    }
+    option {
+      width: 70%;
+    }
+    input:focus {
+      outline: none;
+    }
+    .login {
+      border: 1px solid rgb(215, 215, 215);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      font-family: "Jura", sans-serif;
+    }
+  }
 }
 
 lib-cancel-btn,
@@ -38,7 +38,65 @@ lib-save-btn {
   width: 35%;
 }
 
-.fix-below{
-    position: fixed;
-    bottom: 3px;
+.fix-below {
+  position: fixed;
+  bottom: 3px;
+}
+
+::ng-deep .mat-expansion-panel {
+  .mat-expansion-indicator svg {
+    width: 24px;
+    height: 24px;
+    margin: 0px;
+  }
+  .mat-expansion-panel-header-description {
+    flex-grow: 1;
+    color: var(--mat-expansion-header-description-color);
+  }
+}
+::ng-deep .mat-expansion-panel-body {
+  display: flex;
+  justify-content: center;
+  
+}
+.card-size {
+  width: 98vw;
+  margin: 4px auto;
+}
+.items {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+::ng-deep .mat-expansion-panel{
+  .mat-expansion-panel-body {
+    display: block;
+    justify-content: center;
+    padding:0 10px 16px
+  }
+  .mat-expansion-panel-header {
+    padding:0px 10px;
+  }
+}
+ 
+
+.card{
+  margin: 5px auto;
+  border: 1px;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  border: 1px solid #d4d4d4;
+}
+.fix-size{
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.word-wrap{
+  width: 80%;
 }

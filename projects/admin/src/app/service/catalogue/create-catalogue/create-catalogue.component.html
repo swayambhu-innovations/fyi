@@ -1,6 +1,7 @@
 <app-header-with-back [pageTitle]="'Add Catalogue'"></app-header-with-back>
 
 <section>
+  <form [formGroup]="catalogueForm">
   <div class="field">
     <label class="description_text">Catalogue Name</label>
     <br />
@@ -8,12 +9,91 @@
       type="text"
       class="input_box_bg_gradient header_text_color"
       placeholder="Enter Catalogue Name"
-      [(ngModel)]="catalogueName"
-      maxlength="10"
+      formControlName="name"
     />
+  </div>
+</form>
+  <div class="flex-space-between" *ngIf="catalogueForm.get('id')?.value">
+    <p>3 Categories</p>
+    <div>
+      <lib-save-btn [btnName]="'Add Category'" (click)="addCategory()"></lib-save-btn>
+    </div>
+  </div>
+
+  <div class="flex-space-between addSection" *ngFor="let category of categoryList">
+    <div class="card-size bg_color_gradient">
+      <mat-accordion>
+        <mat-expansion-panel
+        (opened)="loadSubcategories(category.categoryId)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title class="header_text_color"
+              >{{category.categoryName}}</mat-panel-title
+            >
+            <mat-panel-description>
+              <div class="items">
+                <span class="size custom-slide-toggle"
+                  ><mat-slide-toggle [checked]="category.active==true?true:false" (change)="updatedStatus(category)"></mat-slide-toggle>
+                </span>
+                <span><img src="assets/tax/edit.svg" alt="" /></span>
+                <span><img src="assets/tax/delete.svg" alt="" /></span></div
+            ></mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="flex-space-between addSection">
+            <p>3 SubCategory</p>
+            <div>
+              <lib-save-btn [btnName]="'Add SubCategory'" (click)="addSubCategory(category.categoryId)"></lib-save-btn>
+            </div>
+          </div>
+          <div class="flex-space-between addSection" *ngFor="let subCategory of subCategoryList[category.categoryId]">
+            <div class="card-size bg_color_gradient">
+              <mat-accordion>
+                <mat-expansion-panel
+                  (opened)="loadDonationItemList(subCategory.categoryId,subCategory.subCategoryId)"
+                  (closed)="panelOpenState.set(false)"
+                >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="header_text_color"
+                      >{{subCategory.subCategoryName}}</mat-panel-title
+                    >
+                    <mat-panel-description>
+                      <div class="items">
+                        <span class="size custom-slide-toggle"
+                          ><mat-slide-toggle [checked]="subCategory.active==true?true:false" (change)="updatedStatus(category)"></mat-slide-toggle>
+                        </span>
+                        <span><img src="assets/tax/edit.svg" alt="" /></span> 
+                        <span
+                          ><img src="assets/tax/delete.svg" alt=""
+                        /></span></div
+                    ></mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <div class="flex-space-between addSection" >
+                    <p>3 Donation Item</p>
+                    <div>
+                      <lib-save-btn
+                        [btnName]="'Add Donation Item'"
+                        (click)="addDonationItem(subCategory.categoryId,subCategory.subCategoryId)"
+                      ></lib-save-btn>
+                    </div>
+                  </div>
+                  <div class="card flex-space-between addSection" *ngFor="let donationItem of donationItemList[subCategory.subCategoryId]">
+                    <div class="header_text_color word-wrap text-overflow-ellipsis" *ngIf="donationItemIsActive(donationItem.itemId)" >{{getNameOfItem(donationItem.itemId)}}</div>
+                    <div class="items">
+                      <span><img src="assets/tax/edit.svg" alt="" /></span>
+                      <span><img src="assets/tax/delete.svg" alt="" /></span>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
   <div class="twin-btn fix-below">
     <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
-    <lib-save-btn (click)="addCatalogue()" [btnName]="'Save'"></lib-save-btn>
+    <lib-save-btn (click)="addCatalogue()" [btnName]="'Save'" ></lib-save-btn>
   </div>
 </section>
