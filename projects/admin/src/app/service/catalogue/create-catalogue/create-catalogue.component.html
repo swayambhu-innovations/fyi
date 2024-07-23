@@ -24,8 +24,9 @@
     <div class="card-size bg_color_gradient">
       <mat-accordion>
         <mat-expansion-panel
-        (opened)="panelOpenCategory.set(true)"
-          (closed)="panelOpenCategory.set(false)"
+        [expanded]="panelOpenCategory.get(category.categoryId)"
+        (opened)="panelOpenCategory.set(category.categoryId, true)"
+        (closed)="panelOpenCategory.set(category.categoryId, false)"
         >
           <mat-expansion-panel-header>
             <mat-panel-title class="header_text_color"
@@ -37,9 +38,11 @@
           </mat-expansion-panel-header>
           <div class="flex-space-between mb-5">
             <div class="items">
-              <span class="size custom-slide-toggle"
-                ><mat-slide-toggle [checked]="category.active==true?true:false" (change)="updatedStatus(category)"></mat-slide-toggle>
-              </span>
+              <label class="uk-switch" >
+                <input type="checkbox"  [checked]="category.active==true?true:false" (change)="updatedStatus(category)">
+                <div class="uk-switch-slider" ></div>
+              </label>
+              
               <span><img src="assets/tax/edit.svg" (click)="editCategory(category)" alt="" /></span>
               <span><img src="assets/tax/delete.svg" (click)="deleteCategory(category)" alt="" /></span></div
           >
@@ -51,8 +54,9 @@
             <div class="card-size bg_color_gradient">
               <mat-accordion>
                 <mat-expansion-panel
-                  (opened)="panelOpenSubcategory.set(true)"
-                  (closed)="panelOpenSubcategory.set(false)"
+                [expanded]="panelOpenSubcategory.get(subCategory.subCategoryId)"
+                (opened)="panelOpenSubcategory.set(subCategory.subCategoryId, true)"
+                (closed)="panelOpenSubcategory.set(subCategory.subCategoryId, false)"
                 >
                   <mat-expansion-panel-header>
                     <mat-panel-title class="header_text_color"
@@ -64,9 +68,13 @@
                   </mat-expansion-panel-header>
                   <div class="flex-space-between mb-5" >
                     <div class="items">
-                      <span class="size custom-slide-toggle"
-                        ><mat-slide-toggle [checked]="subCategory.active==true?true:false" (change)="updatedStatusOfSubcategory(subCategory)"   (click)="$event.stopPropagation()"></mat-slide-toggle>
-                      </span>
+
+                      <label class="uk-switch" >
+                        <input type="checkbox"   [checked]="subCategory.active==true?true:false" (change)="updatedStatusOfSubcategory(subCategory)" >
+                        <div class="uk-switch-slider" ></div>
+                      </label>
+                      
+                      
                       <span><img src="assets/tax/edit.svg" alt="" (click)="editSubCategory(subCategory)" /></span> 
                       <span
                         ><img src="assets/tax/delete.svg" alt="" (click)="deleteSubcategory(subCategory)"

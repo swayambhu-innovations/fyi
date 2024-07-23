@@ -40,12 +40,13 @@ import { Location } from '@angular/common';
 export class CreateCatalogueComponent {
   catalogueId: string = '';
   catalogueName: any;
-  readonly panelOpenCategory = signal(false);
-  readonly panelOpenSubcategory = signal(false);
   categoryList: any[] = [];
   subCategoryList: { [key: string]: any[] } = {};
   donationItemList: { [key: string]: any[] } = {};
   activeDonationItemList: any[] = [];
+  panelOpenSubcategory: Map<string, boolean> = new Map();
+  panelOpenCategory: Map<string, boolean> = new Map();
+
 
   catalogueForm: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -145,12 +146,11 @@ export class CreateCatalogueComponent {
       categoryId,
       subCategoryId
     ).subscribe((data: any) => {
-      // Initialize the array if it doesn't already exist
+      this.donationItemList[subCategoryId] = [];
       if (!this.donationItemList[subCategoryId]) {
         this.donationItemList[subCategoryId] = [];
       }
 
-      // Process the data
       data.map((item: any) => {
         if (this.donationItemIsActive(item.itemId)) {
           this.donationItemList[subCategoryId].push(item);
@@ -187,6 +187,7 @@ export class CreateCatalogueComponent {
 
   activeDonationItems() {
     this.DonationItemService.getDonationItems().subscribe((data: any) => {
+      this.activeDonationItemList = [];
       data.map((item: any) => {
         if (item['active']) {
           this.activeDonationItemList.push(item);

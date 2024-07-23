@@ -89,7 +89,7 @@ export class AddDonationItemComponent {
     });
   }
 
-  saveSubCategory() {
+  addDonationITem() {
     if (this.donationItemForm.valid) {
       
       this.CatalogueService.addDonationInSubcategory(

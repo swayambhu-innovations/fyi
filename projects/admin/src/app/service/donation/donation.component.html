@@ -8,12 +8,12 @@
       <div class="header_text_color title_bx text-overflow-ellipsis">{{ item.itemName }}</div>
     </div>
     <div class="items">
-      <span class="size custom-slide-toggle"
-        ><mat-slide-toggle
-          [checked]="item.active == true ? true : false"
-          (change)="updatedStatus(item)"
-        ></mat-slide-toggle>
-      </span>
+      <label class="uk-switch" >
+        <input type="checkbox"  [checked]="item.active == true ? true : false"
+        (change)="updatedStatus(item)">
+        <div class="uk-switch-slider" ></div>
+      </label>
+      
       <span
         ><img src="assets/tax/edit.svg" (click)="editDonationItem(item)" alt=""
       /></span>
