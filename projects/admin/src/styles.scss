@@ -137,3 +137,15 @@ width: 100%;
 justify-content: center;
 gap: 20px;
 }
+
+.flex-space-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-overflow-ellipsis{
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}

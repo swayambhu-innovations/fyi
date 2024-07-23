@@ -38,4 +38,5 @@ export const routes: Routes = [
     {path:'surveyform',component: SurveyFormComponent,canActivate: [AuthGuard]},
     {path:'coupon',component: CouponComponent,canActivate: [AuthGuard]},
     {path:'create-catalogue',component: CreateCatalogueComponent,canActivate: [AuthGuard]},
+    { path: 'create-catalogue/:id', component: CreateCatalogueComponent,canActivate:[AuthGuard] },
 ];

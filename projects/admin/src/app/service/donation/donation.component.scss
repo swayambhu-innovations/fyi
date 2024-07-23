@@ -36,9 +36,7 @@ section {
       line-height: 21.29px;
       text-align: left;
       width:105px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      
     }
     .span {
       width: 50px;
@@ -58,26 +56,4 @@ app-add-button {
   right: 60px;
 }
 
-// ::ng-deep .mat-expansion-panel {
-//   .mat-expansion-indicator svg {
-//     width: 24px;
-//     height: 24px;
-//     margin: 0px;
-//   }
-//   .mat-expansion-panel-header-description {
-//     flex-grow: 1;
-//     color: var(--mat-expansion-header-description-color);
-//   }
-//   .mat-expansion-panel-body {
-//     display: flex;
-//     justify-content: center;
-//     img{
-//         width: 200px;
-//         height:200px;
-//     }
-//   }
-// }
-// .card-size {
-//   width: 98vw;
-//   margin: 4px auto;
-// }
+
