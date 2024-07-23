@@ -1,0 +1,84 @@
+<div class="scroll">
+    <div class="tabs">
+        <div *ngFor="let tab of tabs; let i = index" (click)="setActiveTab(i)" [class.active]="i === activeTab" class="tab section_title">
+        Member {{ tab }}
+        </div>
+    </div>
+</div>
+<form [formGroup]="memberForm" class="memberdetail" (ngSubmit)="saveMemberDetail()">
+            <div class="profile">
+                <img [src]="profileImageSrc" alt="Profile Image">
+                <label for="filepath" class="upload-icon">
+                    <img src="/assets/member_detail/icon.svg">
+                </label>
+                <input type="file" id="filepath" (change)="onFileSelected($event)" accept="image/*">
+            </div>
+            <div class="detail">
+                <div class="member-form">
+                    <label class="paragraph_text" for="Membername">Name</label>
+                    <input type="text" placeholder="name"
+                    class="member" formControlName="Name">
+                </div>
+                <div class="member-form">
+                    <label class="paragraph_text" for="MemberGender">Gender</label>
+                    <select   class="member" formControlName="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="member-form">
+                    <label class="paragraph_text" for="MemberMobile">Mobile No</label>
+                    <input type="text" placeholder="99xxxxxxxx"
+                    class="member" formControlName="mobileNo">
+                </div>
+                <div class="validation-errors">
+                    <div class="error-message" *ngIf="memberForm.get('mobileNo')?.errors && memberForm.get('mobileNo')?.touched">
+                      Your mobile number is invalid!
+                    </div>
+                </div>
+                <div class="member-form">
+                    <label class="paragraph_text" for=" MemberAadhar">Aadhar</label>
+                    <input type="text" placeholder="Aadhar number"
+                    class="member" formControlName="Aadharnumber">
+                </div>
+                <div class="validation-errors">
+                    <div class="error-message" *ngIf="memberForm.get('Aadharnumber')?.errors && memberForm.get('Aadharnumber')?.touched">
+                      Your aadhar number is invalid!
+                    </div>
+                </div>
+                <div class="header">
+                    <label>Upload Aadhar</label>    
+                
+                    <button type="button" (click)="triggerFileInputAadhar()">
+                    <img src="/assets/member_detail/upload.svg" alt="">
+                    </button>
+                    <input id="fileInputAadhar" formControlName="Adharimages" type="file" style="display: none;" (change)="onAadharUpload($event)">
+                    <div *ngIf="aadharuploadSuccess" class="success-message">
+                        <span>Aadhar uploaded successfully!</span>
+                    </div>
+                </div>
+                <div class="member-form">
+                    <label class="paragraph_text" for=" MemberPan">Pan</label>
+                    <input type="text" placeholder="Pan number"
+                    class="member" formControlName="Pannumber">
+                </div>
+                <div class="validation-errors">
+                    <div class="error-message" *ngIf="memberForm.get('Pannumber')?.errors && memberForm.get('Pannumber')?.touched">
+                      Your pan number is invalid!
+                    </div>
+                </div>
+                <div class="header">
+                    <label>Upload Pan</label>    
+                
+                    <button type="button" (click)="triggerFileInputPan()">
+                    <img src="/assets/member_detail/upload.svg" alt="">
+                    </button>
+                    <input id="fileInputPan" formControlName="panimages" type="file" style="display: none;" (change)="onPanUpload($event)">
+                    <div *ngIf="panuploadSuccess" class="success-message">
+                        <span>Pancard uploaded successfully!</span>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">{{ activeTab === tabs.length - 1 ? 'Next' : 'Submit' }}</button>
+</form>
