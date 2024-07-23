@@ -35,19 +35,22 @@ import { DonationItemService } from '../../donation/service/donation-item.servic
 })
 export class AddDonationItemComponent {
   isImgSizeValid = false;
-  
+
   donationItems: any[] = [];
-  selectedDonationItem:any
+  selectedDonationItem: any;
 
   donationItemForm: FormGroup = new FormGroup({
     itemId: new FormControl(''),
     active: new FormControl(true),
-    reward: new FormControl(0, Validators.required),
+    reward: new FormControl(0,[
+      Validators.required,
+      Validators.min(0),
+      Validators.max(1000)
+    ]),
     catalogueId: new FormControl(this.data.catalogueId),
     categoryId: new FormControl(this.data.categoryId),
     subCategoryId: new FormControl(this.data.subCategoryId),
-    donationItemId:new FormControl(''),
-
+    donationItemId: new FormControl(''),
   });
 
   constructor(
@@ -56,16 +59,19 @@ export class AddDonationItemComponent {
     private _bottomSheetRef: MatBottomSheetRef<AddDonationItemComponent>,
     private DonationItemService: DonationItemService
   ) {
-    console.log(data)
-    this.donationItemForm.patchValue({catalogueId:data.catalogueId,categoryId:data.categoryId,subCategoryId:data.subCategoryId})
+    if (this.data && this.data.itemId) {
+      this.donationItemForm.setValue(this.data);
+    } else {
+      this.donationItemForm.patchValue({
+        catalogueId: data.catalogueId,
+        categoryId: data.categoryId,
+        subCategoryId: data.subCategoryId,
+      });
+    }
   }
 
   ngOnInit() {
-    this.getDonationItemList()
-    if (this.data && this.data.itemId) {
-      console.log(this.data);
-      this.donationItemForm.setValue(this.data);
-    }
+    this.getDonationItemList();
   }
 
   cancel() {
@@ -85,11 +91,12 @@ export class AddDonationItemComponent {
 
   saveSubCategory() {
     if (this.donationItemForm.valid) {
-      this.CatalogueService.addDonationInSubcategory(this.donationItemForm.value).then(
-        () => {
-          this._bottomSheetRef.dismiss();
-        }
-      );
+      
+      this.CatalogueService.addDonationInSubcategory(
+        this.donationItemForm.value
+      ).then(() => {
+        this._bottomSheetRef.dismiss();
+      });
     }
   }
 }

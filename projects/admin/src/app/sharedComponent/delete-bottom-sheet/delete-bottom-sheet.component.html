@@ -1,0 +1,11 @@
+<section >
+    <h3 class="red">Delete {{data.title}}</h3>
+    <img src="assets/tax/deleteTax.svg" alt="" />
+    <p class="red">Warning</p>
+    <p class="red"> {{data.description}}</p>
+    <div class="twin-btn">
+      <lib-cancel-btn (click)="closeSheet()" [btnName]="'Cancel'"></lib-cancel-btn>
+      <lib-delete-btn (click)="delete()" [btnName]="'Delete'"></lib-delete-btn>
+    </div>
+  </section>
+  

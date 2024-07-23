@@ -1,6 +1,6 @@
 <section>
     <p class="header_text_color">
-      {{ data ? "Edit Sub Category" : "Add Sub Category" }}
+      {{ data.subCategoryId ? "Edit Sub Category" : "Add Sub Category" }}
     </p>
   
     <form [formGroup]="subCategoryForm">
@@ -10,8 +10,14 @@
           id="itemName"
           class="input_box_bg_gradient header_text_color"
           formControlName="subCategoryName"
+          placeholder="Enter Sub Category Name"
           type="text"
         />
+        <div *ngIf="subCategoryForm.get('subCategoryName')?.invalid && (subCategoryForm.get('subCategoryName')?.touched )">
+          <small class="error-message" *ngIf="subCategoryForm.get('subCategoryName')?.errors?.['required']">
+            Subcategory name is required.
+          </small>
+        </div>
       </div>
   
       
@@ -36,6 +42,12 @@
           </div>
           
         </div>
+        <div *ngIf="subCategoryForm.get('photoURL')?.invalid && (subCategoryForm.get('photoURL')?.touched )">
+          <small class="error-message" *ngIf="subCategoryForm.get('photoURL')?.errors?.['required']">
+            Photo URL is required.
+          </small>
+        </div>
+        
       </div>
       <div class="full-w mt-m" *ngIf="this.subCategoryForm.value.photoURL">
         <img

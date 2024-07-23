@@ -19,7 +19,8 @@ import { AddSubCategoryComponent } from '../add-sub-category/add-sub-category.co
 import { AddDonationItemComponent } from '../add-donation-item/add-donation-item.component';
 import { DonationItemService } from '../../donation/service/donation-item.service';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { DeleteBottomSheetComponent } from '../../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-create-catalogue',
   standalone: true,
@@ -39,14 +40,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class CreateCatalogueComponent {
   catalogueId: string = '';
   catalogueName: any;
-  readonly panelOpenState = signal(false);
+  readonly panelOpenCategory = signal(false);
+  readonly panelOpenSubcategory = signal(false);
   categoryList: any[] = [];
   subCategoryList: { [key: string]: any[] } = {};
   donationItemList: { [key: string]: any[] } = {};
   activeDonationItemList: any[] = [];
 
   catalogueForm: FormGroup = new FormGroup({
-    id: new FormControl(this.catalogueId),
+    id: new FormControl(''),
     active: new FormControl(true),
     name: new FormControl('', Validators.required),
   });
@@ -55,24 +57,25 @@ export class CreateCatalogueComponent {
     private route: ActivatedRoute,
     private CatalogueService: CatalogueService,
     private _bottomSheet: MatBottomSheet,
-    private DonationItemService: DonationItemService
-  ) {}
-
-  ngOnInit(): void {
+    private DonationItemService: DonationItemService,
+    private location: Location
+  ) {
     this.route.paramMap.subscribe((params) => {
-      console.log(params.get('id'));
-      if (params.get('id')!='') {
+      if (params.get('id') !== null) {
+        console.log('param', params.get('id'));
         this.catalogueId = params.get('id') || '';
         this.catalogueForm.patchValue({ id: this.catalogueId });
         this.catalogueForm.setValue(this.CatalogueService.currentCatalogue);
       }
     });
+  }
+
+  ngOnInit(): void {
     this.getCategoryList();
     this.activeDonationItems();
   }
 
   addCatalogue() {
-    console.log(this.catalogueForm.value);
     if (this.catalogueForm.valid) {
       this.CatalogueService.addCatalogue(this.catalogueForm.value).then(
         (res) => {
@@ -82,7 +85,7 @@ export class CreateCatalogueComponent {
     }
   }
   cancel() {
-    console.log('cancel');
+    this.location.back();
   }
 
   async addCategory() {
@@ -110,49 +113,76 @@ export class CreateCatalogueComponent {
   }
 
   getCategoryList() {
-    this.CatalogueService.getCategoryList(
-      this.catalogueForm.value.id
-    ).subscribe((data: any) => {
-      this.categoryList = data;
-    });
+    if (this.catalogueForm.value.id) {
+      this.CatalogueService.getCategoryList(
+        this.catalogueForm.value.id
+      ).subscribe((data: any) => {
+        this.categoryList = data;
+
+        this.categoryList.map((category: any) => {
+          if (category.categoryId) {
+            this.getSubCategory(category.categoryId);
+          }
+        });
+      });
+    }
   }
 
   getSubCategory(categoryId: string) {
-    console.log(this.catalogueForm.value.id, categoryId);
     this.CatalogueService.getSubCategoryList(
       this.catalogueForm.value.id,
       categoryId
     ).subscribe((data: any) => {
-      console.log(data);
       this.subCategoryList[categoryId] = data;
-      console.log(this.subCategoryList);
+      this.subCategoryList[categoryId].map((subCategory: any) => {
+        this.getDonationItemList(categoryId, subCategory.subCategoryId);
+      });
     });
   }
   getDonationItemList(categoryId: string, subCategoryId: string) {
-    console.log(this.catalogueForm.value.id, categoryId);
-
     this.CatalogueService.getDonationItemList(
       this.catalogueForm.value.id,
       categoryId,
       subCategoryId
     ).subscribe((data: any) => {
-      console.log(data);
-      this.donationItemList[subCategoryId] = data;
-      console.log(this.donationItemList);
+      // Initialize the array if it doesn't already exist
+      if (!this.donationItemList[subCategoryId]) {
+        this.donationItemList[subCategoryId] = [];
+      }
+
+      // Process the data
+      data.map((item: any) => {
+        if (this.donationItemIsActive(item.itemId)) {
+          this.donationItemList[subCategoryId].push(item);
+        }
+      });
     });
   }
 
-  loadSubcategories(categoryId: string) {
-    this.panelOpenState.set(true);
-    this.getSubCategory(categoryId);
-  }
-  loadDonationItemList(categoryId: string, subCategoryId: string) {
-    this.panelOpenState.set(true);
-    this.getDonationItemList(categoryId, subCategoryId);
-  }
   updatedStatus(categoryDetail: any) {
     categoryDetail.active = !categoryDetail.active;
     this.CatalogueService.addCategory(categoryDetail);
+  }
+  updatedStatusOfSubcategory(subCategory: any) {
+    subCategory.active = !subCategory.active;
+    this.CatalogueService.addSubCategory(subCategory);
+  }
+
+  editCategory(category: any) {
+    this._bottomSheet.open(AddCategoryComponent, {
+      data: category,
+    });
+  }
+
+  editSubCategory(subCategory: any) {
+    this._bottomSheet.open(AddSubCategoryComponent, {
+      data: subCategory,
+    });
+  }
+  editDonationItemDetail(donationItem: any) {
+    this._bottomSheet.open(AddDonationItemComponent, {
+      data: donationItem,
+    });
   }
 
   activeDonationItems() {
@@ -166,16 +196,66 @@ export class CreateCatalogueComponent {
   }
 
   donationItemIsActive(itemId: string): boolean {
-    console.log(itemId);
     const item = this.activeDonationItemList.find((d) => d.itemId === itemId);
-    console.log(this.activeDonationItemList);
 
     return item ? item.active : false;
   }
   getNameOfItem(itemId: string): string {
     const item = this.activeDonationItemList.find((d) => d.itemId === itemId);
 
-    console.log(item);
     return item ? item.itemName : 'Item not found';
+  }
+
+  async deleteCategory(category: any) {
+    const bottomSheetRef = this._bottomSheet.open(DeleteBottomSheetComponent, {
+      data: {
+        title: 'Category',
+        description: `Are you sure ?`,
+      },
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      console.log('Bottom sheet has been dismissed', result);
+      if (result) {
+        await this.CatalogueService.delete(
+          `service-catalogue/${category.catalogueId}/categories/${category.categoryId}`
+        );
+      }
+    });
+  }
+  async deleteSubcategory(subCategory: any) {
+    const bottomSheetRef = this._bottomSheet.open(DeleteBottomSheetComponent, {
+      data: {
+        title: 'Sub Category',
+        description: `Are you sure ?`,
+      },
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      console.log('Bottom sheet has been dismissed', result);
+      if (result) {
+        await this.CatalogueService.delete(
+          `service-catalogue/${subCategory.catalogueId}/categories/${subCategory.categoryId}/sub-categories/${subCategory.subCategoryId}`
+        );
+      }
+    });
+  }
+
+  async removeDonationItem(donationItem: any) {
+    const bottomSheetRef = this._bottomSheet.open(DeleteBottomSheetComponent, {
+      data: {
+        title: 'Donation Item',
+        description: `Are you sure ?`,
+      },
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      console.log('Bottom sheet has been dismissed', result);
+      if (result) {
+        await this.CatalogueService.delete(
+          `service-catalogue/${donationItem.catalogueId}/categories/${donationItem.categoryId}/sub-categories/${donationItem.subCategoryId}/donation-items/${donationItem.donationItemId}`
+        );
+      }
+    });
   }
 }

@@ -149,3 +149,15 @@ gap: 20px;
 overflow: hidden;
 text-overflow: ellipsis;
 }
+
+.error-message {
+  color: #d9534f; 
+  font-size: 12px; 
+  margin-top: 4px; 
+  display: block; 
+  
+  background-color: #f8d7da; 
+  border: 1px solid #f5c6cb; 
+  padding: 4px; 
+  border-radius: 4px; 
+}
