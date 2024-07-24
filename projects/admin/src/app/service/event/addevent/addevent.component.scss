@@ -1,188 +1,234 @@
-.heading{
-    text-align: center;
-    color: var(--header-text-color, #464E5F);
-
-/* page title */
-font-family: "Krona One";
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+section{
+  padding-top: 70px;
 }
-.scroll{
-    overflow-x: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+.heading {
+  text-align: center;
+  color: var(--header-text-color, #464e5f);
+
+  /* page title */
+  font-family: "Krona One";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.scroll {
+  overflow-x: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  margin-bottom: 5px;
 }
 .scroll::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
+  display: none; /* Safari and Chrome */
 }
 .tabs {
-    
-     display: flex;
-     justify-content: center;
-     justify-content: space-between;
-    
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
 }
 .tab {
- padding: 10px 30px 10px 30px ;
- border-radius: 10px;
- cursor: pointer;
- justify-content: center;
-align-items: center;
-
- 
+  padding: 10px 30px 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }
-.tab.active, .tab:hover {
-    
-    background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
- color: white;
+.tab.active,
+.tab:hover {
+  background: var(
+    --active-tab-gradient,
+    linear-gradient(
+      90deg,
+      #464e5f 0.28%,
+      rgba(70, 78, 95, 0.8) 47.84%,
+      rgba(70, 78, 95, 0.4) 99.72%
+    )
+  );
+  color: white;
 }
-
-
-
-
 
 .form1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-group {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    color: var(--description-text, #808080);
+  color: var(--description-text, #808080);
 
-    /* input title text */
-    font-family: Nunito;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  /* input title text */
+  font-family: Nunito;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-.event-name
- {
-    border-radius: 12px;
-    border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-    background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
-    width: 320px;
-height: 40px;
-padding: 10px;
-justify-content: space-between;
-align-items: center;
-  
+.event-name {
+  border-radius: 12px;
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.3));
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
+  width: 320px;
+  height: 40px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
-.dataset1{
-    width: 150px;
-    height: 40px;
-    padding: 10px;
-    border-radius: 12px;
-border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
-
-
+.dataset1 {
+  width: 150px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.3));
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
 }
 
 textarea {
-    width: 320px;
-    height: 120px;
-    padding: 10px;
-    border-radius: 12px;
-border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
+  width: 320px;
+  height: 120px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.3));
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
 }
-.dateset{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+.dateset {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .header {
-    align-items: center;
-    border-radius: 12px;
-border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    width: 320px;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .header label {
-    font-weight: bold;
-  }
-  
-  .images-grid {
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.3));
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 320px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin-bottom: 20px;
+.header label {
+  font-weight: bold;
+}
 
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .image-item {
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 80px;
-  }
-  
-  .image-item img {
-    border-radius: 10px;
-    width: 150px;
-    height: 80px;
-  }
-  
-  .remove-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .cancel-button{
-width: 137.5px;
-height: 60px;
-padding: 20px;
-border: none;
-border-radius: 30px;
-background: var(--secondary-botton-gradient, linear-gradient(91deg, rgba(224, 224, 224, 0.30) 0.53%, rgba(224, 224, 224, 0.20) 47.85%, rgba(224, 224, 224, 0.10) 99.47%));
-color: rgba(47, 21, 170, 1);
-margin-right: 10px;
-  }
-.next-button{
-    width: 137.5px;
-    border: none;
-height: 60px;
-padding: 20px;
-justify-content: center;
-align-items: center;
-border-radius: 30px;
-background: var(--primary-botton-gradient, linear-gradient(90deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.80) 47.84%, rgba(47, 21, 170, 0.40) 99.72%));
-margin-left: 10px;
-color: white;
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 20px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.image-item {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 80px;
+}
+
+.image-item img {
+  border-radius: 10px;
+  width: 150px;
+  height: 80px;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.cancel-button {
+  width: 137.5px;
+  height: 60px;
+  padding: 20px;
+  border: none;
+  border-radius: 30px;
+  background: var(
+    --secondary-botton-gradient,
+    linear-gradient(
+      91deg,
+      rgba(224, 224, 224, 0.3) 0.53%,
+      rgba(224, 224, 224, 0.2) 47.85%,
+      rgba(224, 224, 224, 0.1) 99.47%
+    )
+  );
+  color: rgba(47, 21, 170, 1);
+  margin-right: 10px;
+}
+.next-button {
+  width: 137.5px;
+  border: none;
+  height: 60px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: var(
+    --primary-botton-gradient,
+    linear-gradient(
+      90deg,
+      #2f15aa 0.28%,
+      rgba(47, 21, 170, 0.8) 47.84%,
+      rgba(47, 21, 170, 0.4) 99.72%
+    )
+  );
+  margin-left: 10px;
+  color: white;
 }
 
 ::ng-deep mat-bottom-sheet-container {
-    border-radius: 20px 20px 0px 0px ;
-  }
-//intinery pannel css start 
+  border-radius: 20px 20px 0px 0px;
+}
+//intinery pannel css start
 .activity-form {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -190,60 +236,73 @@ color: white;
   background-color: #f9f9f9;
   margin-bottom: 10px;
   justify-content: center;
-align-items: center;
+  align-items: center;
 }
-.form-group1{
+.form-group1 {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   width: 100%;
-
 }
-.activity-name{
+.activity-name {
   border-radius: 12px;
-  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-  background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.3));
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
   width: 100%;
-height: 40px;
-padding: 10px;
-justify-content: space-between;
-align-items: center;
+  height: 40px;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
-.dateset2{
+.dateset2 {
   display: flex;
   justify-content: space-between;
   gap: 10px;
   width: 100%;
 }
-.dataset3{
+.dataset3 {
   width: 100%;
   height: 40px;
   padding: 10px;
   border-radius: 12px;
-border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
-
-
+  border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.3));
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
 }
-.delete{
+.delete {
   margin-top: 10px;
   margin-bottom: 20px;
-  
-  .button{
-   border: none;
-   float: right;
-   color:rgba(252, 55, 12, 1) ;
-   border-radius: 30px;
-   img{
-    margin-left: 10px;
-   }
+
+  .button {
+    border: none;
+    float: right;
+    color: rgba(252, 55, 12, 1);
+    border-radius: 30px;
+    img {
+      margin-left: 10px;
+    }
   }
 }
 lib-cancel-btn,
 lib-save-btn {
   width: 40%;
 }
-.Add-btn{
+.Add-btn {
   width: 100%;
   border: none;
   border-radius: 30px;
@@ -254,34 +313,39 @@ lib-save-btn {
 }
 //slab pannel csss
 
-.accordian-set{
+.accordian-set {
   display: flex;
   flex-direction: column;
   gap: 10px;
-
 }
-.variant-set{
+.variant-set {
   display: flex;
   width: 320px;
-height: 71px;
-gap: 100px;
-border-radius: 10px;
-padding-left: 20px;
-background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
-  .variant-details{
+  height: 71px;
+  gap: 100px;
+  border-radius: 10px;
+  padding-left: 20px;
+  background: var(
+    --input-box-bg-gradient,
+    linear-gradient(
+      99deg,
+      rgba(225, 225, 225, 0.3) 12.07%,
+      rgba(225, 225, 225, 0.2) 48.35%,
+      rgba(225, 225, 225, 0.2) 87.93%
+    )
+  );
+  .variant-details {
     display: flex;
     flex-direction: column;
-    .variant-name{
+    .variant-name {
       margin-top: 10px;
     }
-    .variant-price{
+    .variant-price {
       color: rgba(72, 188, 31, 1);
     }
   }
-  .variant-actions{
+  .variant-actions {
     margin-top: 20px;
     align-items: end;
-    
   }
-  
 }

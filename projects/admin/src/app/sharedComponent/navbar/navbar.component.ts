@@ -11,7 +11,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class NavbarComponent {
   showNavbar = true;
-  hiddenRoutes = ['/login', '/notAdmin','create-catalogue'];
+  hiddenRoutes = ['/login', '/notAdmin','/create-catalogue','/addevent'];
 
   ngOnInit() {
     this.checkRoute(this.router.url);

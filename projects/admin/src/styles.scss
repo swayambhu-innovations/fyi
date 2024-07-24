@@ -161,6 +161,10 @@ text-overflow: ellipsis;
   padding: 4px; 
   border-radius: 4px; 
 }
+.fix-below {
+  position: fixed;
+  bottom: 3px;
+}
 
 //switcher
 .uk-switch {

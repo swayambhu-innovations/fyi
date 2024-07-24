@@ -41,15 +41,23 @@ export class EventService {
     this.addEvent(eventDetail);
   }
 
-  addEvent(eventDetail: any) {
+  async addEvent(eventDetail: any) {
     if (eventDetail.eventId) {
       const eventDocRef = doc(this.firestore, 'events', eventDetail.eventId);
-      return updateDoc(eventDocRef, eventDetail);
+      await updateDoc(eventDocRef, eventDetail);
+      return {eventId:eventDetail.eventId}
+
     } else {
       const newEventDocRef = doc(collection(this.firestore, 'events'));
       eventDetail.eventId = newEventDocRef.id;
-      return setDoc(newEventDocRef, eventDetail);
+      await setDoc(newEventDocRef, eventDetail);
+      return {eventId:eventDetail.eventId}
     }
+  }
+  
+  async addItinerary(itineraryDetail:any){
+      const newEventDocRef = doc(this.firestore, 'events',itineraryDetail.eventId,'itinerary','activities');
+      return setDoc(newEventDocRef, itineraryDetail); 
   }
 
   getEvents(): Observable<any[]> {
