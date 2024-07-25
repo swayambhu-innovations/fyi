@@ -60,6 +60,38 @@ export class EventService {
       return setDoc(newEventDocRef, itineraryDetail); 
   }
 
+  async addSlabAndVariant(slabAndVariantDetail:any){
+    console.log(slabAndVariantDetail)
+    // if (eventDetail.eventId) {
+    //   const eventDocRef = doc(this.firestore, 'events', eventDetail.eventId);
+    //   await updateDoc(eventDocRef, eventDetail);
+    //   return {eventId:eventDetail.eventId}
+
+    // } else {
+      slabAndVariantDetail.slabs.map(async(slab:any)=>{
+        let variants:any[]=[]
+        const newEventDocRef = doc(collection(this.firestore, 'events',slabAndVariantDetail.eventId,'slab-variant'));
+        slab.slabId = newEventDocRef.id;
+        slab.variants.map(async(variant:any)=>{
+          const newEventDocRef = doc(collection(this.firestore, 'events',slabAndVariantDetail.eventId,'slab-variant',slab.slabId,'variants'));
+          variant.variantId = newEventDocRef.id;
+          variants.push(variant.variantId)
+          console.log('variants',variants)
+          await setDoc(newEventDocRef, variant);
+         
+        })
+        console.log('variants',variants)
+        console.log('slab',slab)
+
+        slab.variants=variants
+        console.log('slab',slab)
+
+        await setDoc(newEventDocRef, slab);
+      })
+      
+    //}
+
+  }
   getEvents(): Observable<any[]> {
     return new Observable<any[]>((observer) => {
       const collectionRef = collection(this.firestore, 'events');

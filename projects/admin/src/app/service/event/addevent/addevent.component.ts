@@ -284,66 +284,66 @@ export class AddeventComponent {
 
   ngOnInit() {
 
-    this.setFormData([{
-      eventId: '',
-      slabs: [
-        {
+  //   this.setFormData([{
+  //     eventId: '',
+  //     slabs: [
+  //       {
           
-            description: "naksdng",
-            endDate: "2024-07-15",
-            image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
-            name: "dnagkd",
-            slabId: "",
-            startDate: "2024-07-04",
-            variants: [
+  //           description: "naksdng",
+  //           endDate: "2024-07-15",
+  //           image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
+  //           name: "dnagkd",
+  //           slabId: "",
+  //           startDate: "2024-07-04",
+  //           variants: [
               
-              {
-                name: "variant2",
-                price: "34",
-                taxType: "6GWEnA3iGt2iJfhDHDDS",
-                taxCalc: "inclusive",
-                totalTicket: "23423"
-              },
-              {
-                name: "variant2",
-                price: "34",
-                taxType: "6GWEnA3iGt2iJfhDHDDS",
-                taxCalc: "inclusive",
-                totalTicket: "23423"
-              }
-            ]
+  //             {
+  //               name: "variant2",
+  //               price: "34",
+  //               taxType: "6GWEnA3iGt2iJfhDHDDS",
+  //               taxCalc: "inclusive",
+  //               totalTicket: "23423"
+  //             },
+  //             {
+  //               name: "variant2",
+  //               price: "34",
+  //               taxType: "6GWEnA3iGt2iJfhDHDDS",
+  //               taxCalc: "inclusive",
+  //               totalTicket: "23423"
+  //             }
+  //           ]
         
-        },
-        {
+  //       },
+  //       {
           
-            description: "naksdng",
-            endDate: "2024-07-15",
-            image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
-            name: "dnagkd",
-            slabId: "",
-            startDate: "2024-07-04",
-            variants: [
+  //           description: "naksdng",
+  //           endDate: "2024-07-15",
+  //           image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
+  //           name: "dnagkd",
+  //           slabId: "",
+  //           startDate: "2024-07-04",
+  //           variants: [
               
-              {
-                name: "variant2",
-                price: "34",
-                taxType: "6GWEnA3iGt2iJfhDHDDS",
-                taxCalc: "inclusive",
-                totalTicket: "23423"
-              },
-              {
-                name: "variant2",
-                price: "34",
-                taxType: "6GWEnA3iGt2iJfhDHDDS",
-                taxCalc: "inclusive",
-                totalTicket: "23423"
-              }
-            ]
+  //             {
+  //               name: "variant2",
+  //               price: "34",
+  //               taxType: "6GWEnA3iGt2iJfhDHDDS",
+  //               taxCalc: "inclusive",
+  //               totalTicket: "23423"
+  //             },
+  //             {
+  //               name: "variant2",
+  //               price: "34",
+  //               taxType: "6GWEnA3iGt2iJfhDHDDS",
+  //               taxCalc: "inclusive",
+  //               totalTicket: "23423"
+  //             }
+  //           ]
         
-        }
-      ]
-  },
-  ])
+  //       }
+  //     ]
+  // },
+  // ])
     
 
     // const images = [
@@ -472,28 +472,37 @@ export class AddeventComponent {
     switch (view) {
       case 'Itinerary':
         if (this.eventForm.valid) {
-          // this.eventservice.addEvent(this.eventForm.value).then((res) => {
-          //   console.log(res);
-          //   this.eventForm.patchValue({ eventId: res.eventId });
-          //   this.itineraryForm.patchValue({ eventId: res.eventId });
-          //   this.slabAndVariantForm.patchValue({ eventId: res.eventId });
-          //   this.pannel = view;
-          // });
+          this.eventservice.addEvent(this.eventForm.value).then((res) => {
+            console.log(res);
+            this.eventForm.patchValue({ eventId: res.eventId });
+            this.itineraryForm.patchValue({ eventId: res.eventId });
+            this.slabAndVariantForm.patchValue({ eventId: res.eventId });
+            this.pannel = view;
+          });
         }
         break;
       case 'slab':
         console.log(this.itineraryForm.value)
-        // if (this.itineraryForm.valid) {
-        //   this.eventservice
-        //     .addItinerary(this.itineraryForm.value)
-        //     .then(() => {});
-        //   console.log(this.itineraryForm.value);
-        //   this.pannel = view;
-        // }
+        if (this.itineraryForm.valid) {
+          this.eventservice
+            .addItinerary(this.itineraryForm.value)
+            .then(() => {});
+          console.log(this.itineraryForm.value);
+          this.pannel = view;
+        }
         break;
+      case 'city':
+          console.log(this.slabAndVariantForm.value)
+          if (this.slabAndVariantForm.valid) {
+            this.eventservice
+              .addSlabAndVariant(this.slabAndVariantForm.value)
+              .then(() => {});
+            console.log(this.slabAndVariantForm.value);
+            this.pannel = view;
+          }
+          break;
     }
     console.log(this.slabAndVariantForm.value);
-    console.log(this.slabs.controls);
     this.pannel = view;
 
     

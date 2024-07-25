@@ -234,7 +234,7 @@
           <lib-cancel-btn [btnName]="'Cancel'"></lib-cancel-btn>
           <lib-save-btn
             [btnName]="'Next'"
-            (click)="nextpannel('slab')"
+            (click)="nextpannel('city')"
           ></lib-save-btn>
         </div>
       </ng-container>
@@ -391,10 +391,10 @@
   </div> -->
 
   <!--city form pannel  -->
-  <!--<div *ngIf="'city'== pannel?true: false">
+  <div *ngIf="'city'== pannel?true: false">
   <div class="twin-btn">
     <lib-cancel-btn [btnName]="'Cancel'"></lib-cancel-btn>
     <lib-save-btn  [btnName]="'Next'"  ></lib-save-btn>
   </div>
-</div> -->
+</div>
 </section>
