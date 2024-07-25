@@ -132,26 +132,68 @@ export class AddeventComponent {
       endDate: ['', Validators.required],
       image: ['', Validators.required],
       slabId: [''],
+      variants: this.fb.array([])
     });
     this.slabs.push(slab);
   }
+  getVariants(slabIndex: number): FormArray {
+    const slabGroup = this.slabs.at(slabIndex) as FormGroup;
+    console.log(slabGroup);
+    return slabGroup.get('variants') as FormArray;
+  }
+
+  addVariant(slabIndex: number, variant: any): void {
+    console.log(slabIndex, variant);
+    const variantsArray = this.getVariants(slabIndex);
+    
+    if (variantsArray) {
+      const variantGroup = this.fb.group({
+        name: [variant.name, Validators.required],
+        price: [variant.price, Validators.required],
+        taxType: [variant.taxType, Validators.required],
+        taxCalc: [variant.taxCalc, Validators.required],
+        totalTicket: [variant.totalTicket, Validators.required],
+        reward: [variant.reward, Validators.required],
+        active: [variant.active, Validators.required],
+        variantId: [variant.variantId]
+      });
+      variantsArray.push(variantGroup);
+    } else {
+      console.error('Variants FormArray not found');
+    }
+  }
+
   setFormData(data: any) {
-    this.slabAndVariantForm.patchValue({
-      eventId: data.eventId
-    });
+    data.forEach((item: any) => {
+      const slabsArray = this.slabAndVariantForm.get('slabs') as FormArray;
   
-    const slabsFormArray = this.slabAndVariantForm.get('slabs') as FormArray;
-    slabsFormArray.clear(); // Clear existing form array
+      item.slabs.forEach((slab: any) => {
+        const slabGroup = this.fb.group({
+          name: [slab.name, Validators.required],
+          description: [slab.description, Validators.required],
+          startDate: [slab.startDate, Validators.required],
+          endDate: [slab.endDate, Validators.required],
+          image: [slab.image, Validators.required],
+          slabId: [slab.slabId],
+          variants: this.fb.array([]) 
+        });
+        const variantsArray = slabGroup.get('variants') as FormArray;
+        slab.variants.forEach((variant: any) => {
+          const variantGroup = this.fb.group({
+            name: [variant.name, Validators.required],
+            price: [variant.price, Validators.required],
+            taxType: [variant.taxType, Validators.required],
+            taxCalc: [variant.taxCalc, Validators.required],
+            totalTicket: [variant.totalTicket, Validators.required],
+            reward: [variant.reward, Validators.required],
+            active: [variant.active || true, Validators.required],
+            variantId: [variant.variantId || '']
+          })});
+        slabsArray.push(slabGroup);
+      });
+      
   
-    data.slabs.forEach((slab: any) => {
-      slabsFormArray.push(this.fb.group({
-        description: [slab.description],
-        endDate: [slab.endDate],
-        image: [slab.image],
-        name: [slab.name],
-        slabId: [slab.slabId],
-        startDate: [slab.startDate]
-      }));
+      this.slabAndVariantForm.patchValue({ eventId: item.eventId });
     });
   }
   
@@ -246,28 +288,62 @@ export class AddeventComponent {
       eventId: '',
       slabs: [
         {
-          description: 'jaskld',
-          endDate: '2024-07-04',
-          image: 'https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721836784532.jpeg?alt=media&token=b7992417-5080-45ed-b71e-bc8e4e6d5fa3',
-          name: 'aman',
-          slabId: '',
-          startDate: '2024-07-04'
+          
+            description: "naksdng",
+            endDate: "2024-07-15",
+            image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
+            name: "dnagkd",
+            slabId: "",
+            startDate: "2024-07-04",
+            variants: [
+              
+              {
+                name: "variant2",
+                price: "34",
+                taxType: "6GWEnA3iGt2iJfhDHDDS",
+                taxCalc: "inclusive",
+                totalTicket: "23423"
+              },
+              {
+                name: "variant2",
+                price: "34",
+                taxType: "6GWEnA3iGt2iJfhDHDDS",
+                taxCalc: "inclusive",
+                totalTicket: "23423"
+              }
+            ]
+        
+        },
+        {
+          
+            description: "naksdng",
+            endDate: "2024-07-15",
+            image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
+            name: "dnagkd",
+            slabId: "",
+            startDate: "2024-07-04",
+            variants: [
+              
+              {
+                name: "variant2",
+                price: "34",
+                taxType: "6GWEnA3iGt2iJfhDHDDS",
+                taxCalc: "inclusive",
+                totalTicket: "23423"
+              },
+              {
+                name: "variant2",
+                price: "34",
+                taxType: "6GWEnA3iGt2iJfhDHDDS",
+                taxCalc: "inclusive",
+                totalTicket: "23423"
+              }
+            ]
+        
         }
       ]
   },
-  {
-    eventId: '',
-    slabs: [
-      {
-        description: 'jaskld',
-        endDate: '2024-07-04',
-        image: 'https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721836784532.jpeg?alt=media&token=b7992417-5080-45ed-b71e-bc8e4e6d5fa3',
-        name: 'aman',
-        slabId: '',
-        startDate: '2024-07-04'
-      }
-    ]
-}])
+  ])
     
 
     // const images = [
@@ -364,8 +440,17 @@ export class AddeventComponent {
     },
   ];
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(AddvarientComponent);
+  openBottomSheet(slabIndex: number): void {
+    const bottomSheetRef = this._bottomSheet.open(AddvarientComponent);
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      console.log('Bottom sheet has been dismissed', result);
+      if (result) {
+        this.addVariant(slabIndex, result);
+      } else {
+        console.log('Catalogue is linked with areas');
+      }
+    });
   }
   removeImageslab(eventIndex: number, imageIndex: number) {
     this.events[eventIndex].images1.splice(imageIndex, 1);
