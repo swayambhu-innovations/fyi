@@ -1,5 +1,6 @@
 section{
   padding-top: 70px;
+  width: 100vw;
 }
 .heading {
   text-align: center;
@@ -348,4 +349,77 @@ lib-save-btn {
     margin-top: 20px;
     align-items: end;
   }
+}
+
+.uk-search {
+  position: relative;
+
+  .city-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background: #f0f0f0;
+      }
+    }
+  }
+}
+
+.search-box{
+  width: calc(100% - 40px);
+margin:auto 20px 20px 20px;
+border-radius: 12px ;
+}
+.uk-search-default:has(.uk-search-icon-flip) .uk-search-input {
+  border-radius: 12px;
+}
+
+.card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 40px);
+  margin:auto 20px 10px 20px;
+  border-radius: 10px ;
+  padding: 10px;
+  p{
+    padding: 0px;
+    margin: 0px;
+    
+  }
+  .card-title{
+    display: flex;
+    width: 80%;
+
+    .city{
+      font-family: 'Jura',sans-serif;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+    }
+    .state{
+      font-family: 'Nunito',sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+    }
+  }
+
 }
