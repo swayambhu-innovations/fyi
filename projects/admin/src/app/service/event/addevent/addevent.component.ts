@@ -136,7 +136,8 @@ export class AddeventComponent {
       endDate: ['', Validators.required],
       image: ['', Validators.required],
       slabId: [''],
-      variants: this.fb.array([]),
+      active:[true],
+      variants: this.fb.array([],this.atLeastOneImageValidator()),
     });
     this.slabs.push(slab);
   }
@@ -286,7 +287,7 @@ export class AddeventComponent {
   }
 
   ngOnInit() {
-    this.getCities();
+    
     //   this.setFormData([{
     //     eventId: '',
     //     slabs: [
@@ -492,26 +493,33 @@ export class AddeventComponent {
         }
         break;
       case 'city':
+        console.log(this.slabAndVariantForm.value)
         if (this.slabAndVariantForm.valid) {
           this.eventservice
             .addSlabAndVariant(this.slabAndVariantForm.value)
-            .then(() => {});
+            .then(() => {
+              this.getCities();
+
+            });
           this.pannel = view;
         }
         break;
     }
-    this.pannel = view;
   }
   getCities(): any {
     this.eventservice.getCities().then((res: any) => {
       this.cities = res;
-      this.getCitiesOfEvent('EiTsybW5J9hUO6QiGM05');
+      console.log('cities',this.cities)
+      //this.getCitiesOfEvent('EiTsybW5J9hUO6QiGM05');
+      this.getCitiesOfEvent(this.eventForm.value.eventId);
     });
     return '';
   }
 
   selectCity(newCity: any) {
-    const eventId = 'EiTsybW5J9hUO6QiGM05'
+    const eventId = this.eventForm.value.eventId
+    console.log(newCity)
+    
     const cityExists = this.CitiesOfEvent.some(
       (city: any) =>
         city.cityId === newCity.cityId && city.stateId === newCity.stateId
@@ -544,6 +552,7 @@ export class AddeventComponent {
     } else {
       this.filteredCities = [];
     }
+    console.log('filter',this.filterCities)
   }
   CitiesOfEvent: any[] = [];
   getCitiesOfEvent(eventId: string) {

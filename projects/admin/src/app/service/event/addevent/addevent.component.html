@@ -156,8 +156,9 @@
             <mat-accordion>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
-                  <mat-panel-title> slabname </mat-panel-title>
-                  <label class="uk-switch" >
+                  <mat-panel-title> {{ slab.get('slabId')?.value ? slab.get('name')?.value : 'New Slab' }}
+                  </mat-panel-title>
+                  <label class="uk-switch" *ngIf="slab.get('slabId')?.value" >
                     <input type="checkbox">
                     <div class="uk-switch-slider" ></div>
                   </label>
@@ -305,7 +306,7 @@
     
   <div class="twin-btn fix-below">
     <lib-cancel-btn [btnName]="'Cancel'" (click)="cancel('slab')"></lib-cancel-btn>
-    <lib-save-btn  [btnName]="'Next'"  ></lib-save-btn>
+    <lib-save-btn  [btnName]="'Next'" (click)="cancel('back')"  ></lib-save-btn>
   </div>
 </div>
 </section>
