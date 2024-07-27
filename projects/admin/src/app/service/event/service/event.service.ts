@@ -64,12 +64,11 @@ export class EventService {
     } 
     else{
        newEventDocRef = doc(
-        collection(
           this.firestore,
           'events',
           slabAndVariantDetail.eventId,
           'slab-variant',slab.slabId,
-        )
+        
       );
     }
       slab.variants.map(async (variant: any) => {
@@ -90,7 +89,7 @@ export class EventService {
         }
         else{
           newVarientDocRef = doc(
-            collection(
+           
               this.firestore,
               'events',
               slabAndVariantDetail.eventId,
@@ -98,7 +97,7 @@ export class EventService {
               slab.slabId,
               'variants',
               variant.variantId
-            )
+            
           );
         }
         
