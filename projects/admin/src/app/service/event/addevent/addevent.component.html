@@ -149,10 +149,11 @@
   <!-- slab form pannel -->
 
   <div *ngIf="'slab' == pannel ? true : false">
+    <div class="">
     <form [formGroup]="slabAndVariantForm">
       <ng-container formArrayName="slabs">
         <div
-          class="activity-form form1"
+          class=""
           *ngFor="let slab of slabs.controls; let i = index"
           [formGroupName]="i"
         >
@@ -180,8 +181,8 @@
                   alt=""
                 />
               </mat-expansion-panel-header>
-              <div class="activity-form form-group1">
-                <div class="form-group">
+              <div class="slab-form">
+                <div class="">
                   <label>Slab Name</label>
                   <input
                     type="text"
@@ -189,7 +190,7 @@
                     class="event-name"
                   />
                 </div>
-                <div class="form-group">
+                <div class="">
                   <label>Description</label>
                   <textarea
                     id="description"
@@ -220,9 +221,9 @@
                   </div>
                 </div>
 
-                <div class="header">
+                <div class="file-upload-btn">
                   <label>Add Image (2:1 ratio)</label>
-                  <button type="button">
+                  
                     <img
                       src="/assets/addevent/upload.svg"
                       alt=""
@@ -230,7 +231,7 @@
                       alt="upload photo"
                       (click)="fileInput.click()"
                     />
-                  </button>
+                  
                   <input
                     type="file"
                     #fileInput
@@ -240,8 +241,8 @@
                   />
                 </div>
 
-                <div class="single-images-grid">
-                  <div *ngIf="slab.get('image')?.value" class="image-item">
+                <div class="file-area">
+                  <div *ngIf="slab.get('image')?.value" class="">
                     <img
                       [src]="slab.get('image')?.value"
                       alt="Uploaded Image"
@@ -315,6 +316,7 @@
         </div>
       </ng-container>
     </form>
+  </div>
   </div>
 
   <!--city form pannel  -->
