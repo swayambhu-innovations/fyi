@@ -1,0 +1,39 @@
+<app-header-with-back [pageTitle]="'Payment '"></app-header-with-back>
+
+<section class="container">
+    <div class="confirmation-card">
+        <img src="/assets/event-payment/payment-successful.svg">
+        <div class="payment-details">
+            <h2 class="section_title">Payment Details</h2>
+            <div class="paragraph_text detail">
+                <p>Event</p>
+                <span>Kashi Summit 2024</span> 
+            </div>
+            <div class="paragraph_text detail">
+                <p>Slab</p>
+                <span>Panchang Slab</span> 
+            </div>
+            <div class="paragraph_text detail">
+                <p>Variant</p>
+                <span>Couple</span> 
+            </div>
+            <div class="paragraph_text detail">
+                <p>Date</p>
+                <span>23/08/24 & 14:08</span> 
+            </div>
+            <div class="paragraph_text detail">
+                <p>Payment</p>
+                <span>₹11010</span> 
+            </div>
+            <div class="paragraph_text detail_status">
+                <p>Status</p>
+                <span>Successful</span> 
+            </div>
+         
+        </div>
+      
+    </div>
+</section>
+<div class="button-done">
+<button class="proceed-button" (click)="naviagateToHomepage()">Done</button>
+</div>

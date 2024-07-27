@@ -1,0 +1,114 @@
+.checkout-container {
+    //max-width: 360px;
+    margin: 0 auto;
+    padding: 70px 20px 0px 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .back-arrow {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .ticket-info {
+    display: flex;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .event-image {
+   
+    border-radius: 8px;
+    margin-right: 10px;
+
+  }
+  
+  .event-details {
+  
+
+    .heading{
+        font-size: 16px;
+        color: #000000;
+        line-height: 3;
+    }
+    .row2{
+    display: flex; 
+    justify-content: space-between;
+    gap: 2rem;
+  
+    p{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 2;
+        
+    }
+    .price {
+        color: green;
+        font-weight: bold;
+      }
+ 
+    }
+  }
+  
+ 
+  
+  .payment-details {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    h3{
+        font-size: 18px;
+        font-weight: 400;
+        color: #444444;
+
+    }
+  }
+  
+  .detail-row, .total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    span{
+        color: #7E8083;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+  }
+  
+  .total-row {
+    font-weight: bold;
+    border-top: 1px dashed #ccc;
+    padding-top: 10px;
+    span{
+        color: #181F29;
+    }
+   
+  }
+  
+  .proceed-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .proceed-button:hover {
+    opacity: 0.9;
+  }
+  

@@ -1,0 +1,70 @@
+.container{
+    margin-top: 2%;
+    padding: 70px 20px 0px 20px;
+    .confirmation-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 20px;
+        .payment-details{
+            margin-top: 2rem;
+            margin-left: 0.6rem;
+            margin-right: 0.6rem;
+            h2{
+            font-size: 18px;
+            color: #444444;
+            font-weight: 700;
+            }
+            .detail{
+                display: flex ;
+                justify-content: space-between;
+                line-height: 2;
+                p{
+                    color: #7E8083;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                span{
+                    color: #464E5F;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+            .detail_status{
+                margin-top: 10px;
+                border-top: 2px dashed #D7D7D7;
+                display: flex ;
+                justify-content: space-between;
+                p{
+                    margin-top: 10px;
+                    font-size: 18px;
+                }
+                span{
+                    margin-top: 10px;
+                    color: #48BC1F;
+                    font-size: 18px;
+                }
+            }
+        }
+    
+    }
+  
+}
+.button-done{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+button {
+    width: 80%;
+    padding: 15px;
+    background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+    
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}

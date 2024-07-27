@@ -1,0 +1,28 @@
+<section class="event">
+    <h2 class="button_text  header_text_color">Discover Amazing Events</h2>
+    <div class="card">
+        <img src="/assets/homepage/eventcard.svg">
+        <div class="detail">
+            <h3 class="section_title">Excitement events waiting for you</h3>
+            <p class="paragraph_text">Register in various slabs of each events</p>
+            <button class="primary">view all</button>
+        </div>
+    </div>
+    <div class="heading">
+        <h2 class="section_title header_text_color">Events</h2>
+        <button class="see-all" (click)="seeAllEvent()">See All</button>
+    </div>
+    <div class="slider">
+        <div *ngFor="let event of events" class="slide" (click)="onSurveyClick(event)">
+            <img [src]="event.image" [alt]="event.title">
+            <p class="section_title header_text_color">{{ event.title }}</p>
+            <div class="bookNow">
+                <p class="paragraph_text">Limited seats Availabe</p>
+                <button>Book Now</button>
+            </div>
+        </div>
+    </div>
+      
+   
+</section>
+  

@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   ApplicationVerifier,
   Auth,
   signInWithPhoneNumber,
+  user,
+  User,
 } from '@angular/fire/auth';
 import {
   collection,
@@ -15,11 +17,14 @@ import {
 import { Firestore } from '@angular/fire/firestore';
 import { DataProviderService } from './data-provider.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private _auth = inject(Auth);
   isProfileUpdated: boolean = false;
+  user$: Observable<User | null> = user(this._auth);
 
   constructor(
     public auth: Auth,
