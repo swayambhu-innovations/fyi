@@ -1,0 +1,35 @@
+<section>
+    <p class="header_text_color">
+      {{ data ? "Edit city" : "Add city" }}
+    </p>
+  
+    <form [formGroup]="cityForm">
+      <div class="field">
+        <label for="itemName" class="description_text">Item Name:</label>
+        <input
+          id="itemName"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="cityName"
+          type="text"
+        />
+      </div>
+  
+      <div>
+        <div class="field">
+          <label class="description_text">Item Type:</label>
+          <br />
+          <select
+            class="input_box_bg_gradient header_text_color"
+            formControlName="catalougeType"
+          >
+            <option value="cat1">catalouge1</option>
+            <option value="cat2">catalouge2</option>
+          </select>
+        </div>
+      </div>
+  
+      
+      
+    </form>
+  </section>
+  
