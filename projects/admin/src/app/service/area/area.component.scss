@@ -1,20 +1,5 @@
-input {
-    width: 300px;
-    padding: 8px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  li {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  li:hover {
-    background-color: #f0f0f0;
-  }
-  
+app-add-button {
+  position: fixed;
+  bottom: 110px;
+  right: 55px;
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { EventServiceService } from '../event-service.service';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -9,27 +10,33 @@ import { Router } from '@angular/router';
   styleUrl: './event.component.scss'
 })
 export class EventComponent {
-  events = [
-    { title: 'Cearic Kashi Summit 2024', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
-    { title: 'Cearic Kashi Summit 2025', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
-    { title: 'Cearic Kashi Summit 2026', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
-    { title: 'Cearic Kashi Summit 2027', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
-    // Add more surveys here
-  ];
-
-  slabs=[
-    { title: 'Panchang slab', image: '/assets/homepage/event_1.1.svg'},
-    { title: 'Assi slab', image: '/assets/homepage/event_1.2.svg' },
-    { title: 'Assi slab', image: '/assets/homepage/event_1.3.svg'},
-  ]
-  constructor(private router: Router) { }
-
+  constructor(private router: Router , private eventservice:EventServiceService) { }
+  events: any[] = [];
   ngOnInit(): void {
+    this.eventservice.getEvents().subscribe((data:any)=>{                  
+      this.events=data;
+      console.log(data)
+    })
   }
+
+  // events = [
+  //   { title: 'Cearic Kashi Summit 2024', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
+  //   { title: 'Cearic Kashi Summit 2025', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
+  //   { title: 'Cearic Kashi Summit 2026', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
+  //   { title: 'Cearic Kashi Summit 2027', image: '/assets/homepage/sliderimage.svg', link: '/slab-list' },
+  //   // Add more surveys here
+  // ];
+
+ 
+
+ 
   seeAllEvent(){
     this.router.navigate(['event-list']);
   }
   onSurveyClick(survey: any): void {
     window.location.href = survey.link;
+  }
+  viewSlsbList(){
+    this.router.navigate(['slab-list']);
   }
 }

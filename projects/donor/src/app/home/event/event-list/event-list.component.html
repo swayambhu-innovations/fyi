@@ -3,18 +3,18 @@
     <input type="text" class="search-bar" placeholder="Search city to add" />
     <h3 class="section_title">Ongoing Events</h3>
     <div class="card" *ngFor="let item of items">
-      <img [src]="item.image" alt="{{item.title}}" class="card-image" />
+      <img [src]="item.images" alt="{{item.title}}" class="card-image" />
       <div class="card-content">
-        <p class="card-title header_text_color paragraph_text">{{item.title}}</p>
+        <p class="card-title header_text_color paragraph_text">{{item.eventName}}</p>
         <button class="view-slabs-btn" (click)="viewSlsbList()">View Slabs</button>
       </div>
     </div>
 
     <h3 class="section_title">Upcoming Events</h3>
     <div class="card" *ngFor="let item of items">
-      <img [src]="item.image" alt="{{item.title}}" class="card-image" />
+      <img [src]="item.images" alt="{{item.title}}" class="card-image" />
       <div class="card-content">
-        <p class="card-title header_text_color paragraph_text">{{item.title}}</p>
+        <p class="card-title header_text_color paragraph_text">{{item.eventName}}</p>
         <button class="view-slabs-btn" (click)="viewSlsbList()">View Slabs</button>
       </div>
     </div>
