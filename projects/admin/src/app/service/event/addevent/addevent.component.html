@@ -97,6 +97,17 @@
             />
           </div>
           <div class="form-group1">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              formControlName="description"
+            >
+            </textarea>
+          </div>
+        
+          
+          <div class="form-group1">
             <label for="date">Date</label>
             <input
               id="date"
@@ -136,7 +147,7 @@
           </div>
         </div>
         <button class="Add-btn" (click)="addActivity()">add Activity</button>
-        <div class="twin-btn fix-below">
+        <div class="lower-btn fix-below">
           <lib-cancel-btn
             [btnName]="'Cancel'"
             (click)="cancel('details')"
@@ -171,6 +182,7 @@
                         : "New Slab"
                     }}
                   </mat-panel-title>
+                  <div class="icon">
                   <label class="uk-switch" *ngIf="slab.get('slabId')?.value">
                     <input
                       type="checkbox"
@@ -184,6 +196,7 @@
                     (click)="removeSlab(i, slab)"
                     alt=""
                   />
+                </div>
                 </mat-expansion-panel-header>
                 <div class="slab-form">
                   <div class="">
@@ -308,7 +321,7 @@
             </mat-accordion>
           </div>
           <button class="Add-btn" (click)="addSlab()">Add Slab</button>
-          <div class="twin-btn fix-below">
+          <div class="lower-btn fix-below" >
             <lib-cancel-btn
               [btnName]="'Cancel'"
               (click)="cancel('itinerary')"
@@ -322,6 +335,7 @@
       </form>
     </div>
   </div>
+ 
 
   <!--city form pannel  -->
   <div *ngIf="'city' == pannel ? true : false">
@@ -361,7 +375,7 @@
       </div>
     </div>
 
-    <div class="twin-btn fix-below">
+    <div class="lower-btn fix-below">
       <lib-cancel-btn
         [btnName]="'Cancel'"
         (click)="cancel('slab')"

@@ -380,6 +380,7 @@ export class AddeventComponent {
     const activityGroup = this.fb.group({
       name: ['', Validators.required],
       date: ['', Validators.required],
+      description: [''],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
     });
