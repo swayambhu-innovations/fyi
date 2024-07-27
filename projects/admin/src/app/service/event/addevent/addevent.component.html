@@ -271,17 +271,26 @@
                     <label class="uk-switch">
                       <input
                         type="checkbox"
-                        [checked]="variant.active == true ? true : false"
+                        [checked]="variant.active"
+                        (change)="changeStatusOfVariant(slab, variant)"
                       />
                       <div class="uk-switch-slider"></div>
                     </label>
 
-                    <button mat-icon-button>
+                    <button
+                      mat-icon-button
+                      (click)="editVariant(i, variant, variantIndex)"
+                    >
                       <mat-icon>edit</mat-icon>
                     </button>
                     <button mat-icon-button color="warn">
                       <mat-icon
-                        ><img src="/assets/addevent/delete.svg" alt=""
+                        ><img
+                          src="/assets/addevent/delete.svg"
+                          alt=""
+                          (click)="
+                            removaVariant(slab, i, variant, variantIndex)
+                          "
                       /></mat-icon>
                     </button>
                   </div>

@@ -227,7 +227,7 @@ export class AddeventComponent {
           taxCalc: [variant.taxCalc, Validators.required],
           totalTicket: [variant.totalTicket, Validators.required],
           reward: [variant.reward, Validators.required],
-          active: [variant.active || true, Validators.required],
+          active: [variant.active, Validators.required],
           variantId: [variant.variantId || ''],
         });
         variantsArray.push(variantGroup);
@@ -271,6 +271,75 @@ export class AddeventComponent {
       );
     }
   }
+  editVariant(slabIndex: any, variant: any, variantIndex: any) {
+    const bottomSheetRef = this._bottomSheet.open(AddvarientComponent, {
+      data: variant,
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      if (result) {
+        this.updateVariant(slabIndex, variantIndex, result);
+      } else {
+      }
+    });
+  }
+  updateVariant(
+    slabIndex: number,
+    variantIndex: number,
+    updatedVariantData: any
+  ): void {
+    const variantsArray = this.getVariants(slabIndex);
+
+    if (variantsArray) {
+      const variantGroup = variantsArray.at(variantIndex) as FormGroup;
+
+      if (variantGroup) {
+        variantGroup.patchValue({
+          name: updatedVariantData.name,
+          price: updatedVariantData.price,
+          taxType: updatedVariantData.taxType,
+          taxCalc: updatedVariantData.taxCalc,
+          totalTicket: updatedVariantData.totalTicket,
+          reward: updatedVariantData.reward,
+          active: updatedVariantData.active,
+          variantId: updatedVariantData.variantId,
+        });
+      } else {
+        console.error('Variant FormGroup not found');
+      }
+    } else {
+      console.error('Variants FormArray not found');
+    }
+  }
+
+  async removaVariant(
+    slab: any,
+    slabIndex: any,
+    variant: any,
+    variantIndex: any
+  ) {
+    console.log(slab, variant);
+    (this.slabs.at(slabIndex).get('variants') as FormArray)?.removeAt(
+      variantIndex
+    );
+    if (variant.variantId) {
+      await this.eventservice.delete(
+        `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}/variants/${variant.variantId}`
+      );
+    }
+  }
+  async changeStatusOfVariant(slab: any, variant: any) {
+    variant.active = !variant.active;
+    if (variant.variantId) {
+      this.eventservice.changeStatusOfVariant(
+        this.eventForm.value.eventId,
+        slab.value.slabId,
+        variant.variantId,
+        variant.active
+      );
+    }
+  }
+
   removeImageOfSlab(slabIndex: number): void {
     const slab = (this.slabs.at(slabIndex) as FormGroup) ?? this.fb.group({});
     slab.patchValue({ image: '' });
@@ -342,7 +411,6 @@ export class AddeventComponent {
   removeImage(index: number) {
     this.imagesArray.removeAt(index);
   }
-  
 
   async addImage(e: any) {
     const file = e.target.files[0];
@@ -370,31 +438,6 @@ export class AddeventComponent {
     fileInput.click();
   }
 
-  // events: Event[] = [
-  //   {
-  //     name: 'Searic Kashi Summit 2024',
-  //     description: '',
-  //     startDate: '2024-07-13',
-  //     endDate: '2024-07-15',
-  //     images1: [],
-  //     variants: [
-  //       { name: 'Rotarian', price: 11201, isActive: true },
-  //       { name: 'Couple', price: 21201, isActive: false },
-  //     ],
-  //   },
-  //   {
-  //     name: 'Another Event 2024',
-  //     description: '',
-  //     startDate: '2024-08-01',
-  //     endDate: '2024-08-05',
-  //     images1: [],
-  //     variants: [
-  //       { name: 'Single', price: 5000, isActive: true },
-  //       { name: 'Group', price: 15000, isActive: false },
-  //     ],
-  //   },
-  // ];
-
   openBottomSheet(slabIndex: number): void {
     const bottomSheetRef = this._bottomSheet.open(AddvarientComponent);
 
@@ -405,20 +448,7 @@ export class AddeventComponent {
       }
     });
   }
-  // removeImageslab(eventIndex: number, imageIndex: number) {
-  //   this.events[eventIndex].images1.splice(imageIndex, 1);
-  // }
-  // async addImageinslab(e: any, eventIndex: any) {
-  //   const input = e.target as HTMLInputElement;
-  //   if (input.files) {
-  //     Array.from(input.files).forEach(async (file) => {
-  //       const filePath = `event/${new Date().getTime()}`;
-  //       await uploadBytesResumable(ref(this.storage, filePath), file);
-  //       const fileUrl = await getDownloadURL(ref(this.storage, filePath));
-  //       this.events[eventIndex].images1.push(fileUrl);
-  //     });
-  //   }
-  // }
+
   async nextpannel(view: string) {
     switch (view) {
       case 'itinerary':

@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
 export class EventComponent {
 
 
-  constructor(private eventService: EventService,private Router:Router) { }
+  constructor(private eventService: EventService,private Router:Router,private _bottomSheet:MatBottomSheet) { }
   imageUrl: string | undefined
   events: any[] = [];
   ngOnInit() {
@@ -42,9 +42,9 @@ export class EventComponent {
     this.Router.navigate(['/editevent',eventDetail.eventId    ]);
   } 
   deleteEvent(eventDetail: any): void {
-    // this._bottomSheet.open(DeleteEventComponent, {                  
-    //   data: eventDetail,
-    // });
+    this._bottomSheet.open(DeleteEventComponent, {                  
+      data: eventDetail,
+    });
   }
 
   updatedStatus(eventDetail:any){

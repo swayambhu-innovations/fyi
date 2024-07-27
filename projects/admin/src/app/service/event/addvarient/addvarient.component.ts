@@ -20,7 +20,10 @@ export class AddvarientComponent {
     private _bottomSheetRef: MatBottomSheetRef<AddvarientComponent>,
     private EventService:EventService,
     private TaxService: TaxService
-  ) {}
+  ) {
+   if (this.data) {
+      this.variantForm.setValue(this.data);}
+  }
   variantForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     price: new FormControl('', [Validators.required, Validators.min(0)]),
@@ -34,10 +37,7 @@ export class AddvarientComponent {
   ngOnInit() {
     this.getTaxTypes();
     console.log('add tax type component');
-    if (this.data && this.data.taxId) {
-      console.log(this.data);
-      this.variantForm.setValue(this.data);
-    }
+    
   }
 
   cancel() {
