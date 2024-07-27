@@ -17,10 +17,9 @@ import { distinctUntilChanged, Observable } from 'rxjs';
 export class CatalogueService {
   currentCatalogue = signal('');
 
-  
   constructor(private firestore: Firestore) {}
 
- async addCatalogue(catalogueDetail: any) {
+  async addCatalogue(catalogueDetail: any) {
     if (catalogueDetail.id) {
       const catalogueDocRef = doc(
         this.firestore,
@@ -29,7 +28,6 @@ export class CatalogueService {
       );
       await updateDoc(catalogueDocRef, catalogueDetail);
       return { id: catalogueDetail.id };
-
     } else {
       const newCatalogueDocRef = doc(
         collection(this.firestore, 'service-catalogue')
@@ -37,17 +35,16 @@ export class CatalogueService {
       catalogueDetail.id = newCatalogueDocRef.id;
       await setDoc(newCatalogueDocRef, catalogueDetail);
       return { id: catalogueDetail.id };
-
     }
   }
   addCategory(category: any) {
-    if (category.id) {
+    if (category.categoryId) {
       const catalogueDocRef = doc(
         this.firestore,
         'service-catalogue',
         category.catalogueId,
         'categories',
-        category.id
+        category.categoryId
       );
       return updateDoc(catalogueDocRef, category);
     } else {
@@ -64,7 +61,7 @@ export class CatalogueService {
     }
   }
   addSubCategory(subCategory: any) {
-    if (subCategory.id) {
+    if (subCategory.subCategoryId) {
       const catalogueDocRef = doc(
         this.firestore,
         'service-catalogue',
@@ -72,7 +69,7 @@ export class CatalogueService {
         'categories',
         subCategory.categoryId,
         'sub-categories',
-        subCategory.id
+        subCategory.subCategoryId
       );
       return updateDoc(catalogueDocRef, subCategory);
     } else {
@@ -91,15 +88,8 @@ export class CatalogueService {
     }
   }
 
-  addDonationInSubcategory(donationDetail:any){
-    console.log(this.firestore,
-      'service-catalogue',
-      donationDetail.catalogueId,
-      'categories',
-      donationDetail.categoryId,
-      'sub-categories',
-      donationDetail.subCategoryId,
-      'donations')
+  addDonationInSubcategory(donationDetail: any) {
+    
     if (donationDetail.donationItemId) {
       const catalogueDocRef = doc(
         this.firestore,
@@ -126,7 +116,7 @@ export class CatalogueService {
           'donation-items'
         )
       );
-      
+
       donationDetail.donationItemId = newCatalogueDocRef.id;
       return setDoc(newCatalogueDocRef, donationDetail);
     }
@@ -192,7 +182,6 @@ export class CatalogueService {
           const subCategoryList = snapshot.docs.map((doc) => {
             return doc.data();
           });
-          console.log(subCategoryList);
           observer.next(subCategoryList);
         },
         (error) => {
@@ -205,7 +194,7 @@ export class CatalogueService {
   getDonationItemList(
     catalogueId: string,
     categoryId: string,
-    subCategoryId:string
+    subCategoryId: string
   ): Observable<any[]> {
     return new Observable<any[]>((observer) => {
       const collectionRef = collection(
@@ -224,7 +213,6 @@ export class CatalogueService {
           const DonationItemList = snapshot.docs.map((doc) => {
             return doc.data();
           });
-          console.log(DonationItemList);
           observer.next(DonationItemList);
         },
         (error) => {
@@ -232,5 +220,10 @@ export class CatalogueService {
         }
       );
     });
+  }
+
+  delete(docAddress: any) {
+    console.log(docAddress)
+    return deleteDoc(doc(this.firestore, docAddress));
   }
 }

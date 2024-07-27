@@ -1,11 +1,15 @@
+
 <section>
     <div *ngFor="let catalogue of catalogueList" class="card bg_color_gradient ">
       <div class="header_text_color word-wrap">{{ catalogue.name }}
       </div>
       <div class="items">
-          <span class="size custom-slide-toggle"><mat-slide-toggle  [checked]="catalogue.active==true?true:false" (change)="updatedStatus(catalogue)"></mat-slide-toggle> </span>
+        <label class="uk-switch" >
+          <input type="checkbox"   [checked]="catalogue.active==true?true:false" (change)="updatedStatus(catalogue)">
+          <div class="uk-switch-slider" ></div>
+        </label>
           <span><img src="assets/tax/edit.svg" (click)="editCatalogue(catalogue)" alt=""></span>
-          <span><img src="assets/tax/delete.svg"  alt=""></span>
+          <span><img src="assets/tax/delete.svg" (click)="deleteCatalogue(catalogue)" alt=""></span>
       </div>
     </div>
     <app-add-button   (click)="addCatalogue()"></app-add-button>

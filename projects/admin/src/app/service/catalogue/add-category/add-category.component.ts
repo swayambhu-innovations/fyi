@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  ChangeDetectionStrategy,
-  Inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,22 +17,30 @@ import {
   MatBottomSheet,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
-import {CancelBtnComponent} from '../../../../../../shared-ui/src/cancel-btn/cancel-btn.component';
-import {SaveBtnComponent} from '../../../../../../shared-ui/src/save-btn/save-btn.component';
+import { CancelBtnComponent } from '../../../../../../shared-ui/src/cancel-btn/cancel-btn.component';
+import { SaveBtnComponent } from '../../../../../../shared-ui/src/save-btn/save-btn.component';
 import { CatalogueService } from '../service/catalogue.service';
 @Component({
   selector: 'app-add-category',
   standalone: true,
-  imports: [ReactiveFormsModule,CancelBtnComponent,SaveBtnComponent,CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    CancelBtnComponent,
+    SaveBtnComponent,
+    CommonModule,
+  ],
   templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.scss','../../donation/add-donation-item/add-donation-item.component.scss']
+  styleUrls: [
+    './add-category.component.scss',
+    '../../donation/add-donation-item/add-donation-item.component.scss',
+  ],
 })
 export class AddCategoryComponent {
   isImgSizeValid = false;
 
   categoryForm: FormGroup = new FormGroup({
     categoryName: new FormControl('', Validators.required),
-    photoURL: new FormControl('',Validators.required),
+    photoURL: new FormControl('', Validators.required),
     active: new FormControl(true),
     catalogueId: new FormControl(this.data.id),
     categoryId: new FormControl(''),
@@ -48,8 +52,11 @@ export class AddCategoryComponent {
     private _bottomSheetRef: MatBottomSheetRef<AddCategoryComponent>,
     private Storage: Storage
   ) {
-    console.log(data)
-     this.categoryForm.patchValue({catalogueId:data.id})
+    if (data.categoryId) {
+      this.categoryForm.setValue(data);
+    } else {
+      this.categoryForm.patchValue({ catalogueId: data.id });
+    }
   }
 
   async changePhoto(e: any) {
@@ -75,32 +82,21 @@ export class AddCategoryComponent {
     });
   }
 
-  ngOnInit() {
-
-    
-    if (this.data && this.data.itemId) {
-      console.log(this.data);
-      this.categoryForm.setValue(this.data);
-    }
-  }
+  ngOnInit() {}
 
   cancel() {
     this._bottomSheetRef.dismiss();
   }
 
-  removeImg(){
-    this.categoryForm.patchValue({photoURL:null})
+  removeImg() {
+    this.categoryForm.patchValue({ photoURL: null });
   }
 
   saveCategory() {
-    console.log(this.categoryForm)
     if (this.categoryForm.valid) {
-      this.CatalogueService.addCategory(
-        this.categoryForm.value
-      ).then(() => {
+      this.CatalogueService.addCategory(this.categoryForm.value).then(() => {
         this._bottomSheetRef.dismiss();
       });
     }
   }
- 
 }

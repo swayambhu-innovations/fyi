@@ -9,6 +9,8 @@ import { EventService } from './service/event.service';
 import { DeleteEventComponent } from './delete-event/delete-event.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { Firestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -21,11 +23,11 @@ import { Firestore } from '@angular/fire/firestore';
 export class EventComponent {
 
 
-  constructor(private eventService: EventService,private _bottomSheet: MatBottomSheet) { }
+  constructor(private eventService: EventService,private Router:Router) { }
   imageUrl: string | undefined
   events: any[] = [];
   ngOnInit() {
-    this.eventService.getEvents().subscribe((data:any)=>{                   //read detail
+    this.eventService.getEvents().subscribe((data:any)=>{                  
       this.events=data;
       console.log(data)
     })
@@ -34,21 +36,19 @@ export class EventComponent {
     console.log('Viewing event', event);
   }
   openBottomSheet(): void {
-    this._bottomSheet.open(AddeventComponent);                       //save detail
+    this.Router.navigate(['/addevent']);
   }
   editEvent(eventDetail:any) {
-    this._bottomSheet.open(AddeventComponent, {                       //editdetail
-      data: eventDetail,
-    });
+    this.Router.navigate(['/editevent',eventDetail.eventId    ]);
   } 
   deleteEvent(eventDetail: any): void {
-    this._bottomSheet.open(DeleteEventComponent, {                   //delete
-      data: eventDetail,
-    });
+    // this._bottomSheet.open(DeleteEventComponent, {                  
+    //   data: eventDetail,
+    // });
   }
 
   updatedStatus(eventDetail:any){
-    eventDetail.active=!eventDetail.active                 //updatestatus
+    eventDetail.active=!eventDetail.active                 
     this.eventService.addEvent(eventDetail)
   }
  

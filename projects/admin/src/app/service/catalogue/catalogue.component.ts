@@ -11,12 +11,18 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderWithBackComponent } from '../../sharedComponent/header-with-back/header-with-back.component';
 import { CreateCatalogueComponent } from './create-catalogue/create-catalogue.component';
+import { DeleteBottomSheetComponent } from '../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [MatSlideToggleModule,AddButtonComponent,CommonModule,HeaderWithBackComponent],
+  imports: [
+    MatSlideToggleModule,
+    AddButtonComponent,
+    CommonModule,
+    HeaderWithBackComponent,
+  ],
   templateUrl: './catalogue.component.html',
-  styleUrls: ['./catalogue.component.scss','../tax/tax.component.scss']
+  styleUrls: ['./catalogue.component.scss', '../tax/tax.component.scss'],
 })
 export class CatalogueComponent {
   constructor(
@@ -37,8 +43,8 @@ export class CatalogueComponent {
     this.router.navigate(['/create-catalogue']);
   }
   editCatalogue(catalogue: any) {
-    this.CatalogueService.currentCatalogue=catalogue
-    this.router.navigate(['/create-catalogue',catalogue.id]);
+    this.CatalogueService.currentCatalogue = catalogue;
+    this.router.navigate(['/create-catalogue', catalogue.id]);
   }
   // openDelete(taxDetail: any): void {
   //   this._bottomSheet.open(DeleteTaxComponent, {
@@ -55,8 +61,25 @@ export class CatalogueComponent {
     this.CatalogueService.addCatalogue(catalogueDetail);
   }
 
- 
-  
+  async deleteCatalogue(catalogue: any) {
+    let catalogueInArea = 5;
 
-  
+    const bottomSheetRef = this._bottomSheet.open(DeleteBottomSheetComponent, {
+      data: {
+        title: 'Catalogue',
+        description: `linked with ${catalogueInArea} areas`,
+      },
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      console.log('Bottom sheet has been dismissed', result);
+      if (result && catalogueInArea === 0) {
+        console.log(result);
+        await this.CatalogueService.delete(`service-catalogue/${catalogue.id}`);
+      }
+      else{
+        console.log('Catalogue is linked with areas');
+      }
+    });
+  }
 }

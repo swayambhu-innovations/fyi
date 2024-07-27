@@ -6,6 +6,7 @@ section {
   width: 96vw;
   padding-top: 70px;
   margin: 0 auto;
+  padding-bottom: 70px;
   .field {
     width: 100%;
     margin-bottom: 10px;
@@ -38,12 +39,14 @@ lib-save-btn {
   width: 35%;
 }
 
-.fix-below {
-  position: fixed;
-  bottom: 3px;
-}
+
 
 ::ng-deep .mat-expansion-panel {
+  font-family: "Jura", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   .mat-expansion-indicator svg {
     width: 24px;
     height: 24px;
@@ -51,13 +54,26 @@ lib-save-btn {
   }
   .mat-expansion-panel-header-description {
     flex-grow: 1;
-    color: var(--mat-expansion-header-description-color);
+    color: #464E5F;
+
+
   }
+  .mat-expansion-panel-header-title {
+    color: #464E5F;
+}
+}
+::ng-deep .mat-expansion-panel-content {
+  --mat-expansion-container-background-color: linear-gradient(
+  99deg,
+  rgba(173, 216, 230, 0.3) 12.07%,  // Light Blue
+  rgba(173, 216, 230, 0.2) 48.35%,
+  rgba(173, 216, 230, 0.2) 87.93%
+);
+
 }
 ::ng-deep .mat-expansion-panel-body {
   display: flex;
   justify-content: center;
-  
 }
 .card-size {
   width: 98vw;
@@ -69,19 +85,18 @@ lib-save-btn {
   align-items: center;
 }
 
-::ng-deep .mat-expansion-panel{
+::ng-deep .mat-expansion-panel {
   .mat-expansion-panel-body {
     display: block;
     justify-content: center;
-    padding:0 10px 16px
+    padding: 0 10px 16px;
   }
   .mat-expansion-panel-header {
-    padding:0px 10px;
+    padding: 0px 10px;
   }
 }
- 
 
-.card{
+.card {
   margin: 5px auto;
   border: 1px;
   border-radius: 15px;
@@ -92,11 +107,16 @@ lib-save-btn {
   margin-bottom: 5px;
   border: 1px solid #d4d4d4;
 }
-.fix-size{
+.fix-size {
   width: 80vw;
   margin: 0 auto;
 }
 
-.word-wrap{
+.word-wrap {
   width: 80%;
 }
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+

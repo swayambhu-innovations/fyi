@@ -30,6 +30,13 @@
   }
 
 }
+.full-w{
+  width: 100vw;
+  z-index: 100;
+  background: white;
+  height:fit-content;
+  position:fixed;
+}
 
 .white-bg{
     background-color: rgb(161, 161, 161);
