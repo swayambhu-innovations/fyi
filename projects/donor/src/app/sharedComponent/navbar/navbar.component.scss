@@ -1,0 +1,90 @@
+
+// .navbar {
+//     border-radius: 30px;
+//     display: flex;
+//     position: fixed;
+//     justify-content: space-between;
+//     bottom: 0px;
+//     background: #FFFFFF;
+//     height: 80px;
+//     width: 100%;
+//     z-index: 1000;
+// }
+
+// .navbar button {
+//     background: none;
+//     border: none;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+// }
+
+// .navbar button img {
+//     padding: 10px;
+// }
+
+// .navbar button span {
+//     font-size: 12px; /* Adjust the font size as needed */
+//     margin-top: 5px;
+//     color: #000; /* Change color as needed */
+// }
+.navbar {
+    border-radius: 30px;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    bottom: 0px;
+    background: #FFFFFF;
+    height: 80px;
+    width: 100%;
+    z-index: 1000;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar button {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar button img {
+    padding: 10px;
+    transition: all 0.3s ease; 
+}
+
+.navbar button span {
+    font-size: 12px; 
+    margin-top: 5px;
+    color: #000; 
+    transition: color 0.3s ease; 
+}
+
+/* Active button styles */
+.navbar button.active {
+    background: #FFFFFF; 
+}
+
+.navbar button.active img {
+    transform: translateY(-20px); 
+    background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);;
+    border-radius: 30px;
+    
+ 
+
+
+}
+
+.navbar button.active span {
+    transform: translateY(-20px);
+    color: #2f15aa;
+ 
+
+}
+

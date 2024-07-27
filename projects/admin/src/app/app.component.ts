@@ -8,6 +8,7 @@ import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { EventComponent } from "./service/event/event.component";
 import { filter } from 'rxjs';
 import { SplashScreenComponent } from "./auth/splash-screen/splash-screen.component";
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,6 +19,4 @@ import { SplashScreenComponent } from "./auth/splash-screen/splash-screen.compon
 export class AppComponent {
   title = 'admin';
 
-  constructor(private firestore: Firestore, private router: Router) {}
- 
 }

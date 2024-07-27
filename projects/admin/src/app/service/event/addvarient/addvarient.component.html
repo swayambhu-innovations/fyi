@@ -1,0 +1,94 @@
+<section>
+    <p class="header_text_color">{{ data ? "Edit Variant" : "Add Variant" }}</p>
+    <form [formGroup]="variantForm">
+      <div class="field">
+        <label class="description_text">Variant Name</label>
+        <br />
+        <input
+          type="text"
+          formControlName="name"
+          class="input_box_bg_gradient header_text_color"
+          placeholder="Enter variant name"
+        />
+        <div *ngIf="variantForm.get('name')?.touched && variantForm.get('name')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('name')?.errors?.['required']">Variant Name is required.</small>
+          <small *ngIf="variantForm.get('name')?.errors?.['minlength']">Variant Name must be at least 3 characters long.</small>
+        </div>
+      </div>
+      <div class="field">
+        <label class="description_text">Price</label>
+        <br />
+        <input
+          type="text"
+          formControlName="price"
+          class="input_box_bg_gradient header_text_color"
+          placeholder="Enter price"
+        />
+        <div *ngIf="variantForm.get('price')?.touched && variantForm.get('price')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('price')?.errors?.['required']">Price is required.</small>
+          <small *ngIf="variantForm.get('price')?.errors?.['min']">Price cannot be less than 0.</small>
+        </div>
+      </div>
+  
+      <div class="field">
+        <label class="description_text">Select Tax</label>
+        <br />
+        <select
+          formControlName="taxType"
+          class="input_box_bg_gradient header_text_color"
+          [(ngModel)]="selectedVariant"
+          [(value)]="selectedVariant"
+        >
+        <option *ngFor="let taxType of taxTypes" [value]="taxType.taxId
+        ">
+            {{ taxType.taxName }}
+          </option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="description_text">Tax calculate mode</label>
+        <br />
+        <select
+          formControlName="taxCalc"
+          class="input_box_bg_gradient header_text_color"
+        >
+          <option value="inclusive">Inclusive</option>
+          <option value="exclusive">Exclusive</option>
+        </select>
+      </div>
+  
+      <div class="field">
+        <label class="description_text">Total number of Tickets</label>
+        <br />
+        <input
+          type="text"
+          formControlName="totalTicket"
+          class="input_box_bg_gradient header_text_color"
+          placeholder="Enter Total number of Tickets"
+        />
+        <div *ngIf="variantForm.get('totalTicket')?.touched && variantForm.get('totalTicket')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('totalTicket')?.errors?.['required']">Total number of Tickets is required.</small>
+          <small *ngIf="variantForm.get('totalTicket')?.errors?.['min']">Total number of Tickets cannot be less than 1.</small>
+        </div>
+      </div>
+      <div class="field">
+        <label class="description_text">Coins per ticket</label>
+        <br />
+        <input
+          type="text"
+          formControlName="reward"
+          class="input_box_bg_gradient header_text_color"
+          placeholder="Enter Coins per ticket"
+        />
+        <div *ngIf="variantForm.get('reward')?.touched && variantForm.get('reward')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('reward')?.errors?.['required']">Coins per ticket is required.</small>
+          <small *ngIf="variantForm.get('reward')?.errors?.['min']">Coins per ticket cannot be less than 0.</small>
+        </div>
+      </div>
+    </form>
+    <div class="twin-btn">
+      <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+      <lib-save-btn (click)="saveTax()" [btnName]="'Save'"></lib-save-btn>
+    </div>
+  </section>
+  

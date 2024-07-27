@@ -6,86 +6,50 @@ import {MatBottomSheet,MatBottomSheetModule,} from '@angular/material/bottom-she
 import {MatButtonModule} from '@angular/material/button';
 import { AddeventComponent } from "./addevent/addevent.component";
 import { EventService } from './service/event.service';
-interface Event {
-  name: string;
-  imageUrl: string;
-  booked: number;
-  capacity: number;
-  status: string;
-}
-
+import { DeleteEventComponent } from './delete-event/delete-event.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { Firestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event',
   standalone: true,
   imports: [MatExpansionModule,NgFor,AddButtonComponent,MatButtonModule,
-    MatBottomSheetModule,NgFor],
+    MatBottomSheetModule,NgFor,MatSlideToggleModule],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss',
   providers: [EventService]
 })
 export class EventComponent {
-  constructor(private eventService: EventService,private _bottomSheet: MatBottomSheet) { }
+
+
+  constructor(private eventService: EventService,private Router:Router,private _bottomSheet:MatBottomSheet) { }
   imageUrl: string | undefined
-
-
+  events: any[] = [];
   ngOnInit() {
-    // this.eventService.testFun()
-    // this.eventService.getEvents().subscribe((data:any)=>{
-    //   console.log(data)
-    // })
+    this.eventService.getEvents().subscribe((data:any)=>{                  
+      this.events=data;
+      console.log(data)
+    })
   }
-
-
-  events: Event[] = [
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    {
-      name: 'Cearic Kashi Summit 2023',
-      imageUrl: '/assets/login/bg.jpg',
-      booked: 125,
-      capacity: 200,
-      status: 'Booked'
-    },
-    // Add more event objects as needed
-  ];
-
   viewEvent(event: Event): void {
     console.log('Viewing event', event);
   }
-
-  editEvent(event: Event): void {
-    console.log('Editing event', event);
-  }
-
-  deleteEvent(event: Event): void {
-    console.log('Deleting event', event);
-  }
   openBottomSheet(): void {
-    this._bottomSheet.open(AddeventComponent);
+    this.Router.navigate(['/addevent']);
   }
+  editEvent(eventDetail:any) {
+    this.Router.navigate(['/editevent',eventDetail.eventId    ]);
+  } 
+  deleteEvent(eventDetail: any): void {
+    this._bottomSheet.open(DeleteEventComponent, {                  
+      data: eventDetail,
+    });
+  }
+
   updatedStatus(eventDetail:any){
-    eventDetail.active=!eventDetail.active
+    eventDetail.active=!eventDetail.active                 
     this.eventService.addEvent(eventDetail)
   }
-
+ 
 }

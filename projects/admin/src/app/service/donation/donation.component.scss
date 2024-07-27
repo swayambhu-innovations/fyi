@@ -1,9 +1,59 @@
-section{
-    width: 100%;
-    padding-bottom: 70px;
+section {
+  width: 100%;
+  padding-bottom: 70px;
+  .card {
+    width: 95%;
+    margin: 5px auto;
+    border: 1px;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px 1px rgb(99 94 94 / 40%);
+    margin-bottom: 5px;
+    .flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .pic_bx {
+      width: 50px;
+      padding: 0px;
+      img {
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+      }
+    }
+    .title_bx {
+      margin-left: 20px;
+      //styleName: card title text;
+      font-family: "Jura", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 21.29px;
+      text-align: left;
+      width:105px;
+      
+    }
+    .span {
+      width: 50px;
+      height: 50px;
+    }
+    .items {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+  }
 }
-app-add-button{
-    position: fixed;
-    bottom: 130px;
-    right: 60px;
+
+app-add-button {
+  position: fixed;
+  bottom: 110px;
+  right: 55px;
 }
+
+

@@ -1,0 +1,65 @@
+<section>
+    <p class="header_text_color">
+      {{ data.categoryId ? "Edit Category" : "Add Category" }}
+    </p>
+  
+    <form [formGroup]="categoryForm">
+      <div class="field">
+        <label for="itemName" class="description_text">Category Name:</label>
+        <input
+          id="itemName"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="categoryName"
+          placeholder="Enter Category Name"
+          type="text"
+        />
+        <div *ngIf="categoryForm.get('categoryName')?.invalid && (categoryForm.get('categoryName')?.dirty || categoryForm.get('categoryName')?.touched)">
+          <small class="error-message" *ngIf="categoryForm.get('categoryName')?.errors?.['required']">
+            Category name is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <div class="field mt">
+          <div class="title-with-icon input_box_bg_gradient header_text_color">
+            <p>Add Image</p>
+  
+            <input
+              type="file"
+              #fileInput
+              style="display: none"
+              (change)="changePhoto($event)"
+              accept="image/*"
+            />
+            <img
+              src="assets/tax/pin.svg"
+              alt="upload photo"
+              (click)="fileInput.click()"
+            />
+          </div>
+          <div *ngIf="categoryForm.get('photoURL')?.invalid && (categoryForm.get('photoURL')?.dirty || categoryForm.get('photoURL')?.touched)">
+            <small class="error-message" *ngIf="categoryForm.get('photoURL')?.errors?.['required']">
+              Photo URL is required.
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="full-w mt-m" *ngIf="this.categoryForm.value.photoURL">
+        <img
+            [src]="this.categoryForm.value.photoURL"
+            alt="Profile Photo"
+          />
+          <img class="top-r-corner"  (click)="removeImg()" src="assets/tax/cross.svg"/>
+      </div>
+  
+      <div class="twin-btn mt">
+        <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+        <lib-save-btn
+          (click)="saveCategory()"
+          [btnName]="'Save'"
+        ></lib-save-btn>
+      </div>
+    </form>
+  </section>
+  
