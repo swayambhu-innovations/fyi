@@ -41,5 +41,6 @@ export const routes: Routes = [
     {path:'coupon',component: CouponComponent,canActivate: [AuthGuard]},
     {path:'create-catalogue',component: CreateCatalogueComponent,canActivate: [AuthGuard]},
     { path: 'create-catalogue/:id', component: CreateCatalogueComponent,canActivate:[AuthGuard] },
-    {path:'addevent',component: AddeventComponent,canActivate: [AuthGuard]}
+    {path:'addevent',component: AddeventComponent,canActivate: [AuthGuard]},
+    {path:'editevent/:id',component: AddeventComponent,canActivate: [AuthGuard]}
 ];

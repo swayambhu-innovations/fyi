@@ -46,15 +46,13 @@ export class EventService {
 
   async addSlabAndVariant(slabAndVariantDetail: any) {
     console.log(slabAndVariantDetail);
-    // if (eventDetail.eventId) {
-    //   const eventDocRef = doc(this.firestore, 'events', eventDetail.eventId);
-    //   await updateDoc(eventDocRef, eventDetail);
-    //   return {eventId:eventDetail.eventId}
-
-    // } else {
+   
     slabAndVariantDetail.slabs.map(async (slab: any) => {
       let variants: any[] = [];
-      const newEventDocRef = doc(
+      let newEventDocRef:any;
+      console.log('slab', slab);
+      if(!slab.slabId){  
+      newEventDocRef = doc(
         collection(
           this.firestore,
           'events',
@@ -62,22 +60,51 @@ export class EventService {
           'slab-variant'
         )
       );
-      slab.slabId = newEventDocRef.id;
+          slab.slabId = newEventDocRef.id;
+    } 
+    else{
+       newEventDocRef = doc(
+        collection(
+          this.firestore,
+          'events',
+          slabAndVariantDetail.eventId,
+          'slab-variant',slab.slabId,
+        )
+      );
+    }
       slab.variants.map(async (variant: any) => {
-        const newEventDocRef = doc(
-          collection(
-            this.firestore,
-            'events',
-            slabAndVariantDetail.eventId,
-            'slab-variant',
-            slab.slabId,
-            'variants'
-          )
-        );
-        variant.variantId = newEventDocRef.id;
+       let newVarientDocRef:any
+       console.log('variant', variant);
+        if(!variant.variantId){
+           newVarientDocRef = doc(
+            collection(
+              this.firestore,
+              'events',
+              slabAndVariantDetail.eventId,
+              'slab-variant',
+              slab.slabId,
+              'variants'
+            )
+          );
+          variant.variantId = newVarientDocRef.id;
+        }
+        else{
+          newVarientDocRef = doc(
+            collection(
+              this.firestore,
+              'events',
+              slabAndVariantDetail.eventId,
+              'slab-variant',
+              slab.slabId,
+              'variants',
+              variant.variantId
+            )
+          );
+        }
+        
         variants.push(variant.variantId);
         console.log('variants', variants);
-        await setDoc(newEventDocRef, variant);
+        await setDoc(newVarientDocRef, variant);
       });
       console.log('variants', variants);
       console.log('slab', slab);
@@ -95,6 +122,79 @@ export class EventService {
     city.id = newEventDocRef.id;
     return setDoc(newEventDocRef, city);
   }
+
+  eventDetail(eventId: any) {
+    return new Observable<any>((observer) => {
+      const docRef = doc(this.firestore, 'events', eventId);
+      onSnapshot(
+        docRef,
+        (doc) => {
+          observer.next(doc.data());
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    });
+  }
+  itineraryOfEvent(eventId: any) {
+    return new Observable<any>((observer) => {
+      const collectionRef = doc(this.firestore, 'events', eventId, 'itinerary', 'activities');
+      onSnapshot(
+        collectionRef,
+        (snapshot) => {
+         console.log(snapshot.data())
+         let activities = snapshot.data()
+          observer.next(activities);
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    });
+
+  }
+  getSlabAndVariantOfEvent(eventId: any) {
+      return new Observable<any>((observer) => {
+        const eventCollectionRef = collection(this.firestore, 'events', eventId, 'slab-variant');
+        
+        onSnapshot(
+          eventCollectionRef,
+          (slabSnapshot) => {
+            let slabs = [];
+            let slabsFetched = 0;
+            
+            slabSnapshot.forEach((slabDoc) => {
+              const slabData = slabDoc.data()
+              slabData['variants'] = [];
+              const slabVariantsCollectionRef = collection(this.firestore, 'events', eventId, 'slab-variant', slabDoc.id, 'variants');
+              
+              onSnapshot(
+                slabVariantsCollectionRef,
+                (variantSnapshot) => {
+                  slabData['variants'] = variantSnapshot.docs.map((variantDoc) => ({ ...variantDoc.data() }));
+                  
+                  slabsFetched++;
+                  slabs.push(slabData);
+                  
+                  if (slabsFetched === slabSnapshot.size) {
+                    observer.next(slabs);
+                  }
+                },
+                (error) => {
+                  observer.error(error);
+                }
+              );
+            });
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      });
+    }
+    
+
   getCitiesOfEvent(eventId: any) {
     return new Observable<any[]>((observer) => {
       const collectionRef = collection(this.firestore, 'events', eventId, 'cities');
@@ -165,14 +265,5 @@ export class EventService {
     return deleteDoc(doc(this.firestore, docAddress));
   }
 
-  addSlab(eventDetail: any) {
-    if (eventDetail.eventId) {
-      const taxDocRef = doc(this.firestore, 'events', eventDetail.eventId);
-      return updateDoc(taxDocRef, eventDetail);
-    } else {
-      const newEventDocRef = doc(collection(this.firestore, 'events'));
-      eventDetail.eventId = newEventDocRef.id;
-      return setDoc(newEventDocRef, eventDetail);
-    }
-  }
+ 
 }

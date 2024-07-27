@@ -1,6 +1,6 @@
 import { NgIf, CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   getDownloadURL,
   ref,
@@ -41,7 +41,7 @@ import {
   MAT_BOTTOM_SHEET_DATA,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 interface Event {
   name: string;
@@ -100,7 +100,8 @@ export class AddeventComponent {
     private _bottomSheet: MatBottomSheet,
     private fb: FormBuilder,
     private eventservice: EventService,
-    private Location:Location
+    private Location: Location,
+    private route: ActivatedRoute
   ) {
     this.slabAndVariantForm = this.fb.group({
       slabs: this.fb.array([], this.atLeastOneImageValidator()),
@@ -121,6 +122,44 @@ export class AddeventComponent {
       images: this.fb.array([], this.atLeastOneImageValidator()),
     });
     // this.setInitialValues();
+    this.route.paramMap.subscribe(async (params) => {
+      if (params.get('id') !== null) {
+        this.eventForm.value.eventId = params.get('id') || '';
+        await this.eventservice
+          .eventDetail(this.eventForm.value.eventId)
+          .subscribe((res: any) => {
+
+            this.eventForm.patchValue({
+              active: res.active,
+              description: res.description,
+              endDate: res.endDate,
+              eventId: res.eventId,
+              eventName: res.eventName,
+              startDate: res.startDate,
+            });
+            this.setImages(res.images);
+          });
+      }
+    });
+    this.eventservice
+      .itineraryOfEvent(this.eventForm.value.eventId)
+      .subscribe((res: any) => {
+        this.itineraryForm.setControl(
+          'activities',
+          this.fb.array(
+            res.activities.map((activity: any) => this.fb.group(activity))
+          )
+        );
+        this.itineraryForm.patchValue({ eventId: res.eventId });
+      });
+
+    this.eventservice
+      .getSlabAndVariantOfEvent(this.eventForm.value.eventId)
+      .subscribe((res: any) => {
+        console.log('slab-detail',res);
+        this.setFormData(res)
+       this.slabAndVariantForm.patchValue({ eventId: this.eventForm.value.eventId});
+      });
   }
   get slabs(): FormArray {
     return (
@@ -136,8 +175,8 @@ export class AddeventComponent {
       endDate: ['', Validators.required],
       image: ['', Validators.required],
       slabId: [''],
-      active:[true],
-      variants: this.fb.array([],this.atLeastOneImageValidator()),
+      active: [true],
+      variants: this.fb.array([], this.atLeastOneImageValidator()),
     });
     this.slabs.push(slab);
   }
@@ -167,10 +206,10 @@ export class AddeventComponent {
   }
 
   setFormData(data: any) {
-    data.forEach((item: any) => {
-      const slabsArray = this.slabAndVariantForm.get('slabs') as FormArray;
-
-      item.slabs.forEach((slab: any) => {
+    const slabsArray = this.slabAndVariantForm.get('slabs') as FormArray;
+  console.log(data)
+    
+      data.forEach((slab: any) => {
         const slabGroup = this.fb.group({
           name: [slab.name, Validators.required],
           description: [slab.description, Validators.required],
@@ -178,8 +217,11 @@ export class AddeventComponent {
           endDate: [slab.endDate, Validators.required],
           image: [slab.image, Validators.required],
           slabId: [slab.slabId],
+          active: [slab.active],
           variants: this.fb.array([]),
         });
+        console.log(slab.slabId)
+  
         const variantsArray = slabGroup.get('variants') as FormArray;
         slab.variants.forEach((variant: any) => {
           const variantGroup = this.fb.group({
@@ -194,13 +236,14 @@ export class AddeventComponent {
           });
           variantsArray.push(variantGroup);
         });
+  
         slabsArray.push(slabGroup);
       });
       console.log(this.slabAndVariantForm.value);
-
-      this.slabAndVariantForm.patchValue({ eventId: item.eventId });
-    });
-  }
+    }
+  
+  // Call the setFormData method with the response data
+  
 
   async changePhoto(e: any, index: any) {
     const file = e.target.files[0];
@@ -225,7 +268,7 @@ export class AddeventComponent {
     });
   }
 
-  removeSlab(index:any,slab:any){
+  removeSlab(index: any, slab: any) {
     this.slabs.removeAt(index);
   }
   removeImageOfSlab(slabIndex: number): void {
@@ -255,15 +298,7 @@ export class AddeventComponent {
     slab.patchValue({ image: fileUrl });
   }
 
-  // setInitialValues(): void {
-  //   const initialActivities = [
-  //     { name: 'Activity 1', date: '2024-07-24', startTime: '10:00', endTime: '11:00' },
-  //     { name: 'Activity 2', date: '2024-07-25', startTime: '12:00', endTime: '13:00' }
-  //   ];
-  //   this.itineraryForm.setControl('activities', this.fb.array(
-  //     initialActivities.map(activity => this.fb.group(activity))
-  //   ));
-  // }
+ 
   atLeastOneImageValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const formArray = control as FormArray;
@@ -287,12 +322,10 @@ export class AddeventComponent {
   }
 
   ngOnInit() {
-    
     //   this.setFormData([{
     //     eventId: '',
     //     slabs: [
     //       {
-
     //           description: "naksdng",
     //           endDate: "2024-07-15",
     //           image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
@@ -300,7 +333,6 @@ export class AddeventComponent {
     //           slabId: "",
     //           startDate: "2024-07-04",
     //           variants: [
-
     //             {
     //               name: "variant2",
     //               price: "34",
@@ -318,10 +350,8 @@ export class AddeventComponent {
     //               active:false
     //             }
     //           ]
-
     //       },
     //       {
-
     //           description: "naksdng",
     //           endDate: "2024-07-15",
     //           image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
@@ -329,7 +359,6 @@ export class AddeventComponent {
     //           slabId: "",
     //           startDate: "2024-07-04",
     //           variants: [
-
     //             {
     //               name: "variant2",
     //               price: "34",
@@ -347,25 +376,14 @@ export class AddeventComponent {
     //               active:false
     //             }
     //           ]
-
     //       }
     //     ]
     // },
     // ])
-
     // const images = [
     //   "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/event%2F1721814120108.jpeg?alt=media&token=985bcb30-2a40-477f-b0ea-1f35a867d773",
     //   "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/event%2F1721814141044.jpeg?alt=media&token=2f69390f-1f63-42e0-82f9-ad43b9765002"
     // ];
-    // this.eventForm.patchValue({
-    //   active: true,
-    //   description: "event3",
-    //   endDate: "2024-07-09",
-    //   eventId: "BXqFFddAwzqbzWGocdzf",
-    //   eventName: "event3",
-    //   startDate: "2024-07-17"
-    // });
-    // this.setImages(images);
     // console.log(this.eventForm.value);
   }
 
@@ -454,7 +472,6 @@ export class AddeventComponent {
       if (result) {
         this.addVariant(slabIndex, result);
       } else {
-        console.log('Catalogue is linked with areas');
       }
     });
   }
@@ -493,13 +510,12 @@ export class AddeventComponent {
         }
         break;
       case 'city':
-        console.log(this.slabAndVariantForm.value)
+        console.log(this.slabAndVariantForm.value);
         if (this.slabAndVariantForm.valid) {
           this.eventservice
             .addSlabAndVariant(this.slabAndVariantForm.value)
             .then(() => {
               this.getCities();
-
             });
           this.pannel = view;
         }
@@ -509,32 +525,27 @@ export class AddeventComponent {
   getCities(): any {
     this.eventservice.getCities().then((res: any) => {
       this.cities = res;
-      console.log('cities',this.cities)
-      //this.getCitiesOfEvent('EiTsybW5J9hUO6QiGM05');
       this.getCitiesOfEvent(this.eventForm.value.eventId);
     });
     return '';
   }
 
   selectCity(newCity: any) {
-    const eventId = this.eventForm.value.eventId
-    console.log(newCity)
-    
+    const eventId = this.eventForm.value.eventId;
+
     const cityExists = this.CitiesOfEvent.some(
       (city: any) =>
         city.cityId === newCity.cityId && city.stateId === newCity.stateId
     );
     if (cityExists) {
-      console.log('City already exists');
     } else {
       this.eventservice
         .addEventInCity({
           ...newCity,
           active: true,
-          eventId: eventId
+          eventId: eventId,
         })
         .then((res: any) => {
-          console.log(res);
         });
       this.filteredCities = [];
       this.searchQuery = '';
@@ -552,7 +563,6 @@ export class AddeventComponent {
     } else {
       this.filteredCities = [];
     }
-    console.log('filter',this.filterCities)
   }
   CitiesOfEvent: any[] = [];
   getCitiesOfEvent(eventId: string) {
@@ -568,9 +578,7 @@ export class AddeventComponent {
       const allCities = await this.eventservice.getCities();
 
       if (Array.isArray(allCities)) {
-        console.log('allCities is an array with length:', allCities.length);
       } else {
-        console.error('allCities is not an array');
         return [];
       }
 
@@ -593,8 +601,7 @@ export class AddeventComponent {
     return activeCities;
   }
 
-  async removeCity(city:any) {
-    console.log(city)
+  async removeCity(city: any) {
     const bottomSheetRef = this._bottomSheet.open(DeleteBottomSheetComponent, {
       data: {
         title: 'City',
@@ -603,7 +610,6 @@ export class AddeventComponent {
     });
 
     bottomSheetRef.afterDismissed().subscribe(async (result) => {
-      console.log('Bottom sheet has been dismissed', result);
       if (result) {
         await this.eventservice.delete(
           `events/${city.eventId}/cities/${city.id}`
@@ -611,11 +617,10 @@ export class AddeventComponent {
       }
     });
   }
-  cancel(panel:any){
-    if(panel=='back'){
-      this.Location.back()
+  cancel(panel: any) {
+    if (panel == 'back') {
+      this.Location.back();
     }
-   this.pannel=panel
-
-}
+    this.pannel = panel;
+  }
 }

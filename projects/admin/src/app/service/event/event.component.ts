@@ -10,6 +10,7 @@ import { DeleteEventComponent } from './delete-event/delete-event.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -38,9 +39,7 @@ export class EventComponent {
     this.Router.navigate(['/addevent']);
   }
   editEvent(eventDetail:any) {
-    // this._bottomSheet.open(AddeventComponent, {                      
-    //   data: eventDetail,
-    // });
+    this.Router.navigate(['/editevent',eventDetail.eventId    ]);
   } 
   deleteEvent(eventDetail: any): void {
     // this._bottomSheet.open(DeleteEventComponent, {                  
