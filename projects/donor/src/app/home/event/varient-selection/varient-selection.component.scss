@@ -1,0 +1,148 @@
+section {
+  margin-top: 2%;
+  padding: 70px 20px 0px 20px;
+  .slider {
+    margin-top: 5%;
+  }
+  .event-slider .slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .event-slider .slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .event-slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  .varient {
+    margin-top: 10%;
+    .rotarian {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      .label {
+        font-size: 16px;
+      }
+      .price {
+        font-size: 16px;
+        color: #579540;
+      }
+      span {
+        line-height: 1.5;
+      }
+      .book-now {
+        width: 105px;
+        height: 50px;
+        border-radius: 50px;
+        background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+        border: none;
+        color: white;
+        &.selected {
+          background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+          color: white;
+        }
+        &:disabled {
+          background: #d3d3d3;
+          color: #808080;
+        }
+      }
+      .threebutton{
+        display: flex;
+        .quantity-control-increment {
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+          background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+          border: none;
+          color: white;
+          margin: 8px 15px 0px 15px;
+          font-size: 25px;
+        }
+        span{
+          font-size: 20px;
+          margin-top: 8px;
+        }
+        .quantity-control-decrement {
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+          border: 1px solid linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%); ;
+          color: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);;
+          margin: 8px 15px 0px 15px;
+          font-size: 25px;
+          
+        }
+        .remove-selection {
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+          background: white;
+          border: none;
+          margin-left: 10px;
+          img{
+            width: 40px;
+            height: 40px;
+            
+          
+          }
+        }
+      }
+    
+    }
+  }
+  .scroll {
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-bottom: 5px;
+    padding-top: 70px;
+  }
+  .tabs {
+    display: flex;
+  }
+  .tab {
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+  }
+  .tab.active, .tab:hover {
+    background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
+    color: white;
+  }
+  .content {
+    margin-top: 8%;
+    padding: 20px;
+    background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
+    border: 1px solid;
+    border-image-source: linear-gradient(99.41deg, rgba(170, 170, 170, 0.3) 12.07%, rgba(170, 170, 170, 0.2) 48.35%, rgba(170, 170, 170, 0.2) 87.93%);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+  }
+  .next-button {
+    margin-top: 100px;
+    width: 100%;
+    height: 60px;
+    padding: 15px;
+    color: white;
+    background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+    border: none;
+    border-radius: 30px;
+    size: 10px;
+  }
+}
+
+
+

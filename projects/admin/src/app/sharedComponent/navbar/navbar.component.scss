@@ -25,7 +25,8 @@
       background: var(--white, #f0f0f0);
       padding: 10px 15px;
       align-items: center;
-      -webkit-transition: all 500ms ease-in;
+     -webkit-transition: all 500ms ease-in;
+      //transform: translateY(-20px);
     }
 
     &.inactive {

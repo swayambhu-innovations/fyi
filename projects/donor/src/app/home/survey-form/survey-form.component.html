@@ -1,0 +1,27 @@
+
+
+<section class="survey">
+    <div class="survey-slider">
+        
+        <div class="heading">
+            <h2 class="section_title header_text_color">Survey</h2>
+            <button class="see-all" (click)="seeAllsurvey()">See All</button>
+        </div>
+    
+        <div class="card">
+            <img src="/assets/homepage/survey.svg">
+            <div class="detail">
+                <h3 class="section_title">User Survey</h3>
+                <p class="paragraph_text">Take part in this survey to earn more coins</p>
+                <button class="primary">Start Survey</button>
+            </div>
+        </div>
+        <div class="slider">
+        <div *ngFor="let survey of surveys" class="slide" (click)="onSurveyClick(survey)">
+            <img [src]="survey.image" [alt]="survey.title">
+            <p class="section_title header_text_color">{{ survey.title }}</p>
+        </div>
+        </div>
+    </div>
+</section>
+  
