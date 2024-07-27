@@ -45,12 +45,10 @@ export class EventService {
   }
 
   async addSlabAndVariant(slabAndVariantDetail: any) {
-    console.log(slabAndVariantDetail);
    
     slabAndVariantDetail.slabs.map(async (slab: any) => {
       let variants: any[] = [];
       let newEventDocRef:any;
-      console.log('slab', slab);
       if(!slab.slabId){  
       newEventDocRef = doc(
         collection(
@@ -73,7 +71,6 @@ export class EventService {
     }
       slab.variants.map(async (variant: any) => {
        let newVarientDocRef:any
-       console.log('variant', variant);
         if(!variant.variantId){
            newVarientDocRef = doc(
             collection(
@@ -102,14 +99,11 @@ export class EventService {
         }
         
         variants.push(variant.variantId);
-        console.log('variants', variants);
         await setDoc(newVarientDocRef, variant);
       });
-      console.log('variants', variants);
-      console.log('slab', slab);
+      
 
       slab.variants = variants;
-      console.log('slab', slab);
 
       await setDoc(newEventDocRef, slab);
     });
@@ -121,6 +115,7 @@ export class EventService {
     city.id = newEventDocRef.id;
     return setDoc(newEventDocRef, city);
   }
+
 
   eventDetail(eventId: any) {
     return new Observable<any>((observer) => {
@@ -142,7 +137,6 @@ export class EventService {
       onSnapshot(
         collectionRef,
         (snapshot) => {
-         console.log(snapshot.data())
          let activities = snapshot.data()
           observer.next(activities);
         },
@@ -260,9 +254,14 @@ export class EventService {
     return deleteDoc(doc(this.firestore, 'events', eventId));
   }
   delete(docAddress: any) {
-    console.log(docAddress)
     return deleteDoc(doc(this.firestore, docAddress));
   }
 
+changeStatusOfSlab(eventId:any,slabId:any,status:any){
+  console.log('events',eventId,'slab-variant',slabId)
+  return updateDoc(doc(this.firestore, 'events',eventId,'slab-variant',slabId), {
+    active: status,
+  });
+}
  
 }

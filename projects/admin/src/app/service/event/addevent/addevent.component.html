@@ -159,7 +159,7 @@
                   <mat-panel-title> {{ slab.get('slabId')?.value ? slab.get('name')?.value : 'New Slab' }}
                   </mat-panel-title>
                   <label class="uk-switch" *ngIf="slab.get('slabId')?.value" >
-                    <input type="checkbox">
+                    <input type="checkbox" (change)="changeStatusOfSlab(slab)" [checked]="slab.get('active')?.value">
                     <div class="uk-switch-slider" ></div>
                   </label>
                  <img src="/assets/addevent/delete.svg" (click)="removeSlab(i,slab)" alt="" />
@@ -204,37 +204,37 @@
                       />
                     </div>
                   </div>
-    
-                  <div>
-                    <div class="field mt">
-                      <div
-                        class="title-with-icon input_box_bg_gradient header_text_color"
-                      >
-                        <p>Add Image</p>
-    
-                        <input
-                          type="file"
-                          #fileInput
-                          style="display: none"
-                          (change)="changePhoto($event, i)"
-                          accept="image/*"
-                        />
-                        <img
-                          src="assets/tax/pin.svg"
-                          alt="upload photo"
-                          (click)="fileInput.click()"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="full-w mt-m" *ngIf="slab.get('image')?.value">
-                    <img [src]="slab.get('image')?.value" alt="slab Photo" />
-                    <img
-                      class="top-r-corner"
-                      (click)="removeImageOfSlab(i)"
-                      src="assets/tax/cross.svg"
+
+                  <div class="header">
+                    <label>Add Images (2:1 ratio)</label>
+                    <button type="button" >
+                      <img src="/assets/addevent/upload.svg" alt=""  src="assets/tax/pin.svg"
+                      alt="upload photo"
+                      (click)="fileInput.click()" />
+                    </button>
+                    <input
+                    type="file"
+                    #fileInput
+                    style="display: none"
+                    (change)="changePhoto($event, i)"
+                    accept="image/*"
                     />
                   </div>
+
+
+                  <div class="single-images-grid">
+                    <div
+                    *ngIf="slab.get('image')?.value"
+                      class="image-item"
+                    >
+                      <img [src]="slab.get('image')?.value"  alt="Uploaded Image" />
+                      <button type="button" class="remove-btn"  (click)="removeImageOfSlab(i)">
+                        &#10006;
+                      </button>
+                    </div>
+                  </div>
+    
+                 
                   <div class="variant-set" *ngFor="let variant of slab.get('variants')?.value; let variantIndex = index">
                     <div class="variant-details">
                       <span class="variant-name">{{ variant.name }}</span>
