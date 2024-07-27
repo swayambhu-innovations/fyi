@@ -17,10 +17,10 @@ section{
   line-height: normal;
 }
 .scroll {
-  overflow-x: auto;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  margin-bottom: 5px;
+  // overflow-x: auto;
+  // -ms-overflow-style: none; /* IE and Edge */
+  // scrollbar-width: none; /* Firefox */
+  margin-bottom: 15px;
 }
 .scroll::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
@@ -29,16 +29,16 @@ section{
   display: flex;
   justify-content: center;
   justify-content: space-between;
+  
 }
 .tab {
-  padding: 10px 30px 10px 30px;
-  border-radius: 10px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
   cursor: pointer;
   justify-content: center;
   align-items: center;
 }
-.tab.active,
-.tab:hover {
+.tab.active{
   background: var(
     --active-tab-gradient,
     linear-gradient(

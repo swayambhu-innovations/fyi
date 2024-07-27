@@ -2,10 +2,14 @@
 <section>
   <div class="scroll">
     <div class="tabs">
-      <div class="tab" (click)="submit('area')">Details</div>
-      <div class="tab" (click)="submit('catalogue')">Itinerary</div>
-      <div class="tab" (click)="submit('donation')">Slab</div>
-      <div class="tab" (click)="submit('event')">city</div>
+      <div class="tab" [ngClass]="{ active: selected === 'details' }">
+        Details
+      </div>
+      <div class="tab" [ngClass]="{ active: selected === 'itinerary' }">
+        Itinerary
+      </div>
+      <div class="tab" [ngClass]="{ active: selected === 'slab' }">Slab</div>
+      <div class="tab" [ngClass]="{ active: selected === 'city' }">city</div>
     </div>
   </div>
   <!-- detail form pannel -->
@@ -150,80 +154,80 @@
 
   <div *ngIf="'slab' == pannel ? true : false">
     <div class="">
-    <form [formGroup]="slabAndVariantForm">
-      <ng-container formArrayName="slabs">
-        <div
-          class=""
-          *ngFor="let slab of slabs.controls; let i = index"
-          [formGroupName]="i"
-        >
-          <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{
-                    slab.get("slabId")?.value
-                      ? slab.get("name")?.value
-                      : "New Slab"
-                  }}
-                </mat-panel-title>
-                <label class="uk-switch" *ngIf="slab.get('slabId')?.value">
-                  <input
-                    type="checkbox"
-                    (change)="changeStatusOfSlab(slab)"
-                    [checked]="slab.get('active')?.value"
-                  />
-                  <div class="uk-switch-slider"></div>
-                </label>
-                <img
-                  src="/assets/addevent/delete.svg"
-                  (click)="removeSlab(i, slab)"
-                  alt=""
-                />
-              </mat-expansion-panel-header>
-              <div class="slab-form">
-                <div class="">
-                  <label>Slab Name</label>
-                  <input
-                    type="text"
-                    formControlName="name"
-                    class="event-name"
-                  />
-                </div>
-                <div class="">
-                  <label>Description</label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    formControlName="description"
-                  ></textarea>
-                </div>
-                <div class="dateset">
-                  <div class="form-group">
-                    <label>Start Date</label>
+      <form [formGroup]="slabAndVariantForm">
+        <ng-container formArrayName="slabs">
+          <div
+            class=""
+            *ngFor="let slab of slabs.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{
+                      slab.get("slabId")?.value
+                        ? slab.get("name")?.value
+                        : "New Slab"
+                    }}
+                  </mat-panel-title>
+                  <label class="uk-switch" *ngIf="slab.get('slabId')?.value">
                     <input
-                      type="date"
-                      name="startDate"
-                      value="2024-07-13"
-                      class="dataset1"
-                      formControlName="startDate"
+                      type="checkbox"
+                      (change)="changeStatusOfSlab(slab)"
+                      [checked]="slab.get('active')?.value"
+                    />
+                    <div class="uk-switch-slider"></div>
+                  </label>
+                  <img
+                    src="/assets/addevent/delete.svg"
+                    (click)="removeSlab(i, slab)"
+                    alt=""
+                  />
+                </mat-expansion-panel-header>
+                <div class="slab-form">
+                  <div class="">
+                    <label>Slab Name</label>
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="event-name"
                     />
                   </div>
-                  <div class="form-group">
-                    <label>End Date</label>
-                    <input
-                      type="date"
-                      name="endDate"
-                      value="2024-07-15"
-                      class="dataset1"
-                      formControlName="endDate"
-                    />
+                  <div class="">
+                    <label>Description</label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      formControlName="description"
+                    ></textarea>
                   </div>
-                </div>
+                  <div class="dateset">
+                    <div class="form-group">
+                      <label>Start Date</label>
+                      <input
+                        type="date"
+                        name="startDate"
+                        value="2024-07-13"
+                        class="dataset1"
+                        formControlName="startDate"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input
+                        type="date"
+                        name="endDate"
+                        value="2024-07-15"
+                        class="dataset1"
+                        formControlName="endDate"
+                      />
+                    </div>
+                  </div>
 
-                <div class="file-upload-btn">
-                  <label>Add Image (2:1 ratio)</label>
-                  
+                  <div class="file-upload-btn">
+                    <label>Add Image (2:1 ratio)</label>
+
                     <img
                       src="/assets/addevent/upload.svg"
                       alt=""
@@ -231,92 +235,92 @@
                       alt="upload photo"
                       (click)="fileInput.click()"
                     />
-                  
-                  <input
-                    type="file"
-                    #fileInput
-                    style="display: none"
-                    (change)="changePhoto($event, i)"
-                    accept="image/*"
-                  />
-                </div>
 
-                <div class="file-area">
-                  <div *ngIf="slab.get('image')?.value" class="">
-                    <img
-                      [src]="slab.get('image')?.value"
-                      alt="Uploaded Image"
+                    <input
+                      type="file"
+                      #fileInput
+                      style="display: none"
+                      (change)="changePhoto($event, i)"
+                      accept="image/*"
                     />
-                    <button
-                      type="button"
-                      class="remove-btn"
-                      (click)="removeImageOfSlab(i)"
-                    >
-                      &#10006;
-                    </button>
                   </div>
-                </div>
 
-                <div
-                  class="variant-set"
-                  *ngFor="
-                    let variant of slab.get('variants')?.value;
-                    let variantIndex = index
-                  "
-                >
-                  <div class="variant-details">
-                    <span class="variant-name">{{ variant.name }}</span>
-                    <span class="variant-price">₹ {{ variant.price }}</span>
-                  </div>
-                  <div class="variant-actions">
-                    <label class="uk-switch">
-                      <input
-                        type="checkbox"
-                        [checked]="variant.active"
-                        (change)="changeStatusOfVariant(slab, variant)"
+                  <div class="file-area">
+                    <div *ngIf="slab.get('image')?.value" class="">
+                      <img
+                        [src]="slab.get('image')?.value"
+                        alt="Uploaded Image"
                       />
-                      <div class="uk-switch-slider"></div>
-                    </label>
+                      <button
+                        type="button"
+                        class="remove-btn"
+                        (click)="removeImageOfSlab(i)"
+                      >
+                        &#10006;
+                      </button>
+                    </div>
+                  </div>
 
-                    <button
-                      mat-icon-button
-                      (click)="editVariant(i, variant, variantIndex)"
-                    >
-                      <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button color="warn">
-                      <mat-icon
-                        ><img
-                          src="/assets/addevent/delete.svg"
-                          alt=""
-                          (click)="
-                            removaVariant(slab, i, variant, variantIndex)
-                          "
-                      /></mat-icon>
-                    </button>
+                  <div
+                    class="variant-set"
+                    *ngFor="
+                      let variant of slab.get('variants')?.value;
+                      let variantIndex = index
+                    "
+                  >
+                    <div class="variant-details">
+                      <span class="variant-name">{{ variant.name }}</span>
+                      <span class="variant-price">₹ {{ variant.price }}</span>
+                    </div>
+                    <div class="variant-actions">
+                      <label class="uk-switch">
+                        <input
+                          type="checkbox"
+                          [checked]="variant.active"
+                          (change)="changeStatusOfVariant(slab, variant)"
+                        />
+                        <div class="uk-switch-slider"></div>
+                      </label>
+
+                      <button
+                        mat-icon-button
+                        (click)="editVariant(i, variant, variantIndex)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button color="warn">
+                        <mat-icon
+                          ><img
+                            src="/assets/addevent/delete.svg"
+                            alt=""
+                            (click)="
+                              removaVariant(slab, i, variant, variantIndex)
+                            "
+                        /></mat-icon>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <button class="Add-btn" (click)="openBottomSheet(i)">
-                add varient
-              </button>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </div>
-        <button class="Add-btn" (click)="addSlab()">Add Slab</button>
-        <div class="twin-btn fix-below">
-          <lib-cancel-btn
-            [btnName]="'Cancel'"
-            (click)="cancel('itinerary')"
-          ></lib-cancel-btn>
-          <lib-save-btn
-            [btnName]="'Next'"
-            (click)="nextpannel('city')"
-          ></lib-save-btn>
-        </div>
-      </ng-container>
-    </form>
-  </div>
+                <button class="Add-btn" (click)="openBottomSheet(i)">
+                  add varient
+                </button>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <button class="Add-btn" (click)="addSlab()">Add Slab</button>
+          <div class="twin-btn fix-below">
+            <lib-cancel-btn
+              [btnName]="'Cancel'"
+              (click)="cancel('itinerary')"
+            ></lib-cancel-btn>
+            <lib-save-btn
+              [btnName]="'Next'"
+              (click)="nextpannel('city')"
+            ></lib-save-btn>
+          </div>
+        </ng-container>
+      </form>
+    </div>
   </div>
 
   <!--city form pannel  -->

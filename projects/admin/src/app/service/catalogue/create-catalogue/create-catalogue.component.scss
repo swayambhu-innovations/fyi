@@ -62,21 +62,13 @@ lib-save-btn {
     color: #464E5F;
 }
 }
-::ng-deep .mat-expansion-panel-content {
-  --mat-expansion-container-background-color: linear-gradient(
-  99deg,
-  rgba(173, 216, 230, 0.3) 12.07%,  // Light Blue
-  rgba(173, 216, 230, 0.2) 48.35%,
-  rgba(173, 216, 230, 0.2) 87.93%
-);
 
-}
 ::ng-deep .mat-expansion-panel-body {
   display: flex;
   justify-content: center;
 }
 .card-size {
-  width: 98vw;
+  width: 90vw;
   margin: 4px auto;
 }
 .items {
