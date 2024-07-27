@@ -10,12 +10,12 @@ import { DeleteEventComponent } from './delete-event/delete-event.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-
+import {CommonModule} from '@angular/common';
 @Component({
   selector: 'app-event',
   standalone: true,
   imports: [MatExpansionModule,NgFor,AddButtonComponent,MatButtonModule,
-    MatBottomSheetModule,NgFor,MatSlideToggleModule],
+    MatBottomSheetModule,NgFor,MatSlideToggleModule,CommonModule],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss',
   providers: [EventService]
@@ -39,7 +39,7 @@ export class EventComponent {
     this.Router.navigate(['/addevent']);
   }
   editEvent(eventDetail:any) {
-    this.Router.navigate(['/editevent',eventDetail.eventId    ]);
+    this.Router.navigate(['/editevent',eventDetail.eventId]);
   } 
   deleteEvent(eventDetail: any): void {
     this._bottomSheet.open(DeleteEventComponent, {                  

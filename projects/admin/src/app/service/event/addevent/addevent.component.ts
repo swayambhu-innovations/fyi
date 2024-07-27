@@ -82,7 +82,7 @@ interface Event {
   providers: [EventService],
 })
 export class AddeventComponent {
-  selected = '';
+  selected = 'details';
   pannel = 'details';
   images: string[] = [];
   uploadPercent: number = 0;
@@ -380,6 +380,7 @@ export class AddeventComponent {
     const activityGroup = this.fb.group({
       name: ['', Validators.required],
       date: ['', Validators.required],
+      description: [''],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
     });
@@ -458,6 +459,7 @@ export class AddeventComponent {
             this.itineraryForm.patchValue({ eventId: res.eventId });
             this.slabAndVariantForm.patchValue({ eventId: res.eventId });
             this.pannel = view;
+            this.selected = view
           });
         }
         break;
@@ -470,6 +472,8 @@ export class AddeventComponent {
             .addItinerary(this.itineraryForm.value)
             .then(() => {});
           this.pannel = view;
+          this.selected = view
+
         }
         break;
       case 'city':
@@ -481,8 +485,11 @@ export class AddeventComponent {
               this.getCities();
             });
           this.pannel = view;
+          this.selected = view
+
         }
         break;
+      
     }
   }
   getCities(): any {
@@ -583,6 +590,7 @@ export class AddeventComponent {
     if (panel == 'back') {
       this.Location.back();
     }
+    this.selected = panel;
     this.pannel = panel;
   }
   changeStatusOfSlab(slab: any) {

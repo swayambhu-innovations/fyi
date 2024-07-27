@@ -1,11 +1,12 @@
 <app-header-with-menu ></app-header-with-menu>
 <div class="scroll">
     <div class="tabs">
-        <div class="tab" (click)="submit('area')">Area</div>
-        <div class="tab" (click)="submit('catalogue')">Catalogue</div>
-        <div class="tab" (click)="submit('donation')">Donation</div>
-        <div class="tab" (click)="submit('event')">Event</div>
-        <div class="tab" (click)="submit('tax')">Tax</div>
+        <div class="tab" [ngClass]="{ active: selected === 'area' }"
+        (click)="submit('area')">Area</div>
+        <div class="tab" [ngClass]="{ active: selected === 'catalogue' }" (click)="submit('catalogue')">Catalogue</div>
+        <div class="tab" [ngClass]="{ active: selected === 'donation' }" (click)="submit('donation')">Donation</div>
+        <div class="tab" [ngClass]="{ active: selected === 'event' }" (click)="submit('event')">Event</div>
+        <div class="tab" [ngClass]="{ active: selected === 'tax' }" (click)="submit('tax')">Tax</div>
     </div>
 </div>
 <app-event *ngIf="'event'==selected?true:false"></app-event>
