@@ -1,0 +1,23 @@
+
+<div class="navbar">
+    <button (click)="moveToHome()" [class.active]="currentTab === 'home'">
+        <img [src]="currentTab === 'home' ? '/assets/navbar/home1.svg' : '/assets/navbar/home.svg'" alt="Home">
+        <span>Home</span>
+    </button>
+    <button (click)="moveTodonation()" [class.active]="currentTab === 'donation'">
+        <img [src]="currentTab === 'donation' ? '/assets/navbar/service1.svg' : '/assets/navbar/service.svg'" alt="Donation">
+        <span>Donation</span>
+    </button>
+    <button (click)="moveTofeed()" [class.active]="currentTab === 'feed'">
+        <img [src]="currentTab === 'feed' ? '/assets/navbar/feed1.svg' : '/assets/navbar/feed.svg'" alt="Feed">
+        <span>Feed</span>
+    </button>
+    <button (click)="moveTocoupon()" [class.active]="currentTab === 'coupon'">
+        <img [src]="currentTab === 'coupon' ? '/assets/navbar/report1.svg' : '/assets/navbar/report.svg'" alt="Coupon">
+        <span>Coupon</span>
+    </button>
+    <button (click)="moveToaccount()" [class.active]="currentTab === 'account'">
+        <img [src]="currentTab === 'account' ? '/assets/navbar/profile1.svg' : '/assets/navbar/profile.svg'" alt="Account">
+        <span>Account</span>
+    </button>
+</div>

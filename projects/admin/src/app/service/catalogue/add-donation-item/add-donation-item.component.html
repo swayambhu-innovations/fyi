@@ -1,0 +1,54 @@
+<section>
+    <p class="header_text_color">
+      {{ this.data.itemId ? "Edit Donation Item" : "Add Donation Item" }}
+    </p>
+  
+    <form [formGroup]="donationItemForm">
+      <div class="field">
+        <label class="description_text">Select Donation Item</label>
+        <br />
+        <select
+          formControlName="itemId"
+          [(ngModel)]="selectedDonationItem"
+          [(value)]="selectedDonationItem"
+          
+          class="input_box_bg_gradient header_text_color"
+        >
+        <option *ngFor="let donationItem of donationItems" [value]="donationItem.itemId">
+          {{ donationItem.itemName }}
+        </option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="itemName" class="description_text">Coins awarded per unit:</label>
+        <input
+          id="itemName"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="reward"
+          type="number"
+        />
+        <div *ngIf="donationItemForm.get('reward')?.invalid && (donationItemForm.get('reward')?.dirty || donationItemForm.get('reward')?.touched)">
+          <small class="error-message" *ngIf="donationItemForm.get('reward')?.errors?.['required']">
+            Reward is required.
+          </small>
+          <small class="error-message" *ngIf="donationItemForm.get('reward')?.errors?.['min']">
+            Reward must be at least 0.
+          </small>
+          <small class="error-message" *ngIf="donationItemForm.get('reward')?.errors?.['max']">
+            Reward cannot be more than 1000.
+          </small>
+        </div>
+      </div>
+      
+     
+      <div class="twin-btn mt">
+        <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+        <lib-save-btn
+          (click)="addDonationITem()"
+          [btnName]="'Save'"
+        ></lib-save-btn>
+      </div>
+    </form>
+  </section>
+  

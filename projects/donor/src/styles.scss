@@ -1,4 +1,146 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+//css of solid colors
+.primary {
+  color: #2f15aa;
+}
+.inactive_gray {
+  color: #b6b6b6;
+}
+.description_text {
+  color: #808080;
+}
+.header_text_color {
+  color: #464e5f;
+}
+.white {
+  color: #f0f0f0;
+}
+.red {
+  color: #e90d35;
+}
+.green{
+  color:#48BC1F;
+}
+
+//css of text
+.page_title {
+  font-family: "Krona One", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.section_title {
+  font-family: "Jura", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.button_text {
+  font-family: "Jura", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.paragraph_text {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.extra_large {
+  font-family: "Krona One", sans-serif;
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 53px;
+}
+.card_title_text {
+  font-family: "Krona One", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+//css of gradient colors
+.primary_color_gradient {
+  background: (
+    188deg,
+    #2f15aa 33.56%,
+    rgba(47, 21, 170, 0.7) 60.59%,
+    rgba(47, 21, 170, 0) 90.08%
+  );
+}
+.bg_color_gradient {
+  background:  linear-gradient(99deg, rgba(202, 202, 202, 0.30) 12.07%, rgba(202, 202, 202, 0.20) 48.35%, rgba(202, 202, 202, 0.20) 87.93%);
+}
+.primary_botton_gradient {
+  background: linear-gradient(
+    90deg,
+    #2f15aa 0.28%,
+    rgba(47, 21, 170, 0.8) 47.84%,
+    rgba(47, 21, 170, 0.4) 99.72%
+  );
+}
+.red_gradient {
+  background: linear-gradient(
+    188deg,
+    #e90d35 33.56%,
+    rgba(233, 13, 53, 0.7) 60.59%,
+    rgba(233, 13, 53, 0) 90.08%
+  );
+}
+.secondary_botton_gradient {
+  background: linear-gradient(
+    91deg,
+    rgba(224, 224, 224, 0.3) 0.53%,
+    rgba(224, 224, 224, 0.2) 47.85%,
+    rgba(224, 224, 224, 0.1) 99.47%
+  );
+}
+
+.active_tab_gradient{
+    background: linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%);
+}
+
+.input_box_bg_gradient{
+  background: linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%);
+}
+.warning_button_gardient{
+  background:  linear-gradient(91deg, #E90D35 1.27%, rgba(233, 13, 53, 0.80) 47.72%, rgba(233, 13, 53, 0.40) 98.38%);
+}
+
+
+//other style
+.twin-btn{
+display: flex;
+width: 100%;
+justify-content: center;
+gap: 20px;
+}
+
+.center-text{
+  text-align: center;
+}

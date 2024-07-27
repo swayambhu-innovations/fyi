@@ -1,0 +1,38 @@
+section {
+  width: 100%;
+  padding-bottom: 70px;
+  .card {
+    width: 95%;
+    margin: 5px auto;
+    border: 1px;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px 1px rgb(99 94 94 / 40%);
+    margin-bottom: 5px;
+
+    .word-wrap{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .span {
+      width: 50px;
+      height: 50px;
+    }
+    .items {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+}
+
+app-add-button {
+  position: fixed;
+  bottom: 110px;
+  right: 55px;
+}

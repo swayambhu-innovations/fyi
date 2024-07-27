@@ -1,0 +1,30 @@
+<!-- <app-header-with-back [pageTitle]="'Tax'"></app-header-with-back> -->
+<section>
+  <div *ngFor="let item of donationItems" class="card bg_color_gradient">
+    <div class="flex">
+      <div class="pic_bx">
+        <img [src]="item.photoURL" alt="" />
+      </div>
+      <div class="header_text_color title_bx text-overflow-ellipsis">{{ item.itemName }}</div>
+    </div>
+    <div class="items">
+      <label class="uk-switch" >
+        <input type="checkbox"  [checked]="item.active == true ? true : false"
+        (change)="updatedStatus(item)">
+        <div class="uk-switch-slider" ></div>
+      </label>
+      
+      <span
+        ><img src="assets/tax/edit.svg" (click)="editDonationItem(item)" alt=""
+      /></span>
+      <span
+        ><img
+          src="assets/tax/delete.svg"
+          (click)="deleteDonationItem(item)"
+          alt=""
+      /></span>
+    </div>
+  </div>
+  <app-add-button (click)="addDonationItem()"></app-add-button>
+</section>
+

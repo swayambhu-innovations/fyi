@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  line-height: normal;
+  padding: 0px;
+  padding-bottom: 0px;
+  width: 92vw;
+  margin-left: 4vw;
+  position: fixed;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid  #8d8c8c;
+  .flex{
+    display: flex ;
+    gap: 20px;
+  }
+  
+  nav{
+    display: flex;
+    gap: 20px;
+    span{
+      display: flex;
+      align-items: center;
+    }
+    a{
+      display: flex;
+      align-items: center;
+    }
+  }
+
+}
+.full-w{
+  width: 100vw;
+  z-index: 100;
+  background: white;
+  height:fit-content;
+  position:fixed;
+}
+
+.white-bg{
+    background-color: rgb(161, 161, 161);
+    img{
+      border-radius: 50%;
+      width: 150px;
+    }
+  
+}

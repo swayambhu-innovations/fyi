@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "fyi1-aa2c2"
+  },
+  "targets": {
+    "fyi1-aa2c2": {
+      "hosting": {
+        "donor": [
+          "fyi1-aa2c2"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

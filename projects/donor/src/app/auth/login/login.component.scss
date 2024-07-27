@@ -1,0 +1,83 @@
+section {
+  background: url("/assets/login/donorlogin.svg") rgb(253, 253, 253) 50% / cover
+    no-repeat;
+
+  background-size: 100% 50%;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    margin-top: 70px;
+  }
+
+  .login-secton {
+    position: absolute;
+    bottom: 2px;
+    width: 96%;
+    p {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      font-family: Jura;
+
+    }
+    label {
+      margin-left: 5px;
+      font-family: "Nunito", sans-serif;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .field {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    input,
+    select {
+      border: 0.5px solid rgb(166, 166, 166);
+      border-radius: 12px;
+      width: 100%;
+      height: 40px;
+      padding: 1px 6px;
+    }
+    option {
+      width: 70%;
+    }
+    input:focus,
+    select:focus {
+      outline: none;
+    }
+    .login {
+      border: 1px solid rgb(215, 215, 215);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      font-family: "Jura", sans-serif;
+
+    }
+  }
+}
+
+button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 5px;
+}

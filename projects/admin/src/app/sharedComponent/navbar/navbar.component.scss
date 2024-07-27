@@ -1,0 +1,43 @@
+.navbar {
+  border-radius: 30px;
+
+  width: 99%;
+  height: 60px;
+  display: flex;
+  position: fixed;
+  padding: 5px 5px 5px 5px;
+  justify-content: center;
+  align-items: center;
+  //   gap: 25px;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  div {
+    padding: 0px;
+    cursor: pointer;
+
+    &.active {
+      display: flex;
+
+      flex-grow: 1;
+      border-radius: 30px;
+      background: var(--white, #f0f0f0);
+      padding: 10px 15px;
+      align-items: center;
+     -webkit-transition: all 500ms ease-in;
+      //transform: translateY(-20px);
+    }
+
+    &.inactive {
+      width: 17%;
+      padding: 10px 20px;
+      justify-content: center;
+      justify-items: center;
+      -webkit-transition: all 500ms ease-in;
+    }
+  }
+  span {
+    margin-left: 5%;
+  }
+}
