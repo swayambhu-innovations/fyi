@@ -1,0 +1,39 @@
+<app-header-with-back [pageTitle]="'Panchang slab '"></app-header-with-back>
+<section>
+  <div class="event-slider">
+    <div class="slider">
+      <div *ngFor="let event of events" class="slide">
+        <img [src]="event.image" [alt]="event.title">
+      </div>
+    </div>
+  </div>
+  <div class="varient">
+    <div *ngFor="let item of items; let i = index" class="rotarian">
+      <div>
+        <span class="section_title header_text_color label">{{ item.title }}</span><br>
+        <span class="section_title price">₹{{ item.price }}</span>
+      </div>
+      <div class="threebutton" *ngIf="selectedButtonIndex === i">
+        <button class="quantity-control-decrement" (click)="decreaseQuantity(i)">-</button>
+        <span>{{ quantities[i] }}</span>
+        <button class="quantity-control-increment" (click)="increaseQuantity(i)">+</button>
+        <!-- <button class="remove-selection" (click)="removeSelection()">🗑️</button> -->
+        <button class="remove-selection" (click)="removeSelection()"><img src="/assets/homepage/Delete 2.svg" ></button>
+      </div>
+      <button *ngIf="selectedButtonIndex !== i" class="book-now" [disabled]="selectedButtonIndex !== null" (click)="memberform(i)">Book Now</button>
+    </div>
+  </div>
+  <div class="scroll">
+    <div class="tabs">
+      <div class="tab" [class.active]="selectedTab === 'description'" (click)="selectTab('description')">Description</div>
+      <div class="tab" [class.active]="selectedTab === 'itinerary'" (click)="selectTab('itinerary')">Itinerary</div>
+    </div>
+    <div class="content">
+      <div *ngIf="selectedTab === 'description'">{{ descriptionContent }}</div>
+      <div *ngIf="selectedTab === 'itinerary'">{{ itineraryContent }}</div>
+    </div>
+  </div>
+  <button *ngIf="selectedButtonIndex !== null" class="next-button" (click)="goToNextPage()">Next</button>
+</section>
+
+
