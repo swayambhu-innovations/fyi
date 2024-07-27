@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="buttonset fix-below">
-      <button class="cancel-button" (click)="cancel('back')" >cancel</button>
+      <button class="cancel-button" (click)="cancel('back')">cancel</button>
       <button class="next-button" (click)="nextpannel('itinerary')">
         Next
       </button>
@@ -133,7 +133,10 @@
         </div>
         <button class="Add-btn" (click)="addActivity()">add Activity</button>
         <div class="twin-btn fix-below">
-          <lib-cancel-btn [btnName]="'Cancel'" (click)="cancel('details')"></lib-cancel-btn>
+          <lib-cancel-btn
+            [btnName]="'Cancel'"
+            (click)="cancel('details')"
+          ></lib-cancel-btn>
           <lib-save-btn
             [btnName]="'Next'"
             (click)="nextpannel('slab')"
@@ -143,149 +146,193 @@
     </form>
   </div>
 
-    <!-- slab form pannel -->
+  <!-- slab form pannel -->
 
-    <div *ngIf="'slab' == pannel ? true : false">
-      <form [formGroup]="slabAndVariantForm">
-        <ng-container formArrayName="slabs">
-          <div
-            class="activity-form form1"
-            *ngFor="let slab of slabs.controls; let i = index"
-            [formGroupName]="i"
-          >
-            <mat-accordion>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title> {{ slab.get('slabId')?.value ? slab.get('name')?.value : 'New Slab' }}
-                  </mat-panel-title>
-                  <label class="uk-switch" *ngIf="slab.get('slabId')?.value" >
-                    <input type="checkbox">
-                    <div class="uk-switch-slider" ></div>
-                  </label>
-                 <img src="/assets/addevent/delete.svg" (click)="removeSlab(i,slab)" alt="" />
-                </mat-expansion-panel-header>
-                <div class="activity-form form-group1">
-                  <div class="form-group">
-                    <label>Event Name</label>
-                    <input
-                      type="text"
-                      name="eventName"
-                      formControlName="name"
-                      class="event-name"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Description</label>
-                    <textarea
-                      id="description"
-                      name="description"
-                      formControlName="description"
-                    ></textarea>
-                  </div>
-                  <div class="dateset">
-                    <div class="form-group">
-                      <label>Start Date</label>
-                      <input
-                        type="date"
-                        name="startDate"
-                        value="2024-07-13"
-                        class="dataset1"
-                        formControlName="startDate"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label>End Date</label>
-                      <input
-                        type="date"
-                        name="endDate"
-                        value="2024-07-15"
-                        class="dataset1"
-                        formControlName="endDate"
-                      />
-                    </div>
-                  </div>
-    
-                  <div>
-                    <div class="field mt">
-                      <div
-                        class="title-with-icon input_box_bg_gradient header_text_color"
-                      >
-                        <p>Add Image</p>
-    
-                        <input
-                          type="file"
-                          #fileInput
-                          style="display: none"
-                          (change)="changePhoto($event, i)"
-                          accept="image/*"
-                        />
-                        <img
-                          src="assets/tax/pin.svg"
-                          alt="upload photo"
-                          (click)="fileInput.click()"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="full-w mt-m" *ngIf="slab.get('image')?.value">
-                    <img [src]="slab.get('image')?.value" alt="slab Photo" />
-                    <img
-                      class="top-r-corner"
-                      (click)="removeImageOfSlab(i)"
-                      src="assets/tax/cross.svg"
-                    />
-                  </div>
-                  <div class="variant-set" *ngFor="let variant of slab.get('variants')?.value; let variantIndex = index">
-                    <div class="variant-details">
-                      <span class="variant-name">{{ variant.name }}</span>
-                      <span class="variant-price">₹ {{ variant.price }}</span>
-                    </div>
-                    <div class="variant-actions">
-                      <label class="uk-switch" >
-                        <input type="checkbox"  [checked]="variant.active == true ? true : false"
-                        >
-                        <div class="uk-switch-slider" ></div>
-                      </label>
-                      
-                      <button mat-icon-button >
-                        <mat-icon>edit</mat-icon>
-                      </button>
-                      <button mat-icon-button color="warn" >
-                        <mat-icon ><img src="/assets/addevent/delete.svg" alt=""></mat-icon>
-                      </button>
-                    </div>
-                    </div>
+  <div *ngIf="'slab' == pannel ? true : false">
+    <div class="">
+    <form [formGroup]="slabAndVariantForm">
+      <ng-container formArrayName="slabs">
+        <div
+          class=""
+          *ngFor="let slab of slabs.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{
+                    slab.get("slabId")?.value
+                      ? slab.get("name")?.value
+                      : "New Slab"
+                  }}
+                </mat-panel-title>
+                <label class="uk-switch" *ngIf="slab.get('slabId')?.value">
+                  <input
+                    type="checkbox"
+                    (change)="changeStatusOfSlab(slab)"
+                    [checked]="slab.get('active')?.value"
+                  />
+                  <div class="uk-switch-slider"></div>
+                </label>
+                <img
+                  src="/assets/addevent/delete.svg"
+                  (click)="removeSlab(i, slab)"
+                  alt=""
+                />
+              </mat-expansion-panel-header>
+              <div class="slab-form">
+                <div class="">
+                  <label>Slab Name</label>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="event-name"
+                  />
                 </div>
-                <button class="Add-btn" (click)="openBottomSheet(i)">
-                  add varient
-                </button>
-              </mat-expansion-panel>
-            </mat-accordion>
-          </div>
-          <button class="Add-btn" (click)="addSlab()">Add Slab</button>
-          <div class="twin-btn fix-below">
-            <lib-cancel-btn [btnName]="'Cancel'" (click)="cancel('itinerary')"></lib-cancel-btn>
-            <lib-save-btn [btnName]="'Next'" (click)="nextpannel('city')"></lib-save-btn>
-          </div>
-        </ng-container>
-      </form>
-    </div>
-    
- 
+                <div class="">
+                  <label>Description</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    formControlName="description"
+                  ></textarea>
+                </div>
+                <div class="dateset">
+                  <div class="form-group">
+                    <label>Start Date</label>
+                    <input
+                      type="date"
+                      name="startDate"
+                      value="2024-07-13"
+                      class="dataset1"
+                      formControlName="startDate"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>End Date</label>
+                    <input
+                      type="date"
+                      name="endDate"
+                      value="2024-07-15"
+                      class="dataset1"
+                      formControlName="endDate"
+                    />
+                  </div>
+                </div>
+
+                <div class="file-upload-btn">
+                  <label>Add Image (2:1 ratio)</label>
+                  
+                    <img
+                      src="/assets/addevent/upload.svg"
+                      alt=""
+                      src="assets/tax/pin.svg"
+                      alt="upload photo"
+                      (click)="fileInput.click()"
+                    />
+                  
+                  <input
+                    type="file"
+                    #fileInput
+                    style="display: none"
+                    (change)="changePhoto($event, i)"
+                    accept="image/*"
+                  />
+                </div>
+
+                <div class="file-area">
+                  <div *ngIf="slab.get('image')?.value" class="">
+                    <img
+                      [src]="slab.get('image')?.value"
+                      alt="Uploaded Image"
+                    />
+                    <button
+                      type="button"
+                      class="remove-btn"
+                      (click)="removeImageOfSlab(i)"
+                    >
+                      &#10006;
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="variant-set"
+                  *ngFor="
+                    let variant of slab.get('variants')?.value;
+                    let variantIndex = index
+                  "
+                >
+                  <div class="variant-details">
+                    <span class="variant-name">{{ variant.name }}</span>
+                    <span class="variant-price">₹ {{ variant.price }}</span>
+                  </div>
+                  <div class="variant-actions">
+                    <label class="uk-switch">
+                      <input
+                        type="checkbox"
+                        [checked]="variant.active"
+                        (change)="changeStatusOfVariant(slab, variant)"
+                      />
+                      <div class="uk-switch-slider"></div>
+                    </label>
+
+                    <button
+                      mat-icon-button
+                      (click)="editVariant(i, variant, variantIndex)"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn">
+                      <mat-icon
+                        ><img
+                          src="/assets/addevent/delete.svg"
+                          alt=""
+                          (click)="
+                            removaVariant(slab, i, variant, variantIndex)
+                          "
+                      /></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button class="Add-btn" (click)="openBottomSheet(i)">
+                add varient
+              </button>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <button class="Add-btn" (click)="addSlab()">Add Slab</button>
+        <div class="twin-btn fix-below">
+          <lib-cancel-btn
+            [btnName]="'Cancel'"
+            (click)="cancel('itinerary')"
+          ></lib-cancel-btn>
+          <lib-save-btn
+            [btnName]="'Next'"
+            (click)="nextpannel('city')"
+          ></lib-save-btn>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+  </div>
+
   <!--city form pannel  -->
-  <div *ngIf="'city'== pannel?true: false">
+  <div *ngIf="'city' == pannel ? true : false">
     <div class="uk-search uk-search-default search-box">
-      <input 
-        class="uk-search-input" 
-        type="search" 
-        placeholder="Search for a city" 
-        [(ngModel)]="searchQuery" 
-        (input)="filterCities()" 
+      <input
+        class="uk-search-input"
+        type="search"
+        placeholder="Search for a city"
+        [(ngModel)]="searchQuery"
+        (input)="filterCities()"
         name="search"
         aria-label="Search"
-      >
+      />
       <button class="uk-search-icon-flip" uk-search-icon></button>
-      
+
       <ul *ngIf="filteredCities.length > 0" class="city-results">
         <li *ngFor="let city of filteredCities" (click)="selectCity(city)">
           {{ city.city }}, {{ city.state }}
@@ -296,17 +343,26 @@
       <div class="selected-cities">
         <div *ngFor="let city of CitiesOfEvent" class="selected-city">
           <div class="card card_bg_gradient">
-            <span class="card-title"> <p class="city header_text_color">{{ city.city }}</p> <p class="state description_text">- {{ city.state }}</p></span>
-            <img src="assets/tax/delete.svg" (click)="removeCity(city)" alt="">
+            <span class="card-title">
+              <p class="city header_text_color">{{ city.city }}</p>
+              <p class="state description_text">- {{ city.state }}</p></span
+            >
+            <img
+              src="assets/tax/delete.svg"
+              (click)="removeCity(city)"
+              alt=""
+            />
           </div>
         </div>
       </div>
     </div>
-    
-    
-  <div class="twin-btn fix-below">
-    <lib-cancel-btn [btnName]="'Cancel'" (click)="cancel('slab')"></lib-cancel-btn>
-    <lib-save-btn  [btnName]="'Next'" (click)="cancel('back')"  ></lib-save-btn>
+
+    <div class="twin-btn fix-below">
+      <lib-cancel-btn
+        [btnName]="'Cancel'"
+        (click)="cancel('slab')"
+      ></lib-cancel-btn>
+      <lib-save-btn [btnName]="'Next'" (click)="cancel('back')"></lib-save-btn>
+    </div>
   </div>
-</div>
 </section>

@@ -18,8 +18,6 @@ import { distinctUntilChanged, Observable } from 'rxjs';
 export class EventService {
   constructor(private firestore: Firestore) {}
 
-
-
   async addEvent(eventDetail: any) {
     if (eventDetail.eventId) {
       const eventDocRef = doc(this.firestore, 'events', eventDetail.eventId);
@@ -45,38 +43,32 @@ export class EventService {
   }
 
   async addSlabAndVariant(slabAndVariantDetail: any) {
-    console.log(slabAndVariantDetail);
-   
     slabAndVariantDetail.slabs.map(async (slab: any) => {
       let variants: any[] = [];
-      let newEventDocRef:any;
-      console.log('slab', slab);
-      if(!slab.slabId){  
-      newEventDocRef = doc(
-        collection(
+      let newEventDocRef: any;
+      if (!slab.slabId) {
+        newEventDocRef = doc(
+          collection(
+            this.firestore,
+            'events',
+            slabAndVariantDetail.eventId,
+            'slab-variant'
+          )
+        );
+        slab.slabId = newEventDocRef.id;
+      } else {
+        newEventDocRef = doc(
           this.firestore,
           'events',
           slabAndVariantDetail.eventId,
-          'slab-variant'
-        )
-      );
-          slab.slabId = newEventDocRef.id;
-    } 
-    else{
-       newEventDocRef = doc(
-        collection(
-          this.firestore,
-          'events',
-          slabAndVariantDetail.eventId,
-          'slab-variant',slab.slabId,
-        )
-      );
-    }
+          'slab-variant',
+          slab.slabId
+        );
+      }
       slab.variants.map(async (variant: any) => {
-       let newVarientDocRef:any
-       console.log('variant', variant);
-        if(!variant.variantId){
-           newVarientDocRef = doc(
+        let newVarientDocRef: any;
+        if (!variant.variantId) {
+          newVarientDocRef = doc(
             collection(
               this.firestore,
               'events',
@@ -87,30 +79,23 @@ export class EventService {
             )
           );
           variant.variantId = newVarientDocRef.id;
-        }
-        else{
+        } else {
           newVarientDocRef = doc(
-            collection(
-              this.firestore,
-              'events',
-              slabAndVariantDetail.eventId,
-              'slab-variant',
-              slab.slabId,
-              'variants',
-              variant.variantId
-            )
+            this.firestore,
+            'events',
+            slabAndVariantDetail.eventId,
+            'slab-variant',
+            slab.slabId,
+            'variants',
+            variant.variantId
           );
         }
-        
+
         variants.push(variant.variantId);
-        console.log('variants', variants);
         await setDoc(newVarientDocRef, variant);
       });
-      console.log('variants', variants);
-      console.log('slab', slab);
 
       slab.variants = variants;
-      console.log('slab', slab);
 
       await setDoc(newEventDocRef, slab);
     });
@@ -118,7 +103,9 @@ export class EventService {
     //}
   }
   addEventInCity(city: any) {
-    const newEventDocRef = doc(collection(this.firestore, 'events', city.eventId, 'cities'));
+    const newEventDocRef = doc(
+      collection(this.firestore, 'events', city.eventId, 'cities')
+    );
     city.id = newEventDocRef.id;
     return setDoc(newEventDocRef, city);
   }
@@ -139,12 +126,17 @@ export class EventService {
   }
   itineraryOfEvent(eventId: any) {
     return new Observable<any>((observer) => {
-      const collectionRef = doc(this.firestore, 'events', eventId, 'itinerary', 'activities');
+      const collectionRef = doc(
+        this.firestore,
+        'events',
+        eventId,
+        'itinerary',
+        'activities'
+      );
       onSnapshot(
         collectionRef,
         (snapshot) => {
-         console.log(snapshot.data())
-         let activities = snapshot.data()
+          let activities = snapshot.data();
           observer.next(activities);
         },
         (error) => {
@@ -152,52 +144,69 @@ export class EventService {
         }
       );
     });
-
   }
   getSlabAndVariantOfEvent(eventId: any) {
-      return new Observable<any>((observer) => {
-        const eventCollectionRef = collection(this.firestore, 'events', eventId, 'slab-variant');
-        
-        onSnapshot(
-          eventCollectionRef,
-          (slabSnapshot) => {
-            let slabs = [];
-            let slabsFetched = 0;
-            
-            slabSnapshot.forEach((slabDoc) => {
-              const slabData = slabDoc.data()
-              slabData['variants'] = [];
-              const slabVariantsCollectionRef = collection(this.firestore, 'events', eventId, 'slab-variant', slabDoc.id, 'variants');
-              
-              onSnapshot(
-                slabVariantsCollectionRef,
-                (variantSnapshot) => {
-                  slabData['variants'] = variantSnapshot.docs.map((variantDoc) => ({ ...variantDoc.data() }));
-                  
-                  slabsFetched++;
-                  slabs.push(slabData);
-                  
-                  if (slabsFetched === slabSnapshot.size) {
-                    observer.next(slabs);
-                  }
-                },
-                (error) => {
-                  observer.error(error);
+    return new Observable<any>((observer) => {
+      const eventCollectionRef = collection(
+        this.firestore,
+        'events',
+        eventId,
+        'slab-variant'
+      );
+
+      onSnapshot(
+        eventCollectionRef,
+        (slabSnapshot) => {
+          let slabs = [];
+          let slabsFetched = 0;
+
+          slabSnapshot.forEach((slabDoc) => {
+            const slabData = slabDoc.data();
+            slabData['variants'] = [];
+            const slabVariantsCollectionRef = collection(
+              this.firestore,
+              'events',
+              eventId,
+              'slab-variant',
+              slabDoc.id,
+              'variants'
+            );
+
+            onSnapshot(
+              slabVariantsCollectionRef,
+              (variantSnapshot) => {
+                slabData['variants'] = variantSnapshot.docs.map(
+                  (variantDoc) => ({ ...variantDoc.data() })
+                );
+
+                slabsFetched++;
+                slabs.push(slabData);
+
+                if (slabsFetched === slabSnapshot.size) {
+                  observer.next(slabs);
                 }
-              );
-            });
-          },
-          (error) => {
-            observer.error(error);
-          }
-        );
-      });
-    }
-    
+              },
+              (error) => {
+                observer.error(error);
+              }
+            );
+          });
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    });
+  }
 
   getCitiesOfEvent(eventId: any) {
     return new Observable<any[]>((observer) => {
-      const collectionRef = collection(this.firestore, 'events', eventId, 'cities');
+      const collectionRef = collection(
+        this.firestore,
+        'events',
+        eventId,
+        'cities'
+      );
       onSnapshot(
         collectionRef,
         (snapshot) => {
@@ -233,7 +242,7 @@ export class EventService {
   async getCities() {
     const states = await getDocs(collection(this.firestore, 'city-catalogue'));
     let citiesData: any[] = [];
-  
+
     const citiesPromises = states.docs.map(async (state) => {
       if (state.data()?.['active']) {
         const cities = await getDocs(
@@ -251,19 +260,47 @@ export class EventService {
         });
       }
     });
-  
+
     await Promise.all(citiesPromises);
     return citiesData;
   }
-  
 
   deleteEvent(eventId: any) {
     return deleteDoc(doc(this.firestore, 'events', eventId));
   }
   delete(docAddress: any) {
-    console.log(docAddress)
     return deleteDoc(doc(this.firestore, docAddress));
   }
 
- 
+  changeStatusOfSlab(eventId: any, slabId: any, status: any) {
+    console.log('events', eventId, 'slab-variant', slabId);
+    return updateDoc(
+      doc(this.firestore, 'events', eventId, 'slab-variant', slabId),
+      {
+        active: status,
+      }
+    );
+  }
+  changeStatusOfVariant(
+    eventId: any,
+    slabId: any,
+    variantId: any,
+    status: any
+  ) {
+    console.log(eventId, slabId, variantId);
+    return updateDoc(
+      doc(
+        this.firestore,
+        'events',
+        eventId,
+        'slab-variant',
+        slabId,
+        'variants',
+        variantId
+      ),
+      {
+        active: status,
+      }
+    );
+  }
 }

@@ -10,6 +10,10 @@
           class="input_box_bg_gradient header_text_color"
           placeholder="Enter variant name"
         />
+        <div *ngIf="variantForm.get('name')?.touched && variantForm.get('name')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('name')?.errors?.['required']">Variant Name is required.</small>
+          <small *ngIf="variantForm.get('name')?.errors?.['minlength']">Variant Name must be at least 3 characters long.</small>
+        </div>
       </div>
       <div class="field">
         <label class="description_text">Price</label>
@@ -20,6 +24,10 @@
           class="input_box_bg_gradient header_text_color"
           placeholder="Enter price"
         />
+        <div *ngIf="variantForm.get('price')?.touched && variantForm.get('price')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('price')?.errors?.['required']">Price is required.</small>
+          <small *ngIf="variantForm.get('price')?.errors?.['min']">Price cannot be less than 0.</small>
+        </div>
       </div>
   
       <div class="field">
@@ -58,6 +66,10 @@
           class="input_box_bg_gradient header_text_color"
           placeholder="Enter Total number of Tickets"
         />
+        <div *ngIf="variantForm.get('totalTicket')?.touched && variantForm.get('totalTicket')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('totalTicket')?.errors?.['required']">Total number of Tickets is required.</small>
+          <small *ngIf="variantForm.get('totalTicket')?.errors?.['min']">Total number of Tickets cannot be less than 1.</small>
+        </div>
       </div>
       <div class="field">
         <label class="description_text">Coins per ticket</label>
@@ -68,6 +80,10 @@
           class="input_box_bg_gradient header_text_color"
           placeholder="Enter Coins per ticket"
         />
+        <div *ngIf="variantForm.get('reward')?.touched && variantForm.get('reward')?.invalid" class="error-message">
+          <small *ngIf="variantForm.get('reward')?.errors?.['required']">Coins per ticket is required.</small>
+          <small *ngIf="variantForm.get('reward')?.errors?.['min']">Coins per ticket cannot be less than 0.</small>
+        </div>
       </div>
     </form>
     <div class="twin-btn">

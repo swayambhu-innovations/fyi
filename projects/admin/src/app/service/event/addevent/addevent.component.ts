@@ -128,7 +128,6 @@ export class AddeventComponent {
         await this.eventservice
           .eventDetail(this.eventForm.value.eventId)
           .subscribe((res: any) => {
-
             this.eventForm.patchValue({
               active: res.active,
               description: res.description,
@@ -139,27 +138,26 @@ export class AddeventComponent {
             });
             this.setImages(res.images);
           });
+
+        this.eventservice
+          .itineraryOfEvent(this.eventForm.value.eventId)
+          .subscribe((res: any) => {
+            this.itineraryForm.setControl(
+              'activities',
+              this.fb.array(
+                res.activities.map((activity: any) => this.fb.group(activity))
+              )
+            );
+            this.itineraryForm.patchValue({ eventId: res.eventId });
+          });
+
+        this.eventservice
+          .getSlabAndVariantOfEvent(this.eventForm.value.eventId)
+          .subscribe((res: any) => {
+            this.resetSlabForm(res);
+          });
       }
     });
-    this.eventservice
-      .itineraryOfEvent(this.eventForm.value.eventId)
-      .subscribe((res: any) => {
-        this.itineraryForm.setControl(
-          'activities',
-          this.fb.array(
-            res.activities.map((activity: any) => this.fb.group(activity))
-          )
-        );
-        this.itineraryForm.patchValue({ eventId: res.eventId });
-      });
-
-    this.eventservice
-      .getSlabAndVariantOfEvent(this.eventForm.value.eventId)
-      .subscribe((res: any) => {
-        console.log('slab-detail',res);
-        this.setFormData(res)
-       this.slabAndVariantForm.patchValue({ eventId: this.eventForm.value.eventId});
-      });
   }
   get slabs(): FormArray {
     return (
@@ -207,43 +205,39 @@ export class AddeventComponent {
 
   setFormData(data: any) {
     const slabsArray = this.slabAndVariantForm.get('slabs') as FormArray;
-  console.log(data)
-    
-      data.forEach((slab: any) => {
-        const slabGroup = this.fb.group({
-          name: [slab.name, Validators.required],
-          description: [slab.description, Validators.required],
-          startDate: [slab.startDate, Validators.required],
-          endDate: [slab.endDate, Validators.required],
-          image: [slab.image, Validators.required],
-          slabId: [slab.slabId],
-          active: [slab.active],
-          variants: this.fb.array([]),
-        });
-        console.log(slab.slabId)
-  
-        const variantsArray = slabGroup.get('variants') as FormArray;
-        slab.variants.forEach((variant: any) => {
-          const variantGroup = this.fb.group({
-            name: [variant.name, Validators.required],
-            price: [variant.price, Validators.required],
-            taxType: [variant.taxType, Validators.required],
-            taxCalc: [variant.taxCalc, Validators.required],
-            totalTicket: [variant.totalTicket, Validators.required],
-            reward: [variant.reward, Validators.required],
-            active: [variant.active || true, Validators.required],
-            variantId: [variant.variantId || ''],
-          });
-          variantsArray.push(variantGroup);
-        });
-  
-        slabsArray.push(slabGroup);
+
+    data.forEach((slab: any) => {
+      const slabGroup = this.fb.group({
+        name: [slab.name, Validators.required],
+        description: [slab.description, Validators.required],
+        startDate: [slab.startDate, Validators.required],
+        endDate: [slab.endDate, Validators.required],
+        image: [slab.image, Validators.required],
+        slabId: [slab.slabId],
+        active: [slab.active],
+        variants: this.fb.array([]),
       });
-      console.log(this.slabAndVariantForm.value);
-    }
-  
+
+      const variantsArray = slabGroup.get('variants') as FormArray;
+      slab.variants.forEach((variant: any) => {
+        const variantGroup = this.fb.group({
+          name: [variant.name, Validators.required],
+          price: [variant.price, Validators.required],
+          taxType: [variant.taxType, Validators.required],
+          taxCalc: [variant.taxCalc, Validators.required],
+          totalTicket: [variant.totalTicket, Validators.required],
+          reward: [variant.reward, Validators.required],
+          active: [variant.active, Validators.required],
+          variantId: [variant.variantId || ''],
+        });
+        variantsArray.push(variantGroup);
+      });
+
+      slabsArray.push(slabGroup);
+    });
+  }
+
   // Call the setFormData method with the response data
-  
 
   async changePhoto(e: any, index: any) {
     const file = e.target.files[0];
@@ -268,9 +262,84 @@ export class AddeventComponent {
     });
   }
 
-  removeSlab(index: any, slab: any) {
+  async removeSlab(index: any, slab: any) {
     this.slabs.removeAt(index);
+    if (slab.value.slabId) {
+      console.log(slab.value.slabId);
+      await this.eventservice.delete(
+        `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}`
+      );
+    }
   }
+  editVariant(slabIndex: any, variant: any, variantIndex: any) {
+    const bottomSheetRef = this._bottomSheet.open(AddvarientComponent, {
+      data: variant,
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(async (result) => {
+      if (result) {
+        this.updateVariant(slabIndex, variantIndex, result);
+      } else {
+      }
+    });
+  }
+  updateVariant(
+    slabIndex: number,
+    variantIndex: number,
+    updatedVariantData: any
+  ): void {
+    const variantsArray = this.getVariants(slabIndex);
+
+    if (variantsArray) {
+      const variantGroup = variantsArray.at(variantIndex) as FormGroup;
+
+      if (variantGroup) {
+        variantGroup.patchValue({
+          name: updatedVariantData.name,
+          price: updatedVariantData.price,
+          taxType: updatedVariantData.taxType,
+          taxCalc: updatedVariantData.taxCalc,
+          totalTicket: updatedVariantData.totalTicket,
+          reward: updatedVariantData.reward,
+          active: updatedVariantData.active,
+          variantId: updatedVariantData.variantId,
+        });
+      } else {
+        console.error('Variant FormGroup not found');
+      }
+    } else {
+      console.error('Variants FormArray not found');
+    }
+  }
+
+  async removaVariant(
+    slab: any,
+    slabIndex: any,
+    variant: any,
+    variantIndex: any
+  ) {
+    console.log(slab, variant);
+    (this.slabs.at(slabIndex).get('variants') as FormArray)?.removeAt(
+      variantIndex
+    );
+    if (variant.variantId) {
+      await this.eventservice.delete(
+        `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}/variants/${variant.variantId}`
+      );
+    }
+  }
+  async changeStatusOfVariant(slab: any, variant: any) {
+    variant.active = !variant.active;
+    if (variant.variantId) {
+      this.eventservice.changeStatusOfVariant(
+        this.eventForm.value.eventId,
+        slab.value.slabId,
+        variant.variantId,
+        variant.active
+      );
+    }
+  }
+
   removeImageOfSlab(slabIndex: number): void {
     const slab = (this.slabs.at(slabIndex) as FormGroup) ?? this.fb.group({});
     slab.patchValue({ image: '' });
@@ -298,7 +367,6 @@ export class AddeventComponent {
     slab.patchValue({ image: fileUrl });
   }
 
- 
   atLeastOneImageValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const formArray = control as FormArray;
@@ -319,72 +387,6 @@ export class AddeventComponent {
   }
   deleteActivity(index: number): void {
     this.activities.removeAt(index);
-  }
-
-  ngOnInit() {
-    //   this.setFormData([{
-    //     eventId: '',
-    //     slabs: [
-    //       {
-    //           description: "naksdng",
-    //           endDate: "2024-07-15",
-    //           image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
-    //           name: "dnagkd",
-    //           slabId: "",
-    //           startDate: "2024-07-04",
-    //           variants: [
-    //             {
-    //               name: "variant2",
-    //               price: "34",
-    //               taxType: "6GWEnA3iGt2iJfhDHDDS",
-    //               taxCalc: "inclusive",
-    //               totalTicket: "23423",
-    //               active:true
-    //             },
-    //             {
-    //               name: "variant2",
-    //               price: "34",
-    //               taxType: "6GWEnA3iGt2iJfhDHDDS",
-    //               taxCalc: "inclusive",
-    //               totalTicket: "23423",
-    //               active:false
-    //             }
-    //           ]
-    //       },
-    //       {
-    //           description: "naksdng",
-    //           endDate: "2024-07-15",
-    //           image: "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donotionItem%2F1721883955175.jpeg?alt=media&token=35856330-8faa-4103-9d23-8fb6f782e85f",
-    //           name: "dnagkd",
-    //           slabId: "",
-    //           startDate: "2024-07-04",
-    //           variants: [
-    //             {
-    //               name: "variant2",
-    //               price: "34",
-    //               taxType: "6GWEnA3iGt2iJfhDHDDS",
-    //               taxCalc: "inclusive",
-    //               totalTicket: "23423",
-    //               active:true
-    //             },
-    //             {
-    //               name: "variant2",
-    //               price: "34",
-    //               taxType: "6GWEnA3iGt2iJfhDHDDS",
-    //               taxCalc: "inclusive",
-    //               totalTicket: "23423",
-    //               active:false
-    //             }
-    //           ]
-    //       }
-    //     ]
-    // },
-    // ])
-    // const images = [
-    //   "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/event%2F1721814120108.jpeg?alt=media&token=985bcb30-2a40-477f-b0ea-1f35a867d773",
-    //   "https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/event%2F1721814141044.jpeg?alt=media&token=2f69390f-1f63-42e0-82f9-ad43b9765002"
-    // ];
-    // console.log(this.eventForm.value);
   }
 
   setImages(images: string[]) {
@@ -409,10 +411,6 @@ export class AddeventComponent {
   removeImage(index: number) {
     this.imagesArray.removeAt(index);
   }
-  // Add a new image FormGroup to the FormArray
-  // changePhoto() {
-  //   this.imagesArray.push(this.createImage());
-  // }
 
   async addImage(e: any) {
     const file = e.target.files[0];
@@ -440,31 +438,6 @@ export class AddeventComponent {
     fileInput.click();
   }
 
-  events: Event[] = [
-    {
-      name: 'Searic Kashi Summit 2024',
-      description: '',
-      startDate: '2024-07-13',
-      endDate: '2024-07-15',
-      images1: [],
-      variants: [
-        { name: 'Rotarian', price: 11201, isActive: true },
-        { name: 'Couple', price: 21201, isActive: false },
-      ],
-    },
-    {
-      name: 'Another Event 2024',
-      description: '',
-      startDate: '2024-08-01',
-      endDate: '2024-08-05',
-      images1: [],
-      variants: [
-        { name: 'Single', price: 5000, isActive: true },
-        { name: 'Group', price: 15000, isActive: false },
-      ],
-    },
-  ];
-
   openBottomSheet(slabIndex: number): void {
     const bottomSheetRef = this._bottomSheet.open(AddvarientComponent);
 
@@ -475,20 +448,7 @@ export class AddeventComponent {
       }
     });
   }
-  removeImageslab(eventIndex: number, imageIndex: number) {
-    this.events[eventIndex].images1.splice(imageIndex, 1);
-  }
-  async addImageinslab(e: any, eventIndex: any) {
-    const input = e.target as HTMLInputElement;
-    if (input.files) {
-      Array.from(input.files).forEach(async (file) => {
-        const filePath = `event/${new Date().getTime()}`;
-        await uploadBytesResumable(ref(this.storage, filePath), file);
-        const fileUrl = await getDownloadURL(ref(this.storage, filePath));
-        this.events[eventIndex].images1.push(fileUrl);
-      });
-    }
-  }
+
   async nextpannel(view: string) {
     switch (view) {
       case 'itinerary':
@@ -502,7 +462,10 @@ export class AddeventComponent {
         }
         break;
       case 'slab':
-        if (this.itineraryForm.valid) {
+        if (
+          this.itineraryForm.valid &&
+          this.itineraryForm.value.activities.length > 0
+        ) {
           this.eventservice
             .addItinerary(this.itineraryForm.value)
             .then(() => {});
@@ -545,8 +508,7 @@ export class AddeventComponent {
           active: true,
           eventId: eventId,
         })
-        .then((res: any) => {
-        });
+        .then((res: any) => {});
       this.filteredCities = [];
       this.searchQuery = '';
     }
@@ -622,5 +584,25 @@ export class AddeventComponent {
       this.Location.back();
     }
     this.pannel = panel;
+  }
+  changeStatusOfSlab(slab: any) {
+    console.log(slab.value);
+    this.eventservice.changeStatusOfSlab(
+      this.eventForm.value.eventId,
+      slab.value.slabId,
+      !slab.value.active
+    );
+  }
+  resetSlabForm(slabDetail: any) {
+    const slabsArray = this.slabAndVariantForm.get('slabs') as FormArray;
+    while (slabsArray.length !== 0) {
+      slabsArray.removeAt(0);
+    }
+
+    this.slabAndVariantForm.reset();
+    this.setFormData(slabDetail);
+    this.slabAndVariantForm.patchValue({
+      eventId: this.eventForm.value.eventId,
+    });
   }
 }
