@@ -3,15 +3,16 @@ section {
   padding-bottom: 70px;
   .card {
     width: 95%;
+    height: 55px;
     margin: 5px auto;
     border: 1px;
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 1px 1px 1px 1px rgb(99 94 94 / 40%);
-    margin-bottom: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(99, 94, 94, 0.4);
+    margin-bottom: 10px;
 
     .word-wrap{
         white-space: nowrap;

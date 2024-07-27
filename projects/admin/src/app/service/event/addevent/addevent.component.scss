@@ -17,10 +17,10 @@ section{
   line-height: normal;
 }
 .scroll {
-  overflow-x: auto;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  margin-bottom: 5px;
+  // overflow-x: auto;
+  // -ms-overflow-style: none; /* IE and Edge */
+  // scrollbar-width: none; /* Firefox */
+  margin-bottom: 15px;
 }
 .scroll::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
@@ -29,16 +29,16 @@ section{
   display: flex;
   justify-content: center;
   justify-content: space-between;
+  
 }
 .tab {
-  padding: 10px 30px 10px 30px;
-  border-radius: 10px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
   cursor: pointer;
   justify-content: center;
   align-items: center;
 }
-.tab.active,
-.tab:hover {
+.tab.active{
   background: var(
     --active-tab-gradient,
     linear-gradient(
@@ -263,6 +263,9 @@ textarea {
   display: flex;
   flex-direction: column;
   width: 100%;
+  textarea{
+    width: 100%;
+  }
 }
 .activity-name {
   border-radius: 12px;
@@ -340,20 +343,12 @@ lib-save-btn {
 }
 .variant-set {
   display: flex;
-  width: 320px;
-  height: 71px;
-  gap: 100px;
-  border-radius: 10px;
-  padding-left: 20px;
-  background: var(
-    --input-box-bg-gradient,
-    linear-gradient(
-      99deg,
-      rgba(225, 225, 225, 0.3) 12.07%,
-      rgba(225, 225, 225, 0.2) 48.35%,
-      rgba(225, 225, 225, 0.2) 87.93%
-    )
-  );
+    width: 100%;
+    height: 71px;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding-left: 20px;
+    background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%));
   .variant-details {
     display: flex;
     flex-direction: column;
@@ -513,7 +508,6 @@ border: 1px dashed #000;
   }
 }
 }
-
 mat-accordion {
   width: 100%;
   box-sizing: border-box;
@@ -524,9 +518,21 @@ mat-accordion {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  
   .mat-expansion-indicator svg {
     width: 24px;
     height: 24px;
     margin: 0px;
   }
+}
+
+.lower-btn{
+  display: flex;
+    width: 90vw;
+    justify-content: space-evenly;
+}
+.icon{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

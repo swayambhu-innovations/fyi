@@ -13,10 +13,10 @@
     />
   </div>
 </form>
-  <div class="flex-space-between" *ngIf="catalogueForm.get('id')?.value">
-    <p> Category ({{categoryList?.length ?? 0}})</p>
+  <div class="flex-space-between mb-10" *ngIf="catalogueForm.get('id')?.value">
+    <p class="card-title header_text_color card-title font-size-14" > Category ({{categoryList?.length ?? 0}})</p>
     <div class="sm-btn" >
-      <lib-save-btn [btnName]="'Add Category'" (click)="addCategory()"></lib-save-btn>
+      <button class="card-btn white  primary_botton_gradient" (click)="addCategory()">Add Category</button>
     </div>
   </div>
 
@@ -29,14 +29,14 @@
         (closed)="panelOpenCategory.set(category.categoryId, false)"
         >
           <mat-expansion-panel-header>
-            <mat-panel-title class="header_text_color"
+            <mat-panel-title class="header_text_color card-title font-size-18"
               >{{category.categoryName}}</mat-panel-title
             >
-            <mat-panel-description>            <p> Subcategory ({{subCategoryList[category.categoryId]?.length ?? 0}})</p>
+            <mat-panel-description>  <p class="card-title header_text_color font-size-14" > Subcategory ({{subCategoryList[category.categoryId]?.length ?? 0}})</p>
 
               </mat-panel-description>
           </mat-expansion-panel-header>
-          <div class="flex-space-between mb-5">
+          <div class="flex-space-between mb-10">
             <div class="items">
               <label class="uk-switch" >
                 <input type="checkbox"  [checked]="category.active==true?true:false" (change)="updatedStatus(category)">
@@ -47,7 +47,7 @@
               <span><img src="assets/tax/delete.svg" (click)="deleteCategory(category)" alt="" /></span></div
           >
             <div>
-              <lib-save-btn [btnName]="'Add SubCategory'" (click)="addSubCategory(category.categoryId)"></lib-save-btn>
+              <button class="card-btn white  primary_botton_gradient" (click)="addSubCategory(category.categoryId)">Add SubCategory</button>
             </div>
           </div>
           <div class="flex-space-between mb-5" *ngFor="let subCategory of subCategoryList[category.categoryId]">
@@ -59,14 +59,14 @@
                 (closed)="panelOpenSubcategory.set(subCategory.subCategoryId, false)"
                 >
                   <mat-expansion-panel-header>
-                    <mat-panel-title class="header_text_color"
+                    <mat-panel-title class="header_text_color card-title font-size-18"
                       >{{subCategory.subCategoryName}}</mat-panel-title
                     >
                     <mat-panel-description>
-                      <p>Donation Item ({{donationItemList[subCategory.subCategoryId]?.length ?? 0}})</p>
+                      <p class="card-title header_text_color font-size-14">Donation Item ({{donationItemList[subCategory.subCategoryId]?.length ?? 0}})</p>
                       </mat-panel-description>
                   </mat-expansion-panel-header>
-                  <div class="flex-space-between mb-5" >
+                  <div class="flex-space-between mb-10" >
                     <div class="items">
 
                       <label class="uk-switch" >
@@ -81,15 +81,13 @@
                       /></span></div
                   >
                     <div>
-                      <lib-save-btn
-                        [btnName]="'Add Item'"
-                        (click)="addDonationItem(subCategory.categoryId,subCategory.subCategoryId)"
-                      ></lib-save-btn>
+                      <button class="card-btn white  primary_botton_gradient" (click)="addDonationItem(subCategory.categoryId,subCategory.subCategoryId)">Add Item</button>
+                      
                     </div>
                   </div>
                   <div  *ngFor="let donationItem of donationItemList[subCategory.subCategoryId]">
                     <div class="card flex-space-between mb-5" *ngIf="donationItemIsActive(donationItem.itemId)">
-                    <div class="header_text_color word-wrap text-overflow-ellipsis"  >{{getNameOfItem(donationItem.itemId)}}</div>
+                    <div class="header_text_color word-wrap text-overflow-ellipsis card-title font-size-18 " >{{getNameOfItem(donationItem.itemId)}}</div>
                     <div class="items" >
                       <span><img src="assets/tax/edit.svg" alt="" (click)="editDonationItemDetail(donationItem)"/></span>
                       <span><img src="assets/tax/delete.svg" (click)="removeDonationItem(donationItem)" alt="" /></span>
@@ -104,8 +102,9 @@
       </mat-accordion>
     </div>
   </div>
-  <div class="twin-btn fix-below">
-    <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
-    <lib-save-btn (click)="addCatalogue()" [btnName]="'Save'" ></lib-save-btn>
-  </div>
+  
 </section>
+<div class="twin-btn fix-below">
+  <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+  <lib-save-btn (click)="addCatalogue()" [btnName]="'Save'" ></lib-save-btn>
+</div>

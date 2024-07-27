@@ -6,7 +6,7 @@
         <span class="header_text_color section_title">{{ event.eventName }}</span>
         <img src="/assets/eventList_image/icon2.svg">
     </div>
-    <div class="container" id="bgimage">
+    <div class="container" id="bgimage" [ngStyle]="{'background-image': 'url(' + event.images[0] + ')'}" >
         <div class="row2">
             <img src="/assets/eventList_image/icon1.svg">
             <p class="white button_text">{{ event.bookedSeats }} / {{ event.totalSeats }}</p>
