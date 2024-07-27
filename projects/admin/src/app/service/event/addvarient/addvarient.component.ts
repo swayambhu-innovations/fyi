@@ -22,13 +22,12 @@ export class AddvarientComponent {
     private TaxService: TaxService
   ) {}
   variantForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    price: new FormControl('', [Validators.required, Validators.min(0)]),
     taxType: new FormControl('', Validators.required),
     taxCalc: new FormControl('inclusive', Validators.required),
-    totalTicket: new FormControl('', Validators.required),
-    reward: new FormControl('', Validators.required),
-
+    totalTicket: new FormControl('', [Validators.required, Validators.min(1)]),
+    reward: new FormControl('', [Validators.required, Validators.min(0)]),
     active: new FormControl(true),
     variantId: new FormControl(''),
   });

@@ -342,10 +342,7 @@ export class AddeventComponent {
   removeImage(index: number) {
     this.imagesArray.removeAt(index);
   }
-  // Add a new image FormGroup to the FormArray
-  // changePhoto() {
-  //   this.imagesArray.push(this.createImage());
-  // }
+  
 
   async addImage(e: any) {
     const file = e.target.files[0];
@@ -373,30 +370,30 @@ export class AddeventComponent {
     fileInput.click();
   }
 
-  events: Event[] = [
-    {
-      name: 'Searic Kashi Summit 2024',
-      description: '',
-      startDate: '2024-07-13',
-      endDate: '2024-07-15',
-      images1: [],
-      variants: [
-        { name: 'Rotarian', price: 11201, isActive: true },
-        { name: 'Couple', price: 21201, isActive: false },
-      ],
-    },
-    {
-      name: 'Another Event 2024',
-      description: '',
-      startDate: '2024-08-01',
-      endDate: '2024-08-05',
-      images1: [],
-      variants: [
-        { name: 'Single', price: 5000, isActive: true },
-        { name: 'Group', price: 15000, isActive: false },
-      ],
-    },
-  ];
+  // events: Event[] = [
+  //   {
+  //     name: 'Searic Kashi Summit 2024',
+  //     description: '',
+  //     startDate: '2024-07-13',
+  //     endDate: '2024-07-15',
+  //     images1: [],
+  //     variants: [
+  //       { name: 'Rotarian', price: 11201, isActive: true },
+  //       { name: 'Couple', price: 21201, isActive: false },
+  //     ],
+  //   },
+  //   {
+  //     name: 'Another Event 2024',
+  //     description: '',
+  //     startDate: '2024-08-01',
+  //     endDate: '2024-08-05',
+  //     images1: [],
+  //     variants: [
+  //       { name: 'Single', price: 5000, isActive: true },
+  //       { name: 'Group', price: 15000, isActive: false },
+  //     ],
+  //   },
+  // ];
 
   openBottomSheet(slabIndex: number): void {
     const bottomSheetRef = this._bottomSheet.open(AddvarientComponent);
@@ -408,20 +405,20 @@ export class AddeventComponent {
       }
     });
   }
-  removeImageslab(eventIndex: number, imageIndex: number) {
-    this.events[eventIndex].images1.splice(imageIndex, 1);
-  }
-  async addImageinslab(e: any, eventIndex: any) {
-    const input = e.target as HTMLInputElement;
-    if (input.files) {
-      Array.from(input.files).forEach(async (file) => {
-        const filePath = `event/${new Date().getTime()}`;
-        await uploadBytesResumable(ref(this.storage, filePath), file);
-        const fileUrl = await getDownloadURL(ref(this.storage, filePath));
-        this.events[eventIndex].images1.push(fileUrl);
-      });
-    }
-  }
+  // removeImageslab(eventIndex: number, imageIndex: number) {
+  //   this.events[eventIndex].images1.splice(imageIndex, 1);
+  // }
+  // async addImageinslab(e: any, eventIndex: any) {
+  //   const input = e.target as HTMLInputElement;
+  //   if (input.files) {
+  //     Array.from(input.files).forEach(async (file) => {
+  //       const filePath = `event/${new Date().getTime()}`;
+  //       await uploadBytesResumable(ref(this.storage, filePath), file);
+  //       const fileUrl = await getDownloadURL(ref(this.storage, filePath));
+  //       this.events[eventIndex].images1.push(fileUrl);
+  //     });
+  //   }
+  // }
   async nextpannel(view: string) {
     switch (view) {
       case 'itinerary':
@@ -558,9 +555,13 @@ export class AddeventComponent {
     }
     this.pannel = panel;
   }
-  changeStatusOfSlab(slab:any){
+  changeStatusOfSlab(slab: any) {
     console.log(slab.value);
-    this.eventservice.changeStatusOfSlab(this.eventForm.value.eventId,slab.value.slabId,!slab.value.active)
+    this.eventservice.changeStatusOfSlab(
+      this.eventForm.value.eventId,
+      slab.value.slabId,
+      !slab.value.active
+    );
   }
   resetSlabForm(slabDetail: any) {
     const slabsArray = this.slabAndVariantForm.get('slabs') as FormArray;
