@@ -11,6 +11,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import {CommonModule} from '@angular/common';
+import { LoadingService } from '../../sharedComponent/spinner/loading.service';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -23,13 +24,15 @@ import {CommonModule} from '@angular/common';
 export class EventComponent {
 
 
-  constructor(private eventService: EventService,private Router:Router,private _bottomSheet:MatBottomSheet) { }
+  constructor(private eventService: EventService,private Router:Router,private _bottomSheet:MatBottomSheet,private LoadingService:LoadingService) { }
   imageUrl: string | undefined
   events: any[] = [];
   ngOnInit() {
+    this.LoadingService.show();
     this.eventService.getEvents().subscribe((data:any)=>{                  
       this.events=data;
       console.log(data)
+      this.LoadingService.hide();
     })
   }
   viewEvent(event: Event): void {

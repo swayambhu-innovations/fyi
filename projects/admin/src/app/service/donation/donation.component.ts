@@ -29,6 +29,7 @@ import {
 } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { LoadingService } from '../../sharedComponent/spinner/loading.service';
 
 
 @Component({
@@ -41,15 +42,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 export class DonationComponent {
   constructor(
     private _bottomSheet: MatBottomSheet,
-    private DonationItemService: DonationItemService
+    private DonationItemService: DonationItemService,
+    private LoadingService:LoadingService
   ) {}
   readonly panelOpenState = signal(false);
 
   donationItems: any[] = [];
   ngOnInit() {
+    this.LoadingService.show();
     this.DonationItemService.getDonationItems().subscribe((data: any) => {
       this.donationItems = data;
-      console.log(data)
+      this.LoadingService.hide();
     });
   }
 

@@ -21,6 +21,7 @@ import { CancelBtnComponent } from '../../../../../../shared-ui/src/cancel-btn/c
 import { SaveBtnComponent } from '../../../../../../shared-ui/src/save-btn/save-btn.component';
 import { CatalogueService } from '../service/catalogue.service';
 import { DonationItemService } from '../../donation/service/donation-item.service';
+import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
 @Component({
   selector: 'app-add-donation-item',
   standalone: true,
@@ -57,7 +58,8 @@ export class AddDonationItemComponent {
     private CatalogueService: CatalogueService,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<AddDonationItemComponent>,
-    private DonationItemService: DonationItemService
+    private DonationItemService: DonationItemService,
+    private LoadingService:LoadingService
   ) {
     if (this.data && this.data.itemId) {
       this.donationItemForm.setValue(this.data);
@@ -79,6 +81,7 @@ export class AddDonationItemComponent {
   }
 
   getDonationItemList() {
+    this.LoadingService.show();
     this.DonationItemService.getDonationItems().subscribe((data: any) => {
       data.map((item: any) => {
         if (item['active']) {
@@ -86,6 +89,7 @@ export class AddDonationItemComponent {
         }
       });
       this.selectedDonationItem = this.donationItems[0].itemId;
+      this.LoadingService.hide();
     });
   }
 

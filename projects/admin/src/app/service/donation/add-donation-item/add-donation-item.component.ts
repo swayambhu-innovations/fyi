@@ -24,6 +24,7 @@ import {
 import { DonationItemService } from '../service/donation-item.service';
 import {CancelBtnComponent} from '../../../../../../shared-ui/src/cancel-btn/cancel-btn.component';
 import {SaveBtnComponent} from '../../../../../../shared-ui/src/save-btn/save-btn.component';
+import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
 
 @Component({
   selector: 'app-add-donation-item',
@@ -47,10 +48,12 @@ export class AddDonationItemComponent {
     private DonationItemService: DonationItemService,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<AddDonationItemComponent>,
-    private Storage: Storage
+    private Storage: Storage,
+    private LoadingService:LoadingService
   ) {}
 
   async changePhoto(e: any) {
+    this.LoadingService.show();
     const file = e.target.files[0];
     const fileSizeKB = file.size / 1024;
     const maxSizeKB = 500;
@@ -71,6 +74,7 @@ export class AddDonationItemComponent {
     this.donationItemForm.patchValue({
       photoURL: fileUrl,
     });
+    this.LoadingService.hide();
   }
 
   ngOnInit() {

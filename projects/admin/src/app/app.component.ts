@@ -8,11 +8,11 @@ import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { EventComponent } from "./service/event/event.component";
 import { filter } from 'rxjs';
 import { SplashScreenComponent } from "./auth/splash-screen/splash-screen.component";
-
+import { SpinnerComponent } from './sharedComponent/spinner/spinner.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, NotAdminComponent, NavbarComponent, EventComponent, SplashScreenComponent],
+  imports: [RouterOutlet, LoginComponent, NotAdminComponent, NavbarComponent, EventComponent, SplashScreenComponent,SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

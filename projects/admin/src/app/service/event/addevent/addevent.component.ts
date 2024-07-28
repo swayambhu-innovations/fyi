@@ -28,6 +28,7 @@ import { AbstractControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DeleteBottomSheetComponent } from '../../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
+import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
 import {
   FormBuilder,
   FormControl,
@@ -101,7 +102,8 @@ export class AddeventComponent {
     private fb: FormBuilder,
     private eventservice: EventService,
     private Location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private LoadingService: LoadingService
   ) {
     this.slabAndVariantForm = this.fb.group({
       slabs: this.fb.array([], this.atLeastOneImageValidator()),
@@ -122,6 +124,7 @@ export class AddeventComponent {
       images: this.fb.array([], this.atLeastOneImageValidator()),
     });
     // this.setInitialValues();
+    this.LoadingService.show();
     this.route.paramMap.subscribe(async (params) => {
       if (params.get('id') !== null) {
         this.eventForm.value.eventId = params.get('id') || '';
@@ -157,6 +160,7 @@ export class AddeventComponent {
             this.resetSlabForm(res);
           });
       }
+      this.LoadingService.hide();
     });
   }
   get slabs(): FormArray {
@@ -479,6 +483,7 @@ export class AddeventComponent {
       case 'city':
         console.log(this.slabAndVariantForm.value);
         if (this.slabAndVariantForm.valid) {
+          this.LoadingService.show();
           this.eventservice
             .addSlabAndVariant(this.slabAndVariantForm.value)
             .then(() => {
@@ -496,6 +501,7 @@ export class AddeventComponent {
     this.eventservice.getCities().then((res: any) => {
       this.cities = res;
       this.getCitiesOfEvent(this.eventForm.value.eventId);
+      this.LoadingService.hide();
     });
     return '';
   }
@@ -508,14 +514,18 @@ export class AddeventComponent {
         city.cityId === newCity.cityId && city.stateId === newCity.stateId
     );
     if (cityExists) {
+      
     } else {
+
       this.eventservice
         .addEventInCity({
           ...newCity,
           active: true,
           eventId: eventId,
         })
-        .then((res: any) => {});
+        .then((res: any) => {
+        
+        });
       this.filteredCities = [];
       this.searchQuery = '';
     }
@@ -535,8 +545,10 @@ export class AddeventComponent {
   }
   CitiesOfEvent: any[] = [];
   getCitiesOfEvent(eventId: string) {
+    this.LoadingService.show();
     this.eventservice.getCitiesOfEvent(eventId).subscribe(async (res: any) => {
       this.CitiesOfEvent = await this.filterActiveCities(res);
+      this.LoadingService.hide();
     });
   }
 

@@ -21,6 +21,7 @@ import { DonationItemService } from '../../donation/service/donation-item.servic
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteBottomSheetComponent } from '../../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
 import { Location } from '@angular/common';
+import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
 @Component({
   selector: 'app-create-catalogue',
   standalone: true,
@@ -59,7 +60,9 @@ export class CreateCatalogueComponent {
     private CatalogueService: CatalogueService,
     private _bottomSheet: MatBottomSheet,
     private DonationItemService: DonationItemService,
-    private location: Location
+    private location: Location,
+    private loadingService: LoadingService
+
   ) {
     this.route.paramMap.subscribe((params) => {
       if (params.get('id') !== null) {
@@ -72,6 +75,7 @@ export class CreateCatalogueComponent {
   }
 
   ngOnInit(): void {
+
     this.getCategoryList();
     this.activeDonationItems();
   }
@@ -114,11 +118,14 @@ export class CreateCatalogueComponent {
   }
 
   getCategoryList() {
+    this.loadingService.show();
+
     if (this.catalogueForm.value.id) {
       this.CatalogueService.getCategoryList(
         this.catalogueForm.value.id
       ).subscribe((data: any) => {
         this.categoryList = data;
+        this.loadingService.hide();
 
         this.categoryList.map((category: any) => {
           if (category.categoryId) {

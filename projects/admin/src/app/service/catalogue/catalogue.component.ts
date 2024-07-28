@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { HeaderWithBackComponent } from '../../sharedComponent/header-with-back/header-with-back.component';
 import { CreateCatalogueComponent } from './create-catalogue/create-catalogue.component';
 import { DeleteBottomSheetComponent } from '../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
+import { LoadingService } from '../../sharedComponent/spinner/loading.service';
 @Component({
   selector: 'app-catalogue',
   standalone: true,
@@ -28,14 +29,17 @@ export class CatalogueComponent {
   constructor(
     private CatalogueService: CatalogueService,
     private _bottomSheet: MatBottomSheet,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   catalogueList: any[] = [];
 
   ngOnInit() {
+    this.loadingService.show();
     this.CatalogueService.getCatalogueList().subscribe((data: any) => {
       this.catalogueList = data;
+      this.loadingService.hide();
     });
   }
 
