@@ -13,9 +13,9 @@
         <button class="see-all" (click)="seeAllEvent()">See All</button>
     </div>
     <div class="slider">
-        <div *ngFor="let event of events" class="slide" (click)="onSurveyClick(event)">
-            <img [src]="event.image" [alt]="event.title">
-            <p class="section_title header_text_color">{{ event.title }}</p>
+        <div *ngFor="let event of eventService.eventList()" class="slide" (click)="onSurveyClick(event)">
+            <img [src]="event.images[0]" [alt]="event.title">
+            <p class="section_title header_text_color">{{ event.eventName}}</p>
             <div class="bookNow">
                 <p class="paragraph_text">Limited seats Availabe</p>
                 <button>Book Now</button>

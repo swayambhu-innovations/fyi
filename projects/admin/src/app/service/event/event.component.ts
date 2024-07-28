@@ -11,7 +11,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import {CommonModule} from '@angular/common';
-import { LoadingService } from '../../sharedComponent/spinner/loading.service';
+import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
 @Component({
   selector: 'app-event',
   standalone: true,

@@ -11,7 +11,7 @@ import {
 } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { DeleteTaxComponent } from './delete-tax/delete-tax.component';
-
+import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
 @Component({
   selector: 'app-tax',
   standalone: true,
@@ -32,14 +32,17 @@ import { DeleteTaxComponent } from './delete-tax/delete-tax.component';
 export class TaxComponent {
   constructor(
     private taxService: TaxService,
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    private LoadingService: LoadingService
   ) {}
 
   taxes: any[] = [];
 
   ngOnInit() {
+    this.LoadingService.show();
     this.taxService.getTax().subscribe((data: any) => {
       this.taxes = data;
+      this.LoadingService.hide();
     });
   }
 

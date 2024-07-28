@@ -29,7 +29,7 @@ import {
 } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { LoadingService } from '../../sharedComponent/spinner/loading.service';
+import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
 
 
 @Component({

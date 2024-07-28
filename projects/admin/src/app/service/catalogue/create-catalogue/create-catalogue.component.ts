@@ -21,7 +21,7 @@ import { DonationItemService } from '../../donation/service/donation-item.servic
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteBottomSheetComponent } from '../../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
 import { Location } from '@angular/common';
-import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
+import { LoadingService } from '../../../../../../shared-ui/src/lib/spinner/loading.service';
 @Component({
   selector: 'app-create-catalogue',
   standalone: true,

@@ -1,5 +1,5 @@
 
-<div class="navbar">
+<div  *ngIf="showNavbar" class="navbar">
     <button (click)="moveToHome()" [class.active]="currentTab === 'home'">
         <img [src]="currentTab === 'home' ? '/assets/navbar/home1.svg' : '/assets/navbar/home.svg'" alt="Home">
         <span>Home</span>

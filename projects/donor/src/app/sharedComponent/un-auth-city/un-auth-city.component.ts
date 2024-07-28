@@ -10,6 +10,7 @@ import { GeolocationService } from '../../geolocation/geolocation.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
 
 @Component({
   selector: 'app-un-auth-city',
@@ -24,7 +25,8 @@ export class UnAuthCityComponent {
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<UnAuthCityComponent>,
     private geolocationService: GeolocationService,
-    private router:Router
+    private router:Router,
+    private loadingService: LoadingService
   ) {}
 
   state: string | null = null;
@@ -32,6 +34,7 @@ export class UnAuthCityComponent {
   selectedCityId: string = '';
 
   async ngOnInit() {
+    this.loadingService.show();
     try {
       const coords = await this.geolocationService.getCurrentLocation();
       this.state = await this.geolocationService.getStateFromCoordinates(
@@ -46,6 +49,7 @@ export class UnAuthCityComponent {
       cities?.docs.map((city) => {
         if(city.data()['active']){
         this.cities.push(city.data());
+        this.loadingService.hide();
         }
       });
       this.selectedCityId = this.cities[0].cityId;

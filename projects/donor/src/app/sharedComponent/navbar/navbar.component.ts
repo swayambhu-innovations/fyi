@@ -9,7 +9,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  constructor(private router: Router){}
+  hiddenRoutes = ['/login', '/add-address', '/otp', '/profile'];
+  showNavbar:any
+  constructor(private router: Router){
+    this.checkRoute(this.router.url);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkRoute(event.urlAfterRedirects);
+      }
+    });
+  }
   currentTab: string = 'home';
   moveToHome(){
     this.currentTab = 'home';
@@ -32,7 +41,9 @@ export class NavbarComponent {
     this.currentTab = 'account';
     this.router.navigate(['account']);
   }
-  
+  private checkRoute(url: string) {
+    this.showNavbar = !this.hiddenRoutes.some(route => url.includes(route));
+  }
   
 
   }

@@ -1,31 +1,33 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { HeaderWithBackComponent } from "../../../sharedComponent/header-with-back/header-with-back.component";
+import { HeaderWithBackComponent } from '../../../sharedComponent/header-with-back/header-with-back.component';
+import { EventService } from '../event.service';
 @Component({
   selector: 'app-event-list',
   standalone: true,
   imports: [CommonModule, HeaderWithBackComponent],
   templateUrl: './event-list.component.html',
-  styleUrl: './event-list.component.scss'
+  styleUrl: './event-list.component.scss',
 })
 export class EventListComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, public EventService: EventService) {}
   items = [
     {
-      image: '/assets/homepage/eventimage.svg',  // Adjust the path to your image
-      title: 'Cearic Kashi Summit 2024'
+      image: '/assets/homepage/eventimage.svg', // Adjust the path to your image
+      title: 'Cearic Kashi Summit 2024',
     },
     {
-      image: '/assets/homepage/eventlist.svg',  // Adjust the path to your image
-      title: 'Cearic Kashi Summit 2025'
+      image: '/assets/homepage/eventlist.svg', // Adjust the path to your image
+      title: 'Cearic Kashi Summit 2025',
     },
     {
-      image: '/assets/homepage/eventimage.svg',  // Adjust the path to your image
-      title: 'Cearic Kashi Summit 2026'
-    }
+      image: '/assets/homepage/eventimage.svg', // Adjust the path to your image
+      title: 'Cearic Kashi Summit 2026',
+    },
   ];
-  viewSlsbList(){
-    this.router.navigate(['slab-list']);
+  viewSlsbList(eventId: any) {
+    console.log(eventId);
+    this.router.navigate(['slab', eventId]);
   }
 }

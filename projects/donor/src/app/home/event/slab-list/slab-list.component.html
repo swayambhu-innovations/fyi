@@ -4,12 +4,12 @@
     <input type="text" class="search-bar" placeholder="Search city to add" />
   
     <div class="grid">
-      <div class="card" *ngFor="let item of items">
+      <div class="card" *ngFor="let item of this.EventService.slabList()[this.eventId]">
         <div class="image-container">
-          <img [src]="item.image" alt="{{item.title}}" class="card-image" />
+          <img [src]="item.image" alt="{{item.name}}" class="card-image" />
           <div class="overlay">
-            <p class="card-title">{{item.title}}</p>
-            <button class="book-now-btn" (click)="movetovarient()">Book Now</button>
+            <p class="card-title">{{item.name}}</p>
+            <button class="book-now-btn" (click)="movetovarient(item.slabId)">Book Now</button>
           </div>
         </div>
       </div>

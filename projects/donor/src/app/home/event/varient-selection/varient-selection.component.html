@@ -8,9 +8,9 @@
     </div>
   </div>
   <div class="varient">
-    <div *ngFor="let item of items; let i = index" class="rotarian">
+    <div *ngFor="let item of this.EventService.variantList()[this.slabId]; let i = index" class="rotarian">
       <div>
-        <span class="section_title header_text_color label">{{ item.title }}</span><br>
+        <span class="section_title header_text_color label">{{ item.name }}</span><br>
         <span class="section_title price">₹{{ item.price }}</span>
       </div>
       <div class="threebutton" *ngIf="selectedButtonIndex === i">

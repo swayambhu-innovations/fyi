@@ -8,7 +8,7 @@ import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { EventComponent } from "./service/event/event.component";
 import { filter } from 'rxjs';
 import { SplashScreenComponent } from "./auth/splash-screen/splash-screen.component";
-import { SpinnerComponent } from './sharedComponent/spinner/spinner.component';
+import { SpinnerComponent } from '../../../shared-ui/src/lib/spinner/spinner.component';
 @Component({
   selector: 'app-root',
   standalone: true,

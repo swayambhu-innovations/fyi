@@ -24,7 +24,7 @@ import {
 import { DonationItemService } from '../service/donation-item.service';
 import {CancelBtnComponent} from '../../../../../../shared-ui/src/cancel-btn/cancel-btn.component';
 import {SaveBtnComponent} from '../../../../../../shared-ui/src/save-btn/save-btn.component';
-import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
+import { LoadingService } from '../../../../../../shared-ui/src/lib/spinner/loading.service';
 
 @Component({
   selector: 'app-add-donation-item',

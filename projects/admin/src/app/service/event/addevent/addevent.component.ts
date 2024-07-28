@@ -28,7 +28,7 @@ import { AbstractControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DeleteBottomSheetComponent } from '../../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
-import { LoadingService } from '../../../sharedComponent/spinner/loading.service';
+import { LoadingService } from '../../../../../../shared-ui/src/lib/spinner/loading.service';
 import {
   FormBuilder,
   FormControl,
