@@ -5,7 +5,7 @@
         <div class="detail">
             <h3 class="section_title">Excitement events waiting for you</h3>
             <p class="paragraph_text">Register in various slabs of each events</p>
-            <button class="primary">view all</button>
+            <button class="primary" (click)="seeAllEvent()"></button>>view all</button>
         </div>
     </div>
     <div class="heading">
@@ -13,7 +13,7 @@
         <button class="see-all" (click)="seeAllEvent()">See All</button>
     </div>
     <div class="slider">
-        <div *ngFor="let event of eventService.eventList()" class="slide" (click)="onSurveyClick(event)">
+        <div *ngFor="let event of eventService.eventList()" class="slide" (click)="viewSlsbList(event.eventId)">
             <img [src]="event.images[0]" [alt]="event.title">
             <p class="section_title header_text_color">{{ event.eventName}}</p>
             <div class="bookNow">

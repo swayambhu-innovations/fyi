@@ -132,4 +132,8 @@ export class EventComponent {
   onSurveyClick(survey: any): void {
     window.location.href = survey.link;
   }
+  viewSlsbList(eventId: any) {
+    console.log(eventId);
+    this.router.navigate(['slab', eventId]);
+  }
 }
