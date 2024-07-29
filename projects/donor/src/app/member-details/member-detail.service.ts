@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
-
+import { addDoc, collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { EventService } from '../home/event/event.service';
 @Injectable({
   providedIn: 'root'
 })
 export class MemberDetailService {
 
-  constructor(private firestore: Firestore ) { }
-  async createCoupon(data: any) {
+  constructor(private firestore: Firestore,private EventService:EventService ) { }
+  async addInbooking() {
     try {
-      const docRef = await addDoc(collection(this.firestore, 'member-details'), data);
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
+      console.log(this.EventService.bookingDetails())
+      let userId=this.EventService.bookingDetails()['customer'].uid
+      let bookingDetail = this.EventService.bookingDetails()
+      console.log(this.EventService.bookingDetails())
+      const newBookingDocRef = doc(collection(this.firestore, 'users',userId,'bookings')); 
+      bookingDetail.id = newBookingDocRef.id; 
+      setDoc(newBookingDocRef, bookingDetail);
+      return {bookingId:bookingDetail.id}
+    }
+     catch (e) {
       console.error("Error adding document: ", e);
+      return e
     }
   }
 }

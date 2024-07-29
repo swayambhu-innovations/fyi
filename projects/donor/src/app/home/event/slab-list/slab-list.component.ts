@@ -42,7 +42,14 @@ export class SlabListComponent {
     },
   ];
 
-  movetovarient(slabId: any) {
+  ngOnInit(){
+  
+  }
+
+  movetovarient(slabId: any,slab:any) {
+    let bookingDetails =this.EventService.bookingDetails()
+    bookingDetails['slab'] = slab;
+    this.EventService.bookingDetails.set(bookingDetails);
     this.router.navigate(['varient', slabId]);
   }
 }

@@ -26,8 +26,10 @@ export class EventListComponent {
       title: 'Cearic Kashi Summit 2026',
     },
   ];
-  viewSlsbList(eventId: any) {
-    console.log(eventId);
+  viewSlsbList(eventId: any,event:any) {
+    let bookingDetails =this.EventService.bookingDetails()
+    bookingDetails['event'] = event;
+    this.EventService.bookingDetails.set(bookingDetails);
     this.router.navigate(['slab', eventId]);
   }
 }

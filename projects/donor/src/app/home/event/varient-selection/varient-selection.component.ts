@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderWithBackComponent } from '../../../sharedComponent/header-with-back/header-with-back.component';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../event.service';
+
 @Component({
   selector: 'app-varient-selection',
   standalone: true,
@@ -58,11 +59,71 @@ export class VarientSelectionComponent {
   selectedButtonIndex: number | null = null;
   quantities: number[] = [];
 
+  slabDetail:any
+  slabDescription:any
+  itinerary:any
+
+  ngOnInit(){
+    this.slabDetail=this.EventService.bookingDetails()['slab']
+    let curEvent = this.EventService.bookingDetails()['event'].eventId
+    let itineraryList :any = this.EventService.itineraryList()[curEvent]
+    this.itinerary=  this.groupAndSortActivities(itineraryList['activities'])
+  }
+
+  convertTo12Hour(time: string): string {
+    const [hours, minutes] = time.split(':').map(Number);
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = ((hours + 11) % 12 + 1);
+    return `${formattedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+  }
+
+  groupAndSortActivities(activities: any[]): any {
+    const groupedActivities = activities.reduce((acc, activity) => {
+      const { date } = activity;
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(activity);
+      return acc;
+    }, {});
+  
+    // Sort activities by startTime within each date
+    for (const date in groupedActivities) {
+      groupedActivities[date].sort((a:any, b:any) => {
+        const timeA = this.convertTo12Hour(a.startTime);
+        const timeB = this.convertTo12Hour(b.startTime);
+        return timeA.localeCompare(timeB);
+      });
+  
+      // Convert startTime and endTime to 12-hour format
+      groupedActivities[date] = groupedActivities[date].map((activity:any) => ({
+        ...activity,
+        startTime: this.convertTo12Hour(activity.startTime),
+        endTime: this.convertTo12Hour(activity.endTime)
+      }));
+    }
+  
+    // Sort grouped activities by date
+    const sortedGroupedActivities = Object.keys(groupedActivities)
+      .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
+      .reduce((acc:any, date:any) => {
+        acc[date] = groupedActivities[date];
+        return acc;
+      }, {});
+  
+    return sortedGroupedActivities;
+  }
+
+
   selectTab(tab: string) {
     this.selectedTab = tab;
   }
 
-  memberform(index: number) {
+  memberform(index: number, variant: any) {
+    let bookingDetails = this.EventService.bookingDetails();
+    bookingDetails['variant'] = variant;
+    this.EventService.bookingDetails.set(bookingDetails);
+
     this.selectedButtonIndex = index;
     this.quantities[index] = 1;
   }
@@ -83,6 +144,14 @@ export class VarientSelectionComponent {
     this.selectedButtonIndex = null;
   }
   goToNextPage() {
+    const index =
+      this.selectedButtonIndex !== null ? this.selectedButtonIndex : 0;
+    console.log(this.quantities[index]);
+    console.log(this.quantities[index]);
+    let bookingDetails = this.EventService.bookingDetails();
+    bookingDetails.totalMember = this.quantities[index];
+    this.EventService.bookingDetails.set(bookingDetails);
+
     this.router.navigate(['member-detail']);
   }
 }

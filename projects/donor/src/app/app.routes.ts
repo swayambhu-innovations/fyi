@@ -26,6 +26,7 @@ export const routes: Routes = [
     {path: 'add-address', component : AddAddressComponent},
     {path:'member-detail',component:MemberDetailsComponent},
     {path:'event-payment' , component:EventPaymentComponent},
+    {path:'payment/:id' , component:EventPaymentComponent},
     {path:'payment-successful',component:PaymentSuccessfulComponent},
     {path:'survey-list' , component:ListOfSurveyComponent},
     {path:'event-list' , component:EventListComponent},

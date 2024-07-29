@@ -1,9 +1,9 @@
-<app-header-with-back [pageTitle]="'Panchang slab '"></app-header-with-back>
+<app-header-with-back [pageTitle]="this.EventService.bookingDetails()['slab'].name"></app-header-with-back>
 <section>
   <div class="event-slider">
     <div class="slider">
       <div *ngFor="let event of events" class="slide">
-        <img [src]="event.image" [alt]="event.title">
+        <img [src]="this.slabDetail.image" [alt]="event.title">
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
         <!-- <button class="remove-selection" (click)="removeSelection()">🗑️</button> -->
         <button class="remove-selection" (click)="removeSelection()"><img src="/assets/homepage/Delete 2.svg" ></button>
       </div>
-      <button *ngIf="selectedButtonIndex !== i" class="book-now" [disabled]="selectedButtonIndex !== null" (click)="memberform(i)">Book Now</button>
+      <button *ngIf="selectedButtonIndex !== i" class="book-now" [disabled]="selectedButtonIndex !== null" (click)="memberform(i,item)">Book Now</button>
     </div>
   </div>
   <div class="scroll">
@@ -29,7 +29,7 @@
       <div class="tab" [class.active]="selectedTab === 'itinerary'" (click)="selectTab('itinerary')">Itinerary</div>
     </div>
     <div class="content">
-      <div *ngIf="selectedTab === 'description'">{{ descriptionContent }}</div>
+      <div *ngIf="selectedTab === 'description'">{{ this.slabDetail.description }}</div>
       <div *ngIf="selectedTab === 'itinerary'">{{ itineraryContent }}</div>
     </div>
   </div>

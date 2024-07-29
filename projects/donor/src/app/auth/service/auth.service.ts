@@ -18,6 +18,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { DataProviderService } from './data-provider.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { EventService } from '../../home/event/event.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +31,8 @@ export class AuthService {
     public auth: Auth,
     private Firestore: Firestore,
     private dataProvider: DataProviderService,
-    private router: Router
+    private router: Router,
+    private eventService: EventService
   ) {
     this.dataProvider.checkingAuth = true;
     this.auth.onAuthStateChanged((user) => {

@@ -6,7 +6,7 @@
       <img [src]="item.images[0]" alt="{{item.eventName}}" class="card-image" />
       <div class="card-content">
         <p class="card-title header_text_color paragraph_text">{{item.eventName}}</p>
-        <button class="view-slabs-btn" (click)="viewSlsbList(item.eventId)">View Slabs</button>
+        <button class="view-slabs-btn" (click)="viewSlsbList(item.eventId,item)">View Slabs</button>
       </div>
     </div>
 
@@ -15,7 +15,7 @@
       <img [src]="item.images[0]" alt="{{item.eventName}}" class="card-image" />
       <div class="card-content">
         <p class="card-title header_text_color paragraph_text">{{item.title}}</p>
-        <button class="view-slabs-btn" (click)="viewSlsbList(item.eventId)">View Slabs</button>
+        <button class="view-slabs-btn" (click)="viewSlsbList(item.eventId,item)">View Slabs</button>
       </div>
     </div>
   </div>    
