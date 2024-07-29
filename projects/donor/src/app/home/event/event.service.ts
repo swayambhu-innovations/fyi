@@ -1,6 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { addDoc, collection, deleteDoc, doc, Firestore, getDocs, onSnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
 import { distinctUntilChanged, Observable } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,13 +11,15 @@ export class EventService {
   cityDoc = signal<any[]>([]);
   eventList = signal<any[]>([]);
   itineraryList = signal<{ [key: string]: any[] }>({});
-
   slabList = signal<{ [key: string]: any[] }>({});
   variantList = signal<{ [key: string]: any[] }>({});
 
+  bookingDetails = signal<any>({});
 
 
-  constructor(private firestore:Firestore ) { }
+  constructor(private firestore:Firestore ) { 
+    
+  }
 
   
   fetchDoc(collectionAddress:any): Observable<any> {

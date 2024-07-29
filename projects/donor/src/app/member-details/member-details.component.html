@@ -1,4 +1,5 @@
-<app-header-with-back [pageTitle]="'Couples '"></app-header-with-back>
+<app-header-with-back [pageTitle]="this.EventService.bookingDetails()['variant'].name"></app-header-with-back>
+<section>
 <div class="scroll">
     <div class="tabs">
         <div *ngFor="let tab of tabs; let i = index" (click)="setActiveTab(i)" [class.active]="i === activeTab" class="tab section_title">
@@ -83,3 +84,4 @@
             </div>
             <button type="submit" class="submit-button">{{ activeTab === tabs.length - 1 ? 'Next' : 'Submit' }}</button>
 </form>
+</section>

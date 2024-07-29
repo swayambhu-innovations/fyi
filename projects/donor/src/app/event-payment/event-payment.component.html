@@ -6,14 +6,14 @@
       <img src="assets/event-payment/image.svg" alt="Event Image" class="event-image">
       <div class="event-details">
     
-        <h3 class="section_title heading">Kashi Summit 2024</h3>
+        <h3 class="section_title heading">{{this.EventService.bookingDetails()['event'].eventName}}</h3>
         <div class="row2">
-            <p class="paragraph_text header_text_color">Panchang slab</p>
-            <p class="paragraph_text header_text_color">Couple</p>
+            <p class="paragraph_text header_text_color">{{this.EventService.bookingDetails()['slab'].name}}</p>
+            <p class="paragraph_text header_text_color">{{this.EventService.bookingDetails()['variant'].name}}</p>
         </div>
         <div class="row2" >
-            <p class="paragraph_text header_text_color ticket green">₹12000</p>
-            <p class="paragraph_text header_text_color ticket">Tickets: 1</p>
+            <p class="paragraph_text header_text_color ticket green">₹{{this.EventService.bookingDetails()['variant'].price}}</p>
+            <p class="paragraph_text header_text_color ticket">Tickets: {{this.EventService.bookingDetails()['totalMember']}}</p>
         </div>
       </div>
     </div>
@@ -21,19 +21,19 @@
       <h3 class="section_title">Payment Details</h3>
       <div class="detail-row">
         <span class="paragraph_text">Total (MRP)</span>
-        <span>₹12000</span>
+        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].totalPrice}}</span>
       </div>
       <div class="detail-row">
         <span class="paragraph_text">Discount</span>
-        <span style="color: #579540;">-₹990</span>
+        <span style="color: #579540;">-₹0</span>
       </div>
       <div class="detail-row">
         <span class="paragraph_text">Discounted Price</span>
-        <span>₹11010</span>
+        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].totalPrice}}</span>
       </div>
       <div class="total-row">
         <span class="section_title ">Total</span>
-        <span class="section_title ">₹11010</span>
+        <span class="section_title ">₹{{this.EventService.bookingDetails()['paymentDetail'].totalPrice}}</span>
       </div>
     </div>
     <button class="proceed-button" (click)="moveToSuccessful()">Proceed to Pay</button>

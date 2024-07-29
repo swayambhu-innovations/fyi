@@ -49,6 +49,7 @@ export class EventComponent {
 
   ngOnInit(): void {
     this.getEvent();
+    
   }
   async getEvent() {
     this.loadingService.show();
@@ -72,7 +73,6 @@ export class EventComponent {
           this.eventService.fetchDoc(`events/${eventId}`)
         );
         if (event.active) {
-          eventList.push(event);
 
           const itinerary: any = await firstValueFrom(
             this.eventService.fetchDoc(`events/${eventId}/itinerary/activities`)
@@ -92,7 +92,6 @@ export class EventComponent {
               )
             );
             if (slabDetail.active) {
-              slabList[eventId].push(slabDetail);
 
               const variants: any[] = await firstValueFrom(
                 this.eventService.fetchDocs(
@@ -112,7 +111,14 @@ export class EventComponent {
                 }
                 this.loadingService.hide();
               }
+              if(Object.keys(variantList).length> 0){
+              
+              slabList[eventId].push(slabDetail);
             }
+            }
+          }
+          if(Object.keys(slabList).length> 0){
+          eventList.push(event);
           }
         }
       }
@@ -133,7 +139,6 @@ export class EventComponent {
     window.location.href = survey.link;
   }
   viewSlsbList(eventId: any) {
-    console.log(eventId);
     this.router.navigate(['slab', eventId]);
   }
 }
