@@ -1,0 +1,72 @@
+.event{
+    
+  padding: 20px;
+  .heading{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15%;
+      .filtre{
+        width: 130px;
+        height: 32px;
+        margin-right: 5px;
+        border-radius: 10px;
+      }
+  }
+  
+}
+.card{
+  background: linear-gradient(90.61deg, rgba(224, 224, 224, 0.3) 0.53%, rgba(224, 224, 224, 0.2) 47.85%, rgba(224, 224, 224, 0.1) 99.47%);
+  border-radius: 12px;
+ 
+margin-top: 10px;
+  .ticket-info {
+    display: flex;
+    //padding: 10px;
+    justify-content:space-around;
+  
+    .event-details{
+      .name{
+     
+        font-size: 20px;
+      }
+      p{
+        margin-top: 5px;
+        font-size: 14px;
+        
+      }
+      .heading {
+        font-size: 20px;
+        color: #000;
+        margin: 5px 0;
+      }
+      .row2 {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+      
+      p {
+        font-size: 14px;
+        color: #444;
+        margin: 0;
+      }
+      
+      .green {
+        color: #48BC1F;
+        font-weight: bold;
+      }
+    }
+  
+  }
+  
+  
+  
+
+  
+ 
+  
+  
+}
+
+
+

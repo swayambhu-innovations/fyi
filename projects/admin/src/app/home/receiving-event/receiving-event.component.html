@@ -1,0 +1,31 @@
+<Section class="event">
+    <div class="heading">
+        <h2 class="section_title header_text_color">Booked Events</h2>
+        <select class="filtre">
+            <option value="newest">newest</option>
+            <option value="oldest">oldest</option>
+        </select>
+    </div>
+    <div class="card" *ngFor="let event of eventdetail" (click)="bookingdetail()">
+        <div class="ticket-info" >
+            <img src="assets/homepage/image.svg" alt="Event Image" class="event-image">
+            <div class="event-details">
+                <p class=" section_title name">{{event.name}}</p>
+                <p class="paragraph_text contact ">Contact : {{ event.Contact }}</p>
+                <h3 class="section_title heading">{{ event.eventName }}</h3>
+                <div class="row2">
+                    <p class="paragraph_text header_text_color">{{ event.slabName }}</p>
+                    <p class="paragraph_text header_text_color">{{ event.varient }}</p>
+                </div>
+                <div class="row2">
+                    <p class="paragraph_text header_text_color ticket green">₹{{ event.Price }}</p>
+                    <p class="paragraph_text header_text_color ticket">Tickets: {{ event.ticketsCount }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</Section>
+
+
+  

@@ -1,0 +1,65 @@
+section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+    .logo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      img{
+        width:90px
+      }
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 10px;
+    }
+  
+    img {
+      width: 20%;
+    }
+    form {
+      width: 96%;
+      margin-bottom: 20px;
+      label {
+        margin-left: 5px;
+      }
+      .field{
+        width: 100%;
+        margin-bottom: 6px;
+      }
+      input,
+      select {
+        border: 0.5px solid rgb(166, 166, 166);
+        border-radius: 12px;
+        width: 100%;
+        height: 40px;
+        padding: 1px 6px;
+        
+      }
+      option {
+        width: 70%;
+      }
+      input:focus,
+      select:focus {
+        outline: none;
+      }
+    }
+  }
+  lib-cancel-btn,
+  lib-save-btn {
+    width: 35%;
+  }
+  
+  
+  
+  
+  ::ng-deep mat-bottom-sheet-container {
+    border-radius: 20px 20px 0px 0px ;
+  }

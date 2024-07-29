@@ -1,1 +1,24 @@
-<p>area works!</p>
+<section>
+    <div *ngFor="let city of cityList" class=" card">
+        <div class="header">
+            <div class="header_text_color word-wrap">{{ city.city}}<br>
+                <span>{{city.state}}</span>
+            </div>
+            <div class="items">
+                <label class="uk-switch" >
+                    <input type="checkbox">
+                    <div class="uk-switch-slider" ></div>
+                </label>
+                <span><img src="assets/tax/delete.svg"  alt=""></span>
+            </div>
+        </div>
+        <div class="select-catalouge">
+            <select formControlName="catalouge">
+            <option value="Select catalouge">Select catalouge</option>
+            <option value="catalouge1">catalouge1</option>
+            <option value="catalouge2">catalouge2</option>
+            </select>
+        </div>
+    </div>
+    <app-add-button (click)="savecity()"></app-add-button>
+</section>
