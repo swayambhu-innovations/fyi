@@ -1,0 +1,26 @@
+{
+    "name": "donor",
+    "short_name": "App",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+      {
+        "src": "",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "",
+        "sizes": "96x96",
+        "type": "image/png"
+      }
+    ],
+    "serviceworker": {
+      "src": "ngsw-worker.js",
+      "scope": "/",
+      "type": "module"
+    }
+  }
+  

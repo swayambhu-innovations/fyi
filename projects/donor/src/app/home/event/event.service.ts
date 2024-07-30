@@ -13,8 +13,9 @@ export class EventService {
   itineraryList = signal<{ [key: string]: any[] }>({});
   slabList = signal<{ [key: string]: any[] }>({});
   variantList = signal<{ [key: string]: any[] }>({});
-
   bookingDetails = signal<any>({});
+  addressList = signal<any[]>([]);
+  activeAddress = signal<any>('');
 
 
   constructor(private firestore:Firestore ) { 

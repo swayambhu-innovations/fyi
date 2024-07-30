@@ -14,7 +14,7 @@ export class MemberDetailService {
       let userId=this.EventService.bookingDetails()['customer'].uid
       let bookingDetail = this.EventService.bookingDetails()
       console.log(this.EventService.bookingDetails())
-      const newBookingDocRef = doc(collection(this.firestore, 'users',userId,'bookings')); 
+      const newBookingDocRef = doc(collection(this.firestore, 'users',userId,'cart')); 
       bookingDetail.id = newBookingDocRef.id; 
       setDoc(newBookingDocRef, bookingDetail);
       return {bookingId:bookingDetail.id}
