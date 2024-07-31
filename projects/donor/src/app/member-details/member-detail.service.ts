@@ -10,10 +10,8 @@ export class MemberDetailService {
   constructor(private firestore: Firestore,private EventService:EventService ) { }
   async addInbooking() {
     try {
-      console.log(this.EventService.bookingDetails())
       let userId=this.EventService.bookingDetails()['customer'].uid
       let bookingDetail = this.EventService.bookingDetails()
-      console.log(this.EventService.bookingDetails())
       const newBookingDocRef = doc(collection(this.firestore, 'users',userId,'cart')); 
       bookingDetail.id = newBookingDocRef.id; 
       setDoc(newBookingDocRef, bookingDetail);

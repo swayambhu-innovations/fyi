@@ -14,9 +14,7 @@ export class PaymentSuccessfulComponent {
   constructor(private router: Router ,  private EventService:EventService){
 
     this.bookingDetail=this.EventService.bookingDetails()
-    if (this.bookingDetail.valueOf.length==0) {
-      this.router.navigate(['home']);
-    }
+    
     
   }
 

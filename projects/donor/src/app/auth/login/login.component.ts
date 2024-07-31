@@ -55,7 +55,6 @@ export class LoginComponent {
   }
 
   async login() {
-    console.log(this.phoneNumber);
     if (this.phoneNumber.length == 10) {
       if (!this.verifier)
         this.verifier = new RecaptchaVerifier(

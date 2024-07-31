@@ -14,10 +14,6 @@ export class PaymentFailedComponent {
 bookingDetail:any
   constructor(private router: Router ,  private EventService:EventService, private PaymentService:PaymentService){
     this.bookingDetail=this.EventService.bookingDetails()
-    console.log(this.bookingDetail)
-    if (this.bookingDetail.valueOf.length==0) {
-      this.router.navigate(['home']);
-    }
     
   }
 
@@ -35,9 +31,7 @@ bookingDetail:any
     let receiptId = this.generateUniqueReceipt()
     let amount = bookingDetail['paymentDetail'].totalPrice;
 
-    console.log(bookingDetail)
     this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
-      console.log(response)
       let detail={
         amount: amount,
         description: 'Test Transaction',

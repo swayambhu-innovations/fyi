@@ -89,12 +89,10 @@ export class AddAddressComponent {
     );
   }
   submitAddress() {
-    console.log(this.dataProvider);
 
     this.AddressService.addAddress(
       this.addressForm.value,
       this.dataProvider.currentUser?.userData.uid
     );
-    console.log(this.addressForm.value);
   }
 }

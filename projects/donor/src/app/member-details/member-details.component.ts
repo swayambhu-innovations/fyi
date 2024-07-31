@@ -198,9 +198,7 @@ export class MemberDetailsComponent {
           .addInbooking()
           .then((res:any) => {
             this.router.navigate(['payment',res.bookingId]);
-
-            console.log('Coupon created successfully');
-          })
+                    })
           .catch((error) => {
             console.error('Error creating coupon: ', error);
           });

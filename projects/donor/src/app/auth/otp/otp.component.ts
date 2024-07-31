@@ -32,7 +32,6 @@ export class OtpComponent {
 
   ngOnInit() {
     if (!this.dataProvider.loginConfirmationResult) {
-      console.log('No Confirmation Result');
       this.router.navigate(['login']);
     } else {
       this.startResendTimer();

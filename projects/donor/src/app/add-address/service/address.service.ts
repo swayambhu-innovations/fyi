@@ -24,7 +24,6 @@ export class AddressService {
     );
   }
   addAddress(address: any, uid: string) {
-    console.log(address);
     if (address.taxId) {
       const addressDocRef = doc(
         this.Firestore,

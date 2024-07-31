@@ -54,7 +54,6 @@ export class EventComponent {
     this.loadingService.show();
 
     setTimeout(() => {
-      console.log(this.DataProviderService.currentUser)
       this.getEvent();
 
     }, 3000);
@@ -73,21 +72,18 @@ export class EventComponent {
         cityId = localStorage.getItem('cityDocId');
         cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
       } else {
-        console.log(this.DataProviderService.currentUser?.userData.uid);
         let uid = this.DataProviderService.currentUser?.userData.uid;
         const addressList = await firstValueFrom(
           this.eventService.fetchDocs(`users/${uid}/addresses`)
         );
         this.eventService.addressList.set(addressList);
 
-        console.log(this.eventService.addressList());
         for(const address of addressList){
           if(address.active){
             this.eventService.activeAddress.set(address);
             stateId = address.selectedStateId;
             cityId = address.selectedCityId;
             cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
-            console.log(cityAddress)
           }
       }
     }
