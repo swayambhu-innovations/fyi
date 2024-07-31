@@ -1,0 +1,38 @@
+.edit{
+  border-radius: 15px;
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+   
+  
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 15px;
+      border: none;
+    }
+  
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  }
+  
+ 
+  lib-cancel-btn,
+  lib-save-btn {
+    width: 35%;
+  }
+}
+
+  

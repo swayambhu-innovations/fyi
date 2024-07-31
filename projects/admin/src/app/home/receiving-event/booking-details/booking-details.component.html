@@ -6,7 +6,7 @@
 
         <div class="event paragraph_text">
             <span class="field">Event</span>
-            <span class="header_text_color">Kashi Summit 2024</span>
+            <span class="header_text_color">{{bookingdata?.eventname}}</span>
         </div>
         <div class="event paragraph_text">
             <span class="field">slab</span>
@@ -39,20 +39,33 @@
     </div>
     
 
-    <div class="scroll">
-        <div class="memberheading">
-        <p class="card_title_text">Member Details</p>
-        <button>Edit</button>
 
-    </div>
-        <div class="tabs">
-          <div class="tab" [class.active]="selectedTab === 'description'" (click)="selectTab('description')">Member 1</div>
-          <div class="tab" [class.active]="selectedTab === 'itinerary'" (click)="selectTab('itinerary')">Member 2</div>
+      <div class="scroll">
+        <div class="memberheading">
+          <p class="card_title_text">Member Details</p>
+          <button (click)="editMember()">Edit</button>
         </div>
-        <div class="content">
-          <div *ngIf="selectedTab === 'description'">{{ descriptionContent }}</div>
-          <div *ngIf="selectedTab === 'itinerary'">{{ itineraryContent }}</div>
+    
+        <div class="tabs">
+          <div
+            class="tab"
+            *ngFor="let member of members; let i = index"
+            [class.active]="selectedTab === i"
+            (click)="selectTab(i)"
+          >
+            Member {{ i +1 }}
+          </div>
+        </div>
+    
+        <div class="content" *ngIf="selectedTab !== null">
+          <div>
+            <div class="card2"><strong>Name:</strong> {{ members[selectedTab].name }}</div>
+            <div class="card2"><strong>Aadhaar:</strong> {{ members[selectedTab].Aadhar }}</div>
+            <div class="card2"><strong>Gender:</strong> {{ members[selectedTab].Gender }}</div>
+            <div class="card2"><strong>Contact:</strong> {{ members[selectedTab].Contact }}</div>
+          </div>
         </div>
       </div>
     
+     <button class="delete">Delete</button>
 </section>

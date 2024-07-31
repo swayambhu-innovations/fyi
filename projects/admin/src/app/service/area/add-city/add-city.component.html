@@ -1,11 +1,10 @@
 <section>
-    <p class="header_text_color">Add city and catalouge</p>
-    <!-- <div class="logo"><img src="assets/tax/addTax.svg" alt="" /></div> -->
+    <p class="header_text_color">Add city </p>
     <form [formGroup]="cityForm">
         <div>
             <input
               type="text"
-              placeholder="Search city to catalouge"
+              placeholder="Search city to add"
               class="search-bar"
               formControlName=""
             />
@@ -18,6 +17,7 @@
           formControlName="catalougeType"
           class="input_box_bg_gradient header_text_color"
         >
+        <option value="Select catalouge">Select catalouge</option>
           <option value="percentage">catalouge1</option>
           <option value="flat">catalouge2</option>
         </select>
