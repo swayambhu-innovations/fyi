@@ -9,7 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  hiddenRoutes = ['/login', '/add-address', '/otp', '/profile'];
+  hiddenRoutes = ['/login', '/add-address', '/otp', '/profile','/member-detail','event-payment','payment','payment-successful',
+    'patmentfailed','varient',
+  ];
   showNavbar:any
   constructor(private router: Router){
     this.checkRoute(this.router.url);

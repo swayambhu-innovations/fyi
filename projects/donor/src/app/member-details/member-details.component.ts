@@ -190,7 +190,7 @@ export class MemberDetailsComponent {
           variantPrice: variantPrice,
           totalMember: totalMember,
           totalPrice: totalPrice,
-          payment:'pending'
+          paymentStatus:'pending'
         }
         bookingDetails['memberDetail'] = this.membersData
                 this.EventService.bookingDetails.set(bookingDetails);
@@ -198,9 +198,7 @@ export class MemberDetailsComponent {
           .addInbooking()
           .then((res:any) => {
             this.router.navigate(['payment',res.bookingId]);
-
-            console.log('Coupon created successfully');
-          })
+                    })
           .catch((error) => {
             console.error('Error creating coupon: ', error);
           });

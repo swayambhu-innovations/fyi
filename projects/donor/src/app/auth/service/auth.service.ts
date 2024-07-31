@@ -69,7 +69,6 @@ export class AuthService {
     });
   }
   async loginWithPhoneNumber(phone: string, appVerifier: ApplicationVerifier) {
-    console.log('loginWithPhoneNumber', phone,typeof(phone));
     
     if (phone.length != 10) {
       return Promise.reject(new Error('Invalid Phone Number'));
@@ -102,7 +101,6 @@ export class AuthService {
       user: user,
       userData: newUserData,
     };
-    console.log(this.dataProvider.currentUser);
     return;
   }
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EventService } from './event.service';
 import { firstValueFrom } from 'rxjs';
 import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
+import { DataProviderService } from '../../auth/service/data-provider.service';
 @Component({
   selector: 'app-event',
   standalone: true,
@@ -44,20 +45,48 @@ export class EventComponent {
   constructor(
     private router: Router,
     public eventService: EventService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private DataProviderService: DataProviderService
   ) {}
 
   ngOnInit(): void {
-    this.getEvent();
-    
+
+    this.loadingService.show();
+
+    setTimeout(() => {
+      this.getEvent();
+
+    }, 3000);
   }
   async getEvent() {
-    this.loadingService.show();
-    const stateId = localStorage.getItem('stateDocId');
-    const cityId = localStorage.getItem('cityDocId');
-    const cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
+
+    let stateId = localStorage.getItem('stateDocId');
+    let cityId = localStorage.getItem('cityDocId');
+    let cityAddress = '';
+
+    
 
     try {
+      if (!this.DataProviderService.loggedIn) {
+        stateId = localStorage.getItem('stateDocId');
+        cityId = localStorage.getItem('cityDocId');
+        cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
+      } else {
+        let uid = this.DataProviderService.currentUser?.userData.uid;
+        const addressList = await firstValueFrom(
+          this.eventService.fetchDocs(`users/${uid}/addresses`)
+        );
+        this.eventService.addressList.set(addressList);
+
+        for(const address of addressList){
+          if(address.active){
+            this.eventService.activeAddress.set(address);
+            stateId = address.selectedStateId;
+            cityId = address.selectedCityId;
+            cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
+          }
+      }
+    }
       const cityDoc: any = await firstValueFrom(
         this.eventService.fetchDoc(cityAddress)
       );
@@ -73,7 +102,6 @@ export class EventComponent {
           this.eventService.fetchDoc(`events/${eventId}`)
         );
         if (event.active) {
-
           const itinerary: any = await firstValueFrom(
             this.eventService.fetchDoc(`events/${eventId}/itinerary/activities`)
           );
@@ -92,7 +120,6 @@ export class EventComponent {
               )
             );
             if (slabDetail.active) {
-
               const variants: any[] = await firstValueFrom(
                 this.eventService.fetchDocs(
                   `events/${eventId}/slab-variant/${slab.slabId}/variants`
@@ -111,17 +138,17 @@ export class EventComponent {
                 }
                 this.loadingService.hide();
               }
-              if(Object.keys(variantList).length> 0){
-              
-              slabList[eventId].push(slabDetail);
-            }
+              if (Object.keys(variantList).length > 0) {
+                slabList[eventId].push(slabDetail);
+              }
             }
           }
-          if(Object.keys(slabList).length> 0){
-          eventList.push(event);
+          if (Object.keys(slabList).length > 0) {
+            eventList.push(event);
           }
         }
       }
+
 
       this.eventService.eventList.set(eventList);
       this.eventService.itineraryList.set(itineraryList);
@@ -129,6 +156,8 @@ export class EventComponent {
       this.eventService.variantList.set(variantList);
     } catch (error) {
       console.error('Error fetching events:', error);
+      this.loadingService.hide();
+
     }
   }
 

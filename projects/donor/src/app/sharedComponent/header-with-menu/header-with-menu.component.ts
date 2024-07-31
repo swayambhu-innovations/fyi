@@ -13,7 +13,6 @@ export class HeaderWithMenuComponent {
   name:any
   ngOnInit():void{
     this.authService.user$.subscribe((userData: any | null) => {
-      console.log(userData.displayName);
       if (userData) {
         this.name= userData.displayName;
       } 

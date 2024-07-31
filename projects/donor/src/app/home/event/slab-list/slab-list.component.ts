@@ -21,6 +21,9 @@ export class SlabListComponent {
         this.eventId = params.get('id') || '';
       }
     });
+    if(!this.EventService.bookingDetails()['event']){
+      this.router.navigate(['/home'])
+    }
   }
   eventId: any;
   items = [

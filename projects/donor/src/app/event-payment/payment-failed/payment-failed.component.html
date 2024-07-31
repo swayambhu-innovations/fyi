@@ -2,7 +2,7 @@
 
 <section class="container">
     <div class="confirmation-card">
-        <img src="/assets/event-payment/payment-successful.svg">
+        <img src="/assets/event-payment/paymentfailed.svg">
         <div class="payment-details">
             <h2 class="section_title">Payment Details</h2>
             <div class="paragraph_text detail">
@@ -25,9 +25,9 @@
                 <p>Payment</p>
                 <span>₹{{bookingDetail['paymentDetail'].totalPrice}}</span> 
             </div>
-            <div class="paragraph_text detail_status">
+            <div class="paragraph_text detail_status red">
                 <p>Status</p>
-                <span>Successful</span> 
+                <span>Unsuccessful</span> 
             </div>
          
         </div>
@@ -35,5 +35,5 @@
     </div>
 </section>
 <div class="button-done">
-<button class="proceed-button" (click)="naviagateToHomepage()">Done</button>
+<button class="proceed-button" (click)="tryAgain()">Try Again</button>
 </div>

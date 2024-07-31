@@ -23,6 +23,9 @@ export class VarientSelectionComponent {
         this.slabId = params.get('id') || '';
       }
     });
+    if(!this.EventService.bookingDetails()['slab']){
+      this.router.navigate(['/home'])
+    }
   }
   slabId: any;
   events = [
@@ -146,8 +149,6 @@ export class VarientSelectionComponent {
   goToNextPage() {
     const index =
       this.selectedButtonIndex !== null ? this.selectedButtonIndex : 0;
-    console.log(this.quantities[index]);
-    console.log(this.quantities[index]);
     let bookingDetails = this.EventService.bookingDetails();
     bookingDetails.totalMember = this.quantities[index];
     this.EventService.bookingDetails.set(bookingDetails);

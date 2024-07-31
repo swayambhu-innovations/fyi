@@ -57,7 +57,6 @@ export class ProfileInfoComponent {
   }
 
   ngOnInit() {
-    console.log(this.dataProvider.currentUser);
   }
 
   async changePhoto(e: any) {
@@ -91,7 +90,6 @@ export class ProfileInfoComponent {
   }
   submit() {
     if (this.userForm.valid) {
-      console.log(this.dataProvider.currentUser);
       this.userForm.value.uid = this.dataProvider.currentUser?.user.uid;
       this.userForm.value.phoneNumber =
         this.dataProvider.currentUser?.userData.phoneNumber;

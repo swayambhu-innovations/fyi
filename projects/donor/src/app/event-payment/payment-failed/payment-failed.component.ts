@@ -1,28 +1,24 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeaderWithBackComponent } from "../sharedComponent/header-with-back/header-with-back.component";
-import { EventService } from '../home/event/event.service';
-import { environment } from '../../environment';
-import { PaymentService } from './service/payment.service';
-
-declare var Razorpay: any;  // Declare Razorpay as an external variable
-
+import {Router} from '@angular/router';
+import { HeaderWithBackComponent } from "../../sharedComponent/header-with-back/header-with-back.component";
+import { EventService } from '../../home/event/event.service';
+import { PaymentService } from '../service/payment.service';
 @Component({
-  selector: 'app-event-payment',
+  selector: 'app-payment-failed',
   standalone: true,
   imports: [HeaderWithBackComponent],
-  templateUrl: './event-payment.component.html',
-  styleUrls: ['./event-payment.component.scss']  // Corrected to styleUrls
+  templateUrl: './payment-failed.component.html',
+  styleUrl: './payment-failed.component.scss'
 })
-export class EventPaymentComponent {
-  constructor(private router: Router, public EventService: EventService,private PaymentService:PaymentService) {
-   
-    let bookingDetail=this.EventService.bookingDetails()
+export class PaymentFailedComponent {
+bookingDetail:any
+  constructor(private router: Router ,  private EventService:EventService, private PaymentService:PaymentService){
+    this.bookingDetail=this.EventService.bookingDetails()
     
   }
 
-  payNow() {
-    this.router.navigate(['payment-successful']);
+  naviagateToHomepage(){
+    this.router.navigate(['home']);
   }
   generateUniqueReceipt(): string {
     const timestamp = Date.now().toString(); // Current timestamp in milliseconds
@@ -30,14 +26,12 @@ export class EventPaymentComponent {
     return `receipt_${timestamp}_${randomId}`;
   }
 
-  pay() {
+  tryAgain() {
     let bookingDetail=this.EventService.bookingDetails();
     let receiptId = this.generateUniqueReceipt()
     let amount = bookingDetail['paymentDetail'].totalPrice;
 
     this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
-
-    // this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
       let detail={
         amount: amount,
         description: 'Test Transaction',
@@ -49,5 +43,4 @@ export class EventPaymentComponent {
       this.PaymentService.initiatePayment(detail); 
     });
   }
-
 }
