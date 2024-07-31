@@ -16,7 +16,7 @@ import { DonationComponent } from './donation/donation.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { FeedComponent } from './feed/feed.component';
 import { AccountComponent } from './account/account.component';
-
+import { PaymentFailedComponent } from './event-payment/payment-failed/payment-failed.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -28,6 +28,7 @@ export const routes: Routes = [
     {path:'event-payment' , component:EventPaymentComponent},
     {path:'payment/:id' , component:EventPaymentComponent},
     {path:'payment-successful',component:PaymentSuccessfulComponent},
+    {path:'patmentfailed',component:PaymentFailedComponent},
     {path:'survey-list' , component:ListOfSurveyComponent},
     {path:'event-list' , component:EventListComponent},
     {path:'slab/:id',component: SlabListComponent},

@@ -20,10 +20,29 @@ export class EventPaymentComponent {
   payNow() {
     this.router.navigate(['payment-successful']);
   }
+  generateUniqueReceipt(): string {
+    const timestamp = Date.now().toString(); // Current timestamp in milliseconds
+    const randomId = Math.random().toString(36).substring(2, 10); // Random alphanumeric string
+    return `receipt_${timestamp}_${randomId}`;
+  }
 
   pay() {
-    this.PaymentService.createOrder(1000, 'INR', 'receipt#1').subscribe(response => {
-      this.PaymentService.initiatePayment(response.id); 
+    let bookingDetail=this.EventService.bookingDetails();
+    let receiptId = this.generateUniqueReceipt()
+    let amount = bookingDetail['paymentDetail'].totalPrice;
+
+    console.log(bookingDetail)
+    this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
+      console.log(response)
+      let detail={
+        amount: amount,
+        description: 'Test Transaction',
+        order_id: response.id,
+        customerName: bookingDetail['customer'].name,
+        contact: bookingDetail['customer'].phoneNumber,
+        receiptId:receiptId
+    }
+      this.PaymentService.initiatePayment(detail); 
     });
   }
 

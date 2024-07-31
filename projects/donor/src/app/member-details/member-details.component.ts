@@ -190,7 +190,7 @@ export class MemberDetailsComponent {
           variantPrice: variantPrice,
           totalMember: totalMember,
           totalPrice: totalPrice,
-          payment:'pending'
+          paymentStatus:'pending'
         }
         bookingDetails['memberDetail'] = this.membersData
                 this.EventService.bookingDetails.set(bookingDetails);

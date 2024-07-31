@@ -7,6 +7,7 @@ export const environment = {
   
     cloudFunctions : {
       createOrder: 'https://createorder-uuc4lf2xaa-uc.a.run.app',
+      createOrderLocalHost:"http://127.0.0.1:5001/fyi1-aa2c2/us-central1/createOrder",
       getOrderById: 'https://us-central1-kittyconnect-68a81.cloudfunctions.net/getOrderById?id=',
       capturePayment: 'https://us-central1-kittyconnect-68a81.cloudfunctions.net/capturePayments',
   
@@ -15,7 +16,7 @@ export const environment = {
       getRefundDetails:'https://us-central1-kittyconnect-68a81.cloudfunctions.net/getRefundDetails',
     },
   
-    RAZORPAY_KEY_ID: 'rzp_test_A9Kod2RLWyBi4k',
+    RAZORPAY_KEY_ID: 'rzp_live_wMevmKrUh5pkfg',
     RAZORPAY_DOMAIN:'https://api.razorpay.com/v1/',
   };
   
