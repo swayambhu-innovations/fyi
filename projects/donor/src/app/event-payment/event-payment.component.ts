@@ -15,7 +15,13 @@ declare var Razorpay: any;  // Declare Razorpay as an external variable
   styleUrls: ['./event-payment.component.scss']  // Corrected to styleUrls
 })
 export class EventPaymentComponent {
-  constructor(private router: Router, public EventService: EventService,private PaymentService:PaymentService) {}
+  constructor(private router: Router, public EventService: EventService,private PaymentService:PaymentService) {
+   
+    let bookingDetail=this.EventService.bookingDetails()
+    if (bookingDetail.valueOf.length==0) {
+      this.router.navigate(['home']);
+    }
+  }
 
   payNow() {
     this.router.navigate(['payment-successful']);

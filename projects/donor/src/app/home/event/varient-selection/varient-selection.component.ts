@@ -23,6 +23,9 @@ export class VarientSelectionComponent {
         this.slabId = params.get('id') || '';
       }
     });
+    if(!this.EventService.bookingDetails()['slab']){
+      this.router.navigate(['/home'])
+    }
   }
   slabId: any;
   events = [

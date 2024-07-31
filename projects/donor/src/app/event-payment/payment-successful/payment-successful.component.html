@@ -6,24 +6,24 @@
         <div class="payment-details">
             <h2 class="section_title">Payment Details</h2>
             <div class="paragraph_text detail">
-                <p>Event</p>
+                <p>{{bookingDetail['event'].eventName}} </p>
                 <span>Kashi Summit 2024</span> 
             </div>
             <div class="paragraph_text detail">
                 <p>Slab</p>
-                <span>Panchang Slab</span> 
+                <span>{{bookingDetail['slab'].name}}</span> 
             </div>
             <div class="paragraph_text detail">
                 <p>Variant</p>
-                <span>Couple</span> 
+                <span>{{bookingDetail['variant'].name}}</span> 
             </div>
             <div class="paragraph_text detail">
                 <p>Date</p>
-                <span>23/08/24 & 14:08</span> 
+                <span>{{bookingDetail['paymentDetail'].date}} & {{bookingDetail['paymentDetail'].time}} </span> 
             </div>
             <div class="paragraph_text detail">
                 <p>Payment</p>
-                <span>₹11010</span> 
+                <span>₹{{bookingDetail['paymentDetail'].totalPrice}}</span> 
             </div>
             <div class="paragraph_text detail_status">
                 <p>Status</p>

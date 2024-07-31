@@ -65,6 +65,7 @@ export class EventComponent {
     let cityId = localStorage.getItem('cityDocId');
     let cityAddress = '';
 
+    
 
     try {
       if (!this.DataProviderService.loggedIn) {

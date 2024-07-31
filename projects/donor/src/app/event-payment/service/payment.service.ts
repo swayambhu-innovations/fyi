@@ -47,9 +47,32 @@ export class PaymentService {
     return await deleteDoc(cartDocRef);
   }
 
+  formatDateTime(date: Date): { formattedDate: string, formattedTime: string } {
+    const dateOptions: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: 'short', 
+      year: 'numeric'
+    };
+
+    const formattedDate = date.toLocaleDateString('en-GB', dateOptions);
+    const formattedTime = date.toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    return { formattedDate, formattedTime };
+  }
 
   initiatePayment(detail: any) {
     let bookingDetail=this.EventService.bookingDetails();
+
+    const now = new Date();
+    const { formattedDate, formattedTime } = this.formatDateTime(now);
+
+    bookingDetail['paymentDetail'].date = formattedDate;
+    bookingDetail['paymentDetail'].time = formattedTime;
+   
+
     const options = {
       key: environment.RAZORPAY_KEY_ID ,
       amount: detail.amount * 100, 
@@ -83,6 +106,9 @@ export class PaymentService {
       modal: {
         ondismiss: () => {
           console.log('Payment cancelled or dismissed');
+          bookingDetail['paymentDetail'].paymentStatus='failed';
+          this.EventService.bookingDetails.set(bookingDetail);
+
           this.router.navigate(['/patmentfailed']);
         },
       },
@@ -91,6 +117,9 @@ export class PaymentService {
     const rzp = new (window as any).Razorpay(options);
   
     rzp.on('payment.failed', (response: any) => {
+      bookingDetail['paymentDetail'].paymentStatus='failed';
+      this.EventService.bookingDetails.set(bookingDetail);
+
       console.log('Payment failed:', response);
       this.router.navigate(['/patmentfailed']);
     });

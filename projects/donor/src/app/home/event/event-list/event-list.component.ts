@@ -11,7 +11,11 @@ import { EventService } from '../event.service';
   styleUrl: './event-list.component.scss',
 })
 export class EventListComponent {
-  constructor(private router: Router, public EventService: EventService) {}
+  constructor(private router: Router, public EventService: EventService) {
+    if(this.EventService.eventList().length==0){
+      this.router.navigate(['/home'])
+    }
+  }
   items = [
     {
       image: '/assets/homepage/eventimage.svg', // Adjust the path to your image
