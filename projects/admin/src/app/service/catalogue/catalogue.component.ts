@@ -36,7 +36,7 @@ export class CatalogueComponent {
   catalogueList: any[] = [];
 
   ngOnInit() {
-    this.loadingService.show();
+    //this.loadingService.show();
     this.CatalogueService.getCatalogueList().subscribe((data: any) => {
       this.catalogueList = data;
       this.loadingService.hide();
