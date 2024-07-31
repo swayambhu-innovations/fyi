@@ -33,10 +33,15 @@
                 font-size: 22px;
 
             }
-            .header_text_color{
-                font-size: 22px;
-                color: #48BC1F;
-            }
+         
+            .text-red {
+              color: red;
+          }
+          
+          .text-green {
+              color: 
+              #48BC1F;
+          }
         }
        
        
@@ -44,9 +49,7 @@
     
 
     .scroll {
-        overflow-x: auto;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+      
       
         background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
         border-radius: 15px;
@@ -66,21 +69,26 @@
             color: white;
             align-items: center;
         }
-    }
+      }
       .tabs {
         display: flex;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        .tab {
+          padding: 5px;
+          border-radius: 10px;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+        }
+        .tab.active, .tab:hover {
+          background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
+          color: white;
+        }
       }
-      .tab {
-        padding: 10px 30px;
-        border-radius: 10px;
-        cursor: pointer;
-        justify-content: center;
-        align-items: center;
-      }
-      .tab.active, .tab:hover {
-        background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
-        color: white;
-      }
+    
+     
       .content {
         margin-top: 8%;
         padding: 20px;

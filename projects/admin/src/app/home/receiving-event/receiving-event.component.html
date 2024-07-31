@@ -6,7 +6,7 @@
             <option value="oldest">oldest</option>
         </select>
     </div>
-    <div class="card" *ngFor="let event of bookings" (click)="bookingdetail(bookings.BookingId)">
+    <div class="card" *ngFor="let event of bookings" (click)="bookingdetail(event.BookingId)">
         <div class="ticket-info" >
             <img src="assets/homepage/image.svg" alt="Event Image" class="event-image">
             <div class="event-details">

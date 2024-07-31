@@ -22,41 +22,38 @@ export class ReceivingEventComponent {
   }
   constructor(private router:Router,private receivingEventService:ReceivingEventService, private firestore: Firestore, ){}
   
-  bookingdetail(BookingId:string){
-    this.router.navigate(['booking-detail']);
-    this.bookings.map((booking: booking)=>{
-      this.bookingdata=booking
-    })
-    console.log(this.bookingdata)
-  }
- 
+  
+
+bookingdetail(BookingId: string): void {
+  this.router.navigate(['booking-detail', BookingId]);
+}
   bookings: string[] |any;
+
   async getUsersBooking() {
     this.bookings = [];
-    const usersSnapshot = await this.receivingEventService.bookingdetails();
-      usersSnapshot.docs.forEach(async (user: { id: string }) => {
-      const bookingsSnapshot = await getDocs(
-        collection(this.firestore, "users", user.id, "bookings")
-      );
-      bookingsSnapshot.docs.forEach(async (booking) => {
-        console.log(booking.data());
+    const usersSnapshot = await this.receivingEventService.getAllUsers();
+
+    for (const user of usersSnapshot.docs) {
+      const userId = user.id;
+      const bookingsSnapshot = await this.receivingEventService.getUserBookings(userId);
+      for (const booking of bookingsSnapshot.docs) {
         const bookingData = booking.data();
+        console.log(bookingData)
         this.bookings.push({
           "BookingId": bookingData["id"],
-          "name":bookingData["customer"].name,
-          "contact":bookingData["customer"].phoneNumber,
-          "eventname":bookingData["event"].eventName,
-          "slabname":bookingData["slab"].name,
-          "varientname":bookingData["variant"].name,
-          "price":bookingData["variant"].totalTicket,
-          "tickets":bookingData["totalMember"],
-
-        })
-        console.log(this.bookings)
+          "name": bookingData["customer"].name,
+          "contact": bookingData["customer"].phoneNumber,
+          "eventname": bookingData["event"].eventName,
+          "slabname": bookingData["slab"].name,
+          "varientname": bookingData["variant"].name,
+          "price": bookingData["variant"].totalTicket,
+          "tickets": bookingData["totalMember"],
+          
+        });
       }
-      )}
-    
-  )};
-
+    }
+    console.log(this.bookings);
+  }
 }
+
 

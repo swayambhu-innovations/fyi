@@ -6,5 +6,7 @@ export interface booking{
     slabname:string;
     varientname:string;
     price:string;
-    tickets:string
+    tickets:string;
+    status:string;
+    member:any[]
 }
