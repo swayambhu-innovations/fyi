@@ -20,6 +20,8 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { CreateCatalogueComponent } from './service/catalogue/create-catalogue/create-catalogue.component';
 import { AddeventComponent } from './service/event/addevent/addevent.component';
+import { ReceivingEventComponent } from './home/receiving-event/receiving-event.component';
+import { BookingDetailsComponent } from './home/receiving-event/booking-details/booking-details.component';
 
 export const routes: Routes = [
     // {path : '', component:SplashScreenComponent},
@@ -42,5 +44,7 @@ export const routes: Routes = [
     {path:'create-catalogue',component: CreateCatalogueComponent,canActivate: [AuthGuard]},
     { path: 'create-catalogue/:id', component: CreateCatalogueComponent,canActivate:[AuthGuard] },
     {path:'addevent',component: AddeventComponent,canActivate: [AuthGuard]},
-    {path:'editevent/:id',component: AddeventComponent,canActivate: [AuthGuard]}
+    {path:'editevent/:id',component: AddeventComponent,canActivate: [AuthGuard]},
+    {path:'receivedEvent', component: ReceivingEventComponent},
+    {path:'booking-detail',component:BookingDetailsComponent}
 ];

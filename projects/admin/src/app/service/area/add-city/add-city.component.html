@@ -1,0 +1,33 @@
+<section>
+    <p class="header_text_color">Add city </p>
+    <form [formGroup]="cityForm">
+        <div>
+            <input
+              type="text"
+              placeholder="Search city to add"
+              class="search-bar"
+              formControlName=""
+            />
+        </div>
+  
+      <div class="field">
+        <label class="description_text">catalouge Type</label>
+        <br />
+        <select
+          formControlName="catalougeType"
+          class="input_box_bg_gradient header_text_color"
+        >
+        <option value="Select catalouge">Select catalouge</option>
+          <option value="percentage">catalouge1</option>
+          <option value="flat">catalouge2</option>
+        </select>
+      </div>
+  
+     
+    </form>
+    <div class="twin-btn">
+      <lib-cancel-btn [btnName]="'Cancel'" (click)="cancel()"></lib-cancel-btn>
+      <lib-save-btn [btnName]="'Save'"></lib-save-btn>
+    </div>
+  </section>
+  
