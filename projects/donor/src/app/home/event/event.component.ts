@@ -13,6 +13,7 @@ import { DataProviderService } from '../../auth/service/data-provider.service';
   styleUrl: './event.component.scss',
 })
 export class EventComponent {
+  isEventPresent:boolean=false
   events = [
     {
       title: 'Cearic Kashi Summit 2024',
@@ -150,6 +151,7 @@ export class EventComponent {
           }
           if (slabList[eventId].length > 0) {
             eventList.push(event);
+            this.isEventPresent=true
             this.eventService.eventList.set(eventList);
           }
         }

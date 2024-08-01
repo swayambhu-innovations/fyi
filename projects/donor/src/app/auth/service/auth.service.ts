@@ -43,6 +43,7 @@ export class AuthService {
             user: user,
             userData: userData,
           };
+          console.log(this.dataProvider.currentUser);
 
           if (!userData || !userData.name) {
             this.router.navigate(['profile']);
