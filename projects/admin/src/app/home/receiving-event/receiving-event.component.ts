@@ -39,6 +39,7 @@ bookingdetail(BookingId: string): void {
       for (const booking of bookingsSnapshot.docs) {
         const bookingData = booking.data();
         console.log(bookingData)
+        if(bookingData["paymentDetail"].paymentStatus=="success"){
         this.bookings.push({
           "BookingId": bookingData["id"],
           "name": bookingData["customer"].name,
@@ -46,11 +47,11 @@ bookingdetail(BookingId: string): void {
           "eventname": bookingData["event"].eventName,
           "slabname": bookingData["slab"].name,
           "varientname": bookingData["variant"].name,
-          "price": bookingData["variant"].totalTicket,
-          "tickets": bookingData["totalMember"],
-          
+          "price": bookingData["paymentDetail"].totalPrice,
+          "tickets": bookingData["variant"].totalTicket,
         });
       }
+    }
     }
     console.log(this.bookings);
   }
