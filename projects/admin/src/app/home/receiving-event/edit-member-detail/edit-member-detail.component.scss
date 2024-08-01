@@ -1,13 +1,12 @@
-.edit{
-  border-radius: 15px;
-  h3 {
+section{
+h3 {
     text-align: center;
     margin-bottom: 20px;
   }
   
   .form-group {
     margin-bottom: 15px;
-   
+ 
   
     label {
       display: block;
@@ -33,6 +32,19 @@
   lib-save-btn {
     width: 35%;
   }
+  .member
+ {
+    border-radius: 12px;
+    border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
+    width: 380px;
+    height: 40px;
+     padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+  
+}
 }
 
-  
+::ng-deep mat-bottom-sheet-container {
+  border-radius: 20px 20px 0px 0px ;
+}

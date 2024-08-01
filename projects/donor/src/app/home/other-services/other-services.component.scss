@@ -1,0 +1,19 @@
+section{
+  padding: 0px 15px 80px 15px;
+    p{
+        font-weight: 400;
+    }
+    .hospital{
+        display: flex;
+        justify-content: space-between;
+        background: linear-gradient(90.32deg, #464E5F 0.28%, rgba(70, 78, 95, 0.8) 47.84%, rgba(70, 78, 95, 0.4) 99.72%);
+        border-radius: 10px;
+        height: 70px;
+        width: 100%;
+        padding: 0px 10px;
+        span{
+            padding-top: 20px;
+        }
+
+    }
+}
