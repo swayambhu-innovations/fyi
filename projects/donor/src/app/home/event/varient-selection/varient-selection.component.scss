@@ -123,7 +123,9 @@ section {
   .content {
     margin-top: 8%;
     padding: 20px;
-    background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
+    background: var(--inactive-gray, #B6B6B6);
+
+    //background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
     border: 1px solid;
     border-image-source: linear-gradient(99.41deg, rgba(170, 170, 170, 0.3) 12.07%, rgba(170, 170, 170, 0.2) 48.35%, rgba(170, 170, 170, 0.2) 87.93%);
     border-radius: 10px;
@@ -153,8 +155,19 @@ section {
   }
   
   .schedule-event {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+    display: flex;
+    gap: 1rem;
+   
+    .dot{
+      margin-top: 10px;
+    }
+    .activity{
+      padding: 5px 0px 10px 0px ;
+      span{   
+        line-height: 1.5;
+      }
+   
+    }
   }
   
   

@@ -28,6 +28,8 @@ export class VarientSelectionComponent {
     }
   }
   slabId: any;
+  
+  schedule: any[] = [];
   events = [
     {
       title: 'Cearic Kashi Summit 2024',
@@ -47,17 +49,10 @@ export class VarientSelectionComponent {
     },
     // Add more surveys here
   ];
-  items = [
-    { title: 'Rotracter', price: 6010 },
-    { title: 'Rotarians', price: 6010 },
-    { title: 'Couples', price: 6010 },
-  ];
+
 
   selectedTab: string = 'description'; // Default tab
-  descriptionContent: string =
-    'This is the description content. It should be visible when the Description tab is clicked.';
-  itineraryContent: string =
-    'This is the itinerary content. It should be visible when the Itinerary tab is clicked.';
+ 
 
   selectedButtonIndex: number | null = null;
   quantities: number[] = [];
@@ -71,7 +66,25 @@ export class VarientSelectionComponent {
     let curEvent = this.EventService.bookingDetails()['event'].eventId
     let itineraryList :any = this.EventService.itineraryList()[curEvent]
     this.itinerary=  this.groupAndSortActivities(itineraryList['activities'])
+    console.log(this.slabDetail)
+    console.log(this.itinerary)
+    this.schedule = [];
 
+    // Merge itinerary data into schedule
+    for (const date in this.itinerary) {
+      const events = this.itinerary[date].map((activity: any) => ({
+        time: `${activity.startTime} - ${activity.endTime}`,
+        description: activity.description
+      }));
+
+      this.schedule.push({
+        day: `DAY (${date})`,
+        events: events
+      });
+    }
+
+    console.log(this.schedule)
+   
   }
 
   convertTo12Hour(time: string): string {
@@ -163,28 +176,5 @@ export class VarientSelectionComponent {
 
 
 
-  schedule = [
-    {
-      day: 'DAY 1 (27 September 2024)',
-      events: [
-        { time: '11:00 A.M. - 12:00 P.M.', description: 'CHECK IN & REGISTRATIONS' },
-        { time: '12:00 P.M. - 01:00 P.M.', description: 'LUNCH' },
-        { time: '01:00 P.M. - 01:30 P.M.', description: 'INAUGURAL SESSION' },
-        { time: '03:30 P.M. - 04:00 P.M.', description: 'HI-TEA' },
-        { time: '04:00 P.M. - 08:00 P.M.', description: 'CITY TOUR 1 (RIVER CRUISE & GANGA AARTI)' },
-        { time: '08:00 P.M. - 09:00 P.M.', description: 'DINNER' },
-      ]
-    },
-    {
-      day: 'DAY 2 (27 September 2024)',
-      events: [
-        { time: '11:00 A.M. - 12:00 P.M.', description: 'CHECK IN & REGISTRATIONS' },
-        { time: '12:00 P.M. - 01:00 P.M.', description: 'LUNCH' },
-        { time: '01:00 P.M. - 01:30 P.M.', description: 'INAUGURAL SESSION' },
-        { time: '03:30 P.M. - 04:00 P.M.', description: 'HI-TEA' },
-        { time: '04:00 P.M. - 08:00 P.M.', description: 'CITY TOUR 1 (RIVER CRUISE & GANGA AARTI)' },
-        { time: '08:00 P.M. - 09:00 P.M.', description: 'DINNER' },
-      ]
-    }
-  ];
+ 
 }
