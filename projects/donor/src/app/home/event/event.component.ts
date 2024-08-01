@@ -50,21 +50,16 @@ export class EventComponent {
   ) {}
 
   ngOnInit(): void {
-
     this.loadingService.show();
-
-    setTimeout(() => {
-      this.getEvent();
-
-    }, 3000);
+    if (this.eventService.variantList())
+      setTimeout(() => {
+        this.getEvent();
+      }, 3000);
   }
   async getEvent() {
-
     let stateId = localStorage.getItem('stateDocId');
     let cityId = localStorage.getItem('cityDocId');
     let cityAddress = '';
-
-    
 
     try {
       if (!this.DataProviderService.loggedIn) {
@@ -78,15 +73,15 @@ export class EventComponent {
         );
         this.eventService.addressList.set(addressList);
 
-        for(const address of addressList){
-          if(address.active){
+        for (const address of addressList) {
+          if (address.active) {
             this.eventService.activeAddress.set(address);
             stateId = address.selectedStateId;
             cityId = address.selectedCityId;
             cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
           }
+        }
       }
-    }
       const cityDoc: any = await firstValueFrom(
         this.eventService.fetchDoc(cityAddress)
       );
@@ -106,6 +101,7 @@ export class EventComponent {
             this.eventService.fetchDoc(`events/${eventId}/itinerary/activities`)
           );
           itineraryList[eventId] = itinerary;
+          this.eventService.itineraryList.set(itineraryList);
 
           const slabs: any[] = await firstValueFrom(
             this.eventService.fetchDocs(`events/${eventId}/slab-variant`)
@@ -133,32 +129,49 @@ export class EventComponent {
                     `events/${eventId}/slab-variant/${slab.slabId}/variants/${variant.variantId}`
                   )
                 );
-                if (variantDetail.active) {
-                  variantList[slab.slabId].push(variantDetail);
-                }
+
+                await this.isTaxActive(variantDetail?.['taxType']).then(
+                  (res: any) => {
+                    if (variantDetail.active && res) {
+                      variantList[slab.slabId].push(variantDetail);
+                      this.eventService.variantList.set(variantList);
+                    }
+                  }
+                );
+
                 this.loadingService.hide();
               }
-              if (Object.keys(variantList).length > 0) {
+
+              if (variantList[slab.slabId].length > 0) {
                 slabList[eventId].push(slabDetail);
+                this.eventService.slabList.set(slabList);
               }
             }
           }
-          if (Object.keys(slabList).length > 0) {
+          if (slabList[eventId].length > 0) {
             eventList.push(event);
+            this.eventService.eventList.set(eventList);
           }
         }
       }
-
-
-      this.eventService.eventList.set(eventList);
-      this.eventService.itineraryList.set(itineraryList);
-      this.eventService.slabList.set(slabList);
-      this.eventService.variantList.set(variantList);
     } catch (error) {
       console.error('Error fetching events:', error);
       this.loadingService.hide();
-
     }
+  }
+
+  async isTaxActive(taxId: any) {
+    console.log(taxId);
+    let res: any;
+    try {
+      const observable = this.eventService.fetchDoc(`tax-types/${taxId}`);
+      const response = await firstValueFrom(observable);
+      res = response.active;
+    } catch (error) {
+      console.error('Error fetching tax type:', error);
+      res = false;
+    }
+    return res;
   }
 
   seeAllEvent() {

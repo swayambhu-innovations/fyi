@@ -27,8 +27,8 @@ export class EventService {
     return new Observable<any>((observer) => {
       const collectionRef = doc(this.firestore, collectionAddress);
       onSnapshot(collectionRef, (snapshot) => {
-        const donationTypes = snapshot.data();
-        observer.next(donationTypes);
+        const doc = snapshot.data();
+        observer.next(doc);
       }, (error) => {
         observer.error(error);
       });
@@ -38,12 +38,13 @@ export class EventService {
   fetchDocs(collectionAddress:any): Observable<any[]> {
     return new Observable<any>((observer) => {
       const collectionRef = collection(this.firestore, collectionAddress);
-      getDocs(collectionRef).then((snapshot) => {
+      onSnapshot(collectionRef, (snapshot) => {
         const docs = snapshot.docs.map((doc) => doc.data());
         observer.next(docs);
       }, (error) => {
         observer.error(error);
       });
+      
     })
   }
 }
