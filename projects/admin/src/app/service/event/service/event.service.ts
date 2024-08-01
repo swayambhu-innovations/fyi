@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   onSnapshot,
+  query,
   setDoc,
   updateDoc,
 } from '@angular/fire/firestore';
@@ -316,6 +317,22 @@ export class EventService {
   deleteEvent(eventId: any) {
     return deleteDoc(doc(this.firestore, 'events', eventId));
   }
+
+  async deleteSlab(docAddress: any) {
+    await this.deleteSubcollection(this.firestore, docAddress).then(() => {
+      return deleteDoc(doc(this.firestore, docAddress));
+    })
+  }
+
+  async deleteSubcollection(firestore: Firestore, parentDocAddress: string) {
+    const variantsCollection = collection(firestore, `${parentDocAddress}/variants`);
+  
+    const variantDocs = await getDocs(query(variantsCollection));
+    variantDocs.forEach(async (docSnapshot) => {
+      await deleteDoc(doc(firestore, `${parentDocAddress}/variants/${docSnapshot.id}`));
+    });
+  }
+
   delete(docAddress: any) {
     return deleteDoc(doc(this.firestore, docAddress));
   }

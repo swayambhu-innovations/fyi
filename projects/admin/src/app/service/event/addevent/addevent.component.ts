@@ -270,7 +270,7 @@ export class AddeventComponent {
     this.slabs.removeAt(index);
     if (slab.value.slabId) {
       console.log(slab.value.slabId);
-      await this.eventservice.delete(
+      await this.eventservice.deleteSlab(
         `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}`
       );
     }

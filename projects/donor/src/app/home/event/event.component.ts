@@ -68,6 +68,7 @@ export class EventComponent {
         cityId = localStorage.getItem('cityDocId');
         cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
       } else {
+        console.log('this.DataProviderService.currentUser', this.DataProviderService.currentUser);
         let uid = this.DataProviderService.currentUser?.userData.uid;
         const addressList = await firstValueFrom(
           this.eventService.fetchDocs(`users/${uid}/addresses`)
@@ -83,6 +84,7 @@ export class EventComponent {
           }
         }
       }
+      console.log('cityAddress', cityAddress);
       const cityDoc: any = await firstValueFrom(
         this.eventService.fetchDoc(cityAddress)
       );
@@ -92,11 +94,12 @@ export class EventComponent {
       const itineraryList: { [key: string]: any[] } = {};
       const slabList: { [key: string]: any[] } = {};
       const variantList: { [key: string]: any[] } = {};
-
+      console.log('cityDoc', cityDoc);
       for (const eventId of cityDoc.events) {
-        const event: any = await firstValueFrom(
-          this.eventService.fetchDoc(`events/${eventId}`)
+        console.log(eventId)
+        const event: any = await firstValueFrom(this.eventService.fetchDoc(`events/${eventId}`)
         );
+        console.log('event', event);
         if (event.active) {
           const itinerary: any = await firstValueFrom(
             this.eventService.fetchDoc(`events/${eventId}/itinerary/activities`)
