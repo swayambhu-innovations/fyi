@@ -31,16 +31,19 @@
     <div class="content">
       <div *ngIf="selectedTab === 'description'">{{ this.slabDetail.description }}</div>
       <div *ngIf="selectedTab === 'itinerary'">
-       <!-- event-schedule.component.html -->
-<div *ngFor="let daySchedule of schedule" class="schedule-day">
-  <span class="paragraph_text">{{ daySchedule.day }}</span>
-  <div *ngFor="let event of daySchedule.events" class="schedule-event">
-    <div class="event-time">{{ event.time }}</div>
-    <div class="event-description">{{ event.description }}</div>
-  </div>
-</div>
-
-
+   
+        <div *ngFor="let daySchedule of schedule" class="schedule-day">
+          <span class="paragraph_text">{{ daySchedule.day }}</span>
+          <div *ngFor="let event of daySchedule.events" class="schedule-event">
+            <div class="dot">
+              <img src="/assets/bookinghistory/Ellipse 395.svg">
+            </div>
+            <div class="activity">
+              <span>{{ event.time }}</span><br>
+              <span>{{ event.description }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
