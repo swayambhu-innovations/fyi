@@ -1,0 +1,40 @@
+{
+    "hosting": [
+      {
+        "site": "fyi-donor",
+        "public": "dist/donor/browser",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
+        "frameworksBackend": {
+          "region": "us-east1"
+        },
+        "rewrites": [
+          {
+            "source": "**",
+            "destination": "/index.html"
+          }
+        ]
+      },
+      {
+        "site": "fyi-admin",
+        "public": "dist/admin/browser",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
+        "frameworksBackend": {
+          "region": "us-east1"
+        },
+        "rewrites": [
+          {
+            "source": "**",
+            "destination": "/index.html"
+          }
+        ]
+      }
+    ]
+  }

@@ -1,16 +1,19 @@
-{
-  "projects": {
-    "default": "fyi1-aa2c2"
-  },
-  "targets": {
-    "fyi1-aa2c2": {
-      "hosting": {
-        "donor": [
-          "fyi1-aa2c2"
-        ]
+
+  {
+    "projects": {
+      "default":  "fyi1-aa2c2"
+        },
+    "targets": {
+      "your-firebase-project-id": {
+        "hosting": {
+          "donor": [
+            "fyi-donor"  
+          ],
+          "admin": [
+            "fyi-admin"  
+          ]
+        }
       }
     }
-  },
-  "etags": {},
-  "dataconnectEmulatorConfig": {}
-}
+  }
+  
