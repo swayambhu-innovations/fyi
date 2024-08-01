@@ -592,9 +592,7 @@ export class AddeventComponent {
 
     bottomSheetRef.afterDismissed().subscribe(async (result) => {
       if (result) {
-        await this.eventservice.delete(
-          `events/${city.eventId}/cities/${city.id}`
-        );
+        await this.eventservice.deleteCity(city);
       }
     });
   }

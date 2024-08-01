@@ -2,9 +2,9 @@
   <h3 class="red">Delete Tax</h3>
   <img src="assets/tax/deleteTax.svg" alt="" />
   <p class="red">Warning</p>
-  <p class="red">{{ count }} linked events will be disabled</p>
+  <p class="red">{{ count }} variant linked with the tax</p>
   <div class="twin-btn">
     <lib-cancel-btn (click)="closeSheet()" [btnName]="'Cancel'"></lib-cancel-btn>
-    <lib-delete-btn (click)="deleteTax()" [btnName]="'Delete'"></lib-delete-btn>
+    <lib-delete-btn (click)="deleteTax()" [disabled]="isDeleteDisabled" [btnName]="'Delete'"></lib-delete-btn>
   </div>
 </section>

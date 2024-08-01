@@ -11,3 +11,7 @@ button {
   border: none;
  
 }
+.disabled-btn {
+  background-color: gray; /* Your disabled button color */
+  color: darkgray;
+}

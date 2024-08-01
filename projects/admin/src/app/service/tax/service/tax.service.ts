@@ -41,4 +41,30 @@ export class TaxService {
   deleteTax(taxId: any) {
     return deleteDoc(doc(this.firestore, "tax-types", taxId));
   }
+
+  fetchDoc(docAddress:any): Observable<any> {
+    return new Observable<any>((observer) => {
+      const collectionRef = doc(this.firestore, docAddress);
+      onSnapshot(collectionRef, (snapshot) => {
+        const donationTypes = snapshot.data();
+        observer.next(donationTypes);
+      }, (error) => {
+        observer.error(error);
+      });
+    })
+  }
+
+  fetchDocs(collectionAddress:any): Observable<any[]> {
+    return new Observable<any>((observer) => {
+      const collectionRef = collection(this.firestore, collectionAddress);
+      onSnapshot(collectionRef, (snapshot) => {
+        const docList = snapshot.docs.map(doc => ({
+          ...doc.data()
+        }));
+        observer.next(docList);
+      }, (error) => {
+        observer.error(error);
+      });
+    })
+  }
 }
