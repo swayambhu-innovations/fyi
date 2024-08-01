@@ -5,6 +5,10 @@ export interface booking{
     eventname:string;
     slabname:string;
     varientname:string;
+    date:string;
+    time:string;
     price:string;
-    tickets:string
+    tickets:string;
+    status:string;
+    member:any[]
 }

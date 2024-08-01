@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ReceivingEventService } from '../services/receiving-event.service';
-import { collection, Firestore, getDocs } from '@angular/fire/firestore';
-import { booking } from './booking.structure';
-import { BookingDetailsComponent } from "./booking-details/booking-details.component";
+import { ReceivingEventService } from '../../../../admin/src/app/home/services/receiving-event.service';
+import { Firestore } from '@angular/fire/firestore';
+import { booking } from '../../../../admin/src/app/home/receiving-event/booking.structure';
+import { CommonModule } from '@angular/common';
+import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/header-with-menu.component";
+import { HeaderWithBackComponent } from "../sharedComponent/header-with-back/header-with-back.component";
 @Component({
-  selector: 'app-receiving-event',
+  selector: 'app-booking-history',
   standalone: true,
-  imports: [CommonModule, BookingDetailsComponent],
-  templateUrl: './receiving-event.component.html',
-  styleUrl: './receiving-event.component.scss'
+  imports: [CommonModule, HeaderWithMenuComponent, HeaderWithBackComponent],
+  templateUrl: './booking-history.component.html',
+  styleUrl: './booking-history.component.scss'
 })
-export class ReceivingEventComponent {
-  
+export class BookingHistoryComponent {
   bookingdata: booking | any;
 
 
@@ -25,7 +25,7 @@ export class ReceivingEventComponent {
   
 
 bookingdetail(BookingId: string): void {
-  this.router.navigate(['booking-detail', BookingId]);
+  this.router.navigate(['PaymentDetail', BookingId]);
 }
   bookings: string[] |any;
 
@@ -55,5 +55,3 @@ bookingdetail(BookingId: string): void {
     console.log(this.bookings);
   }
 }
-
-
