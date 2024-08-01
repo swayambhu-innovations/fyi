@@ -25,8 +25,8 @@ export class EventPaymentComponent {
     this.router.navigate(['payment-successful']);
   }
   generateUniqueReceipt(): string {
-    const timestamp = Date.now().toString(); // Current timestamp in milliseconds
-    const randomId = Math.random().toString(36).substring(2, 10); // Random alphanumeric string
+    const timestamp = Date.now().toString(); 
+    const randomId = Math.random().toString(36).substring(2, 10); 
     return `receipt_${timestamp}_${randomId}`;
   }
 
@@ -37,7 +37,6 @@ export class EventPaymentComponent {
 
     this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
 
-    // this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
       let detail={
         amount: amount,
         description: 'Test Transaction',

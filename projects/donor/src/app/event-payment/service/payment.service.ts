@@ -105,7 +105,6 @@ export class PaymentService {
         (bookingDetail['paymentDetail'].paymentResponse =
           paymentSuccessResponse),
           this.EventService.bookingDetails.set(bookingDetail);
-        console.log(bookingDetail);
         this.addInbooking().then(() => {
           this.deleteBookingFromCart().then(() => {
             this.router.navigate(['/payment-successful']);
@@ -121,7 +120,6 @@ export class PaymentService {
         ondismiss: () => {
           bookingDetail['paymentDetail'].paymentStatus = 'failed';
           this.EventService.bookingDetails.set(bookingDetail);
-          console.log(this.EventService.bookingDetails());
           this.router.navigate(['/patmentfailed']);
         },
       },
@@ -132,7 +130,6 @@ export class PaymentService {
     rzp.on('payment.failed', (response: any) => {
       bookingDetail['paymentDetail'].paymentStatus = 'failed';
       this.EventService.bookingDetails.set(bookingDetail);
-      console.log(this.EventService.bookingDetails());
       this.addInbooking().then(() => {
         this.deleteBookingFromCart().then(() => {
           this.router.navigate(['/patmentfailed']);

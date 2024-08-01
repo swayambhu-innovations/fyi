@@ -71,8 +71,6 @@ export class VarientSelectionComponent {
     let curEvent = this.EventService.bookingDetails()['event'].eventId
     let itineraryList :any = this.EventService.itineraryList()[curEvent]
     this.itinerary=  this.groupAndSortActivities(itineraryList['activities'])
-    console.log(this.slabDetail)
-    console.log(this.itinerary)
 
   }
 

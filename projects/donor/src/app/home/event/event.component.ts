@@ -163,7 +163,6 @@ export class EventComponent {
   }
 
   async isTaxActive(taxId: any) {
-    console.log(taxId);
     let res: any;
     try {
       const observable = this.eventService.fetchDoc(`tax-types/${taxId}`);
