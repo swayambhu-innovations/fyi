@@ -8,7 +8,7 @@
             <button class="primary" (click)="seeAllEvent()">view all</button>
         </div>
     </div>
-    <div class="heading">
+    <div class="heading" *ngIf="isEventPresent">
         <h2 class="section_title header_text_color">Events</h2>
         <button class="see-all" (click)="seeAllEvent()">See All</button>
     </div>

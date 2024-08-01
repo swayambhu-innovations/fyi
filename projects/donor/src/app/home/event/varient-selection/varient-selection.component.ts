@@ -68,20 +68,6 @@ export class VarientSelectionComponent {
     this.itinerary=  this.groupAndSortActivities(itineraryList['activities'])
     console.log(this.slabDetail)
     console.log(this.itinerary)
-    this.schedule = [];
-    for (const date in this.itinerary) {
-      const events = this.itinerary[date].map((activity: any) => ({
-        time: `${activity.startTime} - ${activity.endTime}`,
-        description: activity.description
-      }));
-  
-      this.schedule.push({
-        day: `DAY (${date})`,
-        events: events
-      });
-    }
-  
-    console.log(this.schedule);
 
   }
 

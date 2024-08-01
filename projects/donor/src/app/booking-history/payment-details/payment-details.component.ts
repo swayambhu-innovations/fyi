@@ -63,7 +63,6 @@ export class PaymentDetailsComponent {
         }
       }
     }
-    console.log(this.bookingdata);
   }
   selectTab(index: number) {
     this.selectedTab = index

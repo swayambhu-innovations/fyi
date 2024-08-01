@@ -5,6 +5,7 @@ import { ReceivingEventService } from '../services/receiving-event.service';
 import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 import { booking } from './booking.structure';
 import { BookingDetailsComponent } from "./booking-details/booking-details.component";
+import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
 @Component({
   selector: 'app-receiving-event',
   standalone: true,
@@ -18,9 +19,10 @@ export class ReceivingEventComponent {
 
 
   ngOnInit(): void {
-    this.getUsersBooking();
+    this.LoadingService.show();
+    this.getUsersBooking().then(() => this.LoadingService.hide());
   }
-  constructor(private router:Router,private receivingEventService:ReceivingEventService, private firestore: Firestore, ){}
+  constructor(private router:Router,private receivingEventService:ReceivingEventService, private firestore: Firestore,private LoadingService:LoadingService ){}
   
   
 

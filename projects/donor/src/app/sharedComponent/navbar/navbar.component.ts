@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DataProviderService } from '../../auth/service/data-provider.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -13,7 +14,7 @@ export class NavbarComponent {
     'patmentfailed','varient',
   ];
   showNavbar:any
-  constructor(private router: Router){
+  constructor(private router: Router,public DataProviderService:DataProviderService){
     this.checkRoute(this.router.url);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
