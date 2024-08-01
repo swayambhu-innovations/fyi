@@ -71,6 +71,9 @@ export class VarientSelectionComponent {
     let curEvent = this.EventService.bookingDetails()['event'].eventId
     let itineraryList :any = this.EventService.itineraryList()[curEvent]
     this.itinerary=  this.groupAndSortActivities(itineraryList['activities'])
+    console.log(this.slabDetail)
+    console.log(this.itinerary)
+
   }
 
   convertTo12Hour(time: string): string {
@@ -155,4 +158,35 @@ export class VarientSelectionComponent {
 
     this.router.navigate(['member-detail']);
   }
+
+
+
+
+
+
+
+  schedule = [
+    {
+      day: 'DAY 1 (27 September 2024)',
+      events: [
+        { time: '11:00 A.M. - 12:00 P.M.', description: 'CHECK IN & REGISTRATIONS' },
+        { time: '12:00 P.M. - 01:00 P.M.', description: 'LUNCH' },
+        { time: '01:00 P.M. - 01:30 P.M.', description: 'INAUGURAL SESSION' },
+        { time: '03:30 P.M. - 04:00 P.M.', description: 'HI-TEA' },
+        { time: '04:00 P.M. - 08:00 P.M.', description: 'CITY TOUR 1 (RIVER CRUISE & GANGA AARTI)' },
+        { time: '08:00 P.M. - 09:00 P.M.', description: 'DINNER' },
+      ]
+    },
+    {
+      day: 'DAY 2 (27 September 2024)',
+      events: [
+        { time: '11:00 A.M. - 12:00 P.M.', description: 'CHECK IN & REGISTRATIONS' },
+        { time: '12:00 P.M. - 01:00 P.M.', description: 'LUNCH' },
+        { time: '01:00 P.M. - 01:30 P.M.', description: 'INAUGURAL SESSION' },
+        { time: '03:30 P.M. - 04:00 P.M.', description: 'HI-TEA' },
+        { time: '04:00 P.M. - 08:00 P.M.', description: 'CITY TOUR 1 (RIVER CRUISE & GANGA AARTI)' },
+        { time: '08:00 P.M. - 09:00 P.M.', description: 'DINNER' },
+      ]
+    }
+  ];
 }
