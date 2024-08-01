@@ -4,8 +4,9 @@ section{
         font-weight: 400;
     }
     .hospital{
+        margin-top: 1rem;
         display: flex;
-        justify-content: space-between;
+        gap: 2rem;
         background: linear-gradient(90.32deg, #464E5F 0.28%, rgba(70, 78, 95, 0.8) 47.84%, rgba(70, 78, 95, 0.4) 99.72%);
         border-radius: 10px;
         height: 70px;
@@ -13,6 +14,14 @@ section{
         padding: 0px 10px;
         span{
             padding-top: 20px;
+            font-size: 18px;
+            color: #F0F0F0;
+          
+            font-family: "Jura", sans-serif;
+
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
         }
 
     }
