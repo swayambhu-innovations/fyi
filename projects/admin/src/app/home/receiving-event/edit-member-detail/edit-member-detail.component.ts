@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CancelBtnComponent } from "../../../../../../shared-ui/src/cancel-btn/cancel-btn.component";
 import { SaveBtnComponent } from "../../../../../../shared-ui/src/save-btn/save-btn.component";
+import { ReceivingEventService } from '../../services/receiving-event.service';
 interface Member {
-  name: string;
-  aadhaar: string;
+  Name: string;
+  Aadharnumber: string;
   gender: string;
-  contact: string;
+  mobileNo: string;
 }
 @Component({
   selector: 'app-edit-member-detail',
@@ -32,13 +33,15 @@ export class EditMemberDetailComponent {
   constructor(
     private fb: FormBuilder,
     private bottomSheetRef: MatBottomSheetRef<EditMemberDetailComponent>,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public member: Member
+    @Inject(MAT_BOTTOM_SHEET_DATA) public member: Member,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { member: Member, userId: string, bookingId: string, memberIndex: number },
+    private receivingEventService:ReceivingEventService
   ) {
     this.editMemberForm = this.fb.group({
-      name: [this.member.name, Validators.required],
-      aadhaar: [this.member.aadhaar, [Validators.required, Validators.pattern(/^\d{12}$/)]],
+      Name: [this.member.Name, Validators.required],
+      Aadharnumber: [this.member.Aadharnumber, [Validators.required, Validators.pattern(/^\d{12}$/)]],
       gender: [this.member.gender, Validators.required],
-      contact: [this.member.contact, [Validators.required, Validators.pattern(/^\d{10}$/)]]
+      mobileNo: [this.member.mobileNo, [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
 
