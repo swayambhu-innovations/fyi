@@ -1,71 +1,78 @@
-<app-header-with-back [pageTitle]="'Booking Details'"></app-header-with-back>
+    <app-header-with-back [pageTitle]="'Booking Details'"></app-header-with-back>
 
-<section class="details">
-    <div class="booking">
-        <p class="card_title_text heading">Payment Details</p>
+    <section class="details">
+        <div class="booking">
+            <p class="card_title_text heading">Payment Details</p>
 
-        <div class="event paragraph_text">
-            <span class="field">Event</span>
-            <span class="header_text_color">{{bookingdata?.eventname}}</span>
-        </div>
-        <div class="event paragraph_text">
-            <span class="field">slab</span>
-            <span class="header_text_color">Panchang Slab</span>
-        </div>
-        <div class="event paragraph_text">
-            <span class="field">varient</span>
-            <span class="header_text_color">couple</span>
-        </div>
-        <div class="event paragraph_text">
-            <span class="field">Booking Member</span>
-            <span class="header_text_color">Anuj Madhav</span>
-        </div>
-        <div class="event paragraph_text">
-            <span class="field">Contact</span>
-            <span class="header_text_color">9696969696</span>
-        </div>
-        <div class="event paragraph_text">
-            <span class="field">Date</span>
-            <span class="header_text_color">23/08/24 & 14:08</span>
-        </div>
-        <div class="event paragraph_text">
-            <span class="field">Payment</span>
-            <span class="header_text_color">11210</span>
-        </div>
-        <div class="eventpayment paragraph_text">
-            <span class="field">Status</span>
-            <span class="header_text_color">Successful</span>
-        </div>
-    </div>
+            <div class="event paragraph_text">
+                <span class="field">Event</span>
+                <span class="header_text_color">{{bookingdata?.eventname}}</span>
+            </div>
+            <div class="event paragraph_text">
+                <span class="field">slab</span>
+                <span class="header_text_color">{{bookingdata?.slabname}}</span>
+            </div>
+            <div class="event paragraph_text">
+                <span class="field">varient</span>
+                <span class="header_text_color">{{bookingdata?.varientname}}</span>
+            </div>
+            <div class="event paragraph_text">
+                <span class="field">Booking Member</span>
+                <span class="header_text_color">{{bookingdata?.name}}</span>
+            </div>
+            <div class="event paragraph_text">
+                <span class="field">Contact</span>
+                <span class="header_text_color">{{bookingdata?.contact}}</span>
+            </div>
+            <div class="event paragraph_text">
+                <span class="field">Date</span>
+                <span class="header_text_color">{{bookingdata?.date}} {{bookingdata?.time}}</span>
+            </div>
+            <div class="event paragraph_text">
+                <span class="field">Payment</span>
+                <span class="header_text_color">{{bookingdata?.price}}</span>
+            </div>
     
+            <div class="eventpayment paragraph_text">
+                <span class="field">Status</span>
+                <span [ngClass]="{
+                    'text-black': bookingdata?.status === 'pending',
+                    'text-green': bookingdata?.status === 'success',
+                    'text-red': bookingdata?.status === 'failed',
+                }">
+                    {{ bookingdata?.status }}
+                </span>
+            </div>
+            
+        </div>
+        
 
 
-      <div class="scroll">
-        <div class="memberheading">
-          <p class="card_title_text">Member Details</p>
-          <button (click)="editMember()">Edit</button>
+        <div class="scroll">
+            <div class="memberheading">
+            <p class="card_title_text">Member Details</p>
+            <button (click)="editMember()">Edit</button>
+            </div>
+        
+            <div class="tabs" *ngIf="members.length>0">
+            <div
+                class="tab"
+                *ngFor="let member of members; let i = index"
+                [class.active]="selectedTab === i"
+                (click)="selectTab(i)">Member {{ i +1 }}
+            </div>
+            </div>
+        <div *ngIf="members.length>0">
+            <div class="content" *ngIf="selectedTab !== null">
+            
+                <div class="card2"><strong>Name:</strong> {{ members[selectedTab].Name }}</div>
+                <div class="card2"><strong>Aadhaar:</strong> {{ members[selectedTab].Aadharnumber }}</div>
+                <div class="card2"><strong>Gender:</strong> {{ members[selectedTab].gender }}</div>
+                <div class="card2"><strong>Contact:</strong> {{ members[selectedTab].mobileNo }}</div>
+            
+            </div>
         </div>
-    
-        <div class="tabs">
-          <div
-            class="tab"
-            *ngFor="let member of members; let i = index"
-            [class.active]="selectedTab === i"
-            (click)="selectTab(i)"
-          >
-            Member {{ i +1 }}
-          </div>
         </div>
-    
-        <div class="content" *ngIf="selectedTab !== null">
-          <div>
-            <div class="card2"><strong>Name:</strong> {{ members[selectedTab].name }}</div>
-            <div class="card2"><strong>Aadhaar:</strong> {{ members[selectedTab].Aadhar }}</div>
-            <div class="card2"><strong>Gender:</strong> {{ members[selectedTab].Gender }}</div>
-            <div class="card2"><strong>Contact:</strong> {{ members[selectedTab].Contact }}</div>
-          </div>
-        </div>
-      </div>
-    
-     <button class="delete">Delete</button>
-</section>
+        
+        <button class="delete" (click)="openDeleteBottomSheet()">Delete</button>
+    </section>

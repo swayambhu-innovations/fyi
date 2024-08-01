@@ -46,5 +46,5 @@ export const routes: Routes = [
     {path:'addevent',component: AddeventComponent,canActivate: [AuthGuard]},
     {path:'editevent/:id',component: AddeventComponent,canActivate: [AuthGuard]},
     {path:'receivedEvent', component: ReceivingEventComponent},
-    {path:'booking-detail',component:BookingDetailsComponent}
+    {path:'booking-detail/:BookingId',component:BookingDetailsComponent}
 ];

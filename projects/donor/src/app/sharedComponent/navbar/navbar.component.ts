@@ -26,10 +26,10 @@ export class NavbarComponent {
     this.currentTab = 'home';
     this.router.navigate(['home']);
   }
-  moveTodonation(){
+  moveTohistory(){
     this.currentTab = 'donation';
 
-    this.router.navigate(['donation']);
+    this.router.navigate(['history']);
   }
   moveTofeed(){
     this.currentTab = 'feed';

@@ -17,6 +17,8 @@ import { CouponComponent } from './coupon/coupon.component';
 import { FeedComponent } from './feed/feed.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentFailedComponent } from './event-payment/payment-failed/payment-failed.component';
+import { BookingHistoryComponent } from './booking-history/booking-history.component';
+import { PaymentDetailsComponent } from './booking-history/payment-details/payment-details.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -37,6 +39,8 @@ export const routes: Routes = [
     {path : 'feed',component:FeedComponent},
     {path : 'coupon',component:CouponComponent},
     {path : 'account',component:AccountComponent},
+    {path : 'history',component:BookingHistoryComponent},
+    {path : 'PaymentDetail/:BookingId' ,component:PaymentDetailsComponent}
    
    
 ];

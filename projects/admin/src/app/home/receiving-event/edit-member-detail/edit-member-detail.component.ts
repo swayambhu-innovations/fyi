@@ -6,13 +6,14 @@ import {
 } from '@angular/material/bottom-sheet';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CancelBtnComponent } from '../../../../../../shared-ui/src/cancel-btn/cancel-btn.component';
-import { SaveBtnComponent } from '../../../../../../shared-ui/src/save-btn/save-btn.component';
+import { CancelBtnComponent } from "../../../../../../shared-ui/src/cancel-btn/cancel-btn.component";
+import { SaveBtnComponent } from "../../../../../../shared-ui/src/save-btn/save-btn.component";
+import { ReceivingEventService } from '../../services/receiving-event.service';
 interface Member {
-  name: string;
-  aadhaar: string;
+  Name: string;
+  Aadharnumber: string;
   gender: string;
-  contact: string;
+  mobileNo: string;
 }
 @Component({
   selector: 'app-edit-member-detail',
@@ -32,27 +33,32 @@ export class EditMemberDetailComponent {
   constructor(
     private fb: FormBuilder,
     private bottomSheetRef: MatBottomSheetRef<EditMemberDetailComponent>,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public member: any
+    @Inject(MAT_BOTTOM_SHEET_DATA) public member: Member,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { member: Member, userId: string, bookingId: string, memberIndex: number },
+    private receivingEventService:ReceivingEventService
   ) {
     this.editMemberForm = this.fb.group({
-      name: [member.name, Validators.required],
-      aadhaar: [
-        member?.['Aadhar'],
-        [Validators.required, Validators.pattern(/^\d{12}$/)],
-      ],
-      gender: [member?.['Gender'], Validators.required],
-      contact: [
-        member?.['Contact'],
-        [Validators.required, Validators.pattern(/^\d{10}$/)],
-      ],
+      Name: [this.member.Name, Validators.required],
+      Aadharnumber: [this.member.Aadharnumber, [Validators.required, Validators.pattern(/^\d{12}$/)]],
+      gender: [this.member.gender, Validators.required],
+      mobileNo: [this.member.mobileNo, [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
 
   ngOnInit() {}
 
-  save() {
+  // save() {
+  //   console.log("asdfgh")
+  //   if (this.editMemberForm.valid) {
+  //     console.log("sdfghj")
+  //     this.bottomSheetRef.dismiss(this.editMemberForm.value);
+  //   }
+  // }
+  async save() {
     if (this.editMemberForm.valid) {
-      this.bottomSheetRef.dismiss(this.editMemberForm.value);
+      const updatedMember = this.editMemberForm.value;
+      await this.receivingEventService.updateMember(this.data.userId, this.data.bookingId, this.data.memberIndex, updatedMember);
+      this.bottomSheetRef.dismiss(updatedMember);
     }
   }
 

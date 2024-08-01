@@ -1,3 +1,6 @@
+
+<app-header-with-back [pageTitle]="'Booking history'"></app-header-with-back> 
+
 <Section class="event">
     <div class="heading">
         <h2 class="section_title header_text_color">Booked Events</h2>
@@ -8,7 +11,7 @@
     </div>
     <div class="card" *ngFor="let event of bookings" (click)="bookingdetail(event.BookingId)">
         <div class="ticket-info" >
-            <img src="assets/homepage/image.svg" alt="Event Image" class="event-image">
+            <img src="assets/bookinghistory/image.svg" alt="Event Image" class="event-image">
             <div class="event-details">
                 <p class=" section_title name">{{event.name}}</p>
                 <p class="paragraph_text contact ">Contact : {{ event.contact }}</p>
@@ -26,6 +29,3 @@
     </div>
     
 </Section>
-
-
-<!-- <app-booking-details  [bookingdata]="bookingdata"></app-booking-details> -->

@@ -1,112 +1,118 @@
-section{
-    padding-bottom:80px ;
+section {
+    padding-bottom: 80px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
-.scroll{
+
+.scroll {
     overflow-x: auto;
     -ms-overflow-style: none;
-    scrollbar-width: none;  
+    scrollbar-width: none;
     margin-bottom: 5px;
-    padding-top:70px ;
+    padding-top: 70px;
     margin-top: 2%;
 }
+
 .scroll::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
+
 .tabs {
-    
-     display: flex;
-     justify-content: center;
-     justify-content: space-between;
-     margin-left: 15px;
-     .section_title{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1rem;
+    .section_title {
         font-size: 12px;
-     }
+    }
 }
+
 .tab {
- padding: 10px 30px 10px 30px ;
- border-radius: 10px;
- cursor: pointer;
-//  justify-content: center;
-// align-items: center;
-width: 150;
+    padding: 10px 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
 }
+
 .tab.active, .tab:hover {
-    
     background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
- color: white;
+    color: white;
 }
 
-
-.memberdetail{
+.memberdetail {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
+    padding: 1rem;
 }
-.detail{
-    margin-top: 50px;
+
+.detail {
+    margin-top: 2rem;
+    width: 100%;
 }
+
 .member-form {
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    .paragraph_text{
-        color: #808080;
-
-    }
-    
+    width: 100%;
 }
-.member
- {
+
+.member-form .paragraph_text {
+    color: #808080;
+    margin-bottom: 0.5rem;
+}
+
+.member {
     border-radius: 12px;
     border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
-    background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));  
-    width: 380px;
+    background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
+    width: 100%;
     height: 40px;
-     padding: 10px;
-    justify-content: space-between;
-    align-items: center;
-  
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 .header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     border-radius: 12px;
     border: 1px solid var(--input-box-border-gradient, rgba(170, 170, 170, 0.30));
     background: var(--input-box-bg-gradient, linear-gradient(99deg, rgba(225, 225, 225, 0.30) 12.07%, rgba(225, 225, 225, 0.20) 48.35%, rgba(225, 225, 225, 0.20) 87.93%));
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
     height: 40px;
-    width: 380px;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    label{
-        font-size: 14px;
-        color:#464E5F;
-    }
-    position: relative;
-  }
-.submit-button{
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.header label {
+    font-size: 14px;
+    color: #464E5F;
+}
+
+.submit-button {
     height: 60px;
-    width: 137px;
+    width: 100%;
+    max-width: 200px;
     border-radius: 30px;
     background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
     border: none;
     color: white;
-    margin-top: 40px;
-
+    margin-top: 2rem;
 }
-
 
 .profile {
     position: relative;
-    width: 150px;
+    width: 100%;
+    max-width: 150px;
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    top: 15px;
+    margin-top: 1rem;
 }
 
 .profile img {
@@ -124,8 +130,6 @@ width: 150;
     bottom: 10px;
     right: 10px;
     background: #FFFFFF;
-
-    color: white;
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
@@ -146,4 +150,4 @@ width: 150;
     display: flex;
     align-items: center;
     gap: 10px;
-  }
+}

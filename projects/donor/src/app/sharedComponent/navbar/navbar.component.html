@@ -4,9 +4,9 @@
         <img [src]="currentTab === 'home' ? '/assets/navbar/home1.svg' : '/assets/navbar/home.svg'" alt="Home">
         <span>Home</span>
     </button>
-    <button (click)="moveTodonation()" [class.active]="currentTab === 'donation'">
-        <img [src]="currentTab === 'donation' ? '/assets/navbar/service1.svg' : '/assets/navbar/service.svg'" alt="Donation">
-        <span>Donation</span>
+    <button (click)="moveTohistory()" [class.active]="currentTab === 'donation'">
+        <img [src]="currentTab === 'donation' ? '/assets/navbar/history1.svg' : '/assets/navbar/history.svg'" alt="Donation">
+        <span>History</span>
     </button>
     <button (click)="moveTofeed()" [class.active]="currentTab === 'feed'">
         <img [src]="currentTab === 'feed' ? '/assets/navbar/feed1.svg' : '/assets/navbar/feed.svg'" alt="Feed">
