@@ -38,6 +38,6 @@
   </form>
   <div class="twin-btn">
     <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
-    <lib-save-btn (click)="saveTax()" [btnName]="'Save'"></lib-save-btn>
+    <lib-save-btn (click)="saveTax()" [btnName]="'Save'" [disabled]="taxForm.invalid"></lib-save-btn>
   </div>
 </section>

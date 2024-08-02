@@ -169,6 +169,11 @@ text-overflow: ellipsis;
   bottom: 3px;
 }
 
+.disabled-btn {
+  background-color: gray; 
+  color: darkgray;
+}
+
 //switcher
 .uk-switch {
     position: relative;

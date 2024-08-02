@@ -95,6 +95,8 @@ export class AddeventComponent {
   eventForm: FormGroup;
   slabAndVariantForm: FormGroup;
 
+  
+
   constructor(
     private router: Router,
     private storage: Storage,
