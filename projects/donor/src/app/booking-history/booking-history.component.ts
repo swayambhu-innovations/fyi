@@ -6,6 +6,7 @@ import { booking } from '../../../../admin/src/app/home/receiving-event/booking.
 import { CommonModule } from '@angular/common';
 import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/header-with-menu.component";
 import { HeaderWithBackComponent } from "../sharedComponent/header-with-back/header-with-back.component";
+import { DataProviderService } from '../auth/service/data-provider.service';
 @Component({
   selector: 'app-booking-history',
   standalone: true,
@@ -20,7 +21,7 @@ export class BookingHistoryComponent {
   ngOnInit(): void {
     this.getUsersBooking();
   }
-  constructor(private router:Router,private receivingEventService:ReceivingEventService, private firestore: Firestore, ){}
+  constructor(private router:Router,private receivingEventService:ReceivingEventService, private firestore: Firestore,private DataProviderService:DataProviderService ){}
   
   
 
@@ -31,25 +32,25 @@ bookingdetail(BookingId: string): void {
 
   async getUsersBooking() {
     this.bookings = [];
-    const usersSnapshot = await this.receivingEventService.getAllUsers();
-
-    for (const user of usersSnapshot.docs) {
-      const userId = user.id;
+    const userId = this.DataProviderService.currentUser?.userData.uid
+    
       const bookingsSnapshot = await this.receivingEventService.getUserBookings(userId);
       for (const booking of bookingsSnapshot.docs) {
         const bookingData = booking.data();
-        this.bookings.push({
-          "BookingId": bookingData["id"],
-          "name": bookingData["customer"].name,
-          "contact": bookingData["customer"].phoneNumber,
-          "eventname": bookingData["event"].eventName,
-          "slabname": bookingData["slab"].name,
-          "varientname": bookingData["variant"].name,
-          "price": bookingData["variant"].totalTicket,
-          "tickets": bookingData["totalMember"],
-          
-        });
+        if(bookingData["paymentDetail"].paymentStatus=="success"){
+          this.bookings.push({
+            "BookingId": bookingData["id"],
+            "name": bookingData["customer"].name,
+            "contact": bookingData["customer"].phoneNumber,
+            "eventname": bookingData["event"].eventName,
+            "slabname": bookingData["slab"].name,
+            "varientname": bookingData["variant"].name,
+            "price": bookingData["paymentDetail"].totalPrice,
+            "tickets": bookingData["variant"].totalTicket,
+          });
+        }
+       
       }
-    }
+    
   }
 }

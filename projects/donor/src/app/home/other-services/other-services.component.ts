@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-other-services',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './other-services.component.scss'
 })
 export class OtherServicesComponent {
+  constructor(private router: Router) {}
 
+  openInNewTab(url: string): void {
+    window.open(url, '_blank');
+  }
 }
