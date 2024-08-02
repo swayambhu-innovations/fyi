@@ -1,0 +1,66 @@
+section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  .card {
+    width: 95%;
+    height: 90px;
+    margin: 5px auto;
+    border: 1px;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 1px 1px 1px rgba(99, 94, 94, 0.4);
+    margin-bottom: 10px;
+    .profile {
+      width: 53px;
+      height: 53px;
+      margin-right: 5px;
+
+      border-radius: 100px 0px 0px 0px;
+      opacity: 0px;
+      img{ width: 53px;
+        height: 53px;
+    border-radius: 50%;}
+    }
+    .detail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left:20px ;
+      .user_name {
+        font-family: "Jura", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 18.93px;
+        text-align: left;
+        color:#000000;
+      }
+      .detail_info {
+        display: flex;
+        justify-content: space-between;
+        .detail_info-sub {
+          display: flex;
+          gap: 6px;
+
+          .user_info {
+            font-family: "Nunito", sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 19.1px;
+            text-align: left;
+          }
+        }
+        &:nth-child(2) {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
