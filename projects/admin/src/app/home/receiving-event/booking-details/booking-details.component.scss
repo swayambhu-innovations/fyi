@@ -56,60 +56,67 @@
     
 
     .scroll {
-      
-      
-        background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
+      background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
+
+      border-radius: 15px;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .memberheading{
+      display: flex;
+      justify-content: space-between;
+      button{
+        width: 80px;
+        height: 30px;
         border-radius: 15px;
-        padding: 10px;
-        margin-top: 20px;
-      
+        background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+        border: none;
+        color: white;
+        align-items: center;
       }
-      .memberheading{
-        display: flex;
-        justify-content: space-between;
-        button{
-            width: 80px;
-            height: 30px;
-            border-radius: 15px;
-            background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
-            border: none;
-            color: white;
-            align-items: center;
-        }
-      }
-      .tabs {
-        display: flex;
-        overflow-x: auto;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        .tab {
-          padding: 5px;
-          border-radius: 10px;
-          cursor: pointer;
-          justify-content: center;
-          align-items: center;
-        }
-        .tab.active, .tab:hover {
-          background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
-          color: white;
-        }
-      }
-    
-     
-      .content {
-        margin-top: 8%;
-        padding: 20px;
-        background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
-        border: 1px solid;
-        border-image-source: linear-gradient(99.41deg, rgba(170, 170, 170, 0.3) 12.07%, rgba(170, 170, 170, 0.2) 48.35%, rgba(170, 170, 170, 0.2) 87.93%);
+    }
+    .tabs{
+      display: flex;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      .tab {
+        padding: 5px;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-left: 0.4rem;
-        margin-right: 0.4rem;
-        .card2{
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+      }
+      .tab.active, .tab:hover {
+        background: var(--active-tab-gradient, linear-gradient(90deg, #464E5F 0.28%, rgba(70, 78, 95, 0.80) 47.84%, rgba(70, 78, 95, 0.40) 99.72%));
+        color: white;
+      }
+    }
+    .content {
+      margin-top: 8%;
+      padding: 20px;
+      background: linear-gradient(99.41deg, rgba(225, 225, 225, 0.3) 12.07%, rgba(225, 225, 225, 0.2) 48.35%, rgba(225, 225, 225, 0.2) 87.93%);
+      border: 1px solid;
+      border-image-source: linear-gradient(99.41deg, rgba(170, 170, 170, 0.3) 12.07%, rgba(170, 170, 170, 0.2) 48.35%, rgba(170, 170, 170, 0.2) 87.93%);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+      .card2{
           display: flex;
           justify-content: space-between;
+          .paragraph_text{
+            color:  #7E8083;
+            font-size: 16px;
+            font-weight: 500;
+  
         }
+          .header_text_color{
+            font-size: 18px;
+            font-weight: 400;
+        }
+        }
+  
       }
       .delete{
         color: white;
@@ -119,6 +126,7 @@
         width: 166px;
         border-radius: 30px;
         margin-left: 25%;
+        margin-top: 1.5rem;
       
       }
  
