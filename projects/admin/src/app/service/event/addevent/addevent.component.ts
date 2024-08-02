@@ -480,17 +480,18 @@ export class AddeventComponent {
 
         }
         break;
-      case 'city':
+      case 'back':
         console.log(this.slabAndVariantForm.value);
         if (this.slabAndVariantForm.valid) {
           this.LoadingService.show();
-          this.eventservice
+          await this.eventservice
             .addSlabAndVariant(this.slabAndVariantForm.value)
             .then(() => {
               this.getCities();
             });
-          this.pannel = view;
-          this.selected = view
+          // this.pannel = view;
+          // this.selected = view
+          this.cancel('back')
 
         }
         break;

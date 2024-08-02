@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './service.component.scss'
 })
 export class ServiceComponent {
-selected="area"
+selected="event"
   constructor(private router: Router) {}
   submit(select:string){
     this.selected=select;

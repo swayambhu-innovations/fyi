@@ -9,7 +9,7 @@
         Itinerary
       </div>
       <div class="tab" [ngClass]="{ active: selected === 'slab' }">Slab</div>
-      <div class="tab" [ngClass]="{ active: selected === 'city' }">city</div>
+      <!-- <div class="tab" [ngClass]="{ active: selected === 'city' }">city</div> -->
     </div>
   </div>
   <!-- detail form pannel -->
@@ -328,7 +328,7 @@
             ></lib-cancel-btn>
             <lib-save-btn
               [btnName]="'Next'"
-              (click)="nextpannel('city')"
+              (click)="nextpannel('back')"
             ></lib-save-btn>
           </div>
         </ng-container>
