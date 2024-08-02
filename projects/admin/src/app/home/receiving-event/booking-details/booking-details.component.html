@@ -65,10 +65,10 @@
         <div *ngIf="members.length>0">
             <div class="content" *ngIf="selectedTab !== null">
             
-                <div class="card2"><strong>Name:</strong> {{ members[selectedTab].Name }}</div>
-                <div class="card2"><strong>Aadhaar:</strong> {{ members[selectedTab].Aadharnumber }}</div>
-                <div class="card2"><strong>Gender:</strong> {{ members[selectedTab].gender }}</div>
-                <div class="card2"><strong>Contact:</strong> {{ members[selectedTab].mobileNo }}</div>
+                <div class="card2 "><span class="paragraph_text">Name</span><span class="header_text_color">{{ members[selectedTab].Name }}</span> </div>
+                <div class="card2"><span class="paragraph_text">Aadhaar</span> <span class="header_text_color">{{ members[selectedTab].Aadharnumber }}</span></div>
+                <div class="card2"><span class="paragraph_text">Gender</span><span class="header_text_color">{{ members[selectedTab].gender }}</span> </div>
+                <div class="card2"><span class="paragraph_text">Contact</span><span class="header_text_color">{{ members[selectedTab].mobileNo }}</span> </div>
             
             </div>
         </div>
