@@ -90,9 +90,9 @@ export class AddAddressComponent {
   }
   submitAddress() {
 
-    this.AddressService.addAddress(
-      this.addressForm.value,
-      this.dataProvider.currentUser?.userData.uid
-    );
+    // this.AddressService.addAddress(
+    //   this.addressForm.value,
+    //   this.dataProvider.currentUser?.userData.uid
+    // );
   }
 }

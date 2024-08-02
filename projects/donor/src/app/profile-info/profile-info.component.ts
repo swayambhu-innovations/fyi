@@ -99,7 +99,7 @@ export class ProfileInfoComponent {
       this.userForm.value.dob = new Date(this.userForm.value.dob).toISOString();
       this.ProfileInfoService.updateProfileInfo(this.userForm.value).then(
         () => {
-          this.Router.navigate(['add-address']);
+          this.Router.navigate(['home']);
         }
       );
     }

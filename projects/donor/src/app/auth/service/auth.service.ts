@@ -52,11 +52,8 @@ export class AuthService {
                 const addresses = result.docs.map((address: any) => {
                   return { ...address.data(), id: address.id };
                 });
-                if (addresses.length > 0) {
                   this.router.navigate(['home']);
-                } else {
-                  this.router.navigate(['add-address']);
-                }
+                
               }
             );
           }
@@ -68,6 +65,7 @@ export class AuthService {
       }
     });
   }
+  
   async loginWithPhoneNumber(phone: string, appVerifier: ApplicationVerifier) {
     
     if (phone.length != 10) {
