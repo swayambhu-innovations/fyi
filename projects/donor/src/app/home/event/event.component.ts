@@ -13,7 +13,7 @@ import { DataProviderService } from '../../auth/service/data-provider.service';
   styleUrl: './event.component.scss',
 })
 export class EventComponent {
-  isEventPresent:boolean=false
+  isEventPresent: boolean = false;
   events = [
     {
       title: 'Cearic Kashi Summit 2024',
@@ -58,71 +58,76 @@ export class EventComponent {
       }, 3000);
   }
   async getEvent() {
-    let stateId = localStorage.getItem('stateDocId');
-    let cityId = localStorage.getItem('cityDocId');
-    let cityAddress = '';
+    // let stateId = localStorage.getItem('stateDocId');
+    // let cityId = localStorage.getItem('cityDocId');
+    // let cityAddress = '';
 
+    //   if (!this.DataProviderService.loggedIn) {
+    //     stateId = localStorage.getItem('stateDocId');
+    //     cityId = localStorage.getItem('cityDocId');
+    //     cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
+    //   } else {
+    //     console.log('this.DataProviderService.currentUser', this.DataProviderService.currentUser);
+    //     let uid = this.DataProviderService.currentUser?.userData.uid;
+    //     const addressList = await firstValueFrom(
+    //       this.eventService.fetchDocs(`users/${uid}/addresses`)
+    //     );
+    //     this.eventService.addressList.set(addressList);
+
+    //     for (const address of addressList) {
+    //       if (address.active) {
+    //         this.eventService.activeAddress.set(address);
+    //         stateId = address.selectedStateId;
+    //         cityId = address.selectedCityId;
+    //         cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
+    //       }
+    //     }
+    //   }
+    // console.log('cityAddress', cityAddress);
     try {
-      if (!this.DataProviderService.loggedIn) {
-        stateId = localStorage.getItem('stateDocId');
-        cityId = localStorage.getItem('cityDocId');
-        cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
-      } else {
-        console.log('this.DataProviderService.currentUser', this.DataProviderService.currentUser);
-        let uid = this.DataProviderService.currentUser?.userData.uid;
-        const addressList = await firstValueFrom(
-          this.eventService.fetchDocs(`users/${uid}/addresses`)
-        );
-        this.eventService.addressList.set(addressList);
-
-        for (const address of addressList) {
-          if (address.active) {
-            this.eventService.activeAddress.set(address);
-            stateId = address.selectedStateId;
-            cityId = address.selectedCityId;
-            cityAddress = `city-catalogue/${stateId}/city/${cityId}`;
-          }
-        }
-      }
-      console.log('cityAddress', cityAddress);
-      const cityDoc: any = await firstValueFrom(
-        this.eventService.fetchDoc(cityAddress)
+      const eventDocs: any = await firstValueFrom(
+        this.eventService.fetchDocs('events')
       );
-      this.eventService.cityDoc.set({ ...cityDoc, stateId });
 
       const eventList: any[] = [];
       const itineraryList: { [key: string]: any[] } = {};
       const slabList: { [key: string]: any[] } = {};
       const variantList: { [key: string]: any[] } = {};
-      console.log('cityDoc', cityDoc);
-      for (const eventId of cityDoc.events) {
-        console.log(eventId)
-        const event: any = await firstValueFrom(this.eventService.fetchDoc(`events/${eventId}`)
+
+      for (let currEvent of eventDocs) {
+        console.log(currEvent['eventId']);
+
+        const event: any = await firstValueFrom(
+          this.eventService.fetchDoc(`events/${currEvent['eventId']}`)
         );
         console.log('event', event);
         if (event.active) {
           const itinerary: any = await firstValueFrom(
-            this.eventService.fetchDoc(`events/${eventId}/itinerary/activities`)
+            this.eventService.fetchDoc(
+              `events/${currEvent['eventId']}/itinerary/activities`
+            )
           );
-          itineraryList[eventId] = itinerary;
+          itineraryList[currEvent['eventId']] = itinerary;
           this.eventService.itineraryList.set(itineraryList);
 
           const slabs: any[] = await firstValueFrom(
-            this.eventService.fetchDocs(`events/${eventId}/slab-variant`)
+            this.eventService.fetchDocs(
+              `events/${currEvent['eventId']}/slab-variant`
+            )
           );
 
-          slabList[eventId] = [];
+          slabList[currEvent['eventId']] = [];
 
           for (const slab of slabs) {
             const slabDetail: any = await firstValueFrom(
               this.eventService.fetchDoc(
-                `events/${eventId}/slab-variant/${slab.slabId}`
+                `events/${currEvent['eventId']}/slab-variant/${slab.slabId}`
               )
             );
             if (slabDetail.active) {
               const variants: any[] = await firstValueFrom(
                 this.eventService.fetchDocs(
-                  `events/${eventId}/slab-variant/${slab.slabId}/variants`
+                  `events/${currEvent['eventId']}/slab-variant/${slab.slabId}/variants`
                 )
               );
               variantList[slab.slabId] = [];
@@ -130,7 +135,7 @@ export class EventComponent {
               for (const variant of variants) {
                 const variantDetail: any = await firstValueFrom(
                   this.eventService.fetchDoc(
-                    `events/${eventId}/slab-variant/${slab.slabId}/variants/${variant.variantId}`
+                    `events/${currEvent['eventId']}/slab-variant/${slab.slabId}/variants/${variant.variantId}`
                   )
                 );
 
@@ -147,14 +152,14 @@ export class EventComponent {
               }
 
               if (variantList[slab.slabId].length > 0) {
-                slabList[eventId].push(slabDetail);
+                slabList[currEvent['eventId']].push(slabDetail);
                 this.eventService.slabList.set(slabList);
               }
             }
           }
-          if (slabList[eventId].length > 0) {
+          if (slabList[currEvent['eventId']].length > 0) {
             eventList.push(event);
-            this.isEventPresent=true
+            this.isEventPresent = true;
             this.eventService.eventList.set(eventList);
           }
         }

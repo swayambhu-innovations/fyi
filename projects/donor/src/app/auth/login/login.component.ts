@@ -51,7 +51,8 @@ export class LoginComponent {
   }
 
   skip() {
-    this._bottomSheet.open(UnAuthCityComponent);
+    // this._bottomSheet.open(UnAuthCityComponent);
+    this.Router.navigate(['/home'])
   }
 
   async login() {
