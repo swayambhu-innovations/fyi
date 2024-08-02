@@ -4,6 +4,7 @@ import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/hea
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -22,4 +23,5 @@ export class AccountComponent {
     window.open(url, '_blank');
   }
 
+ 
 }
