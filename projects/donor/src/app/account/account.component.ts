@@ -3,6 +3,7 @@ import { HeaderWithBackComponent } from "../sharedComponent/header-with-back/hea
 import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/header-with-menu.component";
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -17,4 +18,8 @@ export class AccountComponent {
       this.router.navigate(['ContactUs']);
     
   }
+  openInNewTab(url: string): void {
+    window.open(url, '_blank');
+  }
+
 }
