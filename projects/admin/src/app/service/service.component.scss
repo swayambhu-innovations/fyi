@@ -1,9 +1,10 @@
 .scroll{
-    overflow-x: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    // overflow-x: auto;
+    // -ms-overflow-style: none;  /* IE and Edge */
+    // scrollbar-width: none;  /* Firefox */
     margin-bottom: 15px;
     padding-top:70px ;
+
 }
 .scroll::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
@@ -11,9 +12,8 @@
 .tabs {
     
      display: flex;
-     justify-content: center;
-     justify-content: space-between;
-    
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .tab {
  padding: 10px 30px 10px 30px ;
