@@ -1,0 +1,57 @@
+section{
+
+    .profileimage{
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+        // height: 100x;
+        // width: 100px;
+      }
+    .profilename{
+        display: flex;
+        justify-content: center;
+        // margin-top: 1rem;
+    }
+     
+    
+      h3{
+        color:#000000;
+        
+      }
+      .buttons{
+        padding:0px 15px;
+        button{
+            height: 50px;
+            width: 100%;
+            background: linear-gradient(90.32deg, #464E5F 0.28%, rgba(70, 78, 95, 0.8) 47.84%, rgba(70, 78, 95, 0.4) 99.72%);
+            margin-top: 1rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-align: left;
+            padding-bottom: 10px;
+        
+            img{
+            // height: 30px;
+            // width: 30px;
+            margin-left: 0.8rem;
+            padding-right: 10px;
+          }
+    
+        }
+      }
+     
+    .footer{
+      display: flex;
+      justify-content: center;
+    position: fixed;
+    bottom: 100px;
+    padding: 1rem 1rem;
+    
+      span{
+        margin-top: 1rem;
+        font-size: 15px;
+      }
+    }
+}
+
