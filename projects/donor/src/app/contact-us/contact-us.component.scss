@@ -1,0 +1,27 @@
+section{
+    position: fixed;
+    .image{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .detail{
+        margin-top: 5rem;
+        .row1{
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            span{
+                font-size: 18px;
+            }
+        }
+    }
+    .icon{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+  
+}
