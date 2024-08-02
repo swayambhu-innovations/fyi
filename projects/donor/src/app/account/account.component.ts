@@ -4,6 +4,8 @@ import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/hea
 import { Router } from '@angular/router';
 import { getAuth, deleteUser, Auth, signOut } from '@angular/fire/auth';
 
+
+
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -25,4 +27,9 @@ export class AccountComponent {
     })
     .catch((error: any) => console.log(error))
   }
+  openInNewTab(url: string): void {
+    window.open(url, '_blank');
+  }
+
+ 
 }
