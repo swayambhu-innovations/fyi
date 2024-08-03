@@ -38,11 +38,62 @@
   position:fixed;
 }
 
-.white-bg{
+.white-bg-back{
     background-color: rgb(161, 161, 161);
     img{
       border-radius: 50%;
       width: 150px;
     }
   
+}
+.white-bg{
+   
+  background: var(--inactive-gray, #B6B6B6);
+  border-top-left-radius: 1.2em;
+  border-bottom-left-radius:1.2em;
+
+
+  .profilename{
+    display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  }
+  .profileimage{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+ 
+  }
+
+  h3{
+    color:#000000;
+    
+  }
+  button{
+    height: 55px;
+    width: 224px;
+    background: linear-gradient(90.32deg, #464E5F 0.28%, rgba(70, 78, 95, 0.8) 47.84%, rgba(70, 78, 95, 0.4) 99.72%);
+    margin-top: 2rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    text-align: left;
+
+    img{
+    height: 30px;
+    width: 30px;
+    margin-left: 0.8rem;
+    padding-right: 10px;
+  }
+}
+.footer{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 2px;
+  h3{
+    font-size: 15px;
+  }
+}
+
 }

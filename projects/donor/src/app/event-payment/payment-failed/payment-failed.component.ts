@@ -43,4 +43,8 @@ bookingDetail:any
       this.PaymentService.initiatePayment(detail); 
     });
   }
+
+  backtohome(){
+    this.router.navigate(['home']);
+  }
 }

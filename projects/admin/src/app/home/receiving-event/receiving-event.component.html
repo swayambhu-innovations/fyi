@@ -1,10 +1,10 @@
 <Section class="event">
     <div class="heading">
         <h2 class="section_title header_text_color">Booked Events</h2>
-        <select class="filtre">
+        <!-- <select class="filtre">
             <option value="newest">newest</option>
             <option value="oldest">oldest</option>
-        </select>
+        </select> -->
     </div>
     <div class="card" *ngFor="let event of bookings" (click)="bookingdetail(event.BookingId)">
         <div class="ticket-info" >
