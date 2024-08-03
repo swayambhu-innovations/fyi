@@ -20,6 +20,7 @@ import { PaymentFailedComponent } from './event-payment/payment-failed/payment-f
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
 import { PaymentDetailsComponent } from './booking-history/payment-details/payment-details.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { DesktoppageComponent } from './desktoppage/desktoppage.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -42,7 +43,7 @@ export const routes: Routes = [
     {path : 'history',component:BookingHistoryComponent},
     {path : 'PaymentDetail/:BookingId' ,component:PaymentDetailsComponent},
     {path:'ContactUs',component:ContactUsComponent},
-    
+    {path:'errorpage', component:DesktoppageComponent}
    
    
 ];
