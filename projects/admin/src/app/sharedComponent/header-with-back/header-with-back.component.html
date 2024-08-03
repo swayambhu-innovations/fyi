@@ -11,10 +11,32 @@
         <img src="assets/header/bell_icon.svg" alt="" />
       </span> -->
   
-      <a href="#offcanvas-usage" uk-toggle
+      <a href="#offcanvas-usage"uk-toggle="target: #offcanvas-flip"
         ><img src="assets/header/menu.svg" alt="" />
       </a>
     </nav>
+  </div>
+</div>
+
+<div id="offcanvas-flip" white-bg uk-offcanvas="flip: true; overlay: true">
+  <div class="uk-offcanvas-bar white-bg">
+    <div class="profileimage">
+    <img  src="assets/sidebar/profile.svg">
+  </div>
+  <div class="profilename">
+    <h3 class="section_title">Anuj kesharwani</h3>
+  </div>
+ 
+  
+    <!-- <button  (click)="navigationUandP()" class="white section_title"><img src="assets/sidebar/user_and_permission.svg">User and Permission</button><br> -->
+    <!-- <button (click)="navigation_Coupon()" class="white section_title"><img src="assets/sidebar/coupon.svg">Coupon</button><br>
+    <button (click)="navigation_Survey()" class="white section_title"><img src="assets/sidebar/survey.svg">Survey</button><br> -->
+    <button (click)="openLogout()" class="white section_title" ><img src="assets/sidebar/logout.svg">Logout</button>
+
+    <div class="footer">
+      <img src="assets/sidebar/Shreeva-logo.svg">
+      <h3>Powered By Shreeva</h3>
+    </div>
   </div>
 </div>
 
