@@ -51,13 +51,15 @@ export class EventComponent {
   ) {}
 
   ngOnInit(): void {
-    this.loadingService.show();
-    if (this.eventService.variantList())
-      setTimeout(() => {
-        this.getEvent();
-      }, 3000);
+    
+        if (!this.eventService.getUsersFetched()) {
+          this.loadingService.show()
+          this.getEvent();
+          this.eventService.getUsersFetched.set(true);
+        } 
   }
-  async getEvent() {
+  async getEvent() {    
+
     // let stateId = localStorage.getItem('stateDocId');
     // let cityId = localStorage.getItem('cityDocId');
     // let cityAddress = '';

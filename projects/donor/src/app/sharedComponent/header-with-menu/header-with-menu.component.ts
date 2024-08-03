@@ -13,10 +13,7 @@ export class HeaderWithMenuComponent {
     private authService: AuthService,
     public DataProviderService: DataProviderService
   ) {}
-  name: any;
   ngOnInit(): void {
-    setTimeout(() => {
-      this.name = this.DataProviderService.currentUser?.userData.name;
-    }, 3000);
+   
   }
 }
