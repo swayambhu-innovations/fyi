@@ -56,10 +56,12 @@
 }
 .button-done{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 50px;
+
 button {
-    width: 80%;
+    width:160px;
+    height: 60px;
     padding: 15px;
     background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
     
