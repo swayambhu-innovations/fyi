@@ -19,12 +19,10 @@ export class GlobalServiceService {
   }
 
   fetchDoc(collectionAddress:any): Observable<any> {
-    console.log('collectionAddress', collectionAddress);
     return new Observable<any>((observer) => {
       const collectionRef = doc(this.firestore, collectionAddress);
       onSnapshot(collectionRef, (snapshot) => {
         const doc = snapshot.data();
-        console.log('doc', doc);
         observer.next(doc);
       }, (error) => {
         observer.error(error);

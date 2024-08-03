@@ -5,6 +5,7 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bott
 import { TaxService } from '../service/tax.service';
 import { firstValueFrom } from 'rxjs';
 import { LoadingService } from '../../../../../../shared-ui/src/lib/spinner/loading.service';
+import { ToastService } from '../../../../../../shared-ui/src/lib/toast/service/toast.service';
 @Component({
   selector: 'app-delete-tax',
   standalone: true,
@@ -17,15 +18,16 @@ export class DeleteTaxComponent {
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<DeleteTaxComponent>,
     private taxService:TaxService,
-    private LoadingService:LoadingService
+    private LoadingService:LoadingService,
+    private ToastService:ToastService
   ) {
-    console.log(data)
     this.count=data.eventLinked
   }
   count:number=0;
   isDeleteDisabled =false
 
   closeSheet(): void {
+    this.ToastService.cancel('Cancel')
     this._bottomSheetRef.dismiss();
   }
   ngOnInit(){
@@ -38,8 +40,7 @@ export class DeleteTaxComponent {
         await this.taxService.fetchDocs(`events/${event.eventId}/slab-variant`).subscribe((slabList:any)=>{
           slabList.map(async (slab:any)=>{
             await this.taxService.fetchDocs(`events/${event.eventId}/slab-variant/${slab.slabId}/variants`).subscribe((variantList:any)=>{
-                console.log(variantList)
-                console.log(taxId)
+                
                 variantList.map((variant: any) => {
                   if (variant.taxType === taxId) {
                     this.count++;
@@ -60,6 +61,7 @@ export class DeleteTaxComponent {
 
   deleteTax(): void {
     this.taxService.deleteTax(this.data.taxId).then(()=>{
+      this.ToastService.showError('Tax Deleted')
       this._bottomSheetRef.dismiss();
     })
   }

@@ -43,7 +43,7 @@ export class ProfileInfoComponent {
     gender: new FormControl('male', Validators.required),
     dob: new FormControl('', Validators.required),
     active: new FormControl(true),
-    photoURL: new FormControl('assets/login/loginPageLogo.svg'),
+    photoURL: new FormControl('https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac'),
     age: new FormControl(''),
     uid: new FormControl(''),
     phoneNumber: new FormControl(''),
@@ -57,6 +57,13 @@ export class ProfileInfoComponent {
   }
 
   ngOnInit() {
+    this.userForm.setValue(
+     this.dataProvider.currentUser?.userData )
+
+  }
+
+  setDate(date: string): void {
+    this.userForm.get('dob')?.setValue(date);
   }
 
   async changePhoto(e: any) {
@@ -89,6 +96,7 @@ export class ProfileInfoComponent {
     this.Router.navigate(['login']);
   }
   submit() {
+    console.log(this.userForm.value.dob);
     if (this.userForm.valid) {
       this.userForm.value.uid = this.dataProvider.currentUser?.user.uid;
       this.userForm.value.phoneNumber =
@@ -96,7 +104,6 @@ export class ProfileInfoComponent {
       this.userForm.value.age =
         new Date().getFullYear() -
         new Date(this.userForm.value.dob).getFullYear();
-      this.userForm.value.dob = new Date(this.userForm.value.dob).toISOString();
       this.ProfileInfoService.updateProfileInfo(this.userForm.value).then(
         () => {
           this.Router.navigate(['home']);

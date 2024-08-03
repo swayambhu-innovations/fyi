@@ -40,7 +40,6 @@ bookingdetail(BookingId: string): void {
       const bookingsSnapshot = await this.receivingEventService.getUserBookings(userId);
       for (const booking of bookingsSnapshot.docs) {
         const bookingData = booking.data();
-        console.log(bookingData)
         if(bookingData["paymentDetail"].paymentStatus=="success"){
         this.bookings.push({
           "BookingId": bookingData["id"],
@@ -55,7 +54,6 @@ bookingdetail(BookingId: string): void {
       }
     }
     }
-    console.log(this.bookings);
   }
 }
 

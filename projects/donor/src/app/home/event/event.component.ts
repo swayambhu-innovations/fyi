@@ -95,12 +95,10 @@ export class EventComponent {
       const variantList: { [key: string]: any[] } = {};
 
       for (let currEvent of eventDocs) {
-        console.log(currEvent['eventId']);
 
         const event: any = await firstValueFrom(
           this.eventService.fetchDoc(`events/${currEvent['eventId']}`)
         );
-        console.log('event', event);
         if (event.active) {
           const itinerary: any = await firstValueFrom(
             this.eventService.fetchDoc(

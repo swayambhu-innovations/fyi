@@ -223,7 +223,6 @@ export class CatalogueService {
   }
 
   delete(docAddress: any) {
-    console.log(docAddress)
     return deleteDoc(doc(this.firestore, docAddress));
   }
 }

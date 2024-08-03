@@ -24,13 +24,11 @@ export class UsersComponent {
     getUsers(): void {
       this.GlobalServiceService.fetchDocs('users').subscribe({
         next: (users) => {
-          console.log('users', users);
           users.forEach((user: any) => {
             if ('active' in user) {
               this.userList.push(user);
             }
           });
-          console.log(this.userList);
           this.LoadingService.hide();
           this.GlobalServiceService.userList.set(this.userList)
 

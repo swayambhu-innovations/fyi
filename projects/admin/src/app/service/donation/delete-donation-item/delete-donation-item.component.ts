@@ -16,7 +16,6 @@ export class DeleteDonationItemComponent {
     private _bottomSheetRef: MatBottomSheetRef<DeleteDonationItemComponent>,
     private DonationItemService:DonationItemService
   ) {
-    console.log(data)
   }
   count:number=0;
   closeSheet(): void {

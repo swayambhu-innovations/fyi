@@ -165,6 +165,13 @@ export class AddeventComponent {
       this.LoadingService.hide();
     });
   }
+  today:string=''
+  ngOnInit(){
+    const date = new Date();
+    this.today = date.toISOString().split('T')[0];
+    
+
+  }
   get slabs(): FormArray {
     return (
       (this.slabAndVariantForm.get('slabs') as FormArray) ?? this.fb.array([])
@@ -271,7 +278,6 @@ export class AddeventComponent {
   async removeSlab(index: any, slab: any) {
     this.slabs.removeAt(index);
     if (slab.value.slabId) {
-      console.log(slab.value.slabId);
       await this.eventservice.deleteSlab(
         `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}`
       );
@@ -324,7 +330,6 @@ export class AddeventComponent {
     variant: any,
     variantIndex: any
   ) {
-    console.log(slab, variant);
     (this.slabs.at(slabIndex).get('variants') as FormArray)?.removeAt(
       variantIndex
     );
@@ -483,7 +488,6 @@ export class AddeventComponent {
         }
         break;
       case 'back':
-        console.log(this.slabAndVariantForm.value);
         if (this.slabAndVariantForm.valid) {
           this.LoadingService.show();
           await this.eventservice
@@ -607,7 +611,6 @@ export class AddeventComponent {
     this.pannel = panel;
   }
   changeStatusOfSlab(slab: any) {
-    console.log(slab.value);
     this.eventservice.changeStatusOfSlab(
       this.eventForm.value.eventId,
       slab.value.slabId,

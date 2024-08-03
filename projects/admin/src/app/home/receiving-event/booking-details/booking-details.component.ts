@@ -68,7 +68,6 @@ async getBookingDetails(BookingId: string): Promise<void> {
       }
     }
   }
-  console.log(this.bookingdata);
 }
 selectTab(index: number) {
   this.selectedTab = index

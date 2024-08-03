@@ -79,7 +79,6 @@ export class AddDonationItemComponent {
 
   ngOnInit() {
     if (this.data && this.data.itemId) {
-      console.log(this.data);
       this.donationItemForm.setValue(this.data);
     }
   }

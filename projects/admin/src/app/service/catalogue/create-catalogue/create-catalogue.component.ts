@@ -66,7 +66,6 @@ export class CreateCatalogueComponent {
   ) {
     this.route.paramMap.subscribe((params) => {
       if (params.get('id') !== null) {
-        console.log('param', params.get('id'));
         this.catalogueId = params.get('id') || '';
         this.catalogueForm.patchValue({ id: this.catalogueId });
         this.catalogueForm.setValue(this.CatalogueService.currentCatalogue);
@@ -223,7 +222,6 @@ export class CreateCatalogueComponent {
     });
 
     bottomSheetRef.afterDismissed().subscribe(async (result) => {
-      console.log('Bottom sheet has been dismissed', result);
       if (result) {
         await this.CatalogueService.delete(
           `service-catalogue/${category.catalogueId}/categories/${category.categoryId}`
@@ -240,7 +238,6 @@ export class CreateCatalogueComponent {
     });
 
     bottomSheetRef.afterDismissed().subscribe(async (result) => {
-      console.log('Bottom sheet has been dismissed', result);
       if (result) {
         await this.CatalogueService.delete(
           `service-catalogue/${subCategory.catalogueId}/categories/${subCategory.categoryId}/sub-categories/${subCategory.subCategoryId}`
@@ -258,7 +255,6 @@ export class CreateCatalogueComponent {
     });
 
     bottomSheetRef.afterDismissed().subscribe(async (result) => {
-      console.log('Bottom sheet has been dismissed', result);
       if (result) {
         await this.CatalogueService.delete(
           `service-catalogue/${donationItem.catalogueId}/categories/${donationItem.categoryId}/sub-categories/${donationItem.subCategoryId}/donation-items/${donationItem.donationItemId}`

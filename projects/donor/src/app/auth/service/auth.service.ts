@@ -19,6 +19,7 @@ import { DataProviderService } from './data-provider.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventService } from '../../home/event/event.service';
+import { ToastService } from '../../../../../shared-ui/src/lib/toast/service/toast.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -32,11 +33,13 @@ export class AuthService {
     private Firestore: Firestore,
     private dataProvider: DataProviderService,
     private router: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private ToastService:ToastService
   ) {
     this.dataProvider.checkingAuth = true;
     this.auth.onAuthStateChanged((user) => {
       if (user) {
+        this.ToastService.showSuccess('Already Login')
         this.dataProvider.loggedIn = true;
         this.getUserData(user.uid).subscribe(async (userData: any) => {
           this.dataProvider.currentUser = {

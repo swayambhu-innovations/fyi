@@ -47,13 +47,7 @@ export class EditMemberDetailComponent {
 
   ngOnInit() {}
 
-  // save() {
-  //   console.log("asdfgh")
-  //   if (this.editMemberForm.valid) {
-  //     console.log("sdfghj")
-  //     this.bottomSheetRef.dismiss(this.editMemberForm.value);
-  //   }
-  // }
+  
   async save() {
     if (this.editMemberForm.valid) {
       const updatedMember = this.editMemberForm.value;
