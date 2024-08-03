@@ -10,7 +10,6 @@ export class UserPermissionService {
   constructor(private firestore: Firestore) {}
 
   addUser(userDetail: any) {
-    console.log(userDetail);
     if (userDetail.userId) {
       const userDocRef = doc(this.firestore, "admin", userDetail.userId);
       return updateDoc(userDocRef, userDetail);

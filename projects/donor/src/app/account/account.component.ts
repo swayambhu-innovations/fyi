@@ -3,6 +3,7 @@ import { HeaderWithBackComponent } from "../sharedComponent/header-with-back/hea
 import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/header-with-menu.component";
 import { Router } from '@angular/router';
 import { getAuth, deleteUser, Auth, signOut } from '@angular/fire/auth';
+import { DataProviderService } from '../auth/service/data-provider.service';
 
 
 
@@ -14,13 +15,12 @@ import { getAuth, deleteUser, Auth, signOut } from '@angular/fire/auth';
   styleUrl: './account.component.scss'
 })
 export class AccountComponent {
-  constructor(private router: Router,){}
+  constructor(private router: Router,private DataProviderService:DataProviderService){}
   movetoContactUs(){
       this.router.navigate(['ContactUs']);
   }
 
   logout() {
-    console.log('logout')
     signOut(getAuth())
     .then(() => {
       setTimeout(() => {
@@ -29,6 +29,13 @@ export class AccountComponent {
     })
     .catch((error: any) => console.log(error))
     
+  }
+  ngOnInit() {
+  }
+
+  navigate(address: string) {
+    this.router.navigate(['profile']);
+
   }
   openInNewTab(url: string): void {
     window.open(url, '_blank');

@@ -36,7 +36,6 @@ export class AddvarientComponent {
   });
   ngOnInit() {
     this.getTaxTypes();
-    console.log('add tax type component');
     
   }
 
@@ -56,7 +55,6 @@ selectedVariant: any;
   getTaxTypes() {
     this.TaxService.getTax().subscribe((data: any) => {
       data.map((item: any) => {
-        console.log(data)
         if (item['active']) {
           this.taxTypes.push(item);
         }

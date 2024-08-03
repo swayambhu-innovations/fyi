@@ -11,7 +11,6 @@ export class TaxService {
   constructor(private firestore: Firestore) {}
 
   addTax(taxDetail: any) {
-    console.log(taxDetail);
     if (taxDetail.taxId) {
       const taxDocRef = doc(this.firestore, "tax-types", taxDetail.taxId);
       return updateDoc(taxDocRef, taxDetail);

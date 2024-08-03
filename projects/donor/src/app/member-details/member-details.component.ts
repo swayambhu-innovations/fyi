@@ -12,6 +12,7 @@ import { MemberDetailService } from './member-detail.service';
 import { HeaderWithBackComponent } from '../sharedComponent/header-with-back/header-with-back.component';
 import { EventService } from '../home/event/event.service';
 import { DataProviderService } from '../auth/service/data-provider.service';
+import { ToastService } from '../../../../shared-ui/src/lib/toast/service/toast.service';
 @Component({
   selector: 'app-member-details',
   standalone: true,
@@ -38,7 +39,8 @@ export class MemberDetailsComponent {
     private router: Router,
     private memberservice: MemberDetailService,
     public EventService: EventService,
-    private DataProviderService: DataProviderService
+    private DataProviderService: DataProviderService,
+    private ToastService:ToastService
   ) {
     this.generateTabs();
     this.initializeMembersData();
@@ -56,6 +58,8 @@ export class MemberDetailsComponent {
       );
       this.EventService.bookingDetails.set(bookingDetails);
     } else {
+      this.ToastService.showError('Please Login First');
+      
       this.router.navigate(['login']);
     }
   }

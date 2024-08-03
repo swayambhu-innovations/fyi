@@ -14,7 +14,6 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
   constructor(public auth: AuthService) { }
   ngOnInit():void{
-    // console.log("work")
   }
  
 }

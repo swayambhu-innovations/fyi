@@ -31,12 +31,10 @@ export class EventComponent {
     this.LoadingService.show();
     this.eventService.getEvents().subscribe((data:any)=>{                  
       this.events=data;
-      console.log(data)
       this.LoadingService.hide();
     })
   }
   viewEvent(event: Event): void {
-    console.log('Viewing event', event);
   }
   openBottomSheet(): void {
     this.Router.navigate(['/addevent']);

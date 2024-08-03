@@ -33,7 +33,6 @@ cityList=[
 
 
 savecity(): void {
-  console.log("asdfghj")
   this._bottomSheet.open(AddCityComponent);
 }
 }

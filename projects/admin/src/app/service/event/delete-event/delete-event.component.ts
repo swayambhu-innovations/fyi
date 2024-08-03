@@ -17,7 +17,6 @@ export class DeleteEventComponent {
     private _bottomSheetRef: MatBottomSheetRef<DeleteEventComponent>,
     private eventService:EventService
   ) {
-    console.log(data)
     this.count=data.cityLinked
   }
   count:number=0;

@@ -15,7 +15,6 @@ export class DeleteBottomSheetComponent {
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<DeleteBottomSheetComponent>,
   ) {
-    console.log(data)
     
   }
   count:number=0;
@@ -25,7 +24,6 @@ export class DeleteBottomSheetComponent {
   }
 
   delete() {
-    console.log('delete');
     this._bottomSheetRef.dismiss(true);
   }
 }

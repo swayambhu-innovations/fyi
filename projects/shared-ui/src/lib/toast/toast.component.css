@@ -1,0 +1,12 @@
+.toast-message {
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  /* .success {
+    background-color: #4caf50; 
+  }
+  .error {
+    background-color: #f44336; 
+  } */

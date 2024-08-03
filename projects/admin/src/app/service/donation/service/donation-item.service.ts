@@ -11,7 +11,6 @@ export class DonationItemService {
   constructor(private firestore: Firestore) {}
 
   addDonationItem(donationItemDetail: any) {
-    console.log(donationItemDetail);
     if (donationItemDetail.itemId) {
       const donationItemDocRef = doc(this.firestore, "donation-items", donationItemDetail.itemId);
       return updateDoc(donationItemDocRef, donationItemDetail);

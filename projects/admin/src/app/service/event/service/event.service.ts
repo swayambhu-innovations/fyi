@@ -29,7 +29,6 @@ export class EventService {
       data.map((item: any) => {
         if (item['active']) {
           this.taxTypes.push(item);
-          console.log('tax', this.taxTypes);
         }
       });
     });
@@ -124,7 +123,6 @@ export class EventService {
     //}
   }
   async addEventInCity(city: any) {
-    console.log(city);
     const cityDocRef = doc(
       this.firestore,
       'city-catalogue',
@@ -133,11 +131,9 @@ export class EventService {
       city.cityId
     );
     await getDoc(cityDocRef).then(async (cityDetail: any) => {
-      console.log(cityDetail.data()?.['events']);
       let eventIdListInCity = cityDetail.data()?.['events'] || [];
       if (!eventIdListInCity.includes(city.eventId)) {
         eventIdListInCity.push(city.eventId);
-        console.log(`Event ID ${city.eventId} added.`);
       } else {
         console.log(`Event ID ${city.eventId} is already in the array.`);
       }
@@ -347,7 +343,6 @@ export class EventService {
   }
   
   async deleteCity(city: any) {
-    console.log(city);
     const cityDocRef = doc(
       this.firestore,
       'city-catalogue',
@@ -356,13 +351,11 @@ export class EventService {
       city.cityId
     );
     await getDoc(cityDocRef).then(async (cityDetail: any) => {
-      console.log(cityDetail.data()?.['events']);
       let eventIdListInCity = cityDetail.data()?.['events'] || [];
       if (eventIdListInCity.includes(city.eventId)) {
 
         const updatedEventIdList = eventIdListInCity.filter((id:any) => id !== city.eventId);
-        console.log(`Event ID ${city.eventId} removed.`);
-      console.log(updatedEventIdList)
+        
         await updateDoc(cityDocRef, {
           events: updatedEventIdList
         });
@@ -373,7 +366,6 @@ export class EventService {
   }
 
   changeStatusOfSlab(eventId: any, slabId: any, status: any) {
-    console.log('events', eventId, 'slab-variant', slabId);
     return updateDoc(
       doc(this.firestore, 'events', eventId, 'slab-variant', slabId),
       {
@@ -387,7 +379,6 @@ export class EventService {
     variantId: any,
     status: any
   ) {
-    console.log(eventId, slabId, variantId);
     return updateDoc(
       doc(
         this.firestore,
