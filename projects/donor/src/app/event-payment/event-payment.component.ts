@@ -15,15 +15,13 @@ declare var Razorpay: any;  // Declare Razorpay as an external variable
   styleUrls: ['./event-payment.component.scss']  // Corrected to styleUrls
 })
 export class EventPaymentComponent {
-  constructor(private router: Router, public EventService: EventService,private PaymentService:PaymentService) {
+  constructor( public EventService: EventService,private PaymentService:PaymentService) {
    
-    let bookingDetail=this.EventService.bookingDetails()
+    console.log(this.EventService.bookingDetails())
     
   }
 
-  payNow() {
-    this.router.navigate(['payment-successful']);
-  }
+  
   generateUniqueReceipt(): string {
     const timestamp = Date.now().toString(); 
     const randomId = Math.random().toString(36).substring(2, 10); 
