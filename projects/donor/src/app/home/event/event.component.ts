@@ -47,7 +47,8 @@ export class EventComponent {
     private router: Router,
     public eventService: EventService,
     private loadingService: LoadingService,
-    private DataProviderService: DataProviderService
+    private DataProviderService: DataProviderService,
+    private EventService:EventService,
   ) {}
 
   ngOnInit(): void {
@@ -189,7 +190,12 @@ export class EventComponent {
   onSurveyClick(survey: any): void {
     window.location.href = survey.link;
   }
-  viewSlsbList(eventId: any) {
+  
+
+  viewSlsbList(eventId: any,event:any) {
+    let bookingDetails =this.EventService.bookingDetails()
+    bookingDetails['event'] = event;
+    this.EventService.bookingDetails.set(bookingDetails);
     this.router.navigate(['slab', eventId]);
   }
 }

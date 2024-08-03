@@ -1,9 +1,12 @@
 section{
-
+padding-top: 70px;
     .profileimage{
         display: flex;
         justify-content: center;
-        margin-top: 3rem;
+        border-radius: 50%;
+        img{
+          border-radius: 50%;
+        }
 
       }
     .profilename{
