@@ -23,7 +23,7 @@ import { AuthService } from '../auth/service/auth.service';
 @Component({
   selector: 'app-profile-info',
   standalone: true,
-  imports: [HeaderWithBackComponent, ReactiveFormsModule,SaveBtnComponent],
+  imports: [HeaderWithBackComponent, ReactiveFormsModule, SaveBtnComponent],
   templateUrl: './profile-info.component.html',
   styleUrl: './profile-info.component.scss',
 })
@@ -35,7 +35,7 @@ export class ProfileInfoComponent {
     private dataProvider: DataProviderService,
     private ProfileInfoService: ProfileInfoService,
     private Auth: Auth,
-    private AuthService:AuthService
+    private AuthService: AuthService
   ) {}
 
   userForm: FormGroup = new FormGroup({
@@ -43,7 +43,9 @@ export class ProfileInfoComponent {
     gender: new FormControl('male', Validators.required),
     dob: new FormControl('', Validators.required),
     active: new FormControl(true),
-    photoURL: new FormControl('https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac'),
+    photoURL: new FormControl(
+      'https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac'
+    ),
     age: new FormControl(''),
     uid: new FormControl(''),
     phoneNumber: new FormControl(''),
@@ -57,9 +59,14 @@ export class ProfileInfoComponent {
   }
 
   ngOnInit() {
-    this.userForm.setValue(
-     this.dataProvider.currentUser?.userData )
-
+    let userData = this.dataProvider.currentUser?.userData;
+    if (
+      this.dataProvider.currentUser &&
+      this.dataProvider.currentUser?.['userData'] &&
+      this.dataProvider.currentUser?.['userData']['name']
+    ) {
+      this.userForm.setValue(userData);
+    }
   }
 
   setDate(date: string): void {
@@ -96,7 +103,6 @@ export class ProfileInfoComponent {
     this.Router.navigate(['login']);
   }
   submit() {
-    console.log(this.userForm.value.dob);
     if (this.userForm.valid) {
       this.userForm.value.uid = this.dataProvider.currentUser?.user.uid;
       this.userForm.value.phoneNumber =

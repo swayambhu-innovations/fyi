@@ -40,13 +40,14 @@ export class AuthService {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.ToastService.showSuccess('Login')
+        
         this.dataProvider.loggedIn = true;
         this.getUserData(user.uid).subscribe(async (userData: any) => {
           this.dataProvider.currentUser = {
             user: user,
             userData: userData,
           };
-
+          console.log(user.uid)
           if (!userData || !userData.name) {
             this.router.navigate(['profile']);
           } else {
