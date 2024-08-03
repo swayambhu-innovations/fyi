@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -25,6 +25,7 @@ import { DataProviderService } from '../auth/service/data-provider.service';
   styleUrls: ['./member-details.component.scss'],
 })
 export class MemberDetailsComponent {
+  @Input() disabled: boolean=false;
   profileImageSrc: string = '/assets/member_detail/default.svg';
   panuploadSuccess = false;
   aadharuploadSuccess = false;

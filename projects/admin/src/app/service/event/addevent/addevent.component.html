@@ -70,11 +70,13 @@
         </button>
       </div>
     </div>
-    <div class="buttonset fix-below">
-      <button class="cancel-button" (click)="cancel('back')">cancel</button>
+    <div class="lower-btn">
+      <!-- <button class="cancel-button" (click)="cancel('back')">cancel</button>
       <button class="next-button" (click)="nextpannel('itinerary')">
         Next
-      </button>
+      </button> -->
+      <lib-cancel-btn  [btnName]="'Cancel'" (click)="cancel('back')"></lib-cancel-btn>
+      <lib-save-btn [btnName]="'Next'" (click)="nextpannel('itinerary')" [disabled]="eventForm.invalid"></lib-save-btn>
     </div>
   </div>
 
@@ -155,6 +157,7 @@
           <lib-save-btn
             [btnName]="'Next'"
             (click)="nextpannel('slab')"
+            [disabled]="itineraryForm.invalid"
           ></lib-save-btn>
         </div>
       </ng-container>
@@ -329,6 +332,7 @@
             <lib-save-btn
               [btnName]="'Next'"
               (click)="nextpannel('back')"
+              [disabled]="slabAndVariantForm.invalid"
             ></lib-save-btn>
           </div>
         </ng-container>
@@ -380,7 +384,7 @@
         [btnName]="'Cancel'"
         (click)="cancel('slab')"
       ></lib-cancel-btn>
-      <lib-save-btn [btnName]="'Next'" (click)="cancel('back')"></lib-save-btn>
+      <lib-save-btn [btnName]="'Next'" (click)="cancel('back')"  ></lib-save-btn>
     </div>
   </div>
 </section>
