@@ -23,9 +23,12 @@ export class AccountComponent {
     console.log('logout')
     signOut(getAuth())
     .then(() => {
-      this.router.navigate(['login'])
+      setTimeout(() => {
+        this.router.navigate(['login']);
+      }, 3000);
     })
     .catch((error: any) => console.log(error))
+    
   }
   openInNewTab(url: string): void {
     window.open(url, '_blank');
