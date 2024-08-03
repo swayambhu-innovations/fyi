@@ -30,8 +30,12 @@ export class AccountComponent {
     .catch((error: any) => console.log(error))
     
   }
-  ngOnInit() {
-  }
+  name: any;
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.name = this.DataProviderService.currentUser?.userData.name;
+    }, 3000);
+  } 
 
   navigate(address: string) {
     this.router.navigate(['profile']);

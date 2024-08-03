@@ -42,7 +42,8 @@ export const routes: Routes = [
     {path : 'account',component:AccountComponent},
     {path : 'history',component:BookingHistoryComponent},
     {path : 'PaymentDetail/:BookingId' ,component:PaymentDetailsComponent},
-    {path:'ContactUs',component:ContactUsComponent}
+    {path:'ContactUs',component:ContactUsComponent},
+    
    
    
 ];
