@@ -28,7 +28,6 @@ export const routes: Routes = [
     {path: 'profile', component : ProfileInfoComponent},
     {path: 'add-address', component : AddAddressComponent},
     {path:'member-detail',component:MemberDetailsComponent},
-    {path:'event-payment' , component:EventPaymentComponent},
     {path:'payment/:id' , component:EventPaymentComponent},
     {path:'payment-successful',component:PaymentSuccessfulComponent},
     {path:'patmentfailed',component:PaymentFailedComponent},

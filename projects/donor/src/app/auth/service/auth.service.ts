@@ -39,7 +39,7 @@ export class AuthService {
     this.dataProvider.checkingAuth = true;
     this.auth.onAuthStateChanged((user) => {
       if (user) {
-        this.ToastService.showSuccess('Already Login')
+        this.ToastService.showSuccess('Login')
         this.dataProvider.loggedIn = true;
         this.getUserData(user.uid).subscribe(async (userData: any) => {
           this.dataProvider.currentUser = {
@@ -65,6 +65,7 @@ export class AuthService {
       } else {
         this.dataProvider.loggedIn = false;
         this.dataProvider.checkingAuth = false;
+        this.dataProvider.currentUser = undefined;
       }
     });
   }

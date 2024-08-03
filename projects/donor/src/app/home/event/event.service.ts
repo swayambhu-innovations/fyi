@@ -16,6 +16,7 @@ export class EventService {
   bookingDetails = signal<any>({});
   addressList = signal<any[]>([]);
   activeAddress = signal<any>('');
+  getUsersFetched=signal<boolean>(false);
 
 
   constructor(private firestore:Firestore ) { 
