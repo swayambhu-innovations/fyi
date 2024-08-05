@@ -16,7 +16,11 @@
                 <p class="white">Booked</p>
             </div>
             <div class="button">
-                <span class="size custom-slide-toggle"><mat-slide-toggle [checked]="event.active==true?true:false" (change)="updatedStatus(event)"></mat-slide-toggle></span>
+                <!-- <span class="size custom-slide-toggle"><mat-slide-toggle [checked]="event.active==true?true:false" (change)="updatedStatus(event)"></mat-slide-toggle></span> -->
+                <label class="uk-switch" >
+                    <input type="checkbox"  [checked]="event.active==true?true:false" (change)="updatedStatus(event)">
+                    <div class="uk-switch-slider" ></div>
+                  </label>
                 <img (click)="editEvent(event)" src="/assets/eventList_image/editbutton.svg">
                 <img (click)="deleteEvent(event)" src="/assets/eventList_image/delete_button.svg">
             </div>
