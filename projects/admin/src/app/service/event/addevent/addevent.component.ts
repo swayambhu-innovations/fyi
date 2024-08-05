@@ -29,6 +29,7 @@ import { Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DeleteBottomSheetComponent } from '../../../sharedComponent/delete-bottom-sheet/delete-bottom-sheet.component';
 import { LoadingService } from '../../../../../../shared-ui/src/lib/spinner/loading.service';
+import { ToastService } from '../../../../../../shared-ui/src/lib/toast/service/toast.service';
 import {
   FormBuilder,
   FormControl,
@@ -105,7 +106,8 @@ export class AddeventComponent {
     private eventservice: EventService,
     private Location: Location,
     private route: ActivatedRoute,
-    private LoadingService: LoadingService
+    private LoadingService: LoadingService,
+    private ToastService:ToastService
   ) {
     this.slabAndVariantForm = this.fb.group({
       slabs: this.fb.array([], this.atLeastOneImageValidator()),
@@ -479,17 +481,26 @@ export class AddeventComponent {
           this.itineraryForm.valid &&
           this.itineraryForm.value.activities.length > 0
         ) {
+          if(!this.itineraryForm.value.eventId){
+            console.log(this.itineraryForm.value.eventId)
+            this.ToastService.showError('Please save the event first')
+          }
+          else{
           this.eventservice
             .addItinerary(this.itineraryForm.value)
             .then(() => {});
           this.pannel = view;
           this.selected = view
+          }
 
         }
         break;
       case 'back':
         if (this.slabAndVariantForm.valid) {
-          this.LoadingService.show();
+          if(!this.slabAndVariantForm.value.eventId){
+            this.ToastService.showError('Please save the event first')
+          }
+          else{
           await this.eventservice
             .addSlabAndVariant(this.slabAndVariantForm.value)
             .then(() => {
@@ -498,11 +509,16 @@ export class AddeventComponent {
           // this.pannel = view;
           // this.selected = view
           this.cancel('back')
-
+          }
         }
         break;
       
     }
+  }
+
+  changePanel(panel:any){
+    this.pannel = panel;
+    this.selected = panel;
   }
   getCities(): any {
     this.eventservice.getCities().then((res: any) => {
