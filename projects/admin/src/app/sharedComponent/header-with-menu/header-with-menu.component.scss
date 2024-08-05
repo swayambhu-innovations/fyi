@@ -35,8 +35,14 @@
     .profileimage{
       display: flex;
       justify-content: center;
-      margin-top: 2rem;
+      border-radius: 50%;
+      img{
+        border-radius: 50%;
+      }
+
     }
+   
+    
 
     h3{
       color:#000000;

@@ -1,1 +1,24 @@
 <app-header-with-menu ></app-header-with-menu>
+<section>
+    <div *ngFor="let user of userList" class="card bg_color_gradient" >
+        <div class="profile">
+            <img [src]="user.photoURL || dummy" alt="Profile Picture" class="" (error)="setDefaultImage($event)">
+        </div>
+        <div class="detail">
+            <div>
+                <p class="user_name text-overflow-ellipsis">{{ user.name }}</p>
+            </div>
+            <div class="detail_info">
+                <span class="detail_info-sub">
+                    <img src="assets/donor/contact.svg" alt="" class="logo">
+                    <p class="user_info">{{ user.phoneNumber }}</p>
+                </span>
+                <!-- <span class="detail_info-sub">
+                    <img src="assets/donor/city.svg" alt="" class="logo">
+                    <p class="user_info">{{ user.city }}</p> 
+                </span> -->
+            </div>
+        </div>
+    </div>
+    
+</section>

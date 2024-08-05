@@ -1,0 +1,49 @@
+@media (max-width: 500px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 501px) {
+  .hide-on-desktop {
+    display: none;
+  }
+  .hide-on-mobile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(
+      180deg,
+      rgba(70, 78, 95, 0.2) 0%,
+      rgba(70, 78, 95, 0.6) 38.5%,
+      rgba(70, 78, 95, 0.8) 100%
+    );
+    width: 100vw;
+    height: 100vh;
+    img{
+        margin-bottom: 20px;
+    }
+    .green {
+      font-family: "Jura", sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 56.78px;
+      text-align: center;
+      color: #48bc1f;
+    }
+    .white {
+      font-family: "Jura", sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 56.78px;
+      text-align: center;
+      color: #f0f0f0;
+    }
+  }
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}

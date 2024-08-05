@@ -37,23 +37,19 @@ export class EditMemberDetailComponent {
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: { member: Member, userId: string, bookingId: string, memberIndex: number },
     private receivingEventService:ReceivingEventService
   ) {
+    console.log(data.member)
     this.editMemberForm = this.fb.group({
-      Name: [this.member.Name, Validators.required],
-      Aadharnumber: [this.member.Aadharnumber, [Validators.required, Validators.pattern(/^\d{12}$/)]],
-      gender: [this.member.gender, Validators.required],
-      mobileNo: [this.member.mobileNo, [Validators.required, Validators.pattern(/^\d{10}$/)]]
+      Name: [data.member.Name, Validators.required],
+      Aadharnumber: [data.member.Aadharnumber, [Validators.required, Validators.pattern(/^\d{12}$/)]],
+      gender: [data.member.gender, Validators.required],
+      mobileNo: [data.member.mobileNo
+        , [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
 
   ngOnInit() {}
 
-  // save() {
-  //   console.log("asdfgh")
-  //   if (this.editMemberForm.valid) {
-  //     console.log("sdfghj")
-  //     this.bottomSheetRef.dismiss(this.editMemberForm.value);
-  //   }
-  // }
+  
   async save() {
     if (this.editMemberForm.valid) {
       const updatedMember = this.editMemberForm.value;

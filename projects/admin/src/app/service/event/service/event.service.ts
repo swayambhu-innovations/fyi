@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   onSnapshot,
+  query,
   setDoc,
   updateDoc,
 } from '@angular/fire/firestore';
@@ -28,7 +29,6 @@ export class EventService {
       data.map((item: any) => {
         if (item['active']) {
           this.taxTypes.push(item);
-          console.log('tax', this.taxTypes);
         }
       });
     });
@@ -123,7 +123,6 @@ export class EventService {
     //}
   }
   async addEventInCity(city: any) {
-    console.log(city);
     const cityDocRef = doc(
       this.firestore,
       'city-catalogue',
@@ -132,11 +131,9 @@ export class EventService {
       city.cityId
     );
     await getDoc(cityDocRef).then(async (cityDetail: any) => {
-      console.log(cityDetail.data()?.['events']);
       let eventIdListInCity = cityDetail.data()?.['events'] || [];
       if (!eventIdListInCity.includes(city.eventId)) {
         eventIdListInCity.push(city.eventId);
-        console.log(`Event ID ${city.eventId} added.`);
       } else {
         console.log(`Event ID ${city.eventId} is already in the array.`);
       }
@@ -313,14 +310,39 @@ export class EventService {
     return citiesData;
   }
 
-  deleteEvent(eventId: any) {
-    return deleteDoc(doc(this.firestore, 'events', eventId));
+  async deleteEvent(eventId: any) {
+    const slabCollection = collection(this.firestore, 'events', eventId,'slab-variant');
+  
+    const slabDocs = await getDocs(query(slabCollection));
+    slabDocs.forEach(async (docSnapshot) => {
+      await this.deleteSlab(`events/${eventId}/slab-variant/${docSnapshot.id}`).then(async()=>{
+        await deleteDoc(doc(this.firestore, 'events', eventId, 'itinerary','activities'));
+        return deleteDoc(doc(this.firestore, 'events', eventId));
+      });
+    });
+
   }
+
+  async deleteSlab(docAddress: any) {
+    await this.deleteSubcollection(docAddress).then(() => {
+      return deleteDoc(doc(this.firestore, docAddress));
+    })
+  }
+
+  async deleteSubcollection(parentDocAddress: string) {
+    const variantsCollection = collection(this.firestore, `${parentDocAddress}/variants`);
+  
+    const variantDocs = await getDocs(query(variantsCollection));
+    variantDocs.forEach(async (docSnapshot) => {
+      await deleteDoc(doc(this.firestore, `${parentDocAddress}/variants/${docSnapshot.id}`));
+    });
+  }
+
   delete(docAddress: any) {
     return deleteDoc(doc(this.firestore, docAddress));
   }
+  
   async deleteCity(city: any) {
-    console.log(city);
     const cityDocRef = doc(
       this.firestore,
       'city-catalogue',
@@ -329,13 +351,11 @@ export class EventService {
       city.cityId
     );
     await getDoc(cityDocRef).then(async (cityDetail: any) => {
-      console.log(cityDetail.data()?.['events']);
       let eventIdListInCity = cityDetail.data()?.['events'] || [];
       if (eventIdListInCity.includes(city.eventId)) {
 
         const updatedEventIdList = eventIdListInCity.filter((id:any) => id !== city.eventId);
-        console.log(`Event ID ${city.eventId} removed.`);
-      console.log(updatedEventIdList)
+        
         await updateDoc(cityDocRef, {
           events: updatedEventIdList
         });
@@ -346,7 +366,6 @@ export class EventService {
   }
 
   changeStatusOfSlab(eventId: any, slabId: any, status: any) {
-    console.log('events', eventId, 'slab-variant', slabId);
     return updateDoc(
       doc(this.firestore, 'events', eventId, 'slab-variant', slabId),
       {
@@ -360,7 +379,6 @@ export class EventService {
     variantId: any,
     status: any
   ) {
-    console.log(eventId, slabId, variantId);
     return updateDoc(
       doc(
         this.firestore,

@@ -1,9 +1,9 @@
 <div class="header">
   <p class="krona-one-regular header_text_color">Hi, {{ name }}</p>
   <nav>
-    <span>
+    <!-- <span>
       <img src="assets/header/bell_icon.svg" alt="" />
-    </span>
+    </span> -->
 
     <a href="#offcanvas-usage" uk-toggle="target: #offcanvas-flip"
       ><img src="assets/header/menu.svg" alt="" />
@@ -14,16 +14,17 @@
 <div id="offcanvas-flip" white-bg uk-offcanvas="flip: true; overlay: true">
   <div class="uk-offcanvas-bar white-bg">
     <div class="profileimage">
-    <img  src="assets/sidebar/profile.svg">
+      <img  src="https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac">
+
   </div>
   <div class="profilename">
-    <h3 class="section_title">Anuj kesharwani</h3>
+    <h3 class="section_title">{{ name }}</h3>
   </div>
  
   
-    <button  (click)="navigationUandP()" class="white section_title"><img src="assets/sidebar/user_and_permission.svg">User and Permission</button><br>
-    <button (click)="navigation_Coupon()" class="white section_title"><img src="assets/sidebar/coupon.svg">Coupon</button><br>
-    <button (click)="navigation_Survey()" class="white section_title"><img src="assets/sidebar/survey.svg">Survey</button><br>
+    <!-- <button  (click)="navigationUandP()" class="white section_title"><img src="assets/sidebar/user_and_permission.svg">User and Permission</button><br> -->
+    <!-- <button (click)="navigation_Coupon()" class="white section_title"><img src="assets/sidebar/coupon.svg">Coupon</button><br>
+    <button (click)="navigation_Survey()" class="white section_title"><img src="assets/sidebar/survey.svg">Survey</button><br> -->
     <button (click)="openLogout()" class="white section_title" ><img src="assets/sidebar/logout.svg">Logout</button>
 
     <div class="footer">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,6 +12,7 @@ import { MemberDetailService } from './member-detail.service';
 import { HeaderWithBackComponent } from '../sharedComponent/header-with-back/header-with-back.component';
 import { EventService } from '../home/event/event.service';
 import { DataProviderService } from '../auth/service/data-provider.service';
+import { ToastService } from '../../../../shared-ui/src/lib/toast/service/toast.service';
 @Component({
   selector: 'app-member-details',
   standalone: true,
@@ -25,6 +26,7 @@ import { DataProviderService } from '../auth/service/data-provider.service';
   styleUrls: ['./member-details.component.scss'],
 })
 export class MemberDetailsComponent {
+  @Input() disabled: boolean=false;
   profileImageSrc: string = '/assets/member_detail/default.svg';
   panuploadSuccess = false;
   aadharuploadSuccess = false;
@@ -38,7 +40,8 @@ export class MemberDetailsComponent {
     private router: Router,
     private memberservice: MemberDetailService,
     public EventService: EventService,
-    private DataProviderService: DataProviderService
+    private DataProviderService: DataProviderService,
+    private ToastService:ToastService
   ) {
     this.generateTabs();
     this.initializeMembersData();
@@ -56,6 +59,8 @@ export class MemberDetailsComponent {
       );
       this.EventService.bookingDetails.set(bookingDetails);
     } else {
+      this.ToastService.showError('Please Login First');
+      
       this.router.navigate(['login']);
     }
   }

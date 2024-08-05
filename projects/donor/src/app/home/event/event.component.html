@@ -8,19 +8,20 @@
             <button class="primary" (click)="seeAllEvent()">view all</button>
         </div>
     </div>
-    <div class="heading" *ngIf="isEventPresent">
+    <div class="heading" >
         <h2 class="section_title header_text_color">Events</h2>
         <button class="see-all" (click)="seeAllEvent()">See All</button>
     </div>
     <div class="slider">
-        <div *ngFor="let event of eventService.eventList()" class="slide" (click)="viewSlsbList(event.eventId)">
-            <img [src]="event.images[0]" [alt]="event.title">
+        <div *ngFor="let event of eventService.eventList()" class="slide" (click)="viewSlsbList(event.eventId,event)">
+            <img [src]="event.images[0]" [alt]="event.title" class="eventimage">
             <p class="section_title header_text_color">{{ event.eventName}}</p>
-            <div class="bookNow">
-                <p class="paragraph_text">Limited seats Availabe</p>
-                <button (click)="viewSlsbList(event.eventId)">Book Now</button>
-            </div>
+  
+        <div class="bookNow">
+            <p class="paragraph_text">Limited seats Availabe</p>
+            <button (click)="viewSlsbList(event.eventId,event)">Book Now</button>
         </div>
+    </div>
     </div>
       
    

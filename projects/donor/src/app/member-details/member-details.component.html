@@ -7,7 +7,7 @@
         </div>
     </div>
 </div>
-<form [formGroup]="memberForm" class="memberdetail" (ngSubmit)="saveMemberDetail()">
+<form [formGroup]="memberForm" class="memberdetail" >
             <div class="profile">
                 <img [src]="profileImageSrc" alt="Profile Image">
                 <label for="filepath" class="upload-icon">
@@ -82,6 +82,14 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="submit-button">{{ activeTab === tabs.length - 1 ? 'Next' : 'Submit' }}</button>
+     
+      <div >
+            
+</div>
 </form>
+<lib-save-btn class="lower-btn"
+      [btnName]="activeTab === tabs.length - 1 ? 'Next' : 'Submit'" 
+      (click)="saveMemberDetail()"
+      [disabled]="memberForm.invalid">
+    </lib-save-btn>
 </section>

@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecaptchaVerifier } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { DataProviderService } from '../service/data-provider.service';
+import { ToastService } from '../../../../../shared-ui/src/lib/toast/service/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
     private _bottomSheet: MatBottomSheet,
     private geolocationService: GeolocationService,
     private Router: Router,
-    private DataProviderService: DataProviderService
+    private DataProviderService: DataProviderService,
+    private ToastService:ToastService
   ) {}
 
   state: string | null = null;
@@ -51,7 +53,9 @@ export class LoginComponent {
   }
 
   skip() {
-    this._bottomSheet.open(UnAuthCityComponent);
+    // this._bottomSheet.open(UnAuthCityComponent);
+    this.ToastService.showSuccess('Login Skipped')
+    this.Router.navigate(['/home'])
   }
 
   async login() {

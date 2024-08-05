@@ -16,3 +16,8 @@ font-weight: 700;
 line-height: normal;
   
 }
+
+.disabled-btn {
+  background-color: gray; 
+  color: darkgray;
+}

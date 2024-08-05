@@ -76,9 +76,7 @@ export class CatalogueComponent {
     });
 
     bottomSheetRef.afterDismissed().subscribe(async (result) => {
-      console.log('Bottom sheet has been dismissed', result);
       if (result && catalogueInArea === 0) {
-        console.log(result);
         await this.CatalogueService.delete(`service-catalogue/${catalogue.id}`);
       }
       else{

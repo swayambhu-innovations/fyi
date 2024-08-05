@@ -19,6 +19,7 @@ import { DataProviderService } from './data-provider.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventService } from '../../home/event/event.service';
+import { ToastService } from '../../../../../shared-ui/src/lib/toast/service/toast.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -32,18 +33,21 @@ export class AuthService {
     private Firestore: Firestore,
     private dataProvider: DataProviderService,
     private router: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private ToastService:ToastService
   ) {
     this.dataProvider.checkingAuth = true;
     this.auth.onAuthStateChanged((user) => {
       if (user) {
+        this.ToastService.showSuccess('Login')
+        
         this.dataProvider.loggedIn = true;
         this.getUserData(user.uid).subscribe(async (userData: any) => {
           this.dataProvider.currentUser = {
             user: user,
             userData: userData,
           };
-
+          console.log(user.uid)
           if (!userData || !userData.name) {
             this.router.navigate(['profile']);
           } else {
@@ -52,11 +56,8 @@ export class AuthService {
                 const addresses = result.docs.map((address: any) => {
                   return { ...address.data(), id: address.id };
                 });
-                if (addresses.length > 0) {
                   this.router.navigate(['home']);
-                } else {
-                  this.router.navigate(['add-address']);
-                }
+                
               }
             );
           }
@@ -65,9 +66,11 @@ export class AuthService {
       } else {
         this.dataProvider.loggedIn = false;
         this.dataProvider.checkingAuth = false;
+        this.dataProvider.currentUser = undefined;
       }
     });
   }
+  
   async loginWithPhoneNumber(phone: string, appVerifier: ApplicationVerifier) {
     
     if (phone.length != 10) {

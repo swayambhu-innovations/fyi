@@ -1,14 +1,10 @@
 <div class="head">
 <div class="header">
  
-    <p class="page_title header_text_color">Hi, {{ name }}</p>
+    <p class="page_title header_text_color">Hi,  {{ this.DataProviderService.currentUser?.userData.name }}</p>
  
 
-    <nav>
-    <img src="assets/header/bell_icon.svg" alt="" />
-    <img src="assets/header/icon1.svg" alt="" />
-    <a href="#offcanvas-usage" uk-toggle="target: #offcanvas-flip"><img src="assets/header/menu.svg" alt="" /></a>
-  </nav>
+    
   
 </div>
 </div>

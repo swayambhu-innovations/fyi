@@ -7,6 +7,7 @@
         .heading{
             font-weight: 500;
             margin: 5px;
+            padding: 10px;
         }
         .event{
             display: flex;
@@ -65,19 +66,14 @@
       
       }
       .memberheading{
-        display: flex;
-        justify-content: space-between;
-        button{
-            width: 80px;
-            height: 30px;
-            border-radius: 15px;
-            background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
-            border: none;
-            color: white;
-            align-items: center;
-        }
+      p{
+        font-weight: 500;
+        margin: 5px;
+      }
+     
       }
       .tabs {
+        margin-top: 15px;
         display: flex;
         overflow-x: auto;
         -ms-overflow-style: none;
@@ -107,10 +103,21 @@
         margin-left: 0.4rem;
         margin-right: 0.4rem;
         .card2{
-          display: flex;
-          justify-content: space-between;
+            display: flex;
+            justify-content: space-between;
+            .paragraph_text{
+              color:  #7E8083;
+              font-size: 16px;
+              font-weight: 500;
+    
+          }
+            .header_text_color{
+              font-size: 18px;
+              font-weight: 400;
+          }
+          }
+    
         }
-      }
       .delete{
         color: white;
         background: linear-gradient(91.49deg, #E90D35 1.27%, rgba(233, 13, 53, 0.8) 47.72%, rgba(233, 13, 53, 0.4) 98.38%);

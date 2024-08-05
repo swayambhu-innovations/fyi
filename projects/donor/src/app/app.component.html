@@ -1,5 +1,16 @@
-<app-spinner></app-spinner>
 
-<router-outlet></router-outlet>
+<div class="hide-on-desktop">
+    <app-spinner></app-spinner>
 
-<app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+    
+    <app-navbar></app-navbar>
+</div>
+
+<div class="hide-on-mobile">
+    <img src="assets/warningsize.svg" alt="">
+
+    <p class="green">Switch to  Mobile </p>
+    <p class="white">
+        for your best Experience</p>
+  </div>

@@ -23,7 +23,7 @@ import { AuthService } from '../auth/service/auth.service';
 @Component({
   selector: 'app-profile-info',
   standalone: true,
-  imports: [HeaderWithBackComponent, ReactiveFormsModule,SaveBtnComponent],
+  imports: [HeaderWithBackComponent, ReactiveFormsModule, SaveBtnComponent],
   templateUrl: './profile-info.component.html',
   styleUrl: './profile-info.component.scss',
 })
@@ -35,7 +35,7 @@ export class ProfileInfoComponent {
     private dataProvider: DataProviderService,
     private ProfileInfoService: ProfileInfoService,
     private Auth: Auth,
-    private AuthService:AuthService
+    private AuthService: AuthService
   ) {}
 
   userForm: FormGroup = new FormGroup({
@@ -43,7 +43,9 @@ export class ProfileInfoComponent {
     gender: new FormControl('male', Validators.required),
     dob: new FormControl('', Validators.required),
     active: new FormControl(true),
-    photoURL: new FormControl('assets/login/loginPageLogo.svg'),
+    photoURL: new FormControl(
+      'https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac'
+    ),
     age: new FormControl(''),
     uid: new FormControl(''),
     phoneNumber: new FormControl(''),
@@ -57,6 +59,18 @@ export class ProfileInfoComponent {
   }
 
   ngOnInit() {
+    let userData = this.dataProvider.currentUser?.userData;
+    if (
+      this.dataProvider.currentUser &&
+      this.dataProvider.currentUser?.['userData'] &&
+      this.dataProvider.currentUser?.['userData']['name']
+    ) {
+      this.userForm.setValue(userData);
+    }
+  }
+
+  setDate(date: string): void {
+    this.userForm.get('dob')?.setValue(date);
   }
 
   async changePhoto(e: any) {
@@ -96,10 +110,9 @@ export class ProfileInfoComponent {
       this.userForm.value.age =
         new Date().getFullYear() -
         new Date(this.userForm.value.dob).getFullYear();
-      this.userForm.value.dob = new Date(this.userForm.value.dob).toISOString();
       this.ProfileInfoService.updateProfileInfo(this.userForm.value).then(
         () => {
-          this.Router.navigate(['add-address']);
+          this.Router.navigate(['home']);
         }
       );
     }

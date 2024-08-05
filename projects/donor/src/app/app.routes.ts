@@ -19,6 +19,8 @@ import { AccountComponent } from './account/account.component';
 import { PaymentFailedComponent } from './event-payment/payment-failed/payment-failed.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
 import { PaymentDetailsComponent } from './booking-history/payment-details/payment-details.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { DesktoppageComponent } from './desktoppage/desktoppage.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -27,7 +29,6 @@ export const routes: Routes = [
     {path: 'profile', component : ProfileInfoComponent},
     {path: 'add-address', component : AddAddressComponent},
     {path:'member-detail',component:MemberDetailsComponent},
-    {path:'event-payment' , component:EventPaymentComponent},
     {path:'payment/:id' , component:EventPaymentComponent},
     {path:'payment-successful',component:PaymentSuccessfulComponent},
     {path:'patmentfailed',component:PaymentFailedComponent},
@@ -40,7 +41,9 @@ export const routes: Routes = [
     {path : 'coupon',component:CouponComponent},
     {path : 'account',component:AccountComponent},
     {path : 'history',component:BookingHistoryComponent},
-    {path : 'PaymentDetail/:BookingId' ,component:PaymentDetailsComponent}
+    {path : 'PaymentDetail/:BookingId' ,component:PaymentDetailsComponent},
+    {path:'ContactUs',component:ContactUsComponent},
+    {path:'errorpage', component:DesktoppageComponent}
    
    
 ];

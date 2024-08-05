@@ -206,44 +206,7 @@ textarea {
   border-radius: 50%;
   cursor: pointer;
 }
-.cancel-button {
-  width: 137.5px;
-  height: 60px;
-  padding: 20px;
-  border: none;
-  border-radius: 30px;
-  background: var(
-    --secondary-botton-gradient,
-    linear-gradient(
-      91deg,
-      rgba(224, 224, 224, 0.3) 0.53%,
-      rgba(224, 224, 224, 0.2) 47.85%,
-      rgba(224, 224, 224, 0.1) 99.47%
-    )
-  );
-  color: rgba(47, 21, 170, 1);
-  margin-right: 10px;
-}
-.next-button {
-  width: 137.5px;
-  border: none;
-  height: 60px;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background: var(
-    --primary-botton-gradient,
-    linear-gradient(
-      90deg,
-      #2f15aa 0.28%,
-      rgba(47, 21, 170, 0.8) 47.84%,
-      rgba(47, 21, 170, 0.4) 99.72%
-    )
-  );
-  margin-left: 10px;
-  color: white;
-}
+
 
 ::ng-deep mat-bottom-sheet-container {
   border-radius: 20px 20px 0px 0px;
@@ -536,3 +499,5 @@ mat-accordion {
   align-items: center;
   gap: 10px;
 }
+
+

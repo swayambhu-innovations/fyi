@@ -1,1 +1,24 @@
-<p>account works!</p>
+
+<app-header-with-menu ></app-header-with-menu>
+<section>
+    
+    <div class="profileimage">
+    <img  src="https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac">
+  </div>
+  <div class="profilename">
+    <h3 class="section_title">{{name}}</h3>
+  </div>
+ <div class="buttons">
+  
+    <button class="white section_title" (click)="navigate('profile')"><img src="assets/account/editprofile.svg" ><span>Edit Profile</span></button><br>
+    <!-- <button class="white section_title"><img src="assets/account/location.svg">Add Address</button><br> -->
+    <button class="white section_title" (click)="openInNewTab('https://kashisummit.com/')" ><img src="assets/account/aboutus.svg">About Us</button><br> 
+    <button class="white section_title"(click)="movetoContactUs()" ><img src="assets/account/contactus.svg">Contact Us</button>
+    <button class="white section_title" (click)="logout()"><img src="assets/account/logout.svg" >Logout</button>
+</div>
+    <div class="footer">
+      <img src="assets/account/Shreeva-logo.svg">
+      <span >Powered By Shreeva</span>
+    </div>
+
+</section>
