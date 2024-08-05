@@ -276,9 +276,11 @@ textarea {
 
   .button {
     border: none;
-    float: right;
+    //float: right;
     color: rgba(252, 55, 12, 1);
     border-radius: 30px;
+    height: 40px;
+    width: 100px;
     img {
       margin-left: 10px;
     }
@@ -493,6 +495,7 @@ mat-accordion {
   display: flex;
     width: 90vw;
     justify-content: space-evenly;
+    padding-bottom: 10%;
 }
 .icon{
   display: flex;

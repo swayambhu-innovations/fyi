@@ -73,11 +73,8 @@
         </button>
       </div>
     </div>
-    <div class="lower-btn">
-      <!-- <button class="cancel-button" (click)="cancel('back')">cancel</button>
-      <button class="next-button" (click)="nextpannel('itinerary')">
-        Next
-      </button> -->
+    <div class="lower-btn fix-below">
+  
       <lib-cancel-btn  [btnName]="'Cancel'" (click)="cancel('back')"></lib-cancel-btn>
       <lib-save-btn [btnName]="'Next'" (click)="nextpannel('itinerary')" [disabled]="eventForm.invalid"></lib-save-btn>
     </div>
