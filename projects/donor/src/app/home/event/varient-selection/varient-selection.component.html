@@ -17,7 +17,6 @@
         <button class="quantity-control-decrement" (click)="decreaseQuantity(i)">-</button>
         <span>{{ quantities[i] }}</span>
         <button class="quantity-control-increment" (click)="increaseQuantity(i)">+</button>
-        <!-- <button class="remove-selection" (click)="removeSelection()">🗑️</button> -->
         <button class="remove-selection" (click)="removeSelection()"><img src="/assets/homepage/Delete 2.svg" ></button>
       </div>
       <button *ngIf="selectedButtonIndex !== i" class="book-now" [disabled]="selectedButtonIndex !== null" (click)="memberform(i,item)">Book Now</button>
