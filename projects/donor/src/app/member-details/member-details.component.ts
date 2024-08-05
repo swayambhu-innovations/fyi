@@ -104,8 +104,8 @@ export class MemberDetailsComponent {
         profileImageSrc: this.profileImageSrc,
       };
       this.activeTab = index;
-
-      this.resetForm();
+      console.log(this.membersData[this.activeTab]);
+      this.memberForm.setValue(this.membersData[this.activeTab]);
     }
   }
 
@@ -116,6 +116,7 @@ export class MemberDetailsComponent {
       Validators.required,
       Validators.pattern(RegExp('[0-9]{10}')),
     ]),
+    profileImageSrc: new FormControl(''),
     Aadharnumber: new FormControl('', [
       Validators.required,
       Validators.pattern(RegExp('[0-9]{12}')),
