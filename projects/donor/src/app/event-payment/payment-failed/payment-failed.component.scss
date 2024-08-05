@@ -1,5 +1,5 @@
 .container{
-    margin-top: 2%;
+   // margin-top: 1%;
     padding: 70px 20px 0px 20px;
     .confirmation-card {
         background-color: #fff;
@@ -55,20 +55,36 @@
   
 }
 .button-done{
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 50px;
+  
+    // justify-content: space-evenly;
+  margin-top: 20px;
 
-button {
-    width:160px;
-    height: 60px;
+
+.proceed-button {
+    width:90%;
+    height: 50px;
     padding: 15px;
     background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
-    
     color: white;
     border: none;
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
+    align-items: center;
+    margin-left: 1rem;
+  }
+  .backtohome-button{
+
+   width:90%;
+    height: 50px;
+    padding: 15px;
+    // background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
+    background: none;
+    color: #2F15AA;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 1rem;
   }
 }

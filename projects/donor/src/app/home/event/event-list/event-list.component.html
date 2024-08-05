@@ -1,7 +1,7 @@
 <app-header-with-back [pageTitle]="'Event List'"></app-header-with-back>
 <div class="container">
     <input type="text" class="search-bar" placeholder="Search city to add" />
-    <h3 class="section_title">Ongoing Events</h3>
+    <h3 class="section_title">Upcoming Events</h3>
     <div class="card" *ngFor="let item of EventService.eventList()">
       <img [src]="item.images[0]" alt="{{item.eventName}}" class="card-image" />
       <div class="card-content">
@@ -10,12 +10,12 @@
       </div>
     </div>
 
-    <h3 class="section_title">Upcoming Events</h3>
+    <!-- <h3 class="section_title">Upcoming Events</h3>
     <div class="card" *ngFor="let item of EventService.eventList()">
       <img [src]="item.images[0]" alt="{{item.eventName}}" class="card-image" />
       <div class="card-content">
         <p class="card-title header_text_color paragraph_text">{{item.title}}</p>
         <button class="view-slabs-btn" (click)="viewSlsbList(item.eventId,item)">View Slabs</button>
       </div>
-    </div>
+    </div> -->
   </div>    
