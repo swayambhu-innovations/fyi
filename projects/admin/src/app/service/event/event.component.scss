@@ -57,12 +57,13 @@ section {
         font-weight: 300;
       }
       .button {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
+        //  display: flex;
+     
+        // gap: 1rem;
         img {
-          height: 50%;
-          width: 50%;
+          margin: 5px;
+          height: 30px;
+          width: 30px;
         }
         
       }
