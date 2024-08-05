@@ -8,6 +8,8 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-navigation href="myapp://callback/*" />
+
     <platform name="android">
     
     <resource-file src="/platforms/android/app/google-services.json" target="/platforms/android/app/google-services.json" />
