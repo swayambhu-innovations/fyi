@@ -2,13 +2,13 @@
 <section>
   <div class="scroll">
     <div class="tabs">
-      <div class="tab" [ngClass]="{ active: selected === 'details' }">
+      <div class="tab" [ngClass]="{ active: selected === 'details' }" (click)="changePanel('details')">
         Details
       </div>
-      <div class="tab" [ngClass]="{ active: selected === 'itinerary' }">
+      <div class="tab" [ngClass]="{ active: selected === 'itinerary' }" (click)="changePanel('itinerary')">
         Itinerary
       </div>
-      <div class="tab" [ngClass]="{ active: selected === 'slab' }">Slab</div>
+      <div class="tab" [ngClass]="{ active: selected === 'slab' }" (click)="changePanel('slab')">Slab</div>
       <!-- <div class="tab" [ngClass]="{ active: selected === 'city' }">city</div> -->
     </div>
   </div>
@@ -334,7 +334,7 @@
               (click)="cancel('itinerary')"
             ></lib-cancel-btn>
             <lib-save-btn
-              [btnName]="'Next'"
+              [btnName]="'Submit'"
               (click)="nextpannel('back')"
               [disabled]="slabAndVariantForm.invalid"
             ></lib-save-btn>
