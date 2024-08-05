@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState } from '@angular/fire/auth';
+import { Auth, authState, getRedirectResult, signInWithRedirect } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   collection,
@@ -71,6 +71,7 @@ export class AuthService {
   async googleSignin() {
     const provider = new GoogleAuthProvider();
     const credential = await signInWithPopup(this._auth, provider);
+
   }
 
   async signout() {
@@ -86,5 +87,19 @@ export class AuthService {
         where(documentId(), '==', email)
       )
     );
+  }
+
+  async handleRedirectResult() {
+    const auth = getAuth();
+  try {
+    const result = await getRedirectResult(auth);
+    if (result) {
+      const user = result.user;
+      console.log('User:', user);
+      // Save user data or perform other actions
+    }
+  } catch (error) {
+    console.error('Error handling redirect result:', error);
+  }
   }
 }

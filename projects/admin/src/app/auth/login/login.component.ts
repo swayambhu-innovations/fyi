@@ -13,7 +13,9 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent {
   constructor(public auth: AuthService) { }
-  ngOnInit():void{
+  ngOnInit() {
+    // this.auth.handleRedirectResult();
   }
+
  
 }
