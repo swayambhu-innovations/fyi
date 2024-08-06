@@ -4,13 +4,13 @@ import { HeaderWithMenuComponent } from "../sharedComponent/header-with-menu/hea
 import { Router } from '@angular/router';
 import { getAuth, deleteUser, Auth, signOut } from '@angular/fire/auth';
 import { DataProviderService } from '../auth/service/data-provider.service';
-
-
+import { NotLoginpageComponent } from '../not-loginpage/not-loginpage.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [HeaderWithBackComponent, HeaderWithMenuComponent],
+  imports: [HeaderWithBackComponent, HeaderWithMenuComponent,NotLoginpageComponent,CommonModule],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
@@ -31,7 +31,9 @@ export class AccountComponent {
     
   }
   name: any;
+  isLogin:any
   ngOnInit(): void {
+    this.isLogin=this.DataProviderService.loggedIn
     setTimeout(() => {
       this.name = this.DataProviderService.currentUser?.userData.name;
     }, 3000);

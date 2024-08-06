@@ -1,6 +1,6 @@
 
 <app-header-with-menu ></app-header-with-menu>
-<section>
+<section *ngIf="isLogin">
     
     <div class="profileimage">
     <img  src="https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac">
@@ -22,3 +22,4 @@
     </div>
 
 </section>
+<app-not-loginpage *ngIf="!isLogin"></app-not-loginpage>

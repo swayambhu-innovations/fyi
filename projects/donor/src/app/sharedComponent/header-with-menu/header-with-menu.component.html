@@ -1,11 +1,8 @@
 <div class="head">
 <div class="header">
  
-    <p class="page_title header_text_color">Hi,  {{ this.DataProviderService.currentUser?.userData.name }}</p>
+    <p class="page_title header_text_color">Welcome, {{this.DataProviderService.currentUser?.userData?  this.DataProviderService.currentUser?.userData.name:'User' }}</p>
  
-
-    
-  
 </div>
 </div>
 
