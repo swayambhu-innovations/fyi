@@ -73,7 +73,7 @@ export class VarientSelectionComponent {
     for (const date in this.itinerary) {
       const events = this.itinerary[date].map((activity: any) => ({
         time: `${activity.startTime} - ${activity.endTime}`,
-        description: activity.description
+        description: activity.name
       }));
 
       this.schedule.push({

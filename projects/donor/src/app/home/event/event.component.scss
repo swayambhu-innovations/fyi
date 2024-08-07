@@ -73,7 +73,7 @@ section{
         scrollbar-width: none;
         width: 360;
         height: 300;
-      }
+   
     
 
      
@@ -83,9 +83,10 @@ section{
         height: 250px;
         object-fit: cover;
         border-radius: 20px;
-        padding-left: 20px;
-        margin-top: 15px;
-      //align-items: center;
+        //margin-left: 10px;
+        margin: 10px;
+        //margin-top: 15px;
+      align-items: center;
        
       }
       p{
@@ -93,25 +94,29 @@ section{
         font-size: 20px;
         font-weight: 500;
         color: white;
-        margin-left: 15px;
+        margin-left: 10px;
+        text-align: left;
       }
       .bookNow{
         display: flex;
         color: white;
-        //justify-content: space-between;
-        margin-left: 15px;
+        justify-content: space-between;
         margin-top: 15px;
         padding-bottom: 30px;
-        padding-right: 5px;
-        justify-content: space-between;
+   
+        p{
+          text-align: left;
+        }
+
         button{
           height:40px ;
           width: 80px;
           border-radius: 10px;
+          margin-right: 10px;
         }
     
       }
-
+    }
 }
 
 
