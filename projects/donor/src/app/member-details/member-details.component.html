@@ -34,52 +34,52 @@
                     <input type="text" placeholder="99xxxxxxxx"
                     class="member" formControlName="mobileNo">
                 </div>
-                <div class="validation-errors">
+                <!-- <div class="validation-errors">
                     <div class="error-message" *ngIf="memberForm.get('mobileNo')?.errors && memberForm.get('mobileNo')?.touched">
                       Your mobile number is invalid!
                     </div>
-                </div>
+                </div> -->
                 <div class="member-form">
                     <label class="paragraph_text" for=" MemberAadhar">Aadhar</label>
                     <input type="text" placeholder="Aadhar number"
                     class="member" formControlName="Aadharnumber">
                 </div>
-                <div class="validation-errors">
+                <!-- <div class="validation-errors">
                     <div class="error-message" *ngIf="memberForm.get('Aadharnumber')?.errors && memberForm.get('Aadharnumber')?.touched">
                       Your aadhar number is invalid!
                     </div>
-                </div>
+                </div> -->
                 <div class="header">
                     <label>Upload Aadhar</label>    
                 
                     <button type="button" (click)="triggerFileInputAadhar()">
                     <img src="/assets/member_detail/upload.svg" alt="">
                     </button>
-                    <input id="fileInputAadhar" formControlName="Adharimages" type="file" style="display: none;" (change)="onAadharUpload($event)">
-                    <div *ngIf="aadharuploadSuccess" class="success-message">
+                    <input id="fileInputAadhar" formControlName="Adharimages" type="file"  (change)="onAadharUpload($event)">
+                    <!-- <div *ngIf="aadharuploadSuccess" class="success-message">
                         <span>Aadhar uploaded successfully!</span>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="member-form">
                     <label class="paragraph_text" for=" MemberPan">Pan</label>
                     <input type="text" placeholder="Pan number"
                     class="member" formControlName="Pannumber">
                 </div>
-                <div class="validation-errors">
+                <!-- <div class="validation-errors">
                     <div class="error-message" *ngIf="memberForm.get('Pannumber')?.errors && memberForm.get('Pannumber')?.touched">
                       Your pan number is invalid!
                     </div>
-                </div>
+                </div> -->
                 <div class="header">
                     <label>Upload Pancard</label>    
                 
                     <button type="button" (click)="triggerFileInputPan()">
                     <img src="/assets/member_detail/upload.svg" alt="">
                     </button>
-                    <input id="fileInputPan" formControlName="panimages" type="file" style="display: none;" (change)="onPanUpload($event)">
-                    <div *ngIf="panuploadSuccess" class="success-message">
+                    <input id="fileInputPan" formControlName="panimages" type="file"  (change)="onPanUpload($event)">
+                    <!-- <div *ngIf="panuploadSuccess" class="success-message">
                         <span>Pancard uploaded successfully!</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
      
