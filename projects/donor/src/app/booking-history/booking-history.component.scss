@@ -1,56 +1,58 @@
-.event{
-    
-    padding: 20px;
-    .heading{
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15%;
-        .filtre{
-          width: 130px;
-          height: 32px;
-          margin-right: 5px;
-          border-radius: 10px;
-        }
+.event {
+  padding: 20px;
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15%;
+    .filtre {
+      width: 130px;
+      height: 32px;
+      margin-right: 5px;
+      border-radius: 10px;
     }
-    
   }
-  .card{
+  .card {
     background: linear-gradient(90.61deg, rgba(224, 224, 224, 0.3) 0.53%, rgba(224, 224, 224, 0.2) 47.85%, rgba(224, 224, 224, 0.1) 99.47%);
     border-radius: 12px;
-   
-  margin-top: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    overflow: hidden;
     .ticket-info {
       display: flex;
-      //padding: 10px;
-      justify-content:space-around;
-    
-      .event-details{
+      .event-image {
+        max-width: 90px;
+        max-height: 90px;
+        margin-right: 10px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .event-details {
+        flex: 1;
+        .cname{
+          font-size: 20px;
+          color: #000000;
+          word-wrap: break-word;
+          white-space: normal;
+        }
         .name{
-       
-          font-size: 20px;
+          font-size: 16px;
+          word-wrap: break-word;
+          white-space: normal;
         }
-        p{
-          margin-top: 5px;
+        .contact{
           font-size: 14px;
-          
+      
+          word-wrap: break-word;
+          white-space: normal;
         }
-        .heading {
-          font-size: 20px;
-          color: #000;
-          margin: 5px 0;
-        }
-        .row2 {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 5px;
-        }
-        
-        p {
-          font-size: 14px;
-          color: #444;
-          margin: 0;
-        }
-        
+      }
+    }
+    .row2 {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem  ;
+      p{ 
+        font-size: 16px;
         .green {
           color: #48BC1F;
           font-weight: bold;
@@ -58,24 +60,35 @@
       }
     
     }
-    
-    
-    
-  
-    
-   
-    
-    
   }
-  
-  
-  .no-bookings{
-    margin-top: 20%;
-    text-align: center;
-    line-height: 2;
-    span{
-      padding-top: 20px;
-      font-size: 18px;
-    }
-  }
-  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.no-bookings {
+  margin-top: 20%;
+  text-align: center;
+  line-height: 2;
+}
+
+.no-bookings span {
+  padding-top: 20px;
+  font-size: 18px;
+}
+
