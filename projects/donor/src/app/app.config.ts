@@ -21,12 +21,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideFirebaseApp(() =>
       initializeApp({
+        projectId: 'fyi1-aa2c2',
+        appId: '1:273891090725:web:1a3a2b61ba58a8e632bacc',
+        storageBucket: 'fyi1-aa2c2.appspot.com',
         apiKey: 'AIzaSyA9mqYMpobF0WJuA0h-l1Qft5v7PjVwgOI',
         authDomain: 'fyi1-aa2c2.firebaseapp.com',
-        projectId: 'fyi1-aa2c2',
-        storageBucket: 'fyi1-aa2c2.appspot.com',
         messagingSenderId: '273891090725',
-        appId: '1:273891090725:web:1a3a2b61ba58a8e632bacc',
         measurementId: 'G-CJ026BL27H',
       })
     ),
@@ -34,9 +34,6 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
     provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage()), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }),
+    
   ],
 };
