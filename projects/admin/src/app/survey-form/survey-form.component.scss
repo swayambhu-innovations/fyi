@@ -1,7 +1,116 @@
-.scroll{
-    overflow-x: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    margin-bottom: 5px;
-    padding-top:70px ;
+section {
+  width: 100%;
+  padding-bottom: 70px;
+  padding-top: 90px;
+
+  .card {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #808080;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    .card-banner {
+      width: 100%;
+      margin: 0 auto;
+      height: 200px;
+      border-radius: 10px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      .coin-a {
+        width: fit-content;
+        padding: 8px 8px;
+        height: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #464e5f;
+        padding: 4px, 5px;
+        border-radius: 10px;
+        float: right;
+        margin-top: 10px;
+        margin-right: 10px;
+        p {
+          font-family: "Nunito", sans-serif;
+          font-size: 8px;
+          font-weight: 500;
+          line-height: 10.91px;
+          color: #f0f0f0;
+        }
+
+        gap: 3px;
+        img {
+          width: 8.33px;
+          height: 8.33px;
+        }
+      }
+    }
+    .detail {
+      row-gap: 5px;
+      display: flex;
+      flex-direction: column;
+
+      .title-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-family: "Jura", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 18.93px;
+        color: #1e1e1e;
+
+        .items {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+      }
+      .reward {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 15px;
+          height: 15px;
+        }
+      }
+      .gap-10 {
+        gap: 10px;
+      }
+      .gap-3 {
+        gap: 3px;
+      }
+    }
+  }
+}
+
+app-add-button {
+  position: fixed;
+  bottom: 118px;
+  right: 55px;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.nunito {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19.1px;
+  color: #808080;
+}
+
+.word-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wrapper-size {
+  width: 60%;
 }

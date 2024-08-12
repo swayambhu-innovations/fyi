@@ -1,0 +1,117 @@
+<section>
+    <p class="header_text_color">
+      <!-- {{ data.subCategoryId ? "Edit Sub Category" : "Add Sub Category" }} -->
+      Add Survey
+    </p>
+  
+    <form [formGroup]="addSurveyForm">
+      <div class="field">
+        <label  class="description_text">Survey Name</label>
+        <input
+          id="itemName"
+          class="input_box_bg_gradient header_text_color"
+          formControlName="name"
+          placeholder="Enter Survey Name"
+          type="text"
+        />
+        <div *ngIf="addSurveyForm.get('name')?.invalid && (addSurveyForm.get('name')?.touched )">
+          <small class="error-message" *ngIf="addSurveyForm.get('name')?.errors?.['required']">
+            Survey name is required.
+          </small>
+        </div>
+      </div>
+
+      <div class="field">
+        <label  class="description_text">Survey Link</label>
+        <input
+          class="input_box_bg_gradient header_text_color"
+          formControlName="link"
+          placeholder="Enter Survey Link"
+          type="text"
+        />
+        <div *ngIf="addSurveyForm.get('link')?.invalid && (addSurveyForm.get('link')?.touched )">
+          <small class="error-message" *ngIf="addSurveyForm.get('link')?.errors?.['required']">
+            Subcategory link is required.
+          </small>
+        </div>
+      </div>
+     
+  
+      
+  
+      <div>
+        <div class="field mt">
+          <div class="title-with-icon input_box_bg_gradient header_text_color">
+            <p>Add Image</p>
+  
+            <input
+              type="file"
+              #fileInput
+              style="display: none"
+              (change)="changePhoto($event)"
+              accept="image/*"
+            />
+            <img
+              src="assets/tax/pin.svg"
+              alt="upload photo"
+              (click)="fileInput.click()"
+            />
+          </div>
+          
+        </div>
+        <div *ngIf="addSurveyForm.get('photoURL')?.invalid && (addSurveyForm.get('photoURL')?.touched )">
+          <small class="error-message" *ngIf="addSurveyForm.get('photoURL')?.errors?.['required']">
+            Photo URL is required.
+          </small>
+        </div>
+        
+      </div>
+      <div class="full-w mt-m" *ngIf="this.addSurveyForm.value.photoURL">
+        <img
+            [src]="this.addSurveyForm.value.photoURL"
+            alt="Profile Photo"
+          />
+          <img class="top-r-corner"  (click)="removeImg()" src="assets/tax/cross.svg"/>
+      </div>
+
+      <div class="field">
+        <label  class="description_text">Coin Reward</label>
+        <input
+          class="input_box_bg_gradient header_text_color"
+          formControlName="coinReward"
+          placeholder="Enter Coin Reward"
+          type="text"
+        />
+        <div *ngIf="addSurveyForm.get('coinReward')?.invalid && (addSurveyForm.get('coinReward')?.touched )">
+          <small class="error-message" *ngIf="addSurveyForm.get('coinReward')?.errors?.['required']">
+            Reward is required.
+          </small>
+        </div>
+      </div>
+
+      <div class="field">
+        <label  class="description_text">Description</label>
+        <textarea
+          class="input_box_bg_gradient header_text_color"
+          formControlName="description"
+          placeholder="Enter Description"
+          type="text"
+        ></textarea>
+        <div *ngIf="addSurveyForm.get('description')?.invalid && (addSurveyForm.get('description')?.touched )">
+          <small class="error-message" *ngIf="addSurveyForm.get('description')?.errors?.['required']">
+            Description is required.
+          </small>
+        </div>
+      </div>
+  
+      <div class="twin-btn mt">
+        <lib-cancel-btn (click)="cancel()" [btnName]="'Cancel'"></lib-cancel-btn>
+        <lib-save-btn
+          (click)="addSurvey()"
+          [btnName]="'Save'"
+        ></lib-save-btn>
+      </div>
+      
+    </form>
+  </section>
+  
