@@ -1,0 +1,12 @@
+<section >
+    <h3 class="red">Logout</h3>
+    <img src="assets/account/logoutimage.svg" alt="" />
+    <p class="red">Warning</p>
+    <p class="red"> Are you Sure to logout ?</p>
+    <div class="twin-btn">
+      <lib-cancel-btn (click)="closeSheet()" [btnName]="'Cancel'"></lib-cancel-btn>
+      <lib-delete-btn (click)="Logout()" [btnName]="'Logout'"></lib-delete-btn>
+       <!-- <button class="red_gradient">logout</button> -->
+       <!-- <div class="example-label red_gradient">logout</div> -->
+    </div>
+  </section>

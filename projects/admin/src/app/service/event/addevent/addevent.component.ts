@@ -285,6 +285,9 @@ export class AddeventComponent {
       );
     }
   }
+  // async removeSlab(index: any, slab: any) {
+   
+  // }
   editVariant(slabIndex: any, variant: any, variantIndex: any) {
     const bottomSheetRef = this._bottomSheet.open(AddvarientComponent, {
       data: variant,
