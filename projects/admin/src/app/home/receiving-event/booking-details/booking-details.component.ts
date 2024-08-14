@@ -11,6 +11,7 @@ import { ReceivingEventService } from '../../services/receiving-event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { group } from '@angular/animations';
 import { DeleteBookingComponent } from '../delete-booking/delete-booking.component';
+import { LoadingService } from '../../../../../../shared-ui/src/lib/spinner/loading.service';
 interface Member {
   name: string;
   Aadhar: string;
@@ -30,12 +31,14 @@ userId:any;
 selectedTab: number = 0;
 members: any[] = [];
 bookings: string[] |any;
-constructor(private route: ActivatedRoute,private bottomSheet: MatBottomSheet, private firestore:Firestore, private receivingEventService : ReceivingEventService , private router:Router ) {}
+constructor(private LoadingService:LoadingService,private route: ActivatedRoute,private bottomSheet: MatBottomSheet, private firestore:Firestore, private receivingEventService : ReceivingEventService , private router:Router ) {}
 
 ngOnInit(){
+  this.LoadingService.show();
   const BookingId = this.route.snapshot.paramMap.get('BookingId');
   if (BookingId) {
-    this.getBookingDetails(BookingId);
+   
+    this.getBookingDetails(BookingId).then(() => this.LoadingService.hide());;
   }
 }
  

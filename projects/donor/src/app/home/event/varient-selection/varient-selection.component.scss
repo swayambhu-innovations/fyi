@@ -10,18 +10,21 @@ section {
     scroll-snap-type: x mandatory;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    
   }
   .event-slider .slide {
     flex: 0 0 auto;
     scroll-snap-align: start;
     margin-right: 20px;
     cursor: pointer;
+    animation: 30s cubic-bezier(1, 0.95, 0.565, 1) sliding infinite;
   }
   .event-slider .slide img {
     width: 340px;
     height: 230px;
     object-fit: cover;
     border-radius: 20px;
+  
   }
   .varient {
     margin-top: 10%;

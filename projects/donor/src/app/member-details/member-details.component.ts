@@ -176,27 +176,35 @@ export class MemberDetailsComponent {
         let variantPrice = this.EventService.bookingDetails()['variant'].price
         let totalMember  =this.EventService.bookingDetails()['totalMember'];
         let totalPrice = 0;
+        let taxAmount = 0;
+        let priceWithOutTax=0
         if(this.EventService.bookingDetails()['variant'].taxCalc!="inclusive"){
             let tax:any = this.EventService.bookingDetails()['tax']
+            console.log(tax)
            
             if(tax.taxType=='percentage'){
-                let priceWithOutTax = (variantPrice*totalMember)
-                let taxAmount = (priceWithOutTax*tax.taxRate)/100
+               priceWithOutTax = (variantPrice*totalMember)
+              taxAmount = (priceWithOutTax*tax.taxRate)/100
                 totalPrice = priceWithOutTax + taxAmount
             }
             else{
-              totalPrice = (variantPrice+tax.price) * totalMember
+              priceWithOutTax = variantPrice*totalMember
+              taxAmount=tax.taxRate
+              totalPrice = (variantPrice+taxAmount) * totalMember
             }
         }
         else{
             totalPrice = variantPrice*totalMember
+            priceWithOutTax=variantPrice*totalMember
         }
         let bookingDetails = this.EventService.bookingDetails();
         bookingDetails['paymentDetail'] = {
           variantPrice: variantPrice,
           totalMember: totalMember,
           totalPrice: totalPrice,
-          paymentStatus:'pending'
+          paymentStatus:'pending',
+          taxAmount:taxAmount,
+          priceWithOutTax:priceWithOutTax
         }
         bookingDetails['memberDetail'] = this.membersData
                 this.EventService.bookingDetails.set(bookingDetails);

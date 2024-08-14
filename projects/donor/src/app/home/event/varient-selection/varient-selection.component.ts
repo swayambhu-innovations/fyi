@@ -56,19 +56,21 @@ export class VarientSelectionComponent {
 
   selectedButtonIndex: number | null = null;
   quantities: number[] = [];
-
-  slabDetail:any
-  slabDescription:any
-  itinerary:any
+  eventimage:any[]=[];
+  slabDetail:any;
+  slabDescription:any;
+  itinerary:any;
+  
 
   ngOnInit(){
+    this.eventimage=this.EventService.bookingDetails()['event']['images']
     this.slabDetail=this.EventService.bookingDetails()['slab']
     let curEvent = this.EventService.bookingDetails()['event'].eventId
     let itineraryList :any = this.EventService.itineraryList()[curEvent]
     this.itinerary=  this.groupAndSortActivities(itineraryList['activities'])
     
     this.schedule = [];
-
+   // console.log(this.eventimage)
     // Merge itinerary data into schedule
     for (const date in this.itinerary) {
       const events = this.itinerary[date].map((activity: any) => ({

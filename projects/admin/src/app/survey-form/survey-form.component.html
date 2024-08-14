@@ -1,5 +1,49 @@
+<app-header-with-back [pageTitle]="'Survey'"></app-header-with-back>
 
-<app-header-with-menu ></app-header-with-menu>
-<section class="scroll">
-<p>survey-form works!</p>
+<section>
+  <div *ngIf="surveyList.length">
+    <div class="card" *ngFor="let survey of surveyList">
+      <div
+        class="card-banner"
+        [ngStyle]="{ 'background-image': 'url(' + survey.photoURL + ')' }"
+      >
+        <div class="coin-a">
+          <img src="assets/survey/coin.svg" alt="" />
+          <p>{{ survey.coinReward }}</p>
+        </div>
+      </div>
+      <div class="detail">
+        <div class="title-option">
+          <div class="word-wrap wrapper-size">
+            {{ survey.name }}
+          </div>
+          <div class="items">
+            <label class="uk-switch">
+              <input
+                type="checkbox"
+                [checked]="survey.active == true ? true : false"
+                (change)="updatedStatus(survey)"
+              />
+              <div class="uk-switch-slider"></div>
+            </label>
+            <span
+              ><img src="assets/tax/edit.svg" (click)="edit(survey)" alt=""
+            /></span>
+            <span
+              ><img src="assets/tax/delete.svg" (click)="delete(survey)" alt=""
+            /></span>
+          </div>
+        </div>
+        <div class="reward gap-10">
+          <p class="nunito">Reward</p>
+          <div class="reward gap-3">
+            <img src="assets/survey/coin.svg" alt="" />
+            <p class="wrapper-size">{{ survey.coinReward }}</p>
+          </div>
+        </div>
+        <div class="nunito description">{{ survey.description }}</div>
+      </div>
+    </div>
+  </div>
 </section>
+<app-add-button (click)="addSurvey()"></app-add-button>

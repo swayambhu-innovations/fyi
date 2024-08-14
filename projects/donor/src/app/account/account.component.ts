@@ -6,6 +6,8 @@ import { getAuth, deleteUser, Auth, signOut } from '@angular/fire/auth';
 import { DataProviderService } from '../auth/service/data-provider.service';
 import { NotLoginpageComponent } from '../not-loginpage/not-loginpage.component';
 import { CommonModule } from '@angular/common';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { LogoutModelComponent } from './logout-model/logout-model.component';
 
 @Component({
   selector: 'app-account',
@@ -15,21 +17,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './account.component.scss'
 })
 export class AccountComponent {
-  constructor(private router: Router,private DataProviderService:DataProviderService){}
+  constructor(private router: Router,private DataProviderService:DataProviderService, private _bottomSheet: MatBottomSheet){}
   movetoContactUs(){
       this.router.navigate(['ContactUs']);
   }
 
-  logout() {
-    signOut(getAuth())
-    .then(() => {
-      setTimeout(() => {
-        this.router.navigate(['login']);
-      }, 3000);
-    })
-    .catch((error: any) => console.log(error))
+  openLogout(): void {
+    this._bottomSheet.open(LogoutModelComponent, {
     
+    });
   }
+
   name: any;
   isLogin:any
   ngOnInit(): void {
