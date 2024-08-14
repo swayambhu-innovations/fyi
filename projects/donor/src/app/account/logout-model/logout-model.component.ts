@@ -23,13 +23,13 @@ export class LogoutModelComponent {
   }
   Logout(): void {
     signOut(getAuth())
-    .then(() => {
-      setTimeout(() => {
-        this.router.navigate(['login']);
-      }, 3000);
-    })
-    .catch((error: any) => console.log(error))
-    this._bottomSheetRef.dismiss();
-   
-    }
+      .then(() => {
+        this._bottomSheetRef.dismiss(); // Dismiss the bottom sheet here
+  
+        setTimeout(() => {
+          this.router.navigate(['login']);
+        }, 3000);
+      })
+      .catch((error: any) => console.log(error));
+  }
 }
