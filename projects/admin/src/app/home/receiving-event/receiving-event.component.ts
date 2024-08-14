@@ -43,13 +43,15 @@ bookingdetail(BookingId: string): void {
         if(bookingData["paymentDetail"].paymentStatus=="success"){
         this.bookings.push({
           "BookingId": bookingData["id"],
+          "image":bookingData["event"]["images"][0],
+          
           "name": bookingData["customer"].name,
           "contact": bookingData["customer"].phoneNumber,
           "eventname": bookingData["event"].eventName,
           "slabname": bookingData["slab"].name,
           "varientname": bookingData["variant"].name,
           "price": bookingData["paymentDetail"].totalPrice,
-          "tickets": bookingData["variant"].totalTicket,
+          "tickets": bookingData["totalMember"],
         });
       }
     }

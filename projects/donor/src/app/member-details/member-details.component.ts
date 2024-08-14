@@ -109,7 +109,7 @@ export class MemberDetailsComponent {
     }
   }
 
-  memberForm: FormGroup = new FormGroup({
+  memberForm: FormGroup = new FormGroup({   
     Name: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
     mobileNo: new FormControl('', [

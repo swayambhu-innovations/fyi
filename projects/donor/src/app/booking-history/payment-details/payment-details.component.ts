@@ -67,28 +67,6 @@ export class PaymentDetailsComponent {
   selectTab(index: number) {
     this.selectedTab = index
   }
-  // openDeleteBottomSheet() {
-  //   const ref = this.bottomSheet.open(DeleteBookingComponent, {
-  //     data: {
-  //       userId: this.userId,
-  //       bookingId: this.bookingdata?.BookingId
-  //     }
-  //   });
-  // }
-
-  // editMember() {
-  //   if (this.selectedTab !== null) {
-  //     const memberToEdit = { ...this.members[this.selectedTab] };
-  //     const ref = this.bottomSheet.open(EditMemberDetailComponent, {
-  //       data: { member: memberToEdit, userId: this.userId, bookingId: this.bookingdata?.BookingId, memberIndex: this.selectedTab }
-  //     });
-  
-  //     ref.afterDismissed().subscribe(updatedMember => {
-  //       if (updatedMember) {
-  //         this.members[this.selectedTab] = updatedMember;
-  //       }
-  //     });
-  //   }
-  // }
+ 
   
 }

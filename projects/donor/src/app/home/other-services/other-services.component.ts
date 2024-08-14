@@ -14,4 +14,8 @@ export class OtherServicesComponent {
   openInNewTab(url: string): void {
     window.open(url, '_blank');
   }
+
+  movetoContactUs(){
+    this.router.navigate(['ContactUs']);
+}
 }
