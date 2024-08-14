@@ -104,7 +104,7 @@ export class ProfileInfoComponent {
   }
   submit() {
     if (this.userForm.valid) {
-      this.userForm.value.uid = this.dataProvider.currentUser?.user.uid;
+      this.userForm.value.uid = this.dataProvider.currentUser?.userData.uid;
       this.userForm.value.phoneNumber =
         this.dataProvider.currentUser?.userData.phoneNumber;
       this.userForm.value.age =

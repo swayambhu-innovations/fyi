@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventService } from '../../home/event/event.service';
 import { ToastService } from '../../../../../shared-ui/src/lib/toast/service/toast.service';
+import { confirmSignIn, confirmSignUp, getCurrentUser } from '@aws-amplify/auth';
 @Injectable({
   providedIn: 'root',
 })
@@ -37,38 +38,48 @@ export class AuthService {
     private ToastService:ToastService
   ) {
     this.dataProvider.checkingAuth = true;
-    this.auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.ToastService.showSuccess('Login')
-        
-        this.dataProvider.loggedIn = true;
-        this.getUserData(user.uid).subscribe(async (userData: any) => {
-          this.dataProvider.currentUser = {
-            user: user,
-            userData: userData,
-          };
-          console.log(user.uid)
-          if (!userData || !userData.name) {
-            this.router.navigate(['profile']);
-          } else {
-            this.getAddresses(this.dataProvider.currentUser!.user.uid).then(
-              (result) => {
-                const addresses = result.docs.map((address: any) => {
-                  return { ...address.data(), id: address.id };
-                });
-                  this.router.navigate(['home']);
-                
-              }
-            );
-          }
+    this.initializeUser();    
+  }
+
+  async initializeUser() {
+    try {
+      const { username, userId, signInDetails } = await getCurrentUser();
+      console.log(username, userId, signInDetails);
+        if (userId) {
+          this.ToastService.showSuccess('Login')
+          
+          this.dataProvider.loggedIn = true;
+          this.getUserData(userId).subscribe(async (userData: any) => {
+            this.dataProvider.currentUser = {
+              
+              userData: userData,
+            };
+            console.log(user.uid)
+            if (!userData || !userData.name) {
+              this.router.navigate(['profile']);
+            } else {
+              this.getAddresses(this.dataProvider.currentUser!.userData.uid).then(
+                (result) => {
+                  const addresses = result.docs.map((address: any) => {
+                    return { ...address.data(), id: address.id };
+                  });
+                    this.router.navigate(['home']);
+                  
+                }
+              );
+            }
+            this.dataProvider.checkingAuth = false;
+          });
+        } else {
+          this.dataProvider.loggedIn = false;
           this.dataProvider.checkingAuth = false;
-        });
-      } else {
-        this.dataProvider.loggedIn = false;
-        this.dataProvider.checkingAuth = false;
-        this.dataProvider.currentUser = undefined;
-      }
-    });
+          this.dataProvider.currentUser = undefined;
+        }
+      
+      console.log(username, userId, signInDetails);
+    } catch (error) {
+      console.error('Error fetching current user:', error);
+    }
   }
   
   async loginWithPhoneNumber(phone: string, appVerifier: ApplicationVerifier) {
@@ -79,11 +90,11 @@ export class AuthService {
     return signInWithPhoneNumber(this.auth, '+91' + phone, appVerifier);
   }
 
-  async setUserData(user: any) {
-    let userDoc = await getDoc(doc(this.Firestore, 'users', user.uid));
+  async setUserData(uid: any,phone:any) {
+    let userDoc = await getDoc(doc(this.Firestore, 'users', uid));
+    console.log(userDoc)
     if (userDoc.exists()) {
       this.dataProvider.currentUser = {
-        user: { ...user, name: userDoc.data()['name'] },
         userData: userDoc.data(),
       };
 
@@ -91,17 +102,18 @@ export class AuthService {
     }
     let newUserData = {
       name: user.name || '',
-      phoneNumber: user.phoneNumber || '',
+      phoneNumber: `+91${phone}` || '',
       photoURL: user.photoURL || '',
-      uid: user.uid || '',
+      uid: uid || '',
       dob: user.dob || '',
       gender: user.gender || '',
       age: user.age || '',
     };
+    console.log(newUserData)
 
-    await setDoc(doc(this.Firestore, 'users', user.uid), newUserData);
+    await setDoc(doc(this.Firestore, 'users', uid), newUserData);
     this.dataProvider.currentUser = {
-      user: user,
+     
       userData: newUserData,
     };
     return;
@@ -115,5 +127,44 @@ export class AuthService {
     return await getDocs(
       collection(this.Firestore, 'users', userId, 'addresses')
     );
+  }
+
+  isUserExist:any=false;
+  phone:any;
+  uid:any=''
+  verifyOTP(otp: string) {
+    if (this.isUserExist) {
+      return this.handleSignInConfirmation(otp);
+    }
+    else{
+      return this.confirmSignUp(otp);
+    }
+  }
+
+  async confirmSignUp(otp:any) {
+    try {
+      const { isSignUpComplete, nextStep } = await confirmSignUp({
+        username: `+91${this.phone}`,
+        confirmationCode: otp,
+      });
+      console.log(isSignUpComplete, nextStep);
+      console.log('Sign up confirmed');
+      console.log(this.uid)
+      this.setUserData(this.uid,this.phone);
+
+    } catch (error) {
+      console.error('Error confirming sign up:', error);
+    }
+  }
+  
+  async handleSignInConfirmation(otp:any) {
+    try {
+      await confirmSignIn({ challengeResponse: otp }).then((res) => {
+
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

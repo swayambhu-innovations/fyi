@@ -31,11 +31,11 @@ export class OtpComponent {
   }
 
   ngOnInit() {
-    if (!this.dataProvider.loginConfirmationResult) {
-      this.router.navigate(['login']);
-    } else {
-      this.startResendTimer();
-    }
+    // if (!this.dataProvider.loginConfirmationResult) {
+    //   this.router.navigate(['login']);
+    // } else {
+    //   this.startResendTimer();
+    // }
   }
   async sendOTP() {
     
@@ -64,21 +64,26 @@ export class OtpComponent {
     }  
   }
   async login() {
-    if (this.dataProvider.loginConfirmationResult) {
-      this.dataProvider.loginConfirmationResult
-        .confirm(this.otp)
-        .then((result) => {
-          this.authService.setUserData(result.user);
-          this.router.navigate(['profile']);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          console.log('finally');
-        });
-    }
+    // if (this.dataProvider.loginConfirmationResult) {
+    //   this.dataProvider.loginConfirmationResult
+    //     .confirm(this.otp)
+    //     .then((result) => {
+    //       this.authService.setUserData(result.user);
+    //       this.router.navigate(['profile']);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     })
+    //     .finally(() => {
+    //       console.log('finally');
+    //     });
+    // }
+    this.authService.verifyOTP(this.otp).then((result) => {
+      this.router.navigate(['profile']);
+    })
   }
+
+  
 
   config = {
     allowNumbersOnly: true,

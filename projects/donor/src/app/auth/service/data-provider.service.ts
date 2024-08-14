@@ -19,7 +19,7 @@ export class DataProviderService {
   
   currentUser:
     | {
-        user: User;
+        
         userData: any;
       }
     | undefined;
