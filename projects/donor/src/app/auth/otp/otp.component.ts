@@ -78,9 +78,10 @@ export class OtpComponent {
     //       console.log('finally');
     //     });
     // }
-    this.authService.verifyOTP(this.otp).then((result) => {
-      this.router.navigate(['profile']);
+    await this.authService.verifyOTP(this.otp).then((result) => {
     })
+    
+
   }
 
   

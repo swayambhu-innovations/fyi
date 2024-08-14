@@ -67,6 +67,7 @@ export class ProfileInfoComponent {
     ) {
       this.userForm.setValue(userData);
     }
+    this.AuthService.initializeUser()
   }
 
   setDate(date: string): void {

@@ -103,7 +103,7 @@ export class LoginComponent {
         },
       });
       this.AuthService.uid=userId
-      console.log(userId)
+      console.log( isSignUpComplete, userId, nextStep )
       this.Router.navigate(['otp']);
     } catch (error) {
       console.error('Error signing up:', error);

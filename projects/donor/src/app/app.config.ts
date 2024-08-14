@@ -61,6 +61,8 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
     provideMessaging(() => getMessaging()),
+    provideStorage(() => getStorage()),
+    
     
   ],
 };

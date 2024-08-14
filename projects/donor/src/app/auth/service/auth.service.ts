@@ -21,6 +21,7 @@ import { Observable } from 'rxjs';
 import { EventService } from '../../home/event/event.service';
 import { ToastService } from '../../../../../shared-ui/src/lib/toast/service/toast.service';
 import { confirmSignIn, confirmSignUp, getCurrentUser } from '@aws-amplify/auth';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -43,6 +44,7 @@ export class AuthService {
 
   async initializeUser() {
     try {
+
       const { username, userId, signInDetails } = await getCurrentUser();
       console.log(username, userId, signInDetails);
         if (userId) {
@@ -54,15 +56,15 @@ export class AuthService {
               
               userData: userData,
             };
-            console.log(user.uid)
+            console.log(userData)
             if (!userData || !userData.name) {
               this.router.navigate(['profile']);
             } else {
               this.getAddresses(this.dataProvider.currentUser!.userData.uid).then(
                 (result) => {
-                  const addresses = result.docs.map((address: any) => {
-                    return { ...address.data(), id: address.id };
-                  });
+                  // const addresses = result.docs.map((address: any) => {
+                  //   return { ...address.data(), id: address.id };
+                  // });
                     this.router.navigate(['home']);
                   
                 }
@@ -117,6 +119,8 @@ export class AuthService {
      
       userData: newUserData,
     };
+    this.ToastService.showSuccess('Account Created Successfully')
+    this.router.navigate(['login']);
     return;
   }
 
@@ -133,12 +137,14 @@ export class AuthService {
   isUserExist:any=false;
   phone:any;
   uid:any=''
-  verifyOTP(otp: string) {
+  async verifyOTP(otp: string) {
     if (this.isUserExist) {
-      return this.handleSignInConfirmation(otp);
+      console.log('handleSignInConfirmation')
+      return await this.handleSignInConfirmation(otp);
     }
     else{
-      return this.confirmSignUp(otp);
+    console.log('confirmSignUp')
+      return await this.confirmSignUp(otp);
     }
   }
 
@@ -151,7 +157,9 @@ export class AuthService {
       console.log(isSignUpComplete, nextStep);
       console.log('Sign up confirmed');
       console.log(this.uid)
-      this.setUserData(this.uid,this.phone);
+    
+      await this.setUserData(this.uid,this.phone);
+
 
     } catch (error) {
       console.error('Error confirming sign up:', error);
@@ -163,6 +171,8 @@ export class AuthService {
       await confirmSignIn({ challengeResponse: otp }).then((res) => {
 
         console.log(res);
+        this.router.navigate(['profile']);
+
       });
     } catch (error) {
       console.log(error);
