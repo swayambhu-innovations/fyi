@@ -75,7 +75,7 @@
     </div>
     <div class="lower-btn fix-below">
   
-      <lib-cancel-btn  [btnName]="'Cancel'" (click)="cancel('back')"></lib-cancel-btn>
+      <lib-cancel-btn class="cancelbutton" [btnName]="'Cancel'" (click)="cancel('back')"></lib-cancel-btn>
       <lib-save-btn [btnName]="'Next'" (click)="nextpannel('itinerary')" [disabled]="eventForm.invalid"></lib-save-btn>
     </div>
   </div>
@@ -152,7 +152,7 @@
         </div>
         <button class="Add-btn" (click)="addActivity()">add Activity</button>
         <div class="lower-btn fix-below">
-          <lib-cancel-btn
+          <lib-cancel-btn  class="cancelbutton" 
             [btnName]="'Cancel'"
             (click)="cancel('details')"
           ></lib-cancel-btn>
@@ -329,7 +329,7 @@
           </div>
           <button class="Add-btn" (click)="addSlab()">Add Slab</button>
           <div class="lower-btn fix-below" >
-            <lib-cancel-btn
+            <lib-cancel-btn class="cancelbutton"
               [btnName]="'Cancel'"
               (click)="cancel('itinerary')"
             ></lib-cancel-btn>
@@ -384,7 +384,7 @@
     </div>
 
     <div class="lower-btn fix-below">
-      <lib-cancel-btn
+      <lib-cancel-btn class="cancelbutton"
         [btnName]="'Cancel'"
         (click)="cancel('slab')"
       ></lib-cancel-btn>

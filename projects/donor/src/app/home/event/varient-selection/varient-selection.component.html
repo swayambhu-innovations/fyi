@@ -2,8 +2,8 @@
 <section>
   <div class="event-slider">
     <div class="slider">
-      <div *ngFor="let event of events" class="slide">
-        <img [src]="this.slabDetail.image" [alt]="event.title">
+      <div *ngFor="let event of eventimage" class="slide">
+        <img [src]="event" [alt]="event.title">
       </div>
     </div>
   </div>

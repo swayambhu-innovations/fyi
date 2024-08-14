@@ -1,4 +1,4 @@
-
+<!-- 
 <section>
 <div class="card" *ngFor="let event of events">
     <div class="bgcolor" >
@@ -16,7 +16,6 @@
                 <p class="white">Booked</p>
             </div>
             <div class="button">
-                <!-- <span class="size custom-slide-toggle"><mat-slide-toggle [checked]="event.active==true?true:false" (change)="updatedStatus(event)"></mat-slide-toggle></span> -->
                 <label class="uk-switch" >
                     <input type="checkbox"  [checked]="event.active==true?true:false" (change)="updatedStatus(event)">
                     <div class="uk-switch-slider" ></div>
@@ -30,4 +29,41 @@
 </div>
 
 <app-add-button (click)="openBottomSheet()"  ></app-add-button>
-</section>
+</section> -->
+
+
+
+                <!-- <span class="size custom-slide-toggle"><mat-slide-toggle [checked]="event.active==true?true:false" (change)="updatedStatus(event)"></mat-slide-toggle></span> -->
+
+                <section>
+                    <div class="card" *ngFor="let event of events">
+                      <div class="bgcolor">
+                        <div class="row1">
+                          <span class="header_text_color section_title">{{ event.eventName }}</span>
+                          <img src="/assets/eventList_image/icon2.svg">
+                        </div>
+                        <div class="container" id="bgimage" [ngStyle]="{'background-image': 'url(' + event.images[0] + ')'}">
+                          <div class="overlay"></div> <!-- Added overlay div -->
+                          <div class="row2">
+                            <img src="/assets/eventList_image/icon1.svg">
+                            <p class="white button_text">{{ event.bookedSeats }} / {{ event.totalSeats }}</p>
+                          </div>
+                          <div class="row3">
+                            <div>
+                              <p class="white">Booked</p>
+                            </div>
+                            <div class="button">
+                              <label class="uk-switch">
+                                <input type="checkbox" [checked]="event.active==true?true:false" (change)="updatedStatus(event)">
+                                <div class="uk-switch-slider"></div>
+                              </label>
+                              <img (click)="editEvent(event)" src="/assets/eventList_image/editbutton.svg">
+                              <img (click)="deleteEvent(event)" src="/assets/eventList_image/delete_button.svg">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <app-add-button (click)="openBottomSheet()"></app-add-button>
+                  </section>
+                  

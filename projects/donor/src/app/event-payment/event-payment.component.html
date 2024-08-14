@@ -20,19 +20,25 @@
     <div class="payment-details">
       <h3 class="section_title">Payment Details</h3>
       <div class="detail-row">
-        <span class="paragraph_text">Total (MRP)</span>
-        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].totalPrice}}</span>
+        <span class="paragraph_text totalmrp">Total (MRP)</span>
+        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].priceWithOutTax}}</span>
       </div>
       <div class="detail-row">
         <span class="paragraph_text">Discount</span>
         <span style="color: #579540;">-₹0</span>
       </div>
+     
+
       <div class="detail-row">
-        <span class="paragraph_text">Discounted Price</span>
-        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].totalPrice}}</span>
+        <span class="paragraph_text" style="font-size: 18px;">Subtotal</span>
+        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].priceWithOutTax}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="paragraph_text">Tax</span>
+        <span>₹{{this.EventService.bookingDetails()['paymentDetail'].taxAmount}}</span>
       </div>
       <div class="total-row">
-        <span class="section_title ">Total</span>
+        <span class="section_title" style="font-size: 18px;">Grand Total</span>
         <span class="section_title ">₹{{this.EventService.bookingDetails()['paymentDetail'].totalPrice}}</span>
       </div>
     </div>

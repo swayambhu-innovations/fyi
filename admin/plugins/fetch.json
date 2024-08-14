@@ -1,0 +1,26 @@
+{
+  "cordova-plugin-firebase-lib": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase-lib"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-firebasex": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebasex"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-googleplus"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

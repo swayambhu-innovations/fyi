@@ -6,6 +6,8 @@ import { getAuth, deleteUser, Auth } from '@angular/fire/auth';
 import { DataProviderService } from '../auth/service/data-provider.service';
 import { NotLoginpageComponent } from '../not-loginpage/not-loginpage.component';
 import { CommonModule } from '@angular/common';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { LogoutModelComponent } from './logout-model/logout-model.component';
 import { signOut } from '@aws-amplify/auth';
 @Component({
   selector: 'app-account',
@@ -15,7 +17,7 @@ import { signOut } from '@aws-amplify/auth';
   styleUrl: './account.component.scss'
 })
 export class AccountComponent {
-  constructor(private router: Router,private DataProviderService:DataProviderService){}
+  constructor(private router: Router,private DataProviderService:DataProviderService, private _bottomSheet: MatBottomSheet){}
   movetoContactUs(){
       this.router.navigate(['ContactUs']);
   }
