@@ -144,6 +144,8 @@ export class AddeventComponent {
               startDate: res.startDate,
             });
             this.setImages(res.images);
+            // this.itineraryForm.patchValue({ eventId: res.eventId });
+            // this.slabAndVariantForm.patchValue({ eventId: res.eventId});
           });
 
         this.eventservice

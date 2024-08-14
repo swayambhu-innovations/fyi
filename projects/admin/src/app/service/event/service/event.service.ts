@@ -314,19 +314,25 @@ export class EventService {
     const slabCollection = collection(this.firestore, 'events', eventId,'slab-variant');
   
     const slabDocs = await getDocs(query(slabCollection));
+    
     slabDocs.forEach(async (docSnapshot) => {
       await this.deleteSlab(`events/${eventId}/slab-variant/${docSnapshot.id}`).then(async()=>{
         await deleteDoc(doc(this.firestore, 'events', eventId, 'itinerary','activities'));
         return deleteDoc(doc(this.firestore, 'events', eventId));
       });
     });
+  
+  if(slabDocs.docs.length==0){
+    await deleteDoc(doc(this.firestore, 'events', eventId, 'itinerary','activities'));
+    return deleteDoc(doc(this.firestore, 'events', eventId));
+  }
+  
 
   }
 
   async deleteSlab(docAddress: any) {
-    await this.deleteSubcollection(docAddress).then(() => {
-      return deleteDoc(doc(this.firestore, docAddress));
-    })
+    await this.deleteSubcollection(docAddress)
+    return deleteDoc(doc(this.firestore, docAddress));
   }
 
   async deleteSubcollection(parentDocAddress: string) {

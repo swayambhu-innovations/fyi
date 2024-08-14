@@ -1,0 +1,56 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-donor-dev-7406b-authRole",
+      "UnauthRoleArn": "arn:aws:iam::024848442485:role/amplify-donor-dev-7406b-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::024848442485:role/amplify-donor-dev-7406b-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-donor-dev-7406b-deployment",
+      "UnauthRoleName": "amplify-donor-dev-7406b-unauthRole",
+      "StackName": "amplify-donor-dev-7406b",
+      "StackId": "arn:aws:cloudformation:ap-south-1:024848442485:stack/amplify-donor-dev-7406b/60d3c060-5541-11ef-b43f-02deccdadfd1",
+      "AmplifyAppId": "diny78pt0rzum"
+    }
+  },
+  "auth": {
+    "donore651a1b2": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-donor-dev-7406b-deployment/amplify-cfn-templates/auth/donore651a1b2-cloudformation-template.json",
+        "logicalId": "authdonore651a1b2"
+      },
+      "lastPushTimeStamp": "2024-08-08T04:53:09.805Z",
+      "output": {
+        "UserPoolId": "ap-south-1_RUwUBBYNM",
+        "AppClientIDWeb": "4i08cvfsl1scacjoab4dvma8d8",
+        "AppClientID": "6so584o3hsck1si7libeam71or",
+        "IdentityPoolId": "ap-south-1:485eae4c-75c5-4be6-be9c-258a5db59612",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-south-1:024848442485:userpool/ap-south-1_RUwUBBYNM",
+        "IdentityPoolName": "donore651a1b2_identitypool_e651a1b2__dev",
+        "UserPoolName": "donore651a1b2_userpool_e651a1b2"
+      },
+      "lastPushDirHash": "6UYuecqhMMQq4HhJY0cWYSMx10U="
+    }
+  }
+}

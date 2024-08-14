@@ -72,10 +72,11 @@ export class AuthService {
   }
   
   async loginWithPhoneNumber(phone: string, appVerifier: ApplicationVerifier) {
-    
+    console.log(phone,appVerifier)
     if (phone.length != 10) {
       return Promise.reject(new Error('Invalid Phone Number'));
     }
+    console.log(this.auth,phone,appVerifier)
     return signInWithPhoneNumber(this.auth, '+91' + phone, appVerifier);
   }
 
