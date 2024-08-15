@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1723637943767,
+  "timestamp": 1723640437513,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/chunk-H7JJ5OTM.js",
         "/chunk-OITR2SD6.js",
         "/index.html",
-        "/main-FAX5UD2G.js",
+        "/main-ADQDQXE2.js",
         "/polyfills-6EAL64PA.js",
         "/styles-MTABGETC.css"
       ],
@@ -34,6 +34,7 @@
         "/assets/account/editprofile.svg",
         "/assets/account/location.svg",
         "/assets/account/logout.svg",
+        "/assets/account/logoutimage.svg",
         "/assets/account/profile.svg",
         "/assets/account/rafiki.svg",
         "/assets/address/addressBanner.svg",
@@ -121,6 +122,7 @@
     "/assets/account/editprofile.svg": "6b26e8e1fe498761157ac81281fa65aede869f0a",
     "/assets/account/location.svg": "bd38acedec3ef6a860dea34bc20fbd08840dda48",
     "/assets/account/logout.svg": "b87a4b51fa956774842634afb6e21cdb419a805a",
+    "/assets/account/logoutimage.svg": "f27d2d79bafa81886c5d208a54af4b257c008c3f",
     "/assets/account/profile.svg": "f4a10afbaecec6d8fad658383e7f46be8cd3e096",
     "/assets/account/rafiki.svg": "47fb240b1e634b1ec9a1871f870aee5a36643609",
     "/assets/address/addressBanner.svg": "3050cd5065ea7366711d23ac6af565ea740d8e1b",
@@ -198,8 +200,8 @@
     "/assets/warningsize.svg": "2d681a86972063863a071fe8571826c403aa4a45",
     "/chunk-H7JJ5OTM.js": "31729ec80e09cf5a8a5d8873d5f2a879affac7cd",
     "/chunk-OITR2SD6.js": "debebc6e74107bf265d5da97ee187a6cc5c5d552",
-    "/index.html": "00eb03e6bd2d56a9921a8a84ff514a7250e62202",
-    "/main-FAX5UD2G.js": "1cebe56bb1879800fcd1ec81636f41fc85db2f20",
+    "/index.html": "6e6929de337c8a2e883a0f2cb1f3568fca4d9a47",
+    "/main-ADQDQXE2.js": "3fa3bc92e61ee0d315ce16401660a546fff76b5e",
     "/polyfills-6EAL64PA.js": "d874147a12a6570d9b44e99935e9de8b7f3cabbc",
     "/styles-MTABGETC.css": "a5fec8d22e1809860f7e900bc8ee779d18fdd4d8"
   },
