@@ -114,6 +114,8 @@ export class LoginComponent {
     let userExist: boolean = false;
     this.AuthService.phone = this.phoneNumber;
     try {
+      this.DataProviderService.loginConfirmationResult = true;
+  this.DataProviderService.userMobile = this.phoneNumber;
       const output = await signIn({
         password: 'TempPassword123!',
         username: `+91${this.phoneNumber}`,
@@ -125,8 +127,8 @@ export class LoginComponent {
         },
       }).then((result) => {
         this.AuthService.isUserExist = true;
-        // this.DataProviderService.loginConfirmationResult = nextStep;
-        this.DataProviderService.userMobile = this.phoneNumber;
+      this.DataProviderService.loginConfirmationResult = true;
+  this.DataProviderService.userMobile = this.phoneNumber;
         this.Router.navigate(['otp']);
       });
     } catch (error: any) {

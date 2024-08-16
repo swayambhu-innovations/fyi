@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventService } from '../../home/event/event.service';
 import { ToastService } from '../../../../../shared-ui/src/lib/toast/service/toast.service';
-import { confirmSignIn, confirmSignUp, getCurrentUser } from '@aws-amplify/auth';
+import { confirmSignIn, confirmSignUp, getCurrentUser, signIn } from '@aws-amplify/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -119,8 +119,7 @@ export class AuthService {
      
       userData: newUserData,
     };
-    this.ToastService.showSuccess('Account Created Successfully')
-    this.router.navigate(['login']);
+    this.router.navigate(['profile']);
     return;
   }
 
@@ -159,10 +158,13 @@ export class AuthService {
       console.log(this.uid)
     
       await this.setUserData(this.uid,this.phone);
+      this.initializeUser()
 
 
-    } catch (error) {
-      console.error('Error confirming sign up:', error);
+    } catch (error:any) {
+      
+      this.ToastService.showError('Invalid OTP')
+
     }
   }
   
@@ -172,10 +174,26 @@ export class AuthService {
 
         console.log(res);
         this.router.navigate(['profile']);
+        this.initializeUser()
+
 
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+
+      this.ToastService.showError('Invalid OTP')
     }
+  }
+
+ async resendOtp(phone: string) {
+    const output = await signIn({
+        password: 'TempPassword123!',
+        username: `+91${this.phone}`,
+        options: {
+          userAttributes: {
+            email: 'hello@mycompany.com',
+            phone_number: `+91${this.phone}`,
+          },
+        },
+      })
   }
 }

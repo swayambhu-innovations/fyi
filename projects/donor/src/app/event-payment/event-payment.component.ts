@@ -4,8 +4,9 @@ import { HeaderWithBackComponent } from "../sharedComponent/header-with-back/hea
 import { EventService } from '../home/event/event.service';
 import { environment } from '../../environment';
 import { PaymentService } from './service/payment.service';
+import { LoadingService } from '../../../../shared-ui/src/lib/spinner/loading.service'; 
 
-declare var Razorpay: any;  // Declare Razorpay as an external variable
+declare var Razorpay: any;  
 
 @Component({
   selector: 'app-event-payment',
@@ -15,7 +16,7 @@ declare var Razorpay: any;  // Declare Razorpay as an external variable
   styleUrls: ['./event-payment.component.scss']  // Corrected to styleUrls
 })
 export class EventPaymentComponent {
-  constructor( public EventService: EventService,private PaymentService:PaymentService) {
+  constructor( public EventService: EventService,private PaymentService:PaymentService,private LoadingService:LoadingService) {
    
     console.log(this.EventService.bookingDetails())
     
@@ -33,6 +34,7 @@ export class EventPaymentComponent {
     let receiptId = this.generateUniqueReceipt()
     let amount = bookingDetail['paymentDetail'].totalPrice;
 
+    this.LoadingService.show();
     this.PaymentService.createOrder(amount*100, 'INR', receiptId).subscribe(response => {
 
       let detail={
@@ -43,6 +45,8 @@ export class EventPaymentComponent {
         contact: bookingDetail['customer'].phoneNumber,
         receiptId:receiptId
     }
+    this.LoadingService.hide();
+
       this.PaymentService.initiatePayment(detail); 
     });
   }

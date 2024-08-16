@@ -15,7 +15,7 @@ export class DataProviderService {
   userMobile: string = '';
   
   checkingAuth: boolean = true;
-  loginConfirmationResult: ConfirmationResult | undefined;
+  loginConfirmationResult: any | undefined;
   
   currentUser:
     | {

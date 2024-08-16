@@ -48,3 +48,13 @@ button {
   font-weight: 700;
   line-height: normal;
 }
+
+@media screen and (max-height: 605px) {
+  section {
+    padding-top: 20px;
+    img {
+      width: 70%;
+      margin-top:30px;
+    }
+  }
+}
