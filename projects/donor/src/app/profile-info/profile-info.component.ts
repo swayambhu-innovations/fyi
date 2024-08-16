@@ -20,6 +20,7 @@ import { ProfileInfoService } from './service/profile-info.service';
 import { Auth } from '@angular/fire/auth';
 import { SaveBtnComponent } from '../../../../shared-ui/src/save-btn/save-btn.component';
 import { AuthService } from '../auth/service/auth.service';
+import { ToastService } from '../../../../shared-ui/src/lib/toast/service/toast.service';
 @Component({
   selector: 'app-profile-info',
   standalone: true,
@@ -35,7 +36,8 @@ export class ProfileInfoComponent {
     private dataProvider: DataProviderService,
     private ProfileInfoService: ProfileInfoService,
     private Auth: Auth,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ToastService:ToastService,
   ) {}
 
   userForm: FormGroup = new FormGroup({
@@ -104,7 +106,7 @@ export class ProfileInfoComponent {
   }
   submit() {
     if (this.userForm.valid) {
-      this.userForm.value.uid = this.dataProvider.currentUser?.user.uid;
+      this.userForm.value.uid = this.dataProvider.currentUser?.userData.uid;
       this.userForm.value.phoneNumber =
         this.dataProvider.currentUser?.userData.phoneNumber;
       this.userForm.value.age =
@@ -112,7 +114,18 @@ export class ProfileInfoComponent {
         new Date(this.userForm.value.dob).getFullYear();
       this.ProfileInfoService.updateProfileInfo(this.userForm.value).then(
         () => {
+          if (
+            this.dataProvider.currentUser &&
+            this.dataProvider.currentUser?.['userData'] &&
+            this.dataProvider.currentUser?.['userData']['name']
+          ){
+            this.ToastService.showSuccess('Personal Detail is updated successfully')
           this.Router.navigate(['home']);
+          }
+          else{
+            this.ToastService.showSuccess('Account Created Successfully')
+            this.Router.navigate(['login']);
+          }
         }
       );
     }

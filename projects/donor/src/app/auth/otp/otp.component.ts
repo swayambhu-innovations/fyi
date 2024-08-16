@@ -5,14 +5,20 @@ import { DataProviderService } from '../service/data-provider.service';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import { RecaptchaVerifier } from '@angular/fire/auth';
-import {NgOtpInputModule} from 'ng-otp-input';
+import { NgOtpInputModule } from 'ng-otp-input';
 import { CommonModule } from '@angular/common';
 import { HeaderWithBackComponent } from '../../sharedComponent/header-with-back/header-with-back.component';
 import { SaveBtnComponent } from '../../../../../shared-ui/src/save-btn/save-btn.component';
 @Component({
   selector: 'app-otp',
   standalone: true,
-  imports: [ReactiveFormsModule,NgOtpInputModule,CommonModule,HeaderWithBackComponent,SaveBtnComponent],
+  imports: [
+    ReactiveFormsModule,
+    NgOtpInputModule,
+    CommonModule,
+    HeaderWithBackComponent,
+    SaveBtnComponent,
+  ],
   templateUrl: './otp.component.html',
   styleUrl: './otp.component.scss',
 })
@@ -25,10 +31,8 @@ export class OtpComponent {
   constructor(
     private router: Router,
     public dataProvider: DataProviderService,
-    private authService: AuthService,
-  ) {
-    
-  }
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     if (!this.dataProvider.loginConfirmationResult) {
@@ -38,21 +42,12 @@ export class OtpComponent {
     }
   }
   async sendOTP() {
-    
     if (this.dataProvider.loginConfirmationResult) {
-     
-      if (!this.verifier)
-        this.verifier = new RecaptchaVerifier(
-        this.authService.auth,
-        'recaptcha-container2',
-        {
-          size: 'invisible',
-        }
-      );
+      
       this.authService
-        .loginWithPhoneNumber(this.dataProvider.userMobile, this.verifier)
+        .resendOtp(this.dataProvider.userMobile)
         .then((login) => {
-          this.resendOtpTime = 60;
+          this.resendOtpTime = 120;
           this.startResendTimer();
         })
         .catch((error) => {
@@ -61,21 +56,29 @@ export class OtpComponent {
         .finally(() => {
           console.log('finally');
         });
-    }  
+    }
   }
   async login() {
+    // if (this.dataProvider.loginConfirmationResult) {
+    //   this.dataProvider.loginConfirmationResult
+    //     .confirm(this.otp)
+    //     .then((result) => {
+    //       this.authService.setUserData(result.user);
+    //       this.router.navigate(['profile']);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     })
+    //     .finally(() => {
+    //       console.log('finally');
+    //     });
+    // }
     if (this.dataProvider.loginConfirmationResult) {
-      this.dataProvider.loginConfirmationResult
-        .confirm(this.otp)
-        .then((result) => {
-          this.authService.setUserData(result.user);
-          this.router.navigate(['profile']);
-        })
+      await this.authService
+        .verifyOTP(this.otp)
+        .then((result) => {})
         .catch((error) => {
           console.log(error);
-        })
-        .finally(() => {
-          console.log('finally');
         });
     }
   }
@@ -86,7 +89,7 @@ export class OtpComponent {
     isPasswordInput: false,
     disableAutoFocus: false,
     placeholder: '',
-    inputmode: "tel",
+    inputmode: 'tel',
     inputStyles: {
       width: '38px',
       height: '38px',

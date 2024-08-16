@@ -85,3 +85,14 @@ section {
   }
 }
 
+@media screen and (max-height: 605px) {
+  section {
+    .profile_section {
+      margin-top: 8px;
+      border: 2px solid rgba(47, 21, 170, 1);
+      border-radius: 50%;
+      width: 225px;
+      height: 225px;
+    }
+  }
+}

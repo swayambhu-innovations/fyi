@@ -80,6 +80,7 @@ export class PaymentService {
 
   initiatePayment(detail: any) {
     let bookingDetail = this.EventService.bookingDetails();
+    let isPaid=false
 
     const now = new Date();
     const { formattedDate, formattedTime } = this.formatDateTime(now);
@@ -94,6 +95,7 @@ export class PaymentService {
       name: 'FYI',
       order_id: detail.order_id,
       handler: (response: any) => {
+        isPaid=true;
         let paymentSuccessResponse = {
           order_id: detail.order_id,
           receipt_id: detail.receiptId,
@@ -118,9 +120,9 @@ export class PaymentService {
       },
       modal: {
         ondismiss: () => {
-          bookingDetail['paymentDetail'].paymentStatus = 'failed';
-          this.EventService.bookingDetails.set(bookingDetail);
-          this.router.navigate(['/patmentfailed']);
+          // bookingDetail['paymentDetail'].paymentStatus = 'failed';
+          // this.EventService.bookingDetails.set(bookingDetail);
+          // this.router.navigate(['/patmentfailed']);
         },
       },
     };
@@ -128,6 +130,7 @@ export class PaymentService {
     const rzp = new (window as any).Razorpay(options);
 
     rzp.on('payment.failed', (response: any) => {
+      if(!isPaid){
       bookingDetail['paymentDetail'].paymentStatus = 'failed';
       this.EventService.bookingDetails.set(bookingDetail);
       this.addInbooking().then(() => {
@@ -135,6 +138,7 @@ export class PaymentService {
           this.router.navigate(['/patmentfailed']);
         });
       });
+    }
     });
 
     rzp.open();

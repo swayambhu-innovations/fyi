@@ -1,3 +1,26 @@
+<!-- <div>
+  <h2>Sign Up</h2>
+  <form (ngSubmit)="signUp()">
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" [(ngModel)]="phone" name="phone" required>
+    
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+
+<div>
+  <h2>Confirm Sign Up</h2>
+  <form (ngSubmit)="confirmSignUp()">
+    <label for="code">Confirmation Code:</label>
+    <input type="text" id="code" [(ngModel)]="code" name="code" required>
+    
+    <button type="submit">Confirm Sign Up</button>
+  </form>
+</div>
+<button (click)="handleSignInConfirmation()">verigy</button>
+<button (click)=signout()>signout</button>
+<button (click)="signIn()">signIn()</button> -->
+
 
 <section class="login-page">
 
@@ -18,12 +41,11 @@
 
       />
     </div>
-    <button class="header_text_color secondary_botton_gradient login" (click)="login()">Get OTP</button>
+    <button class="header_text_color secondary_botton_gradient login" (click)="signIn()">Get OTP</button>
     <button class="white primary_botton_gradient login" (click)="skip()">
       Skip Login
     </button>
   </div>
-  <div id="recaptcha-container"></div>
 </section>
 <div class="errorpage">
   <img src="/assets/homepage/error.svg">

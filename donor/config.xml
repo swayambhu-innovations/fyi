@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.shreeva.donorapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>FYI-Donor</name>
+    <description>Sample Apache Cordova App</description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+      <preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="3000" />
+<preference name="FadeSplashScreenDuration" value="300" />
+<preference name="SplashScreenBackgroundColor" value="#FFFFFF" />
+    <platform name="android">
+     <icon src="res/screen/android/icon-only.png" width="57" height="57" density="mdpi" />
+           <splash src="res/screen/android/splash.png" density="ldpi" />
+        <splash src="res/screen/android/splash.png" density="mdpi" />
+        <splash src="res/screen/android/splash.png" density="hdpi" />
+        <splash src="res/screen/android/splash.png" density="xhdpi" />
+        <splash src="res/screen/android/splash.png" density="xxhdpi" />
+        <splash src="res/screen/android/splash.png" density="xxxhdpi" />
+
+</platform>
+</widget>
