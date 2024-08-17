@@ -1,5 +1,5 @@
 .container{
-    margin-top: 2%;
+    // margin-top: 2%;
     padding: 70px 20px 0px 20px;
     .confirmation-card {
         background-color: #fff;
@@ -58,12 +58,11 @@
 .button-done{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 1rem;
 button {
     width: 80%;
     padding: 15px;
     background: linear-gradient(90.32deg, #2F15AA 0.28%, rgba(47, 21, 170, 0.8) 47.84%, rgba(47, 21, 170, 0.4) 99.72%);
-    
     color: white;
     border: none;
     border-radius: 25px;

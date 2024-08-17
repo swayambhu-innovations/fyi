@@ -15,12 +15,12 @@ section {
   .event-slider .slide {
     flex: 0 0 auto;
     scroll-snap-align: start;
-    margin-right: 20px;
+    margin-right: 10px;
     cursor: pointer;
     animation: 30s cubic-bezier(1, 0.95, 0.565, 1) sliding infinite;
   }
   .event-slider .slide img {
-    width: 340px;
+    width: 38vh;
     height: 230px;
     object-fit: cover;
     border-radius: 20px;
@@ -180,6 +180,14 @@ section {
   
 
 }
+
+
+
+
+
+
+
+
 
 
 
