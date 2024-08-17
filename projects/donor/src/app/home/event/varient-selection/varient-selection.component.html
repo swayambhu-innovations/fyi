@@ -17,7 +17,7 @@
         <button class="quantity-control-decrement" (click)="decreaseQuantity(i)">-</button>
         <span>{{ quantities[i] }}</span>
         <button class="quantity-control-increment" (click)="increaseQuantity(i)">+</button>
-        <button class="remove-selection" (click)="removeSelection()"><img src="/assets/homepage/Delete 2.svg" ></button>
+        <button class="remove-selection" (click)="removeSelection()"><img src="assets/homepage/Delete2.svg" ></button>
       </div>
       <button *ngIf="selectedButtonIndex !== i" class="book-now" [disabled]="selectedButtonIndex !== null" (click)="memberform(i,item)">Book Now</button>
     </div>
@@ -35,7 +35,7 @@
           <span class="paragraph_text">{{ daySchedule.day }}</span>
           <div *ngFor="let event of daySchedule.events" class="schedule-event">
             <div class="dot">
-              <img src="/assets/bookinghistory/Ellipse 395.svg">
+              <img src="assets/bookinghistory/Ellipse_396.svg">
             </div>
             <div class="activity">
               <span>{{ event.time }}</span><br>

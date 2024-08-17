@@ -7,6 +7,7 @@ import { ReceivingEventService } from '../../../../../admin/src/app/home/service
 import { CommonModule } from '@angular/common';
 import { HeaderWithBackComponent } from "../../sharedComponent/header-with-back/header-with-back.component";
 import { LoadingService } from '../../../../../shared-ui/src/lib/spinner/loading.service';
+import { DataProviderService } from '../../auth/service/data-provider.service';
 interface Member {
   name: string;
   Aadhar: string;
@@ -26,7 +27,7 @@ export class PaymentDetailsComponent {
   selectedTab: number = 0;
   members: any[] = [];
   bookings: string[] |any;
-  constructor(private LoadingService:LoadingService,private route: ActivatedRoute,private bottomSheet: MatBottomSheet, private firestore:Firestore, private receivingEventService : ReceivingEventService , private router:Router ) {}
+  constructor(private LoadingService:LoadingService,private route: ActivatedRoute,private bottomSheet: MatBottomSheet, private firestore:Firestore, private receivingEventService : ReceivingEventService , private router:Router , private DataProviderService:DataProviderService) {}
   
   ngOnInit(){
     this.LoadingService.show();
@@ -37,9 +38,8 @@ export class PaymentDetailsComponent {
   }
    
   async getBookingDetails(BookingId: string): Promise<void> {
-    const usersSnapshot = await this.receivingEventService.getAllUsers();
-    for (const user of usersSnapshot.docs) {
-      const userId = user.id;
+   
+      const userId = this.DataProviderService.currentUser?.userData?.uid;
       const bookingsSnapshot = await this.receivingEventService.getUserBookings(userId);
       for (const booking of bookingsSnapshot.docs) {
         const bookingData = booking.data();
@@ -64,7 +64,7 @@ export class PaymentDetailsComponent {
           
         }
       }
-    }
+    
   }
   selectTab(index: number) {
     this.selectedTab = index
