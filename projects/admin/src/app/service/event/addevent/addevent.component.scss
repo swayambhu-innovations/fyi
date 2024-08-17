@@ -180,6 +180,7 @@ textarea {
     align-items: center;
     width: 320px;
     height: 150px;
+    padding: 0.5rem;
   }
   
   .image-item img {
@@ -199,9 +200,10 @@ textarea {
 }
 
 .image-item img {
-  border-radius: 10px;
+  border-radius: 15px;
   width: 150px;
   height: 80px;
+  padding: 0.3rem;
 }
 
 .remove-btn {
@@ -212,6 +214,7 @@ textarea {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  margin: 3px;
 }
 
 

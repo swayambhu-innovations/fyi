@@ -71,26 +71,15 @@ section{
         scroll-snap-type: x mandatory;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        width: 360;
-        height: 300;
-   
-    
-
-     
-
-      .eventimage{
-        width: 350px;
+        .eventimage{
+        width: 95%;
         height: 250px;
         object-fit: cover;
         border-radius: 20px;
-        //margin-left: 10px;
         margin: 10px;
-        //margin-top: 15px;
-      align-items: center;
-       
+        align-items: center;
       }
       p{
-      
         font-size: 20px;
         font-weight: 500;
         color: white;
@@ -106,6 +95,7 @@ section{
    
         p{
           text-align: left;
+          // font-size: 14px;
         }
 
         button{

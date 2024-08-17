@@ -24,15 +24,16 @@ export class AccountComponent {
 
   async logout() {
 
-      try {
-        await signOut();
-        setTimeout(() => {
-          this.DataProviderService.currentUser=undefined
-          this.router.navigate(['login']);
-        }, 3000);
-      } catch (error) {
-        console.log('error signing out: ', error);
-      }
+      // try {
+      //   await signOut();
+      //   setTimeout(() => {
+      //     this.DataProviderService.currentUser=undefined
+      //     this.router.navigate(['login']);
+      //   }, 3000);
+      // } catch (error) {
+      //   console.log('error signing out: ', error);
+      // }
+      this._bottomSheet.open(LogoutModelComponent,{});
     
   }
   name: any;

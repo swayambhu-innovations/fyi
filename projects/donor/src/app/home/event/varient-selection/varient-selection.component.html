@@ -1,12 +1,23 @@
 <app-header-with-back [pageTitle]="'Variants'"></app-header-with-back>
 <section>
-  <div class="event-slider">
+  <!-- <div class="event-slider">
     <div class="slider">
       <div *ngFor="let event of eventimage" class="slide">
         <img [src]="event" [alt]="event.title">
       </div>
     </div>
+  </div> -->
+  <div class="event-slider">
+    <div class="slider" [ngStyle]="{'transform': 'translateX(-' + currentSlide * 100 + '%)'}">
+      <div *ngFor="let event of eventimage; let i = index" class="slide">
+        <img [src]="event" [alt]="event.title">
+      </div>
+    </div>
+    <div class="dots">
+      <span *ngFor="let event of eventimage; let i = index" [class.active]="i === currentSlide" (click)="setCurrentSlide(i)"></span>
+    </div>
   </div>
+  
   <div class="varient">
     <div *ngFor="let item of this.EventService.variantList()[this.slabId]; let i = index" class="rotarian">
       <div>
