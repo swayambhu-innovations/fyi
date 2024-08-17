@@ -11,7 +11,7 @@
             <div class="detail_info">
                 <span class="detail_info-sub">
                     <img src="assets/donor/contact.svg" alt="" class="logo">
-                    <p class="user_info">{{ user.phoneNumber }}</p>
+                    <a [href]="'tel:' + user.phoneNumber" class="user_info">{{ user.phoneNumber }}</a>
                 </span>
                 <!-- <span class="detail_info-sub">
                     <img src="assets/donor/city.svg" alt="" class="logo">

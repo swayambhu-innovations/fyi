@@ -102,10 +102,11 @@ export class LoginComponent {
           },
         },
       });
-      this.AuthService.uid=userId
-      console.log( isSignUpComplete, userId, nextStep )
+      this.AuthService.uid = userId;
+      console.log(isSignUpComplete, userId, nextStep);
       this.Router.navigate(['otp']);
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error.name);
       console.error('Error signing up:', error);
     }
   }
@@ -115,7 +116,7 @@ export class LoginComponent {
     this.AuthService.phone = this.phoneNumber;
     try {
       this.DataProviderService.loginConfirmationResult = true;
-  this.DataProviderService.userMobile = this.phoneNumber;
+      this.DataProviderService.userMobile = this.phoneNumber;
       const output = await signIn({
         password: 'TempPassword123!',
         username: `+91${this.phoneNumber}`,
@@ -126,9 +127,10 @@ export class LoginComponent {
           },
         },
       }).then((result) => {
+        console.log(result);
         this.AuthService.isUserExist = true;
-      this.DataProviderService.loginConfirmationResult = true;
-  this.DataProviderService.userMobile = this.phoneNumber;
+        this.DataProviderService.loginConfirmationResult = true;
+        this.DataProviderService.userMobile = this.phoneNumber;
         this.Router.navigate(['otp']);
       });
     } catch (error: any) {
