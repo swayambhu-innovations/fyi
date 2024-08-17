@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1723640437513,
+  "timestamp": 1723872920837,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/chunk-H7JJ5OTM.js",
         "/chunk-OITR2SD6.js",
         "/index.html",
-        "/main-ADQDQXE2.js",
+        "/main-43PYCHWM.js",
         "/polyfills-6EAL64PA.js",
         "/styles-MTABGETC.css"
       ],
@@ -38,7 +38,7 @@
         "/assets/account/profile.svg",
         "/assets/account/rafiki.svg",
         "/assets/address/addressBanner.svg",
-        "/assets/bookinghistory/Ellipse 395.svg",
+        "/assets/bookinghistory/Ellipse_396.svg",
         "/assets/bookinghistory/image.svg",
         "/assets/bookinghistory/nobooking.svg",
         "/assets/contact/call.svg",
@@ -56,7 +56,7 @@
         "/assets/header/bell_icon.svg",
         "/assets/header/icon1.svg",
         "/assets/header/menu.svg",
-        "/assets/homepage/Delete 2.svg",
+        "/assets/homepage/Delete2.svg",
         "/assets/homepage/delet.png",
         "/assets/homepage/error.svg",
         "/assets/homepage/event_1.1.svg",
@@ -126,7 +126,7 @@
     "/assets/account/profile.svg": "f4a10afbaecec6d8fad658383e7f46be8cd3e096",
     "/assets/account/rafiki.svg": "47fb240b1e634b1ec9a1871f870aee5a36643609",
     "/assets/address/addressBanner.svg": "3050cd5065ea7366711d23ac6af565ea740d8e1b",
-    "/assets/bookinghistory/Ellipse 395.svg": "b1c9e10db7d3b924c25517f535db2c34d6150581",
+    "/assets/bookinghistory/Ellipse_396.svg": "22bcf20c94b1d0a54da63298c5d23545af2bb138",
     "/assets/bookinghistory/image.svg": "55dc4bf1ca91c6ba15064c02a6aafed2ea10305e",
     "/assets/bookinghistory/nobooking.svg": "d5620cd36109a8706f774c31b84edb5b70af8165",
     "/assets/contact/call.svg": "25a8a724e7c4924da1d036dc612609e5ea12057d",
@@ -144,7 +144,7 @@
     "/assets/header/bell_icon.svg": "26eec7444dce78bdbbaf32564829b464ed51de19",
     "/assets/header/icon1.svg": "ffafd2c75cc52b371c915cd55c5ae71e244a7c15",
     "/assets/header/menu.svg": "08db1ec38e405a73fc87ee704187d4c6016b3bd9",
-    "/assets/homepage/Delete 2.svg": "ad5625360149d3a5e1af7cd053343b20b92a0663",
+    "/assets/homepage/Delete2.svg": "ad5625360149d3a5e1af7cd053343b20b92a0663",
     "/assets/homepage/delet.png": "94458369beaa8cd24024dd4702ef7d848d360ce1",
     "/assets/homepage/error.svg": "2d681a86972063863a071fe8571826c403aa4a45",
     "/assets/homepage/event_1.1.svg": "3c0c3e795e1363ae245ba4e9b142587047be663b",
@@ -200,8 +200,8 @@
     "/assets/warningsize.svg": "2d681a86972063863a071fe8571826c403aa4a45",
     "/chunk-H7JJ5OTM.js": "31729ec80e09cf5a8a5d8873d5f2a879affac7cd",
     "/chunk-OITR2SD6.js": "debebc6e74107bf265d5da97ee187a6cc5c5d552",
-    "/index.html": "6e6929de337c8a2e883a0f2cb1f3568fca4d9a47",
-    "/main-ADQDQXE2.js": "3fa3bc92e61ee0d315ce16401660a546fff76b5e",
+    "/index.html": "3188e33f190937f903388871093cfc4c463e24c2",
+    "/main-43PYCHWM.js": "c483247768068b9fbd842ce266cd6088379d43e3",
     "/polyfills-6EAL64PA.js": "d874147a12a6570d9b44e99935e9de8b7f3cabbc",
     "/styles-MTABGETC.css": "a5fec8d22e1809860f7e900bc8ee779d18fdd4d8"
   },

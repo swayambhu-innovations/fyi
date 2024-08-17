@@ -9,7 +9,7 @@
 </div>
 <form [formGroup]="memberForm" class="memberdetail" >
             <div class="profile">
-                <img [src]="profileImageSrc" alt="Profile Image">
+                <img [src]="memberForm?.value.profileImageSrc" alt="Profile Image">
                 <label for="filepath" class="upload-icon">
                     <img src="/assets/member_detail/icon.svg">
                 </label>
