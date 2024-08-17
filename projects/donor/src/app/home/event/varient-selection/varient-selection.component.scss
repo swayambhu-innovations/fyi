@@ -1,30 +1,94 @@
   section {
     margin-top: 2%;
     padding: 70px 20px 80px 20px;
-    .slider {
-      margin-top: 5%;
-    }
-    .event-slider .slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      
-    }
-    .event-slider .slide {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      margin-right: 10px;
-      cursor: pointer;
-      animation: 30s cubic-bezier(1, 0.95, 0.565, 1) sliding infinite;
-    }
-    .event-slider .slide img {
-      width: 38vh;
-      height: 230px;
-      object-fit: cover;
-      border-radius: 20px;
+    // //slder
+    // .event-slider {
+    //   position: relative;
+    // }
     
+    // .dots {
+    //   text-align: center;
+    //   margin-top: 10px;
+    // }
+    
+    // .dots span {
+    //   display: inline-block;
+    //   width: 10px;
+    //   height: 10px;
+    //   margin: 0 5px;
+    //   background-color: #bbb;
+    //   border-radius: 50%;
+    //   cursor: pointer;
+    // }
+    
+    // .dots span.active {
+    //   background-color: #717171;
+    // }
+    // //slider
+    // .slider {
+    //   margin-top: 5%;
+    // }
+    // .event-slider .slider {
+    //   display: flex;
+    //   overflow-x: auto;
+    //   scroll-snap-type: x mandatory;
+    //   -ms-overflow-style: none;
+    //   scrollbar-width: none;
+      
+    // }
+    // .event-slider .slide {
+    //   flex: 0 0 auto;
+    //   scroll-snap-align: start;
+    //   margin-right: 10px;
+    //   cursor: pointer;
+    //   animation: 30s cubic-bezier(1, 0.95, 0.565, 1) sliding infinite;
+    // }
+    // .event-slider .slide img {
+    //   width: 38vh;
+    //   height: 230px;
+    //   object-fit: cover;
+    //   border-radius: 20px;
+    
+    // }
+    .event-slider {
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+  
+    .dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  
+    .dots span.active {
+      background-color: #717171;
+    }
+  
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+  
+    .slide {
+      flex: 0 0 100%;
+      cursor: pointer;
+    }
+  
+    .slide img {
+      width: 100%;
+      height: 230px;
+      border-radius: 15px;
+      object-fit: cover;
     }
     .varient {
       margin-top: 10%;
