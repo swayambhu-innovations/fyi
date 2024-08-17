@@ -33,7 +33,7 @@ bookingdetail(BookingId: string): void {
   async getUsersBooking() {
     this.bookings = [];
     const userId = this.DataProviderService.currentUser?.userData.uid
-    
+      
       const bookingsSnapshot = await this.receivingEventService.getUserBookings(userId);
       for (const booking of bookingsSnapshot.docs) {
         const bookingData = booking.data();
