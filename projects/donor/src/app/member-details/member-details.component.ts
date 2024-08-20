@@ -27,6 +27,7 @@ import { ToastService } from '../../../../shared-ui/src/lib/toast/service/toast.
 })
 export class MemberDetailsComponent {
   @Input() disabled: boolean=false;
+
   profileImageSrc: string ="https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac"
   panuploadSuccess = false;
   aadharuploadSuccess = false;
@@ -86,7 +87,7 @@ export class MemberDetailsComponent {
       Adharimages: '',
       Pannumber: '',
       panimages: '',
-      profileImageSrc: '/assets/member_detail/default.svg',
+      profileImageSrc: 'https://firebasestorage.googleapis.com/v0/b/fyi1-aa2c2.appspot.com/o/donorProfile%2Fimages.jfif?alt=media&token=bd4b3393-3582-4f4a-a8f6-cdcea90528ac',
     };
   }
 
