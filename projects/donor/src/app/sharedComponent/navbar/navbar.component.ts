@@ -55,9 +55,15 @@ export class NavbarComponent {
     // Update the currentTab based on the current route
     if (url.includes('home')) {
       this.currentTab = 'home';
-    } else if (url.includes('history')) {
+    } else if (url.includes('slab')) {
+      this.currentTab = 'home';
+    } else if (url.includes('event-list')) {
+      this.currentTab = 'home';
+    } 
+    else if (url.includes('history')) {
       this.currentTab = 'history';
-    } else if (url.includes('feed')) {
+    } 
+    else if (url.includes('feed')) {
       this.currentTab = 'feed';
     } else if (url.includes('coupon')) {
       this.currentTab = 'coupon';

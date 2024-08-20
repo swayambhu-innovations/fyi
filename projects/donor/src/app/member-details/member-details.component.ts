@@ -61,18 +61,31 @@ export class MemberDetailsComponent {
     }
   }
   ngOnInit() {
-
     this.userTabCount = this.EventService.bookingDetails()['totalMember'];
   }
 
   initializeMembersData(): void {
     this.userTabCount = this.EventService.bookingDetails()['totalMember'];
-
     for (let i = 0; i < this.userTabCount; i++) {
       this.membersData.push(this.createEmptyMemberData());
     }
   }
-
+  generateTabs(): void {
+    this.userTabCount = this.EventService.bookingDetails()['totalMember'];
+    this.tabs = Array.from({ length: this.userTabCount }, (_, i) => i + 1);
+    this.setActiveTab(0);
+  }
+  setActiveTab(index: number): void {
+    if (this.activeTab !== index) {
+      this.membersData[this.activeTab] = {
+        ...this.memberForm.value,
+        profileImageSrc: this.profileImageSrc,
+      };
+      this.activeTab = index;
+      console.log(this.membersData[this.activeTab]);
+      this.memberForm.setValue(this.membersData[this.activeTab]);
+    }
+  }
   createEmptyMemberData(): any {
     return {
       Name: '',
@@ -86,43 +99,19 @@ export class MemberDetailsComponent {
     };
   }
 
-  generateTabs(): void {
-    this.userTabCount = this.EventService.bookingDetails()['totalMember'];
 
-    this.tabs = Array.from({ length: this.userTabCount }, (_, i) => i + 1);
-    this.setActiveTab(0);
-  }
 
-  setActiveTab(index: number): void {
-    if (this.activeTab !== index) {
-      this.membersData[this.activeTab] = {
-        ...this.memberForm.value,
-        profileImageSrc: this.profileImageSrc,
-      };
-      this.activeTab = index;
-      console.log(this.membersData[this.activeTab]);
-      this.memberForm.setValue(this.membersData[this.activeTab]);
-    }
-  }
+
 
   memberForm: FormGroup = new FormGroup({   
+    profileImageSrc: new FormControl(''),
     Name: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
-    mobileNo: new FormControl('', [
-      Validators.required,
-      Validators.pattern(RegExp('[0-9]{10}')),
-    ]),
-    profileImageSrc: new FormControl(''),
-    Aadharnumber: new FormControl('', [
-      Validators.required,
-      Validators.pattern(RegExp('[0-9]{12}')),
-    ]),
-    Adharimages: new FormControl('', Validators.required),
-    Pannumber: new FormControl('', [
-      Validators.required,
-      Validators.pattern(RegExp('[A-Z]{5}[0-9]{4}[A-Z]{1}')),
-    ]),
-    panimages: new FormControl('', Validators.required),
+    mobileNo: new FormControl('', [Validators.required,Validators.pattern(RegExp('[0-9]{10}')),]),
+    Aadharnumber: new FormControl('', [Validators.required,Validators.pattern(RegExp('[0-9]{12}')),]),
+    AadharURL: new FormControl('', Validators.required),
+    Pannumber: new FormControl('', [Validators.required,Validators.pattern(RegExp('[A-Z]{5}[0-9]{4}[A-Z]{1}')),]),
+    panURL: new FormControl('', Validators.required),
   });
 
   onFileSelected(event: Event): void {
@@ -234,3 +223,5 @@ export class MemberDetailsComponent {
     if (fileInputPan) fileInputPan.value = '';
   }
 }
+
+
