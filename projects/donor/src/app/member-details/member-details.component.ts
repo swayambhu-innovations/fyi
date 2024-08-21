@@ -109,9 +109,9 @@ export class MemberDetailsComponent {
     gender: new FormControl('', Validators.required),
     mobileNo: new FormControl('', [Validators.required,Validators.pattern(RegExp('[0-9]{10}')),]),
     Aadharnumber: new FormControl('', [Validators.required,Validators.pattern(RegExp('[0-9]{12}')),]),
-    AadharURL: new FormControl('', Validators.required),
+    Adharimages: new FormControl('', Validators.required),
     Pannumber: new FormControl('', [Validators.required,Validators.pattern(RegExp('[A-Z]{5}[0-9]{4}[A-Z]{1}')),]),
-    panURL: new FormControl('', Validators.required),
+    panimages: new FormControl('', Validators.required),
   });
 
   onFileSelected(event: Event): void {

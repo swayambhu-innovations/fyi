@@ -47,14 +47,15 @@
                     <button type="button" (click)="triggerFileInputAadhar()">
                     <img src="/assets/member_detail/upload.svg" alt="">
                     </button>
-                    <input
+                    <!-- <input
                     type="file"
                     #fileInput
                     id="fileInputAadhar"
                     style="display: none"
                     (change)="onAadharUpload($event)"
                     accept="image/*"
-                  />
+                  /> -->
+                  <input id="fileInputAadhar" formControlName="Adharimages" type="file" style="display: none;"  (change)="onAadharUpload($event)">
                 </div>
                 <div class="member-form">
                     <label class="paragraph_text" for=" MemberPan">Pan</label>
@@ -68,14 +69,15 @@
                     <button type="button" (click)="triggerFileInputPan()">
                     <img src="/assets/member_detail/upload.svg" alt="">
                     </button>
-                    <input
+                    <!-- <input
                     type="file"
                     #fileInput
                     id="fileInputPan"
                     style="display: none"
                     (change)="onPanUpload($event)"
                     accept="image/*"
-                  />
+                  /> -->
+                  <input id="fileInputPan" formControlName="panimages" type="file" style="display: none;" (change)="onPanUpload($event)">
                 </div>
             </div>
      
