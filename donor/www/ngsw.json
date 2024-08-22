@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1723898251320,
+  "timestamp": 1724222946179,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/chunk-2WZ3BERY.js",
         "/chunk-PWJROAUU.js",
         "/index.html",
-        "/main-ZZNYMT5W.js",
+        "/main-ZN6GXBZ4.js",
         "/polyfills-6EAL64PA.js",
         "/styles-MTABGETC.css"
       ],
@@ -200,8 +200,8 @@
     "/assets/warningsize.svg": "2d681a86972063863a071fe8571826c403aa4a45",
     "/chunk-2WZ3BERY.js": "d00978f3b20954ed2ea62e00657406f71d4bbb3b",
     "/chunk-PWJROAUU.js": "3ca954b4f6a597fda8bc4e72febc23aa1f35677b",
-    "/index.html": "474141a6a36331f427dfe52c01f0f5d6d1dfdc2f",
-    "/main-ZZNYMT5W.js": "bd7275a4e2b6ee6e43feca160a1a67f7fb8bf088",
+    "/index.html": "7200e88d52b092c2bacab001c77881f965ad0a18",
+    "/main-ZN6GXBZ4.js": "911f53353f944124ab537928acdcf1bbd2de395e",
     "/polyfills-6EAL64PA.js": "d874147a12a6570d9b44e99935e9de8b7f3cabbc",
     "/styles-MTABGETC.css": "a5fec8d22e1809860f7e900bc8ee779d18fdd4d8"
   },

@@ -1,11 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderWithBackComponent } from '../../../sharedComponent/header-with-back/header-with-back.component';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../event.service';
-
+import { DataProviderService } from '../../../auth/service/data-provider.service';
 @Component({
   selector: 'app-varient-selection',
   standalone: true,
@@ -47,7 +46,8 @@ export class VarientSelectionComponent implements OnInit {
   constructor(
     private router: Router,
     private ActivateRouted: ActivatedRoute,
-    public EventService: EventService
+    public EventService: EventService,
+    private DataProviderService: DataProviderService
   ) {
     this.ActivateRouted.paramMap.subscribe(async (params: any) => {
       if (params.get('id') !== null) {
@@ -66,23 +66,39 @@ export class VarientSelectionComponent implements OnInit {
     let curEvent = this.EventService.bookingDetails()['event'].eventId;
     let itineraryList: any = this.EventService.itineraryList()[curEvent];
     this.itinerary = this.groupAndSortActivities(itineraryList['activities']);
-    
+
     this.schedule = [];
     for (const date in this.itinerary) {
       const events = this.itinerary[date].map((activity: any) => ({
         time: `${activity.startTime} - ${activity.endTime}`,
-        description: activity.name
+        description: activity.name,
       }));
 
       this.schedule.push({
         day: `DAY (${date})`,
-        events: events
+        events: events,
       });
     }
 
     setInterval(() => {
       this.nextSlide();
-    }, 3000); 
+    }, 3000);
+    this.getFullRoute();
+  }
+
+  getFullRoute() {
+    if (!this.DataProviderService.loggedIn) {
+      // const fullUrl = this.router.url;
+      const currentPath = this.ActivateRouted.snapshot.url
+        .map((segment) => segment.path)
+        .join('/');
+      // const queryParams = this.ActivateRouted.snapshot.queryParams;
+      this.EventService.skipedPage.set(currentPath);
+      console.log(this.EventService.skipedPage());
+    } else {
+      this.EventService.skipedPage.set('');
+      console.log('');
+    }
   }
 
   setCurrentSlide(index: number): void {
@@ -96,7 +112,7 @@ export class VarientSelectionComponent implements OnInit {
   convertTo12Hour(time: string): string {
     const [hours, minutes] = time.split(':').map(Number);
     const period = hours >= 12 ? 'PM' : 'AM';
-    const formattedHours = ((hours + 11) % 12 + 1);
+    const formattedHours = ((hours + 11) % 12) + 1;
     return `${formattedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
   }
 
@@ -109,28 +125,30 @@ export class VarientSelectionComponent implements OnInit {
       acc[date].push(activity);
       return acc;
     }, {});
-  
+
     for (const date in groupedActivities) {
       groupedActivities[date].sort((a: any, b: any) => {
         const timeA = this.convertTo12Hour(a.startTime);
         const timeB = this.convertTo12Hour(b.startTime);
         return timeA.localeCompare(timeB);
       });
-  
-      groupedActivities[date] = groupedActivities[date].map((activity: any) => ({
-        ...activity,
-        startTime: this.convertTo12Hour(activity.startTime),
-        endTime: this.convertTo12Hour(activity.endTime)
-      }));
+
+      groupedActivities[date] = groupedActivities[date].map(
+        (activity: any) => ({
+          ...activity,
+          startTime: this.convertTo12Hour(activity.startTime),
+          endTime: this.convertTo12Hour(activity.endTime),
+        })
+      );
     }
-  
+
     const sortedGroupedActivities = Object.keys(groupedActivities)
       .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       .reduce((acc: any, date: any) => {
         acc[date] = groupedActivities[date];
         return acc;
       }, {});
-  
+
     return sortedGroupedActivities;
   }
 
@@ -164,6 +182,7 @@ export class VarientSelectionComponent implements OnInit {
   }
 
   goToNextPage() {
+    if(this.DataProviderService.loggedIn){
     const index =
       this.selectedButtonIndex !== null ? this.selectedButtonIndex : 0;
     let bookingDetails = this.EventService.bookingDetails();
@@ -171,6 +190,9 @@ export class VarientSelectionComponent implements OnInit {
     this.EventService.bookingDetails.set(bookingDetails);
 
     this.router.navigate(['member-detail']);
+    }
+    else{
+      this.router.navigate(['login']);
+    }
   }
 }
-
