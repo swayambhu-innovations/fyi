@@ -9,7 +9,8 @@
 </div>
 <form [formGroup]="memberForm" class="memberdetail" >
             <div class="profile">
-                <img [src]="profileImageSrc">
+                <img [src]="this.membersData[this.activeTab].profileImageSrc">
+                {{memberForm.get('profileImageSrc')?.value}}
                 <label for="filepath" class="upload-icon">
                     <img src="/assets/member_detail/icon.svg">
                 </label>
@@ -55,7 +56,7 @@
                     (change)="onAadharUpload($event)"
                     accept="image/*"
                   /> -->
-                  <input id="fileInputAadhar" formControlName="Adharimages" type="file" style="display: none;"  (change)="onAadharUpload($event)">
+                  <input id="fileInputAadhar"  type="file" style="display: none;"  (change)="onAadharUpload($event)">
                 </div>
                 <div class="member-form">
                     <label class="paragraph_text" for=" MemberPan">Pan</label>
@@ -77,7 +78,7 @@
                     (change)="onPanUpload($event)"
                     accept="image/*"
                   /> -->
-                  <input id="fileInputPan" formControlName="panimages" type="file" style="display: none;" (change)="onPanUpload($event)">
+                  <input id="fileInputPan"  type="file" style="display: none;" (change)="onPanUpload($event)">
                 </div>
             </div>
      
@@ -86,9 +87,9 @@
 </div>
 </form>
 <lib-save-btn class="lower-btn"
-      [btnName]="activeTab === tabs.length - 1 ? 'Next' : 'Submit'" 
+      [btnName]="'Submit'" 
       (click)="saveMemberDetail()"
-      [disabled]="memberForm.invalid">
+      >
     </lib-save-btn>
 </section>
 
