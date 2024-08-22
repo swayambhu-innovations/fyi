@@ -65,8 +65,16 @@ export class AuthService {
                   // const addresses = result.docs.map((address: any) => {
                   //   return { ...address.data(), id: address.id };
                   // });
+                 
+                  if(this.eventService.skipedPage()!=''){
+                    console.log(this.eventService.skipedPage())
+                    this.router.navigate([this.eventService.skipedPage()]);
+                    
+                  }
+                  else{
                     this.router.navigate(['home']);
-                  
+
+                  }
                 }
               );
             }

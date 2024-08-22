@@ -1,6 +1,6 @@
 {
-  "name": "com.shreeva.donorapp",
-  "displayName": "FYI-Donor",
+  "name": "com.jaitra.FYI",
+  "displayName": "FYI",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",

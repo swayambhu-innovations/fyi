@@ -17,7 +17,7 @@ export class EventService {
   addressList = signal<any[]>([]);
   activeAddress = signal<any>('');
   getUsersFetched=signal<boolean>(false);
-
+  skipedPage= signal<any>('');
 
   constructor(private firestore:Firestore ) { 
     

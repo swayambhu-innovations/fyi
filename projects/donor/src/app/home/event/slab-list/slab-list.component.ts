@@ -16,7 +16,7 @@ export class SlabListComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public EventService: EventService,
-    private LoadingService:LoadingService
+    private LoadingService:LoadingService,
   ) {
     this.activatedRoute.paramMap.subscribe(async (params) => {
       if (params.get('id') !== null) {
@@ -52,8 +52,10 @@ export class SlabListComponent {
     this.loadSlabs().then(() => {
       this.LoadingService.hide();
     });
-  
+
   }
+
+
   async loadSlabs() {
     // Simulate a delay for loading slabs, replace with actual logic
     return new Promise((resolve) => {
