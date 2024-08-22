@@ -44,6 +44,7 @@ import {
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { Location } from '@angular/common';
+import { DeleteSlabComponent } from '../delete-slab/delete-slab.component';
 
 interface Event {
   name: string;
@@ -96,8 +97,6 @@ export class AddeventComponent {
   eventForm: FormGroup;
   slabAndVariantForm: FormGroup;
 
-  
-
   constructor(
     private router: Router,
     private storage: Storage,
@@ -107,7 +106,7 @@ export class AddeventComponent {
     private Location: Location,
     private route: ActivatedRoute,
     private LoadingService: LoadingService,
-    private ToastService:ToastService
+    private ToastService: ToastService
   ) {
     this.slabAndVariantForm = this.fb.group({
       slabs: this.fb.array([], this.atLeastOneImageValidator()),
@@ -144,8 +143,8 @@ export class AddeventComponent {
               startDate: res.startDate,
             });
             this.setImages(res.images);
-            // this.itineraryForm.patchValue({ eventId: res.eventId });
-            // this.slabAndVariantForm.patchValue({ eventId: res.eventId});
+            this.itineraryForm.patchValue({ eventId: res.eventId });
+            this.slabAndVariantForm.patchValue({ eventId: res.eventId });
           });
 
         this.eventservice
@@ -169,12 +168,10 @@ export class AddeventComponent {
       this.LoadingService.hide();
     });
   }
-  today:string=''
-  ngOnInit(){
+  today: string = '';
+  ngOnInit() {
     const date = new Date();
     this.today = date.toISOString().split('T')[0];
-    
-
   }
   get slabs(): FormArray {
     return (
@@ -280,15 +277,57 @@ export class AddeventComponent {
   }
 
   async removeSlab(index: any, slab: any) {
-    this.slabs.removeAt(index);
     if (slab.value.slabId) {
-      await this.eventservice.deleteSlab(
-        `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}`
+      const bottomSheetRef = this._bottomSheet.open(
+        DeleteBottomSheetComponent,
+        {
+          data: {
+            title: 'Slab',
+            description: '',
+          },
+        }
       );
+
+      bottomSheetRef.afterDismissed().subscribe(async (result) => {
+        if (result) {
+          await this.eventservice
+            .deleteSlab(
+              `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}`
+            )
+            .then((res: any) => {
+              this.slabs.removeAt(index);
+            });
+        } else {
+          console.log('Slab is linked with areas');
+        }
+      });
+    } else {
+      this.slabs.removeAt(index);
     }
+    // if (slab.value.slabId) {
+    //   this._bottomSheet
+    //     .open(DeleteSlabComponent, {
+    //       data: {
+    //         eventId: this.eventForm.value.eventId,
+    //         slabId: slab.value.slabId,
+    //       },
+    //     })
+    //     .afterDismissed()
+    //     .subscribe(async (result) => {
+    //       if(result){
+    //       this.slabs.removeAt(index);
+    //       }
+    //     });
+
+    //   // await this.eventservice.deleteSlab(
+    //   //   `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}`
+    //   // );
+    // } else {
+    //   this.slabs.removeAt(index);
+    // }
   }
   // async removeSlab(index: any, slab: any) {
-   
+
   // }
   editVariant(slabIndex: any, variant: any, variantIndex: any) {
     const bottomSheetRef = this._bottomSheet.open(AddvarientComponent, {
@@ -337,12 +376,35 @@ export class AddeventComponent {
     variant: any,
     variantIndex: any
   ) {
-    (this.slabs.at(slabIndex).get('variants') as FormArray)?.removeAt(
-      variantIndex
-    );
     if (variant.variantId) {
-      await this.eventservice.delete(
-        `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}/variants/${variant.variantId}`
+      const bottomSheetRef = this._bottomSheet.open(
+        DeleteBottomSheetComponent,
+        {
+          data: {
+            title: 'Variant',
+            description: '',
+          },
+        }
+      );
+
+      bottomSheetRef.afterDismissed().subscribe(async (result) => {
+        if (result) {
+          await this.eventservice
+            .delete(
+              `events/${this.eventForm.value.eventId}/slab-variant/${slab.value.slabId}/variants/${variant.variantId}`
+            )
+            .then((res: any) => {
+              (this.slabs.at(slabIndex).get('variants') as FormArray)?.removeAt(
+                variantIndex
+              );
+            });
+        } else {
+          console.log('Catalogue is linked with areas');
+        }
+      });
+    } else {
+      (this.slabs.at(slabIndex).get('variants') as FormArray)?.removeAt(
+        variantIndex
       );
     }
   }
@@ -477,7 +539,7 @@ export class AddeventComponent {
             this.itineraryForm.patchValue({ eventId: res.eventId });
             this.slabAndVariantForm.patchValue({ eventId: res.eventId });
             this.pannel = view;
-            this.selected = view
+            this.selected = view;
           });
         }
         break;
@@ -486,42 +548,38 @@ export class AddeventComponent {
           this.itineraryForm.valid &&
           this.itineraryForm.value.activities.length > 0
         ) {
-          if(!this.itineraryForm.value.eventId){
-            console.log(this.itineraryForm.value.eventId)
-            this.ToastService.showError('Please save the event first')
+          if (!this.itineraryForm.value.eventId) {
+            console.log(this.itineraryForm.value.eventId);
+            this.ToastService.showError('Please save the event first');
+          } else {
+            this.eventservice
+              .addItinerary(this.itineraryForm.value)
+              .then(() => {});
+            this.pannel = view;
+            this.selected = view;
           }
-          else{
-          this.eventservice
-            .addItinerary(this.itineraryForm.value)
-            .then(() => {});
-          this.pannel = view;
-          this.selected = view
-          }
-
         }
         break;
       case 'back':
         if (this.slabAndVariantForm.valid) {
-          if(!this.slabAndVariantForm.value.eventId){
-            this.ToastService.showError('Please save the event first')
-          }
-          else{
-          await this.eventservice
-            .addSlabAndVariant(this.slabAndVariantForm.value)
-            .then(() => {
-              this.getCities();
-            });
-          // this.pannel = view;
-          // this.selected = view
-          this.cancel('back')
+          if (!this.slabAndVariantForm.value.eventId) {
+            this.ToastService.showError('Please save the event first');
+          } else {
+            await this.eventservice
+              .addSlabAndVariant(this.slabAndVariantForm.value)
+              .then(() => {
+                this.getCities();
+              });
+            // this.pannel = view;
+            // this.selected = view
+            this.cancel('back');
           }
         }
         break;
-      
     }
   }
 
-  changePanel(panel:any){
+  changePanel(panel: any) {
     this.pannel = panel;
     this.selected = panel;
   }
@@ -542,18 +600,14 @@ export class AddeventComponent {
         city.cityId === newCity.cityId && city.stateId === newCity.stateId
     );
     if (cityExists) {
-      
     } else {
-
       this.eventservice
         .addEventInCity({
           ...newCity,
           active: true,
           eventId: eventId,
         })
-        .then((res: any) => {
-        
-        });
+        .then((res: any) => {});
       this.filteredCities = [];
       this.searchQuery = '';
     }
