@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^13.0.0",
+    "cordova-plugin-sms-retriever": "^4.0.1",
     "cordova-plugin-splashscreen": "^6.0.1"
   },
   "cordova": {
@@ -21,7 +22,11 @@
       "android"
     ],
     "plugins": {
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-sms-retriever": {
+        "PLAY_SERVICES_AUTH_VERSION": "20.5.0",
+        "PLAY_SERVICES_AUTH_API_PHONE_VERSION": "18.0.1"
+      }
     }
   }
 }

@@ -14,6 +14,7 @@ import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import { confirmSignIn, signUp } from 'aws-amplify/auth';
 import { confirmSignUp } from 'aws-amplify/auth';
 import { signIn, signOut } from 'aws-amplify/auth';
+// declare var cordova: any;
 
 @Component({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -40,6 +41,21 @@ export class LoginComponent {
   terms: boolean = false;
   verifier: RecaptchaVerifier | undefined;
 
+  // startSmsRetriever() {
+  //   if (cordova.plugins.smsRetriever) {
+  //     cordova.plugins.smsRetriever.startListening(
+  //       (message:any) => {
+  //         console.log('OTP Received: ', message);
+  //         // Extract OTP from the message and auto-fill it in the input field
+  //       },
+  //       (error:any) => {
+  //         console.error('Error retrieving SMS: ', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('SMS Retriever plugin not available');
+  //   }
+  // }
   ngOnInit(): void {
     // this.geolocationService
     //   .getCurrentLocation()

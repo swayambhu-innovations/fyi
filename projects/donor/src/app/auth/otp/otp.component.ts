@@ -9,6 +9,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { CommonModule } from '@angular/common';
 import { HeaderWithBackComponent } from '../../sharedComponent/header-with-back/header-with-back.component';
 import { SaveBtnComponent } from '../../../../../shared-ui/src/save-btn/save-btn.component';
+// declare var cordova: any;
+
 @Component({
   selector: 'app-otp',
   standalone: true,
@@ -40,7 +42,24 @@ export class OtpComponent {
     } else {
       this.startResendTimer();
     }
+    // this.startSmsRetriever()
   }
+  // startSmsRetriever() {
+  
+  //   if (cordova.plugins.smsRetriever) {
+  //     cordova.plugins.smsRetriever.startListening(
+  //       (message:any) => {
+  //         console.log('OTP Received: ', message);
+  //         // Extract OTP from the message and auto-fill it in the input field
+  //       },
+  //       (error:any) => {
+  //         console.error('Error retrieving SMS: ', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('SMS Retriever plugin not available');
+  //   }
+  // }
   async sendOTP() {
     if (this.dataProvider.loginConfirmationResult) {
       
